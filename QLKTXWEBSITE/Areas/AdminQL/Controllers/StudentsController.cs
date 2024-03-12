@@ -173,6 +173,7 @@ namespace QLKTXWEBSITE.Areas.AdminQL.Controllers
             ViewData["RoomId"] = new SelectList(_context.Rooms, "RoomId", "RoomId", student.RoomId);
             return View(student);
         }
+
         // POST: AdminQL/Students/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
