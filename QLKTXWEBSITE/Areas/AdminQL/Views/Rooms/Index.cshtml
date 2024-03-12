@@ -1,0 +1,108 @@
+﻿@model IEnumerable<QLKTXWEBSITE.Models.Room>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/AdminQL/Views/Shared/Admin.cshtml";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+
+<!-- Form tìm kiếm -->
+<form method="get" class="form-inline">
+    <div class="form-group mr-2">
+        <label for="mowroom">MoWRoom:</label>
+        <select id="mowroom" name="mowroom" class="form-control">
+            <option value="">All</option>
+            <option value="Nam">Nam</option>
+            <option value="Nữ">Nữ</option>
+        </select>
+    </div>
+    <div class="form-group mr-2">
+        <label for="building">Building:</label>
+        <select id="building" name="building" class="form-control">
+            <option value="">All</option>
+            <option value="A">A</option>
+            <option value="B">B</option>
+        </select>
+    </div>
+    <div class="form-group mr-2">
+        <label for="numberRoom">NumberRoom:</label>
+        <input type="text" id="numberRoom" name="numberRoom" class="form-control" />
+    </div>
+    <div class="form-group mr-2">
+        <label for="status">Status:</label>
+        <select id="status" name="status" class="form-control">
+            <option value="">All</option>
+            <option value="True">True</option>
+            <option value="False">False</option>
+        </select>
+    </div>
+    <button type="submit" class="btn btn-primary">Search</button>
+</form>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Mowroom)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Building)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Floor)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NumberRoom)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BedNumber)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NumberOfStudents)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Status)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Mowroom)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Building)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Floor)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NumberRoom)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.BedNumber)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NumberOfStudents)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Status)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.RoomId">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.RoomId">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.RoomId">Delete</a>
+
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

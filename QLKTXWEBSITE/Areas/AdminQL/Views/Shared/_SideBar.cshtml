@@ -1,0 +1,103 @@
+﻿﻿﻿@using Microsoft.AspNetCore.Http;
+@inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
+<aside class="main-sidebar sidebar-dark-primary elevation-4">
+    <!-- Brand Logo -->
+    <a href="Admin.cshtml" class="brand-link">
+        <img src="~ /img/imagesweb/HUNRE_Logo.png" alt="Logo Hunre" class="" width="30px">
+        <span class="brand-text font-weight-light">Quản lý kí túc xá</span>
+    </a>
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <!-- Sidebar user panel (optional) -->
+        <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+            <div class="image">
+                <img src="dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
+            </div>
+            <div class="info">
+                @{
+                    if (HttpContextAccessor.HttpContext.Session.GetString("AdminLogin") != null)
+                    {
+                        <a href="#" class="d-block">@HttpContextAccessor.HttpContext.Session.GetString("AdminLogin")</a>
+                        <a asp-action="Logout" asp-controller="Login">Đăng xuất</a>
+                    }
+                    else
+                    {
+                        <a href="#" class="d-block">DamQuocDan</a>
+                    }
+                }
+
+
+            </div>
+        </div>
+        <!-- Sidebar Menu -->
+        <nav class="mt-2">
+            <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+             
+                <li class="nav-item">
+                    <a href="/adminql/adminusers" class="nav-link">
+                        <i class="nav-icon fas fa-user-astronaut"></i>
+                        <p>
+                            Người dùng
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="/adminql/rooms" class="nav-link">
+                        <i class="nav-icon fas fa-copy"></i>
+                        <p>
+                            Quản lý phòng
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="/adminql/services" class="nav-link">
+                        <i class="nav-icon fas fa-circle"></i>
+                        <p>
+                            Quản lý dịch vụ
+                        </p>
+                    </a>
+
+                </li>
+                <li class="nav-item">
+                    <a href="/adminql/news" class="nav-link">
+                        <i class="nav-icon fas fa-file-signature"></i>
+                        <p>
+                            Quản lý tin tức
+                        </p>
+                    </a>
+
+                </li>
+                <li class="nav-item">
+                    <a href="/adminql/students" class="nav-link">
+                        <i class="nav-icon fas fa-user-astronaut"></i>
+                        <p>
+                            Quản lý sinh viên
+                        </p>
+                    </a>
+
+                </li>
+                <li class="nav-item">
+                    <a href="/adminql/transactions" class="nav-link">
+                        <i class="nav-icon fas fa-copy"></i>
+                        <p>
+                            Quản lý thanh toán
+                        </p>
+                    </a>
+
+                </li>
+                <li class="nav-item">
+                    <a href="/adminql/occupancies" class="nav-link">
+                        <i class="nav-icon fas fa-copy"></i>
+                        <p>
+                            Quản lý hợp đồng
+                        </p>
+                    </a>
+
+                </li>
+
+            </ul>
+        </nav>
+
+    </div>
+</aside>
