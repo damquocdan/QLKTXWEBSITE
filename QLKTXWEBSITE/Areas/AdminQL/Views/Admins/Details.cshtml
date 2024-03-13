@@ -5,45 +5,45 @@
     Layout = "~/Areas/AdminQL/Views/Shared/Admin.cshtml";
 }
 
-<h1>Details</h1>
+<h1>Thông tin chi tiết</h1>
 
 <div>
     <h4>Admin</h4>
     <hr />
     <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Email)
+        <dt class="col-sm-2">
+            Email
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Email)
         </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Password)
+        <dt class="col-sm-2">
+            Mật khẩu
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Password)
         </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.PhoneNumber)
+        <dt class="col-sm-2">
+            Số điện thoại
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.PhoneNumber)
         </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Address)
+        <dt class="col-sm-2">
+            Địa chỉ
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Address)
         </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.FullName)
+        <dt class="col-sm-2">
+            Họ và tên
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.FullName)
         </dd>
     </dl>
 </div>
 <div>
-    <a asp-action="Edit" asp-route-id="@Model?.AdminId">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Edit" asp-route-id="@Model?.AdminId" class="btn btn-primary">Sửa</a>
+    <a asp-action="Index" class="btn btn-secondary">Quay lại danh sách</a>
 </div>

@@ -5,91 +5,95 @@
     Layout = "~/Areas/AdminQL/Views/Shared/Admin.cshtml";
 }
 
-<h1>Create</h1>
+<h1>Tạo mới</h1>
 
-<h4>Student</h4>
+<h4>Sinh viên</h4>
 <hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Create">
+<form asp-action="Create">
+    <div class="row justify-content-center">
+        <div class="col-md-3">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="FullName" class="control-label"></label>
+                <label asp-for="FullName" class="control-label">Họ và tên</label>
                 <input asp-for="FullName" class="form-control" />
                 <span asp-validation-for="FullName" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="DateOfBirth" class="control-label"></label>
+                <label asp-for="DateOfBirth" class="control-label">Ngày sinh</label>
                 <input asp-for="DateOfBirth" class="form-control" />
                 <span asp-validation-for="DateOfBirth" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Gender" class="control-label"></label>
+                <label asp-for="Gender" class="control-label">Giới tính</label>
                 <input asp-for="Gender" class="form-control" />
                 <span asp-validation-for="Gender" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="PhoneNumber" class="control-label"></label>
+                <label asp-for="PhoneNumber" class="control-label">Số điện thoại</label>
                 <input asp-for="PhoneNumber" class="form-control" />
                 <span asp-validation-for="PhoneNumber" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="ParentPhoneNumber" class="control-label"></label>
+                <label asp-for="ParentPhoneNumber" class="control-label">Số điện thoại phụ huynh</label>
                 <input asp-for="ParentPhoneNumber" class="form-control" />
                 <span asp-validation-for="ParentPhoneNumber" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Email" class="control-label"></label>
+                <label asp-for="Email" class="control-label">Email</label>
                 <input asp-for="Email" class="form-control" />
                 <span asp-validation-for="Email" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Password" class="control-label"></label>
+                <label asp-for="Password" class="control-label">Mật khẩu</label>
                 <input asp-for="Password" class="form-control" />
                 <span asp-validation-for="Password" class="text-danger"></span>
             </div>
+        </div>
+        <div class="col-md-3">
             <div class="form-group">
-                <label asp-for="StudentCode" class="control-label"></label>
+                <label asp-for="StudentCode" class="control-label">Mã sinh viên</label>
                 <input asp-for="StudentCode" class="form-control" />
                 <span asp-validation-for="StudentCode" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Dhid" class="control-label"></label>
-                <select asp-for="Dhid" class ="form-control" asp-items="ViewBag.Dhid"></select>
+                <label asp-for="Dhid" class="control-label">Khoá</label>
+                <select asp-for="Dhid" class="form-control" asp-items="ViewBag.Dhid"></select>
             </div>
             <div class="form-group">
-                <label asp-for="DepartmentId" class="control-label"></label>
-                <select asp-for="DepartmentId" class ="form-control" asp-items="ViewBag.DepartmentId"></select>
+                <label asp-for="DepartmentId" class="control-label">Khoa</label>
+                <select asp-for="DepartmentId" class="form-control" asp-items="ViewBag.DepartmentId"></select>
             </div>
             <div class="form-group">
-                <label asp-for="Class" class="control-label"></label>
+                <label asp-for="Class" class="control-label">Lớp</label>
                 <input asp-for="Class" class="form-control" />
                 <span asp-validation-for="Class" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="AdmissionConfirmation" class="control-label"></label>
+                <label asp-for="AdmissionConfirmation" class="control-label">Giấy xác nhận nhập học</label>
                 <input asp-for="AdmissionConfirmation" class="form-control" />
                 <span asp-validation-for="AdmissionConfirmation" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="RoomId" class="control-label"></label>
-                <select asp-for="RoomId" class ="form-control" asp-items="ViewBag.RoomId"></select>
+                <label asp-for="RoomId" class="control-label">Phòng số</label>
+                <select asp-for="RoomId" class="form-control" asp-items="ViewBag.RoomId"></select>
             </div>
             <div class="form-group">
-                <label asp-for="BedId" class="control-label"></label>
-                <select asp-for="BedId" class ="form-control" asp-items="ViewBag.BedId"></select>
+                <label asp-for="BedId" class="control-label">Giường số</label>
+                <select asp-for="BedId" class="form-control" asp-items="ViewBag.BedId"></select>
             </div>
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+                <input type="submit" value="Tạo" class="btn btn-primary" />
             </div>
-        </form>
+        </div>
     </div>
-</div>
+</form>
 
-<div>
-    <a asp-action="Index">Back to List</a>
+<div class="mt-3">
+    <a asp-action="Index" class="btn btn-secondary">Quay lại danh sách</a>
 </div>
 
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
 }

@@ -5,35 +5,35 @@
     Layout = "~/Areas/AdminQL/Views/Shared/Admin.cshtml";
 }
 
-<h1>Details</h1>
+<h1>Chi tiết</h1>
 
 <div class="container">
     <div class="row">
         <div class="col-md-6 offset-md-3">
             <div class="card">
                 <div class="card-body">
-                    <h4 class="card-title">Student Information</h4>
+                    <h4 class="card-title">Thông tin sinh viên</h4>
                     <hr />
                     <dl class="row">
-                        <dt class="col-sm-4">Full Name:</dt>
+                        <dt class="col-sm-4">Họ và tên:</dt>
                         <dd class="col-sm-8">@Html.DisplayFor(model => model.FullName)</dd>
 
-                        <dt class="col-sm-4">Date of Birth:</dt>
+                        <dt class="col-sm-4">Ngày sinh:</dt>
                         <dd class="col-sm-8">@Html.DisplayFor(model => model.DateOfBirth)</dd>
 
-                        <dt class="col-sm-4">Gender:</dt>
+                        <dt class="col-sm-4">Giới tính:</dt>
                         <dd class="col-sm-8">@Html.DisplayFor(model => model.Gender)</dd>
 
-                        <dt class="col-sm-4">Phone Number:</dt>
+                        <dt class="col-sm-4">Số điện thoại:</dt>
                         <dd class="col-sm-8">@Html.DisplayFor(model => model.PhoneNumber)</dd>
 
-                        <dt class="col-sm-4">Parent Phone Number:</dt>
+                        <dt class="col-sm-4">Số điện thoại phụ huynh:</dt>
                         <dd class="col-sm-8">@Html.DisplayFor(model => model.ParentPhoneNumber)</dd>
 
                         <dt class="col-sm-4">Email:</dt>
                         <dd class="col-sm-8">@Html.DisplayFor(model => model.Email)</dd>
 
-                        <dt class="col-sm-4">Student Code:</dt>
+                        <dt class="col-sm-4">Mã sinh viên:</dt>
                         <dd class="col-sm-8">@Html.DisplayFor(model => model.StudentCode)</dd>
 
                         <dt class="col-sm-4">Lớp:</dt>
@@ -41,6 +41,7 @@
 
                         <dt class="col-sm-4">Giấy xác nhận nhập học:</dt>
                         <dd class="col-sm-8">@Html.DisplayFor(model => model.AdmissionConfirmation)</dd>
+
                         <dt class="col-sm-4">Ngành:</dt>
                         <dd class="col-sm-8">@Html.DisplayFor(model => model.Department.DepartmentName)</dd>
 
@@ -49,6 +50,7 @@
 
                         <dt class="col-sm-4">Phòng Số:</dt>
                         <dd class="col-sm-8">@Html.DisplayFor(model => model.Room.NumberRoom)</dd>
+
                         <dt class="col-sm-4">Giường Số:</dt>
                         <dd class="col-sm-8">@Html.DisplayFor(model => model.Bed.NumberBed)</dd>
                     </dl>
@@ -58,7 +60,9 @@
     </div>
 </div>
 
-<div class="mt-3">
-    <a asp-action="Edit" asp-route-id="@Model?.StudentId" class="btn btn-primary">Edit</a>
-    <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+<div class="row justify-content-center">
+    <div class="col-md-1">
+        <a asp-action="Edit" asp-route-id="@Model?.StudentId" class="btn btn-primary">Sửa thông tin</a>
+    </div>
 </div>
+<a asp-action="Index" class="btn btn-secondary">Quay lại danh sách</a>

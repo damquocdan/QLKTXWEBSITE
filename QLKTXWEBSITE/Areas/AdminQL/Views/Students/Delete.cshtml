@@ -1,106 +1,70 @@
 ﻿@model QLKTXWEBSITE.Models.Student
 
 @{
-    ViewData["Title"] = "Delete";
+    ViewData["Title"] = "Xóa";
     Layout = "~/Areas/AdminQL/Views/Shared/Admin.cshtml";
 }
 
-<h1>Delete</h1>
-
-<h3>Are you sure you want to delete this?</h3>
-<div>
-    <h4>Student</h4>
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <h3 class="text-center">Bạn có chắc chắn muốn xóa sinh viên này?</h3>
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">Thông tin sinh viên</h4>
     <hr />
     <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.FullName)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.FullName)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.DateOfBirth)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.DateOfBirth)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Gender)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Gender)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.PhoneNumber)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.PhoneNumber)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.ParentPhoneNumber)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.ParentPhoneNumber)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Email)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Email)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Password)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Password)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.StudentCode)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.StudentCode)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Class)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Class)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.AdmissionConfirmation)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.AdmissionConfirmation)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Bed)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Bed.BedId)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Department)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Department.DepartmentId)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Dh)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Dh.Dhid)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Room)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Room.RoomId)
-        </dd>
+        <dt class="col-sm-5">Họ và tên:</dt>
+        <dd class="col-sm-7">@Html.DisplayFor(model => model.FullName)</dd>
+
+        <dt class="col-sm-5">Ngày sinh:</dt>
+        <dd class="col-sm-7">@Html.DisplayFor(model => model.DateOfBirth)</dd>
+
+        <dt class="col-sm-5">Giới tính:</dt>
+        <dd class="col-sm-7">@Html.DisplayFor(model => model.Gender)</dd>
+
+        <dt class="col-sm-5">Số điện thoại:</dt>
+        <dd class="col-sm-7">@Html.DisplayFor(model => model.PhoneNumber)</dd>
+
+        <dt class="col-sm-5">Số điện thoại phụ huynh:</dt>
+        <dd class="col-sm-7">@Html.DisplayFor(model => model.ParentPhoneNumber)</dd>
+
+        <dt class="col-sm-5">Email:</dt>
+        <dd class="col-sm-7">@Html.DisplayFor(model => model.Email)</dd>
+
+        <dt class="col-sm-5">Mã sinh viên:</dt>
+        <dd class="col-sm-7">@Html.DisplayFor(model => model.StudentCode)</dd>
+
+        <dt class="col-sm-5">Lớp:</dt>
+        <dd class="col-sm-7">@Html.DisplayFor(model => model.Class)</dd>
+
+        <dt class="col-sm-5">Giấy xác nhận nhập học:</dt>
+        <dd class="col-sm-7">@Html.DisplayFor(model => model.AdmissionConfirmation)</dd>
+
+        <dt class="col-sm-5">Ngành:</dt>
+        <dd class="col-sm-7">@Html.DisplayFor(model => model.Department.DepartmentName)</dd>
+
+        <dt class="col-sm-5">Khoá:</dt>
+        <dd class="col-sm-7">@Html.DisplayFor(model => model.Dh.Dhcode)</dd>
+
+        <dt class="col-sm-5">Phòng Số:</dt>
+        <dd class="col-sm-7">@Html.DisplayFor(model => model.Room.NumberRoom)</dd>
+
+        <dt class="col-sm-5">Giường Số:</dt>
+        <dd class="col-sm-7">@Html.DisplayFor(model => model.Bed.NumberBed)</dd>
     </dl>
-    
-    <form asp-action="Delete">
-        <input type="hidden" asp-for="StudentId" />
-        <input type="submit" value="Delete" class="btn btn-danger" /> |
-        <a asp-action="Index">Back to List</a>
-    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row justify-content-center mt-6">
+        <div class="col-md-4">
+            <form asp-action="Delete">
+                <input type="hidden" asp-for="StudentId" />
+                <input type="submit" value="Xóa" class="btn btn-danger" />
+                
+            </form>
+        </div>
+    </div>
+    <a asp-action="Index" class="btn btn-secondary">Quay lại danh sách</a>
 </div>

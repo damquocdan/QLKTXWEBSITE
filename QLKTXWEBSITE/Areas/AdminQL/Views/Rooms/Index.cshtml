@@ -5,68 +5,68 @@
     Layout = "~/Areas/AdminQL/Views/Shared/Admin.cshtml";
 }
 
-<h1>Index</h1>
+<h1>Danh sách các phòng</h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Create" class="btn btn-primary">Tạo phòng mới</a>
 </p>
 
 <!-- Form tìm kiếm -->
 <form method="get" class="form-inline">
     <div class="form-group mr-2">
-        <label for="mowroom">MoWRoom:</label>
+        <label for="mowroom">Phòng:</label>
         <select id="mowroom" name="mowroom" class="form-control">
-            <option value="">All</option>
+            <option value="">Tất cả</option>
             <option value="Nam">Nam</option>
             <option value="Nữ">Nữ</option>
         </select>
     </div>
     <div class="form-group mr-2">
-        <label for="building">Building:</label>
+        <label for="building">Toà:</label>
         <select id="building" name="building" class="form-control">
-            <option value="">All</option>
+            <option value="">Tất cả</option>
             <option value="A">A</option>
             <option value="B">B</option>
         </select>
     </div>
     <div class="form-group mr-2">
-        <label for="numberRoom">NumberRoom:</label>
+        <label for="numberRoom">Phòng số:</label>
         <input type="text" id="numberRoom" name="numberRoom" class="form-control" />
     </div>
     <div class="form-group mr-2">
-        <label for="status">Status:</label>
+        <label for="status">Trạng thái:</label>
         <select id="status" name="status" class="form-control">
-            <option value="">All</option>
-            <option value="True">True</option>
-            <option value="False">False</option>
+            <option value="">Tất cả</option>
+            <option value="True">Đầy</option>
+            <option value="False">Trống</option>
         </select>
     </div>
-    <button type="submit" class="btn btn-primary">Search</button>
+    <button type="submit" class="btn btn-primary">Tìm kiếm</button>
 </form>
 
-<table class="table">
-    <thead>
+<table class="table mt-2">
+    <thead class="thead-dark">
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Mowroom)
+                Phòng Nam/Nữ
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Building)
+                Toà
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Floor)
+                Tầng
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.NumberRoom)
+                Phòng số
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.BedNumber)
+                Số giường
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.NumberOfStudents)
+                Số sinh viên
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Status)
+                Trạng thái
             </th>
             <th></th>
         </tr>
@@ -97,10 +97,9 @@
                     @Html.DisplayFor(modelItem => item.Status)
                 </td>
                 <td>
-                    <a asp-action="Edit" asp-route-id="@item.RoomId">Edit</a> |
-                    <a asp-action="Details" asp-route-id="@item.RoomId">Details</a> |
-                    <a asp-action="Delete" asp-route-id="@item.RoomId">Delete</a>
-
+                    <a asp-action="Edit" asp-route-id="@item.RoomId" class="btn btn-primary">Sửa</a> 
+                    <a asp-action="Details" asp-route-id="@item.RoomId" class="btn btn-info">Chi tiết</a> 
+                    <a asp-action="Delete" asp-route-id="@item.RoomId" class="btn btn-danger">Xoá</a>
                 </td>
             </tr>
         }
