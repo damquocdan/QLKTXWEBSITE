@@ -5,58 +5,67 @@
     Layout = "~/Areas/AdminQL/Views/Shared/Admin.cshtml";
 }
 
-<h1>Details</h1>
+<h1>Thông tin chi tiết</h1>
 
-<div>
-    <h4>Room</h4>
-    <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Mowroom)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Mowroom)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Building)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Building)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Floor)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Floor)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.NumberRoom)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.NumberRoom)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.BedNumber)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.BedNumber)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.NumberOfStudents)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.NumberOfStudents)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Status)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Status)
-        </dd>
-    </dl>
+<div class="container">
+    <div class="row">
+        <div class="col-sm-2">
+            <h4>Phòng @Html.DisplayFor(model => model.NumberRoom)</h4>
+            <hr />
+        </div>
+        <div class="col-sm-10">
+            <dl class="row">
+                <dt class="col-sm-2">
+                    Phòng
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.Mowroom)
+                </dd>
+                <dt class="col-sm-2">
+                    Toà
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.Building)
+                </dd>
+                <dt class="col-sm-2">
+                    Tầng
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.Floor)
+                </dd>
+                <dt class="col-sm-2">
+                    Số giường
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.BedNumber)
+                </dd>
+                <dt class="col-sm-2">
+                    Số sinh viên
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.NumberOfStudents)
+                </dd>
+                <dt class="col-sm-2">
+                    Trạng thái
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.Status)
+                </dd>
+            </dl>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-6">
+            <div>
+                <a asp-action="Edit" asp-route-id="@Model?.RoomId" class="btn btn-primary offset-md-3">Sửa</a>
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div>
+                <a asp-action="Index" asp-controller="BedOfRoom" asp-route-id="@Model.RoomId" class="btn btn-info">Xem các giường</a>
+            </div>
+        </div>
+    </div>
 </div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model?.RoomId">Edit</a> |
-    <a asp-action="Index">Back to List</a>
-    <a asp-action="Index" asp-controller="BedOfRoom" asp-route-id="@Model.RoomId" class="btn btn-info">View Beds</a>
-</div>
+<a asp-action="Index" class="btn btn-secondary mt-3">Quay lại danh sách</a>
+

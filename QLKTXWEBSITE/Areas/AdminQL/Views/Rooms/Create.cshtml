@@ -1,20 +1,20 @@
 ﻿@model QLKTXWEBSITE.Models.Room
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Tạo mới";
     Layout = "~/Areas/AdminQL/Views/Shared/Admin.cshtml";
 }
 
-<h1>Create</h1>
+<h1>Tạo mới</h1>
 
-<h4>Room</h4>
+<h4>Phòng</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="Mowroom" class="control-label"></label>
+                <label asp-for="Mowroom" class="control-label">Phòng</label>
                 <select asp-for="Mowroom" class="form-control">
                     <option value="Nam">Nam</option>
                     <option value="Nữ">Nữ</option>
@@ -22,49 +22,53 @@
                 <span asp-validation-for="Mowroom" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Building" class="control-label"></label>
-                <input asp-for="Building" class="form-control" />
+                <label asp-for="Building" class="control-label">Toà</label>
+                <select asp-for="Building" class="form-control">
+                    <option value="A">A</option>
+                    <option value="B">B</option>
+                </select>
                 <span asp-validation-for="Building" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Floor" class="control-label"></label>
+                <label asp-for="Floor" class="control-label">Tầng</label>
                 <input asp-for="Floor" class="form-control" />
                 <span asp-validation-for="Floor" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="NumberRoom" class="control-label"></label>
+                <label asp-for="NumberRoom" class="control-label">Phòng số</label>
                 <input asp-for="NumberRoom" class="form-control" />
                 <span asp-validation-for="NumberRoom" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="BedNumber" class="control-label"></label>
+                <label asp-for="BedNumber" class="control-label">Số giường</label>
                 <input asp-for="BedNumber" class="form-control" />
                 <span asp-validation-for="BedNumber" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="NumberOfStudents" class="control-label"></label>
+                <label asp-for="NumberOfStudents" class="control-label">Số sinh viên</label>
                 <input asp-for="NumberOfStudents" class="form-control" />
                 <span asp-validation-for="NumberOfStudents" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Status" class="control-label"></label>
+                <label asp-for="Status" class="control-label">Trạng thái</label>
                 <select asp-for="Status" class="form-control">
-                    <option value="true">True</option>
                     <option value="false">False</option>
                 </select>
                 <span asp-validation-for="Status" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+                <input type="submit" value="Tạo mới" class="btn btn-primary" />
             </div>
         </form>
     </div>
 </div>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Index" class="btn btn-secondary">Quay lại Danh sách</a>
 </div>
 
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
 }
