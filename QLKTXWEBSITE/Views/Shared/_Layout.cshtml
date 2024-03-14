@@ -1,44 +1,155 @@
-﻿<!DOCTYPE html>
+﻿﻿
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - QLKTXWEBSITE</title>
+    <title>@ViewData["Title"] - QLKTXWEB</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/QLKTXWEBSITE.styles.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/QLKTXWEB.styles.css" asp-append-version="true" />
 </head>
-<body>
+<body class="mb-0">
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">QLKTXWEBSITE</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4e/HUNRE_Logo.png/768px-HUNRE_Logo.png" width="100px" title="logo" />
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
+                <div class="collapse navbar-collapse " id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb- mb-lg-0 d-flex align-items-center">
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Trang chủ</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Về kí túc xá</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="New">Tin tức</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Dịch vụ</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Liên hệ</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Tài khoản
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <li><a class="dropdown-item" asp-controller="Students" asp-action="Create">Đăng ký</a></li>
+                                <li><a class="dropdown-item" asp-controller="Students" asp-action="Index">Đăng nhập</a></li>
+                            </ul>
                         </li>
                     </ul>
+                    <div class="dk-dn d-flex position-absolute end-0">
+                        @* <a asp-controller="Students" asp-action="Create" style="text-decoration: none;">
+                        <p class="registry mb-0">Đăng Ký</p>
+                        </a><span>/</span>
+                        <a asp-controller="Students" asp-action="Index" style="text-decoration: none;">
+                        <p class="sigin mb-0">Đăng nhập</p>
+                        </a> *@
+                        <div class="thong_bao me-4">
+                            <button id="button_thong_bao" type="button" class="border-0 ">
+                                <i class="fa-regular fa-bell fa-2xl" style="color: #63E6BE;"></i>
+                                <div class="noi_dung" id="noi_dung">
+                                    <ul>
+                                        <li>
+                                            <div class="py-2 text-start d-flex align-items-center">
+                                                <p class="ms-2">Thông báo 1</p>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="py-2 text-start">
+                                                <p class="ms-2">Thông báo 2</p>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="py-2 text-start">
+                                                <p class="ms-2">Thông báo 3</p>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="py-2 text-start">
+                                                <p class="ms-2">Thông báo 4</p>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="py-2 text-start">
+                                                <p class="ms-2">Thông báo 5</p>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </button>
+                        </div>
+                        <div class="user me-4">
+                            <button id="button_user" type="button" class="border-0 ">
+                                <i class="fa-regular fa-user fa-2xl" style="color: #63E6BE;"></i>
+                                <div class="menu_user" id="menu_user">
+                                    <ul>
+                                        <li>
+                                            <div class="py-2 text-start d-flex align-items-center">
+                                                <p class="ms-2">Thông tin</p>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="py-2 text-start">
+                                                <a asp-action="Index" class="text-decoration-none"><p class="ms-2">Đăng xuất</p></a>
+                                            </div>
+                                        </li>
+
+                                        <li>
+                                            <div class="py-2 text-start">
+                                                <a asp-controller="Students" asp-action="Index" class="text-decoration-none"><p class="ms-2">Đăng nhập</p></a>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="py-2 text-start">
+                                                <a asp-controller="Students" asp-action="Create" class="text-decoration-none"><p class="ms-2">Đăng ký</p></a>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </button>
+                        </div>
+
+                    </div>
+                    @* <form class="d-flex">
+                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-success" type="submit">Search</button>
+                    </form> *@
                 </div>
             </div>
         </nav>
     </header>
     <div class="container">
-        <main role="main" class="pb-3">
+        <main role="main">
             @RenderBody()
         </main>
     </div>
 
-    <footer class="border-top footer text-muted">
+    <footer class="w-100" style="background-color:aquamarine;">
         <div class="container">
-            &copy; 2024 - QLKTXWEBSITE - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            <div class="row">
+                <div class="col--12 col__md--7 medium gutter t--r footer__right right">
+                    <p>
+                        <a href="https://goo.gl/maps/t5brgPKFc9xDyD1QA">
+                            <img class="image_resized" style="width:48px;" src="https://hunre.edu.vn/media/data/banner/banner-quang-cao/googlemap.png" alt="">
+                        </a>
+                    </p>
+                </div>
+                <div class="col--12 col__md--5 medium gutter">
+                    <strong class="upper">Trường Đại học Tài nguyên và Môi trường Hà Nội</strong>
+                    <br>	Địa chỉ: Số 41A đường Phú Diễn, Q. Bắc Từ Liêm, TP. Hà Nội<br>
+                    Điện thoại: 0902.130.130 <span class="clr--silver">|</span>
+                    Email: <a href="mailto:DHTNMT@hunre.edu.vn">DHTNMT@hunre.edu.vn</a>
+                    <br>© 2024, Trường Đại học Tài nguyên và Môi trường Hà Nội . All rights reversed.
+                </div>
+            </div>
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>

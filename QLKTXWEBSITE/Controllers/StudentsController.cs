@@ -19,10 +19,34 @@ namespace QLKTXWEBSITE.Controllers
         }
 
         // GET: Students
-        public async Task<IActionResult> Index()
+        public IActionResult Index(Student model)
         {
-            var qlktxContext = _context.Students.Include(s => s.Bed).Include(s => s.Department).Include(s => s.Dh).Include(s => s.Room);
-            return View(await qlktxContext.ToListAsync());
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+            var user = model.StudentCode;
+            var pass = model.Password;
+            var dataLogin = _context.Students.FirstOrDefault(x => x.StudentCode == model.StudentCode && x.Password == model.Password);
+
+            if (dataLogin != null)
+            {
+
+                return RedirectToAction("Details", "Students", new { id = dataLogin.StudentId });
+            }
+            return View(model);
+
+            // Nếu thông tin không hợp lệ, hiển thị thông báo lỗi
+            ModelState.AddModelError("", "Invalid username or password.");
+            return View(model);
+        }
+
+
+        [HttpGet]// thoát đăng nhập, huỷ session
+        public IActionResult Logout()
+        {
+
+            return RedirectToAction("Index");
         }
 
         // GET: Students/Details/5
@@ -35,8 +59,6 @@ namespace QLKTXWEBSITE.Controllers
 
             var student = await _context.Students
                 .Include(s => s.Bed)
-                .Include(s => s.Department)
-                .Include(s => s.Dh)
                 .Include(s => s.Room)
                 .FirstOrDefaultAsync(m => m.StudentId == id);
             if (student == null)
@@ -51,8 +73,6 @@ namespace QLKTXWEBSITE.Controllers
         public IActionResult Create()
         {
             ViewData["BedId"] = new SelectList(_context.BedOfRooms, "BedId", "BedId");
-            ViewData["DepartmentId"] = new SelectList(_context.Departments, "DepartmentId", "DepartmentId");
-            ViewData["Dhid"] = new SelectList(_context.Dhs, "Dhid", "Dhid");
             ViewData["RoomId"] = new SelectList(_context.Rooms, "RoomId", "RoomId");
             return View();
         }
@@ -62,7 +82,7 @@ namespace QLKTXWEBSITE.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("StudentId,FullName,DateOfBirth,Gender,PhoneNumber,ParentPhoneNumber,Email,Password,StudentCode,Dhid,DepartmentId,Class,AdmissionConfirmation,RoomId,BedId")] Student student)
+        public async Task<IActionResult> Create([Bind("FirstName,LastName,DateOfBirth,Gender,PhoneNumber,ParentPhoneNumber,Email,Password,StudentCode,Dh,Department,AdmissionConfirmation,RoomId,BedId")] Student student)
         {
             if (ModelState.IsValid)
             {
@@ -71,11 +91,10 @@ namespace QLKTXWEBSITE.Controllers
                 return RedirectToAction(nameof(Index));
             }
             ViewData["BedId"] = new SelectList(_context.BedOfRooms, "BedId", "BedId", student.BedId);
-            ViewData["DepartmentId"] = new SelectList(_context.Departments, "DepartmentId", "DepartmentId", student.DepartmentId);
-            ViewData["Dhid"] = new SelectList(_context.Dhs, "Dhid", "Dhid", student.Dhid);
             ViewData["RoomId"] = new SelectList(_context.Rooms, "RoomId", "RoomId", student.RoomId);
             return View(student);
         }
+
 
         // GET: Students/Edit/5
         public async Task<IActionResult> Edit(int? id)
@@ -91,8 +110,6 @@ namespace QLKTXWEBSITE.Controllers
                 return NotFound();
             }
             ViewData["BedId"] = new SelectList(_context.BedOfRooms, "BedId", "BedId", student.BedId);
-            ViewData["DepartmentId"] = new SelectList(_context.Departments, "DepartmentId", "DepartmentId", student.DepartmentId);
-            ViewData["Dhid"] = new SelectList(_context.Dhs, "Dhid", "Dhid", student.Dhid);
             ViewData["RoomId"] = new SelectList(_context.Rooms, "RoomId", "RoomId", student.RoomId);
             return View(student);
         }
@@ -102,7 +119,7 @@ namespace QLKTXWEBSITE.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("StudentId,FullName,DateOfBirth,Gender,PhoneNumber,ParentPhoneNumber,Email,Password,StudentCode,Dhid,DepartmentId,Class,AdmissionConfirmation,RoomId,BedId")] Student student)
+        public async Task<IActionResult> Edit(int id, [Bind("StudentId,FirstName,LastName,DateOfBirth,Gender,PhoneNumber,ParentPhoneNumber,Email,Password,StudentCode,Dh,Department,AdmissionConfirmation,RoomId,BedId")] Student student)
         {
             if (id != student.StudentId)
             {
@@ -130,8 +147,6 @@ namespace QLKTXWEBSITE.Controllers
                 return RedirectToAction(nameof(Index));
             }
             ViewData["BedId"] = new SelectList(_context.BedOfRooms, "BedId", "BedId", student.BedId);
-            ViewData["DepartmentId"] = new SelectList(_context.Departments, "DepartmentId", "DepartmentId", student.DepartmentId);
-            ViewData["Dhid"] = new SelectList(_context.Dhs, "Dhid", "Dhid", student.Dhid);
             ViewData["RoomId"] = new SelectList(_context.Rooms, "RoomId", "RoomId", student.RoomId);
             return View(student);
         }
@@ -146,8 +161,6 @@ namespace QLKTXWEBSITE.Controllers
 
             var student = await _context.Students
                 .Include(s => s.Bed)
-                .Include(s => s.Department)
-                .Include(s => s.Dh)
                 .Include(s => s.Room)
                 .FirstOrDefaultAsync(m => m.StudentId == id);
             if (student == null)
@@ -172,14 +185,14 @@ namespace QLKTXWEBSITE.Controllers
             {
                 _context.Students.Remove(student);
             }
-            
+
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool StudentExists(int id)
         {
-          return (_context.Students?.Any(e => e.StudentId == id)).GetValueOrDefault();
+            return (_context.Students?.Any(e => e.StudentId == id)).GetValueOrDefault();
         }
     }
 }

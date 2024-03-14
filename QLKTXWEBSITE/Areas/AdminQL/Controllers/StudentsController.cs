@@ -24,6 +24,22 @@ namespace QLKTXWEBSITE.Areas.AdminQL.Controllers
         }
 
         // GET: AdminQL/Students
+        public async Task<IActionResult> ListStudentBed(string name)
+        {
+            IQueryable<Student> students = _context.Students
+            .Include(s => s.Department)
+             .Include(s => s.Dh)
+            .Include(s => s.Room)
+            .Where(s => s.BedId == null); // Filter students without a bed
+
+            if (!string.IsNullOrEmpty(name))
+            {
+                students = students.Where(s => s.FullName.Contains(name));
+            }
+
+            return View(await students.ToListAsync());
+
+        }
         public async Task<IActionResult> Index(string name)
         {
             IQueryable<Student> students = _context.Students.Include(s => s.Bed).Include(s => s.Department).Include(s => s.Dh).Include(s => s.Room);

@@ -4,91 +4,91 @@
     ViewData["Title"] = "Create";
 }
 
-<h1>Create</h1>
+<div style="height:659px">
+    <section class="h-100 bg-image"
+             style="background-image: url('https://mdbcdn.b-cdn.net/img/Photos/new-templates/search-box/img4.webp');">
+        <div class="mask d-flex align-items-center h-100 gradient-custom-3">
+            <div class="container h-100">
+                <div class="row d-flex justify-content-center align-items-center h-100">
+                    <div class="col-12 col-md-9 col-lg-7 col-xl-6">
+                        <div class="card" style="border-radius: 15px;">
+                            <div class="card-body p-5">
+                                <h2 class=" text-center mb-5">Đăng ký tài khoản</h2>
 
-<h4>Student</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Create">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="FullName" class="control-label"></label>
-                <input asp-for="FullName" class="form-control" />
-                <span asp-validation-for="FullName" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="DateOfBirth" class="control-label"></label>
-                <input asp-for="DateOfBirth" class="form-control" />
-                <span asp-validation-for="DateOfBirth" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Gender" class="control-label"></label>
-                <input asp-for="Gender" class="form-control" />
-                <span asp-validation-for="Gender" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="PhoneNumber" class="control-label"></label>
-                <input asp-for="PhoneNumber" class="form-control" />
-                <span asp-validation-for="PhoneNumber" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="ParentPhoneNumber" class="control-label"></label>
-                <input asp-for="ParentPhoneNumber" class="form-control" />
-                <span asp-validation-for="ParentPhoneNumber" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Email" class="control-label"></label>
-                <input asp-for="Email" class="form-control" />
-                <span asp-validation-for="Email" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Password" class="control-label"></label>
-                <input asp-for="Password" class="form-control" />
-                <span asp-validation-for="Password" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="StudentCode" class="control-label"></label>
-                <input asp-for="StudentCode" class="form-control" />
-                <span asp-validation-for="StudentCode" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Dhid" class="control-label"></label>
-                <select asp-for="Dhid" class ="form-control" asp-items="ViewBag.Dhid"></select>
-            </div>
-            <div class="form-group">
-                <label asp-for="DepartmentId" class="control-label"></label>
-                <select asp-for="DepartmentId" class ="form-control" asp-items="ViewBag.DepartmentId"></select>
-            </div>
-            <div class="form-group">
-                <label asp-for="Class" class="control-label"></label>
-                <input asp-for="Class" class="form-control" />
-                <span asp-validation-for="Class" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="AdmissionConfirmation" class="control-label"></label>
-                <input asp-for="AdmissionConfirmation" class="form-control" />
-                <span asp-validation-for="AdmissionConfirmation" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="RoomId" class="control-label"></label>
-                <select asp-for="RoomId" class ="form-control" asp-items="ViewBag.RoomId"></select>
-            </div>
-            <div class="form-group">
-                <label asp-for="BedId" class="control-label"></label>
-                <select asp-for="BedId" class ="form-control" asp-items="ViewBag.BedId"></select>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
-            </div>
-        </form>
-    </div>
-</div>
+                                <form asp-action="Create">
+                                    <div class="row d-flex">
+                                        <div class="form-outline mb-4 col-6">
+                                            <input asp-for="FullName" type="text" id="form3Example1cg" class="form-control form-control-lg custom-input"
+                                                   placeholder="Tên của bạn" required />
+                                            @* <label class="form-label" for="form3Example1cg">Tên của bạn</label> *@
+                                        </div>
+                                        <div class="form-outline mb-4 col-6">
+                                            <input asp-for="StudentCode" type="text" id="form3Example3cg" class="form-control form-control-lg custom-input"
+                                                   placeholder="Mã sinh viên" required />
+                                            @* <label class="form-label" for="form3Example3cg">Mã sinh viên</label> *@
+                                        </div>
+                                    </div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
+                                    <div class="row d-flex">
+                                        <div class="form-outline mb-4 col-12">
+                                            <select asp-for="Dh" class="form-control  custom-input" id="inputGroupSelect02" style="height:46px; color:#6c757d">
+                                                <option value="Chưa chọn">Khóa</option>
+                                                <option value="1">DH11</option>
+                                                <option value="2">DH12</option>
+                                                <option value="3">DH13</option>
+                                                <option value="4">DH14</option>
+                                            </select>
+                                        </div>
+
+
+                                    </div>
+
+                                    <div class="row d-flex">
+                                        <div class="form-outline mb-4 col-6">
+                                            <input asp-for="Password" type="password" id="form3Example4cg" class="form-control form-control-lg custom-input"
+                                                   placeholder="Mật khẩu" required />
+                                            @* <label class="form-label" for="form3Example4cg">Mật khẩu</label> *@
+                                        </div>
+
+                                        <div class="form-outline mb-4 col-6">
+                                            <input type="password" id="form3Example4cdg" class="form-control form-control-lg custom-input"
+                                                   placeholder="Nhập lại mật khẩu" required />
+                                            @* <label class="form-label" for="form3Example4cdg">Nhập lại mật khẩu</label> *@
+                                        </div>
+                                    </div>
+
+
+                                    <div class="form-check d-flex justify-content-center mb-5">
+                                        <input class="form-check-input me-2" type="checkbox" value="" id="form2Example3cg" />
+                                        <label class="form-check-label" for="form2Example3g">
+                                            I agree all statements in <a href="#!" class="text-body"><u>Terms of service</u></a>
+                                        </label>
+                                    </div>
+
+                                    <div class="d-flex justify-content-center">
+                                        <button type="submit"
+                                                class="btn btn-success btn-block btn-lg gradient-custom-4 text-body col-3">
+                                            Đăng ký
+                                        </button>
+                                    </div>
+
+                                    <p class="text-center text-muted mt-5 mb-0">
+                                        Bạn đã có tài khoản <a asp-action="Index" class="fw-bold text-body"><u>Đăng nhập</u></a>
+                                    </p>
+
+                                </form>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 </div>
 
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
 }

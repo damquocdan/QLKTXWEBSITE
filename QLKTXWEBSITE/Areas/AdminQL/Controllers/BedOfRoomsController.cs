@@ -20,10 +20,14 @@ namespace QLKTXWEBSITE.Areas.AdminQL.Controllers
         }
 
         // GET: AdminQL/BedOfRooms
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(int roomId)
         {
-            var qlktxContext = _context.BedOfRooms.Include(b => b.Room);
-            return View(await qlktxContext.ToListAsync());
+            var bedsInRoom = await _context.BedOfRooms
+                                .Include(b => b.Room)
+                                .Where(b => b.RoomId == roomId)
+                                .ToListAsync();
+
+            return View(bedsInRoom);
         }
 
         // GET: AdminQL/BedOfRooms/Details/5

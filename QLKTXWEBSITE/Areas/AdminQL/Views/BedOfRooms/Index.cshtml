@@ -8,41 +8,30 @@
 <h1>Index</h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Create" class="btn btn-primary">Create New</a>
 </p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.NumberBed)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Status)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Room)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.NumberBed)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Status)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Room.RoomId)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.BedId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.BedId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.BedId">Delete</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+<div class="row">
+    @foreach (var item in Model)
+    {
+        <div class="col-md-3 mb-4">
+            <div class="card">
+                <div class="position-absolute" style="top: 10px; right: 10px;">
+                    <a asp-action="Edit" asp-route-id="@item.BedId" class="btn btn-sm btn-primary">Edit</a>
+                    <a asp-action="Delete" asp-route-id="@item.BedId" class="btn btn-sm btn-danger">Delete</a>
+                </div>
+                <img src="~/img/logogiuong.jpg" class="card-img-top" alt="Bed Image" style="width: 100%;">
+                <div class="card-body">
+                    <h5 class="card-title">Giường số: @Html.DisplayFor(modelItem => item.NumberBed)</h5>
+                    @if (item.Status == false)
+                    {
+                        <a asp-controller="Students" asp-action="ListStudentBed" asp-route-id="@item.BedId" class="btn btn-warning btn-block">Chọn sinh viên</a>
+                    }
+                    else
+                    {
+                        <a asp-controller="Students" asp-action="Details" asp-route-id="@item.BedId" class="btn btn-primary btn-block">Thông tin sinh viên</a>
+                    }
+                </div>
+            </div>
+        </div>
+    }
+</div>

@@ -1,0 +1,47 @@
+﻿@model IEnumerable<QLKTXWEBSITE.Models.Student>
+
+@{
+    ViewData["Title"] = "ListStudentBed";
+}
+
+<h1>ListStudentBed</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.FullName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Gender)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.StudentCode)
+            </th>
+
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.FullName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Gender)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.StudentCode)
+            </td>
+
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.StudentId">Chọn</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
