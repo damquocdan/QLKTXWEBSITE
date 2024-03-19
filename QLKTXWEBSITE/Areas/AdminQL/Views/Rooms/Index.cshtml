@@ -37,8 +37,8 @@
         <label for="status">Trạng thái:</label>
         <select id="status" name="status" class="form-control">
             <option value="">Tất cả</option>
-            <option value="True">Đầy</option>
-            <option value="False">Trống</option>
+            <option value="true">Đầy</option>
+            <option value="false">Trống</option>
         </select>
     </div>
     <button type="submit" class="btn btn-primary">Tìm kiếm</button>
@@ -91,11 +91,20 @@
                     @Html.DisplayFor(modelItem => item.BedNumber)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.NumberOfStudents)
+                    @item.NumberOfStudents
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Status)
+                    @if (item.NumberOfStudents == item.BedNumber)
+                    {
+                        <span class="text-success">Đầy</span>
+                    }
+                    else
+                    {
+                        <span class="text-danger">Trống</span>
+                    }
                 </td>
+
+
                 <td>
                     <a asp-action="Edit" asp-route-id="@item.RoomId" class="btn btn-primary">Sửa</a> 
                     <a asp-action="Details" asp-route-id="@item.RoomId" class="btn btn-info">Chi tiết</a> 

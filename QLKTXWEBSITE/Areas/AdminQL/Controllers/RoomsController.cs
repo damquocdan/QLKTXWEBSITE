@@ -42,13 +42,31 @@ namespace QLKTXWEBSITE.Areas.AdminQL.Controllers
 
             if (!string.IsNullOrEmpty(status))
             {
-                bool statusValue = status.ToLower() == "true";
-                rooms = rooms.Where(r => r.Status == statusValue);
+                if (status == "Trống")
+                {
+                    rooms = rooms.Where(r => r.NumberOfStudents < r.BedNumber);
+                }
+                else
+                {
+                    rooms = rooms.Where(r => r.NumberOfStudents == r.BedNumber);
+                }
+              
             }
 
 
+
             // Thực hiện truy vấn để lấy dữ liệu phòng
-            var roomList = await rooms.ToListAsync();
+            var roomList = rooms.Select(room => new Room
+            {
+                Mowroom = room.Mowroom,
+                Building = room.Building,
+                Floor = room.Floor,
+                BedNumber = room.BedNumber,
+                RoomId = room.RoomId,
+                NumberRoom = room.NumberRoom,
+                Status = room.Status,
+                NumberOfStudents = _context.Students.Count(student => student.RoomId == room.RoomId)
+            }).ToList();
 
             return View(roomList);
         }
@@ -74,20 +92,33 @@ namespace QLKTXWEBSITE.Areas.AdminQL.Controllers
         // GET: AdminQL/Rooms/Details/5
         public async Task<IActionResult> Details(int? id)
         {
-            if (id == null || _context.Rooms == null)
+            if (id == null)
             {
                 return NotFound();
             }
 
-            var room = await _context.Rooms
-                .FirstOrDefaultAsync(m => m.RoomId == id);
+            var room = await _context.Rooms.FindAsync(id);
             if (room == null)
             {
                 return NotFound();
             }
 
+            // Lấy số lượng sinh viên trong phòng
+            var numberOfStudents = _context.Students.Count(student => student.RoomId == room.RoomId);
+            if (numberOfStudents == room.BedNumber)
+            {
+                ViewData["Status"] = "Đầy";
+            }
+            else
+            {
+                ViewData["Status"] = "Trống";
+            }
+            // Thêm số lượng sinh viên vào ViewData để truyền vào view
+            ViewData["NumberOfStudents"] = numberOfStudents;
+
             return View(room);
         }
+
 
         // GET: AdminQL/Rooms/Create
         public IActionResult Create()
@@ -114,7 +145,7 @@ namespace QLKTXWEBSITE.Areas.AdminQL.Controllers
         // GET: AdminQL/Rooms/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
-            if (id == null || _context.Rooms == null)
+            if (id == null)
             {
                 return NotFound();
             }
@@ -124,8 +155,23 @@ namespace QLKTXWEBSITE.Areas.AdminQL.Controllers
             {
                 return NotFound();
             }
+
+            // Lấy số lượng sinh viên trong phòng
+            var numberOfStudents = _context.Students.Count(student => student.RoomId == room.RoomId);
+            if (numberOfStudents == room.BedNumber)
+            {
+                ViewData["Status"] = true;
+            }
+            else
+            {
+                ViewData["Status"] = false;
+            }
+            // Thêm số lượng sinh viên vào ViewData để truyền vào view
+            ViewData["NumberOfStudents"] = numberOfStudents;
+
             return View(room);
         }
+
 
         // POST: AdminQL/Rooms/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
@@ -176,7 +222,18 @@ namespace QLKTXWEBSITE.Areas.AdminQL.Controllers
             {
                 return NotFound();
             }
+            var numberOfStudents = _context.Students.Count(student => student.RoomId == room.RoomId);
+            if (numberOfStudents == room.BedNumber)
+            {
+                ViewData["Status"] = true;
 
+            }
+            else
+            {
+                ViewData["Status"] = false;
+            }
+            // Thêm số lượng sinh viên vào ViewData để truyền vào view
+            ViewData["NumberOfStudents"] = numberOfStudents;
             return View(room);
         }
 

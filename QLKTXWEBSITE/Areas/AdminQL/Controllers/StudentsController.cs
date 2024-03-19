@@ -221,9 +221,9 @@ namespace QLKTXWEBSITE.Areas.AdminQL.Controllers
         }
 
         // GET: AdminQL/Students/Edit/5
-        public async Task<IActionResult> Edit(int? id)
+        public async Task<IActionResult> Edit(int id, string bed, string department, string dh, string room)
         {
-            if (id == null || _context.Students == null)
+            if (id == null)
             {
                 return NotFound();
             }
@@ -233,10 +233,15 @@ namespace QLKTXWEBSITE.Areas.AdminQL.Controllers
             {
                 return NotFound();
             }
-            ViewData["BedId"] = new SelectList(_context.BedOfRooms, "BedId", "BedId", student.BedId);
-            ViewData["DepartmentId"] = new SelectList(_context.Departments, "DepartmentId", "DepartmentId", student.DepartmentId);
-            ViewData["Dhid"] = new SelectList(_context.Dhs, "Dhid", "Dhid", student.Dhid);
-            ViewData["RoomId"] = new SelectList(_context.Rooms, "RoomId", "RoomId", student.RoomId);
+
+            // Set the properties of the student object based on the route parameters
+
+            // Populate the dropdown lists with the appropriate values
+            ViewData["BedId"] = new SelectList(_context.BedOfRooms, "NumberBed", "NumberBed", student.Bed.NumberBed);
+            ViewData["DepartmentId"] = new SelectList(_context.Departments, "DepartmentName", "DepartmentName", student.Department.DepartmentName);
+            ViewData["Dhid"] = new SelectList(_context.Dhs, "Dhcode", "Dhcode", student.Dh.Dhcode);
+            ViewData["RoomId"] = new SelectList(_context.Rooms, "NumberRoom", "NumberRoom", student.Room.NumberRoom);
+
             return View(student);
         }
 

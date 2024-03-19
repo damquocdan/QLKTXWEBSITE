@@ -14,6 +14,7 @@
         <form asp-action="Edit">
             <div class="row">
                 <div class="col-md-6">
+
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="RoomId" />
             <div class="form-group">
@@ -51,16 +52,16 @@
             </div>
             <div class="form-group">
                 <label asp-for="NumberOfStudents" class="control-label">Số sinh viên</label>
-                <input asp-for="NumberOfStudents" class="form-control" />
-                <span asp-validation-for="NumberOfStudents" class="text-danger"></span>
+                        <input asp-for="@ViewData["NumberOfStudents"]" class="form-control" />
+                        <span asp-validation-for="NumberOfStudents" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Status" class="control-label">Trạng thái</label>
-                <select asp-for="Status" class="form-control">
-                    <option value="true">Đầy</option>
-                    <option value="false">Trống</option>
-                </select>
-                <span asp-validation-for="Status" class="text-danger"></span>
+                        <label asp-for="Status" class="control-label">Trạng thái</label>
+                        <select asp-for="@ViewData["Status"]" class="form-control">
+                            <option value="true">Đầy</option>
+                            <option value="false">Trống</option>
+                        </select>
+                        <span asp-validation-for="Status" class="text-danger"></span>
             </div>
                 </div>
                 <div class="form-group m-auto">
