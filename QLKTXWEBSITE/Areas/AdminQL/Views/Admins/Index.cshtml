@@ -4,14 +4,22 @@
     ViewData["Title"] = "Index";
     Layout = "~/Areas/AdminQL/Views/Shared/Admin.cshtml";
 }
+<style>
+    tr:hover{
+        background-color:#fff;
+    }
+</style>
 <p>
-    <a asp-action="Create" class="btn btn-primary">Tạo quản lý mới</a>
+    <a asp-action="Create" class="btn btn-primary"> <i class="fa-solid fa-circle-plus fa-xl pe-2"></i>Tạo quản lý mới</a>
 </p>
 <table class="table table-striped">
     <thead class="thead-dark">
         <tr>
             <th>
-                Email
+                <div class="ms-3">
+                    Email
+                </div>
+                
             </th>
             <th>
                 Số điện thoại
@@ -22,7 +30,14 @@
             <th>
                 Họ và tên
             </th>
-            <th></th>
+            <th
+                <div class="text-center">
+                    <p class="mb-0">
+                        Hành động
+                    </p>
+                </div>
+                
+            </th>
         </tr>
     </thead>
     <tbody>
@@ -30,21 +45,33 @@
         {
             <tr>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Email)
+                    <div class="d-flex align-items-center ms-3" style="height:38px">
+                        <p class="mb-0" >@Html.DisplayFor(modelItem => item.Email)</p>
+                    </div>
+                </td>
+
+                <td>
+                    <div class="d-flex align-items-center" style="height:38px">
+                        <p class="mb-0">@Html.DisplayFor(modelItem => item.PhoneNumber)</p>
+                    </div>
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.PhoneNumber)
+                    <div class="d-flex align-items-center" style="height:38px">
+                        <p class="mb-0">@Html.DisplayFor(modelItem => item.Address)</p>
+                    </div>
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Address)
+                    <div class="d-flex align-items-center" style="height:38px">
+                        <p class="mb-0">@Html.DisplayFor(modelItem => item.FullName)</p>
+                    </div>
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.FullName)
-                </td>
-                <td>
-                    <a asp-action="Edit" asp-route-id="@item.AdminId" class="btn btn-primary">Sửa</a> 
-                    <a asp-action="Details" asp-route-id="@item.AdminId" class="btn btn-info">Xem chi tiết</a> 
-                    <a asp-action="Delete" asp-route-id="@item.AdminId" class="btn btn-danger">Xoá</a>
+                    <div class=" d-flex justify-content-center">
+                        <a asp-action="Edit" asp-route-id="@item.AdminId" class="btn btn-primary">Sửa</a>
+                        <a asp-action="Details" asp-route-id="@item.AdminId" class="btn btn-info mx-3">Xem chi tiết</a>
+                        <a asp-action="Delete" asp-route-id="@item.AdminId" class="btn btn-danger">Xoá</a>
+                    </div>
+                    
                 </td>
             </tr>
         }

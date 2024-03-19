@@ -3,16 +3,16 @@
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
     <a href="Admin.cshtml" class="brand-link">
-        <img src="~ /img/imagesweb/HUNRE_Logo.png" alt="Logo Hunre" class="" width="30px">
-        <span class="brand-text font-weight-light">Quản lý kí túc xá</span>
+        <img src="~/dist/img/logo.png" alt="Logo Hunre" class="" width="75px">
+        <span class="brand-text font-weight-light ms-2">Quản lý kí túc xá</span>
     </a>
 
-    <!-- Sidebar -->
+    <!-- Sidebar
     <div class="sidebar">
         <!-- Sidebar user panel (optional) -->
-        <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+        <div class="user-panel mt-3 pb-3 mb-3 d-flex position-fixed bottom-0 ">
             <div class="image">
-                <img src="dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
+                <img src="~/dist/img/logo.png" class="img-circle elevation-2" alt="Logo-Hunrre">
             </div>
             <div class="info">
                 @{
@@ -36,62 +36,89 @@
              
                 <li class="nav-item">
                     <a href="/adminql/admins" class="nav-link">
-                        <i class="nav-icon fas fa-user-astronaut"></i>
-                        <p>
+                    <div class="d-flex align-items-center">
+                        <div class="d-flex justify-content-center" style="width: 30px">
+                            <i class="fa-solid fa-user-tie fa-xl"></i>
+                        </div>
+                        <p class="ms-3">
                             Tài khoản Admin
                         </p>
-                    </a>
+                    </div>
+                </a>
                 </li>
                 <li class="nav-item">
                     <a href="/adminql/rooms" class="nav-link">
-                        <i class="nav-icon fas fa-copy"></i>
-                        <p>
+                    <div class="d-flex align-items-center">
+                        <div class="d-flex justify-content-center" style="width: 30px">
+                            <i class="fa-solid fa-house-user fa-xl"></i>
+                        </div>
+                        <p class="ms-3">
                             Quản lý phòng
                         </p>
-                    </a>
+                    </div>
+                </a>
                 </li>
                 <li class="nav-item">
                     <a href="/adminql/services" class="nav-link">
-                        <i class="nav-icon fas fa-circle"></i>
-                        <p>
+                    <div class="d-flex align-items-center">
+                        <div class="d-flex justify-content-center" style="width: 30px">
+                            <i class="fa-solid fa-list fa-xl"></i>
+                        </div>
+                        <p class="ms-3">
                             Quản lý dịch vụ
                         </p>
-                    </a>
+                    </div>
+                </a>
 
                 </li>
                 <li class="nav-item">
                     <a href="/adminql/news" class="nav-link">
-                        <i class="nav-icon fas fa-file-signature"></i>
-                        <p>
+                    <div class="d-flex align-items-center">
+                        <div class="d-flex justify-content-center" style="width: 30px">
+                            <i class="fa-regular fa-newspaper fa-xl"></i>
+                        </div>
+                        <p class="ms-3">
                             Quản lý tin tức
                         </p>
+                    </div>
                     </a>
 
                 </li>
                 <li class="nav-item">
                     <a href="/adminql/students" class="nav-link">
-                        <i class="nav-icon fas fa-user-astronaut"></i>
-                        <p>
+                    <div class="d-flex align-items-center">
+                        <div class="d-flex justify-content-center" style="width: 30px">
+                            <i class="fa-solid fa-graduation-cap fa-xl"></i>
+                        </div>
+                        <p class="ms-3">
                             Quản lý sinh viên
                         </p>
+                    </div>
                     </a>
 
                 </li>
                 <li class="nav-item">
                     <a href="/adminql/transactions" class="nav-link">
-                        <i class="nav-icon fas fa-copy"></i>
-                        <p>
+                    <div class="d-flex align-items-center">
+                        <div class="d-flex justify-content-center" style="width: 30px">
+                            <i class="fa-solid fa-wallet fa-xl"></i>
+                        </div>
+                        <p class="ms-3">
                             Quản lý thanh toán
                         </p>
+                    </div>
                     </a>
-
                 </li>
                 <li class="nav-item">
                     <a href="/adminql/occupancies" class="nav-link">
-                        <i class="nav-icon fas fa-copy"></i>
-                        <p>
+                    <div class="d-flex align-items-center">
+                        <div class="d-flex justify-content-center" style="width: 30px">
+                            <i class="fa-solid fa-file-signature fa-xl"></i>
+                        </div>
+                        <p class="ms-3">
                             Quản lý hợp đồng
                         </p>
+                    </div>
                     </a>
 
                 </li>
