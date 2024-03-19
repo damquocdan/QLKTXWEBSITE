@@ -169,36 +169,14 @@ namespace QLKTXWEBSITE.Areas.AdminQL.Controllers
         }
 
         // GET: AdminQL/Students/Create
-        //public IActionResult Create()
-        //{
-        //    ViewData["BedId"] = new SelectList(_context.BedOfRooms, "BedId", "BedId");
-        //    ViewData["DepartmentId"] = new SelectList(_context.Departments, "DepartmentId", "DepartmentId");
-        //    ViewData["Dhid"] = new SelectList(_context.Dhs, "Dhid", "Dhid");
-        //    ViewData["RoomId"] = new SelectList(_context.Rooms, "RoomId", "RoomId");
-        //    return View();
-        //}
         public IActionResult Create()
         {
-            // Tạo một danh sách mới chứa các đối tượng SelectListItems với giá trị và hiển thị tương ứng
-            var dhList = new List<SelectListItem>
-    {
-        new SelectListItem { Value = "1", Text = "DH11" },
-        new SelectListItem { Value = "2", Text = "DH12" },
-        new SelectListItem { Value = "3", Text = "DH13" },
-        new SelectListItem { Value = "4", Text = "DH14" }
-    };
-
-            // Thiết lập danh sách DHid với danh sách mới
-            ViewData["Dhid"] = new SelectList(dhList, "Value", "Text");
-
-            // Các dòng còn lại giữ nguyên
             ViewData["BedId"] = new SelectList(_context.BedOfRooms, "BedId", "BedId");
             ViewData["DepartmentId"] = new SelectList(_context.Departments, "DepartmentId", "DepartmentId");
+            ViewData["Dhid"] = new SelectList(_context.Dhs, "Dhid", "Dhid");
             ViewData["RoomId"] = new SelectList(_context.Rooms, "RoomId", "RoomId");
-
             return View();
         }
-
 
         // POST: AdminQL/Students/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
@@ -221,9 +199,9 @@ namespace QLKTXWEBSITE.Areas.AdminQL.Controllers
         }
 
         // GET: AdminQL/Students/Edit/5
-        public async Task<IActionResult> Edit(int id, string bed, string department, string dh, string room)
+        public async Task<IActionResult> Edit(int? id)
         {
-            if (id == null)
+            if (id == null || _context.Students == null)
             {
                 return NotFound();
             }
@@ -233,15 +211,10 @@ namespace QLKTXWEBSITE.Areas.AdminQL.Controllers
             {
                 return NotFound();
             }
-
-            // Set the properties of the student object based on the route parameters
-
-            // Populate the dropdown lists with the appropriate values
-            ViewData["BedId"] = new SelectList(_context.BedOfRooms, "NumberBed", "NumberBed", student.Bed.NumberBed);
-            ViewData["DepartmentId"] = new SelectList(_context.Departments, "DepartmentName", "DepartmentName", student.Department.DepartmentName);
-            ViewData["Dhid"] = new SelectList(_context.Dhs, "Dhcode", "Dhcode", student.Dh.Dhcode);
-            ViewData["RoomId"] = new SelectList(_context.Rooms, "NumberRoom", "NumberRoom", student.Room.NumberRoom);
-
+            ViewData["BedId"] = new SelectList(_context.BedOfRooms, "BedId", "BedId", student.BedId);
+            ViewData["DepartmentId"] = new SelectList(_context.Departments, "DepartmentId", "DepartmentId", student.DepartmentId);
+            ViewData["Dhid"] = new SelectList(_context.Dhs, "Dhid", "Dhid", student.Dhid);
+            ViewData["RoomId"] = new SelectList(_context.Rooms, "RoomId", "RoomId", student.RoomId);
             return View(student);
         }
 
