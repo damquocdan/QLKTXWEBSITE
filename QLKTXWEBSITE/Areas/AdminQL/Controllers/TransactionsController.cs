@@ -9,8 +9,8 @@ using QLKTXWEBSITE.Models;
 
 namespace QLKTXWEBSITE.Areas.AdminQL.Controllers
 {
-    [Area("AdminQL")]
-    public class TransactionsController : Controller
+    //[Area("AdminQL")]
+    public class TransactionsController : BaseController
     {
         private readonly QlktxContext _context;
 

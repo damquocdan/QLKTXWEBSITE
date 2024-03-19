@@ -26,10 +26,9 @@ namespace WebQLKTX.Areas.Admin.Controllers
                 return View(model);// trả về trạng thái lỗi
             }
             // sẽ xử lý logic phần đăng nhập tại đây
-            var email = model.Email;
             var pass = model.Password;
-            var dataLogin = _context.Admins.Where(x => x.Email == email && x.Password == pass);
-            if (dataLogin != null)         
+            var dataLogin = _context.Admins.Where(x => x.Email.Equals(model.Email) && x.Password.Equals(pass)).OrderBy(c => c.AdminId);
+            if (dataLogin != null)
             {
                 // Lưu session khi đăng nhập thành công
                 HttpContext.Session.SetString("AdminLogin", model.Email);
@@ -37,7 +36,6 @@ namespace WebQLKTX.Areas.Admin.Controllers
 
                 return RedirectToAction("Index", "Dashboard");
             }
-            ModelState.AddModelError(string.Empty, "Thông tin đăng nhập không chính xác.");
             return View(model);
 
         }

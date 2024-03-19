@@ -11,8 +11,8 @@ using QLKTXWEBSITE.Models;
 
 namespace QLKTXWEBSITE.Areas.AdminQL.Controllers
 {
-    [Area("AdminQL")]
-    public class OccupanciesController : Controller
+    //[Area("AdminQL")]
+    public class OccupanciesController : BaseController
     {
         private readonly QlktxContext _context;
 

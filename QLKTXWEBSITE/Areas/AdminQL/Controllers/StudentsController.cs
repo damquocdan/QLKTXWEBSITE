@@ -13,8 +13,8 @@ using OfficeOpenXml.Table;
 
 namespace QLKTXWEBSITE.Areas.AdminQL.Controllers
 {
-    [Area("AdminQL")]
-    public class StudentsController : Controller
+    //[Area("AdminQL")]
+    public class StudentsController : BaseController
     {
         private readonly QlktxContext _context;
 

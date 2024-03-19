@@ -4,49 +4,144 @@
     ViewData["Title"] = "Create";
     Layout = "~/Areas/AdminQL/Views/Shared/Admin.cshtml";
 }
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway:300,400,700">
+<style>
 
-<h1>Create</h1>
+*{
+  margin: 0;
+  padding: 0;
+  outline: none;
+  box-sizing: border-box;
+  font-family: 'Raleway', sans-serif;
+}
 
-<h4>Admin</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Create">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="Email" class="control-label"></label>
-                <input asp-for="Email" class="form-control" />
-                <span asp-validation-for="Email" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Password" class="control-label"></label>
-                <input asp-for="Password" class="form-control" />
-                <span asp-validation-for="Password" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="PhoneNumber" class="control-label"></label>
-                <input asp-for="PhoneNumber" class="form-control" />
-                <span asp-validation-for="PhoneNumber" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Address" class="control-label"></label>
-                <input asp-for="Address" class="form-control" />
-                <span asp-validation-for="Address" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="FullName" class="control-label"></label>
-                <input asp-for="FullName" class="form-control" />
-                <span asp-validation-for="FullName" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <button type="submit" class="btn btn-primary">Create</button>
-            </div>
-        </form>
+body{ 
+  background: linear-gradient(to right, #d6d6d6,#ffffff);
+        perspective: 500px;
+    }
+
+.cont{
+  position: relative;
+  width: 500px;
+  height: 500px;
+  margin: 50px auto;
+  transition: all 0.4s linear;
+        background-image: url('https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.shutterstock.com%2Fimage-vector%2Fabstract-green-gradient-curve-background-704969713&psig=AOvVaw33QvCI90ifOMowtN-D9ZKJ&ust=1710919781831000&source=images&cd=vfe&opi=89978449&ved=0CBMQjRxqFwoTCJjTkIHn_4QDFQAAAAAdAAAAABAJ');
+    }
+
+/* .cont:hover{
+  transform: rotateX(45deg) rotateY(10deg) rotateZ(-60deg)
+} */
+
+.main-box{ 
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+        background-image: url('https://tuyensinh.hunre.edu.vn/media/data/logo_1.png');
+        box-shadow: 0px 20px 50px 0px #6DBC2F;
+}
+
+.create {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  padding: 18px 15px;
+  background: rgba(19, 20, 27, 0.72);
+}
+
+h2, .user, .email, .pass{ 
+  display: block;
+}
+
+h2{ 
+  text-align: center;
+  color: #f7f3f2;
+  font-weight: 400;
+  font-size: 22px;
+  margin-top: 20px;
+  margin-bottom: 35%;
+}
+
+.user, .email, .pass{
+  width: 85%;
+  height: 45px;
+  border: none;
+  color: white;
+  margin: auto;
+  padding-left: 40px;
+  font-size: 18px;
+  font-weight: 500;
+  border-radius: 25px;
+  margin-bottom: 0;
+  background: rgba(158, 158, 158, 0.49);
+}
+
+input::placeholder{
+  color: #fff;
+  font-size: 16px;
+  font-weight: 100;
+  transition: all 0.4s ease;
+}
+
+input:focus::placeholder{
+  opacity:0,1;
+}
+
+.fa {
+  color: #67c5e7;
+  font-size: 20px;
+  position: relative;
+  left: -36%;
+  top: 33px;
+}
+
+.login{
+  color: #fff;
+  cursor: pointer;
+  width: 85%;
+  height: 50px;
+  border: none;
+  font-size: 18px;
+  font-weight: 500;
+  margin-top: 20%;
+  background: #67c5e7;
+  border-radius: 25px;
+  transition: background 0.4s ease;
+}
+
+button.login:hover {
+  background: #2196F3;
+}
+
+}
+</style>
+<div class="section">
+<div class="cont">
+    <div class="main-box">
+        <div class="create">
+            <form asp-action="Create">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <h2>Tạo tài khoản quản lý</h2>
+                <i class="fa fa-fw fa-user-o" aria-hidden="true"></i>
+                <input asp-for="FullName" type="text" class="user" placeholder="Họ và tên" />
+
+                <i class="fa fa-fw fa-envelope-o" aria-hidden="true"></i>
+                <input asp-for="Email" type="text" class="email" placeholder="Email" />
+
+
+                <i class="fa fa-fw fa-lock" aria-hidden="true"></i>
+                <input asp-for="Password" type="password" class="pass" placeholder="Mật khẩu" />
+
+                <button type = "submit" class="login">Tạo</button>
+            </form>
+        </div>
     </div>
 </div>
-
+</div>
 <div>
-    <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+    <a asp-action="Index" class="btn btn-secondary">Quay lại danh sách</a>
 </div>
 
 @section Scripts {

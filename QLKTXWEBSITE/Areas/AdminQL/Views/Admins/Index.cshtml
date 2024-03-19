@@ -4,9 +4,6 @@
     ViewData["Title"] = "Index";
     Layout = "~/Areas/AdminQL/Views/Shared/Admin.cshtml";
 }
-
-<h1>Index</h1>
-
 <p>
     <a asp-action="Create" class="btn btn-primary">Tạo quản lý mới</a>
 </p>
@@ -17,16 +14,13 @@
                 Email
             </th>
             <th>
-                Mật khẩu
-            </th>
-            <th>
                 Số điện thoại
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Address)
+                Địa chỉ
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.FullName)
+                Họ và tên
             </th>
             <th></th>
         </tr>
@@ -39,9 +33,6 @@
                     @Html.DisplayFor(modelItem => item.Email)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Password)
-                </td>
-                <td>
                     @Html.DisplayFor(modelItem => item.PhoneNumber)
                 </td>
                 <td>
@@ -51,9 +42,9 @@
                     @Html.DisplayFor(modelItem => item.FullName)
                 </td>
                 <td>
-                    <a asp-action="Edit" asp-route-id="@item.AdminId" class="btn btn-primary">Edit</a> 
-                    <a asp-action="Details" asp-route-id="@item.AdminId" class="btn btn-info">Details</a> 
-                    <a asp-action="Delete" asp-route-id="@item.AdminId" class="btn btn-danger">Delete</a>
+                    <a asp-action="Edit" asp-route-id="@item.AdminId" class="btn btn-primary">Sửa</a> 
+                    <a asp-action="Details" asp-route-id="@item.AdminId" class="btn btn-info">Xem chi tiết</a> 
+                    <a asp-action="Delete" asp-route-id="@item.AdminId" class="btn btn-danger">Xoá</a>
                 </td>
             </tr>
         }
