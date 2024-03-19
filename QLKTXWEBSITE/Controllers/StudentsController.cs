@@ -82,7 +82,7 @@ namespace QLKTXWEBSITE.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("FirstName,LastName,DateOfBirth,Gender,PhoneNumber,ParentPhoneNumber,Email,Password,StudentCode,Dh,Department,AdmissionConfirmation,RoomId,BedId")] Student student)
+        public async Task<IActionResult> Create([Bind("FullName,DateOfBirth,Gender,PhoneNumber,ParentPhoneNumber,Email,Password,StudentCode,Dh,Department,AdmissionConfirmation,RoomId,BedId")] Student student)
         {
             if (ModelState.IsValid)
             {

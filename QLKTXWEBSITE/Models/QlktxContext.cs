@@ -214,5 +214,10 @@ public partial class QlktxContext : DbContext
         OnModelCreatingPartial(modelBuilder);
     }
 
+    internal object GetById(int bedId)
+    {
+        throw new NotImplementedException();
+    }
+
     partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
 }

@@ -24,21 +24,49 @@ namespace QLKTXWEBSITE.Areas.AdminQL.Controllers
         }
 
         // GET: AdminQL/Students
-        public async Task<IActionResult> ListStudentBed(string name)
+        public async Task<IActionResult> ListStudentBed(string gender)
         {
-            IQueryable<Student> students = _context.Students
-            .Include(s => s.Department)
-             .Include(s => s.Dh)
-            .Include(s => s.Room)
-            .Where(s => s.BedId == null); // Filter students without a bed
+            IQueryable<Student> studentsWithoutBedQuery = _context.Students
+                .Where(s => s.BedId == null)
+                .Include(s => s.Bed)
+                .Include(s => s.Department)
+                .Include(s => s.Dh)
+                .Include(s => s.Room);
 
-            if (!string.IsNullOrEmpty(name))
+            if (!string.IsNullOrEmpty(gender))
             {
-                students = students.Where(s => s.FullName.Contains(name));
+                studentsWithoutBedQuery = studentsWithoutBedQuery.Where(r => r.Gender == gender);
             }
 
-            return View(await students.ToListAsync());
+            var studentsWithoutBed = await studentsWithoutBedQuery.ToListAsync();
 
+            return View(studentsWithoutBed);
+        }
+        // POST: AdminQL/Students/ChooseBed/5
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> ChooseBed(int studentId, int bedId)
+        {
+            var student = await _context.Students.FindAsync(studentId);
+            if (student == null)
+            {
+                return NotFound();
+            }
+
+            var bed = await _context.BedOfRooms.FindAsync(bedId);
+            if (bed == null)
+            {
+                return NotFound();
+            }
+
+            // Cập nhật ID giường cho sinh viên
+            student.BedId = bedId;
+            // Đặt trạng thái của giường là đã chọn
+            bed.Status = true;
+
+            await _context.SaveChangesAsync();
+
+            return RedirectToAction("Index","BedOfRooms");
         }
         public async Task<IActionResult> Index(string name)
         {

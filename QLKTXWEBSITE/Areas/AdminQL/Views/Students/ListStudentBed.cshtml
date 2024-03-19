@@ -2,6 +2,7 @@
 
 @{
     ViewData["Title"] = "ListStudentBed";
+    Layout = "~/Areas/AdminQL/Views/Shared/Admin.cshtml";
 }
 
 <h1>ListStudentBed</h1>
@@ -9,6 +10,18 @@
 <p>
     <a asp-action="Create">Create New</a>
 </p>
+<input type="hidden" name="bedId" value="@ViewData["bedId"]" />
+<form method="get" class="form-inline">
+    <div class="form-group mr-2">
+        <label for="gender">Giới tính:</label>
+        <select id="gender" name="gender" class="form-control">
+            <option value="">Tất cả</option>
+            <option value="Nam">Nam</option>
+            <option value="Nữ">Nữ</option>
+        </select>
+    </div>
+    <button type="submit" class="btn btn-primary">Tìm kiếm</button>
+</form>
 <table class="table">
     <thead>
         <tr>
@@ -37,10 +50,13 @@
             <td>
                 @Html.DisplayFor(modelItem => item.StudentCode)
             </td>
-
             <td>
-                <a asp-action="Edit" asp-route-id="@item.StudentId">Chọn</a>
-            </td>
+                    <form asp-action="ChooseBed" asp-controller="Students" method="post">
+                        <input type="hidden" name="studentId" value="@item.StudentId" />
+                        <input type="hidden" name="bedId" value="@ViewData["bedId"]" />
+                        <button type="submit" class="btn btn-primary btn-sm">Chọn</button>
+                    </form>
+             </td>
         </tr>
 }
     </tbody>
