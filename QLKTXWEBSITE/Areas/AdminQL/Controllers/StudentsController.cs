@@ -169,14 +169,36 @@ namespace QLKTXWEBSITE.Areas.AdminQL.Controllers
         }
 
         // GET: AdminQL/Students/Create
+        //public IActionResult Create()
+        //{
+        //    ViewData["BedId"] = new SelectList(_context.BedOfRooms, "BedId", "BedId");
+        //    ViewData["DepartmentId"] = new SelectList(_context.Departments, "DepartmentId", "DepartmentId");
+        //    ViewData["Dhid"] = new SelectList(_context.Dhs, "Dhid", "Dhid");
+        //    ViewData["RoomId"] = new SelectList(_context.Rooms, "RoomId", "RoomId");
+        //    return View();
+        //}
         public IActionResult Create()
         {
+            // Tạo một danh sách mới chứa các đối tượng SelectListItems với giá trị và hiển thị tương ứng
+            var dhList = new List<SelectListItem>
+    {
+        new SelectListItem { Value = "1", Text = "DH11" },
+        new SelectListItem { Value = "2", Text = "DH12" },
+        new SelectListItem { Value = "3", Text = "DH13" },
+        new SelectListItem { Value = "4", Text = "DH14" }
+    };
+
+            // Thiết lập danh sách DHid với danh sách mới
+            ViewData["Dhid"] = new SelectList(dhList, "Value", "Text");
+
+            // Các dòng còn lại giữ nguyên
             ViewData["BedId"] = new SelectList(_context.BedOfRooms, "BedId", "BedId");
             ViewData["DepartmentId"] = new SelectList(_context.Departments, "DepartmentId", "DepartmentId");
-            ViewData["Dhid"] = new SelectList(_context.Dhs, "Dhid", "Dhid");
             ViewData["RoomId"] = new SelectList(_context.Rooms, "RoomId", "RoomId");
+
             return View();
         }
+
 
         // POST: AdminQL/Students/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
