@@ -56,7 +56,14 @@
                     @Html.DisplayFor(modelItem => item.Price)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Status)
+                    @if (item.Status == true)
+                    {
+                        <text>Đã thanh toán</text>
+                    }
+                    else
+                    {
+                        <text>Chưa thanh toán</text>
+                    }
                 </td>
                 
                 <td>
