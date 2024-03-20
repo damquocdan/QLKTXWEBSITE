@@ -12,6 +12,7 @@ namespace QLKTXWEBSITE.Controllers
     public class StudentsController : Controller
     {
         private readonly QlktxContext _context;
+        
 
         public StudentsController(QlktxContext context)
         {
