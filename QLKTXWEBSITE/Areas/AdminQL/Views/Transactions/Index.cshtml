@@ -8,53 +8,94 @@
 <h1>Index</h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Create" class="btn btn-primary"> <i class="fa-solid fa-circle-plus fa-xl pe-2"></i>Tạo mới</a>
 </p>
-<table class="table">
-    <thead>
+<table class="table mt-4 table-striped">
+    <thead class="thead-dark ">
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Amount)
+                <div class="ms-3">
+                    <p class="mb-0">
+                        @Html.DisplayNameFor(model => model.Amount)
+                    </p>
+                </div>
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Description)
+                <div class="text-center">
+                    <p class="mb-0">
+                        @Html.DisplayNameFor(model => model.Description)
+                    </p>
+                </div>
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.TransactionCode)
+                <div class="text-center">
+                    <p class="mb-0">
+                        @Html.DisplayNameFor(model => model.TransactionCode)
+                    </p>
+                </div>
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.TransactionDate)
+                <div class="text-center">
+                    <p class="mb-0">
+                        @Html.DisplayNameFor(model => model.TransactionDate)
+                    </p>
+                </div>
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Student)
+                <div class="text-center">
+                    <p class="mb-0">
+                        @Html.DisplayNameFor(model => model.Student)
+                    </p>
+                </div>
             </th>
-            <th></th>
+            <th>
+                <div class="text-center">
+                    <p class="mb-0">
+                        Hành động
+                    </p>
+                </div>
+            </th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Amount)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Description)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.TransactionCode)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.TransactionDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Student.StudentId)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.TransactionId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.TransactionId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.TransactionId">Delete</a>
-            </td>
-        </tr>
-}
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    <div class="d-flex align-items-center ms-3" style="height:38px">
+                        <p class="mb-0">@Html.DisplayFor(modelItem => item.Amount)</p>
+                    </div>
+                </td>
+                <td>
+                    <div class="d-flex align-items-center" style="height:38px">
+                        <p class="mb-0 w-100 text-center">@Html.DisplayFor(modelItem => item.Description)</p>
+                    </div>
+                </td>
+                <td>
+                    <div class="d-flex align-items-center" style="height:38px">
+                        <p class="mb-0 w-100 text-center">@Html.DisplayFor(modelItem => item.TransactionCode)</p>
+                    </div>
+                </td>
+                <td>
+                    <div class="d-flex align-items-center" style="height:38px">
+                        <p class="mb-0 w-100 text-center">@Html.DisplayFor(modelItem => item.TransactionDate)</p>
+                    </div>
+                </td>
+                <td>
+                    <div class="d-flex align-items-center" style="height:38px">
+                        <p class="mb-0 w-100 text-center">@Html.DisplayFor(modelItem => item.Student.StudentId)</p>
+                    </div>
+                </td>
+                <td>
+                    <div class=" d-flex justify-content-center">
+                        <a asp-action="Edit" asp-route-id="@item.TransactionId" class="btn btn-primary">Sửa</a>
+                        <a asp-action="Details" asp-route-id="@item.TransactionId" class="btn btn-success mx-3">Chi tiết</a>
+                        <a asp-action="Delete" asp-route-id="@item.TransactionId" class="btn btn-danger">Xoá</a>
+
+                    </div>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>
+

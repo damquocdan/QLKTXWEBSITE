@@ -8,67 +8,104 @@
 <h1>Danh sách các phòng</h1>
 
 <p>
-    <a asp-action="Create" class="btn btn-primary">Tạo phòng mới</a>
+    <a asp-action="Create" class="btn btn-primary"> <i class="fa-solid fa-circle-plus fa-xl me-2"></i>Tạo phòng mới</a>
 </p>
 
 <!-- Form tìm kiếm -->
 <form method="get" class="form-inline">
     <div class="form-group mr-2">
         <label for="mowroom">Phòng:</label>
-        <select id="mowroom" name="mowroom" class="form-control">
+        <select id="mowroom" name="mowroom" class="ms-2 form-control">
             <option value="">Tất cả</option>
             <option value="Nam">Nam</option>
             <option value="Nữ">Nữ</option>
         </select>
     </div>
-    <div class="form-group mr-2">
+    <div class="form-group mr-2 ms-3">
         <label for="building">Toà:</label>
-        <select id="building" name="building" class="form-control">
+        <select id="building" name="building" class="ms-2 form-control">
             <option value="">Tất cả</option>
             <option value="A">A</option>
             <option value="B">B</option>
         </select>
     </div>
-    <div class="form-group mr-2">
+    <div class="form-group mr-2 ms-3">
         <label for="numberRoom">Phòng số:</label>
-        <input type="text" id="numberRoom" name="numberRoom" class="form-control" />
+        <input type="text" id="numberRoom" name="numberRoom" class="ms-2 form-control" placeholder="Nhập số phòng" />
     </div>
-    <div class="form-group mr-2">
-        <label for="status">Trạng thái:</label>
-        <select id="status" name="status" class="form-control">
+    <div class="form-group mr-2 ms-3">
+        <label for="status">Trạng thái:</label> 
+        <select id="status" name="status" class=" ms-2 form-control">
             <option value="">Tất cả</option>
             <option value="True">Đầy</option>
             <option value="False">Trống</option>
         </select>
     </div>
-    <button type="submit" class="btn btn-primary">Tìm kiếm</button>
+    <button type="submit" class="btn btn-primary ms-4">Tìm kiếm</button>
 </form>
 
-<table class="table mt-2">
-    <thead class="thead-dark">
+<table class="table mt-4 table-striped">
+    <thead class="thead-dark ">
         <tr>
             <th>
-                Phòng Nam/Nữ
+                <div class="ms-3">
+                    Phòng Nam/Nữ
+                </div>
             </th>
             <th>
-                Toà
+                <div class="text-center">
+                    <p class="mb-0">
+                        Toà
+                    </p>
+                </div>
             </th>
             <th>
-                Tầng
+                <div class="text-center">
+                    <p class="mb-0">
+                        Tầng
+                    </p>
+                </div>              
             </th>
             <th>
-                Phòng số
+                <div class="text-center">
+                    <p class="mb-0">
+                        Phòng số
+                    </p>
+                </div>
+                
             </th>
             <th>
-                Số giường
+                <div class="text-center">
+                    <p class="mb-0">
+                        Số giường
+                    </p>
+                </div>
+               
             </th>
             <th>
-                Số sinh viên
+                <div class="text-center">
+                    <p class="mb-0">
+                        Số sinh viên
+                    </p>
+                </div>
+                
             </th>
             <th>
-                Trạng thái
+                <div class="text-center">
+                    <p class="mb-0">
+                        Trạng thái
+                    </p>
+                </div>
+               
             </th>
-            <th></th>
+            <th>
+                <div class="text-center">
+                    <p class="mb-0">
+                        Hành động
+                    </p>
+                </div>
+
+            </th>
         </tr>
     </thead>
     <tbody>
@@ -76,39 +113,58 @@
         {
             <tr>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Mowroom)
+                    <div class="d-flex align-items-center ms-3" style="height:38px">
+                        <p class="mb-0">@Html.DisplayFor(modelItem => item.Mowroom)</p>
+                    </div>
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Building)
+                    <div class="d-flex align-items-center" style="height:38px">
+                        <p class="mb-0 w-100 text-center">@Html.DisplayFor(modelItem => item.Building)</p>
+                    </div>
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Floor)
+                    <div class="d-flex align-items-center" style="height:38px">
+                        <p class="mb-0 w-100 text-center">@Html.DisplayFor(modelItem => item.Floor)</p>
+                    </div>
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.NumberRoom)
+                    <div class="d-flex align-items-center" style="height:38px">
+                        <p class="mb-0 w-100 text-center">@Html.DisplayFor(modelItem => item.NumberRoom)</p>
+                    </div>
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.BedNumber)
+                    <div class="d-flex align-items-center" style="height:38px">
+                        <p class="mb-0 w-100 text-center">@Html.DisplayFor(modelItem => item.BedNumber)</p>
+                    </div>
                 </td>
                 <td>
-                    @item.NumberOfStudents
+                    <div class="d-flex align-items-center" style="height:38px">
+                        <p class="mb-0 w-100 text-center">@Html.DisplayFor(modelItem => item.NumberOfStudents)</p>
+                    </div>
                 </td>
                 <td>
                     @if (item.NumberOfStudents == item.BedNumber)
                     {
-                        <span class="text-success">Đầy</span>
+                        <div class="d-flex align-items-center" style="height:38px">
+                            <p class="mb-0 w-100 text-center text-success">Đầy</p>
+                        </div>
                     }
                     else
                     {
-                        <span class="text-danger">Trống</span>
+                        <div class="d-flex align-items-center" style="height:38px">
+                            <p class="mb-0 w-100 text-center text-danger">Trống</p>
+                        </div>                       
                     }
                 </td>
 
 
                 <td>
-                    <a asp-action="Edit" asp-route-id="@item.RoomId" class="btn btn-primary">Sửa</a> 
-                    <a asp-action="Details" asp-route-id="@item.RoomId" class="btn btn-info">Chi tiết</a> 
-                    <a asp-action="Delete" asp-route-id="@item.RoomId" class="btn btn-danger">Xoá</a>
+                    <div class=" d-flex justify-content-center">
+                        <a asp-action="Edit" asp-route-id="@item.RoomId" class="btn btn-primary">Sửa</a>
+                        <a asp-action="Details" asp-route-id="@item.RoomId" class="btn btn-success mx-3">Chi tiết</a>
+                        <a asp-action="Delete" asp-route-id="@item.RoomId" class="btn btn-danger">Xoá</a>
+                       
+                    </div>
                 </td>
             </tr>
         }

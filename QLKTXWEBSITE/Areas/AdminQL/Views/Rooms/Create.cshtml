@@ -4,64 +4,78 @@
     ViewData["Title"] = "Tạo mới";
     Layout = "~/Areas/AdminQL/Views/Shared/Admin.cshtml";
 }
+<div class="d-flex justify-content-center">
+    <div class="col-md-6">
+        <h2 class="text-center">Tạo mới phòng</h2>
+        <hr />
+        <div class="row">
+            <div class="w-100">
+                <form asp-action="Create">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="d-flex">
+                        <div class="form-group col-6">
+                            <label asp-for="Mowroom" class="control-label">Phòng</label>
+                            <select asp-for="Mowroom" class="form-control">
+                                <option value="Nam">Nam</option>
+                                <option value="Nữ">Nữ</option>
+                            </select>
+                            <span asp-validation-for="Mowroom" class="text-danger"></span>
+                        </div> 
+                        <div class="form-group col-6">
+                            <label asp-for="Building" class="control-label">Toà</label>
+                            <select asp-for="Building" class="form-control">
+                                <option value="A">A</option>
+                                <option value="B">B</option>
+                            </select>
+                            <span asp-validation-for="Building" class="text-danger"></span>
+                        </div>
+                    </div>
+                    
+                    <div class="d-flex">
+                        <div class="form-group col-6">
+                            <label asp-for="Floor" class="control-label">Tầng</label>
+                            <input asp-for="Floor" class="form-control" required/>
+                            <span asp-validation-for="Floor" class="text-danger"></span>
+                        </div>
+                        <div class="form-group col-6">
+                            <label asp-for="NumberRoom" class="control-label">Phòng số</label>
+                            <input asp-for="NumberRoom" class="form-control" required />
+                            <span asp-validation-for="NumberRoom" class="text-danger"></span>
+                        </div>
+                    </div>
+                    
+                    <div class="d-flex">
+                        <div class="form-group col-6">
+                            <label asp-for="BedNumber" class="control-label">Số giường</label>
+                            <input asp-for="BedNumber" class="form-control" required />
+                            <span asp-validation-for="BedNumber" class="text-danger"></span>
+                        </div>
+                        <div class="form-group col-6">
+                            <label asp-for="NumberOfStudents" class="control-label">Số sinh viên</label>
+                            <input asp-for="NumberOfStudents" class="form-control" required />
+                            <span asp-validation-for="NumberOfStudents" class="text-danger"></span>
+                        </div>
+                    </div>
 
-<h1>Tạo mới</h1>
-
-<h4>Phòng</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Create">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="Mowroom" class="control-label">Phòng</label>
-                <select asp-for="Mowroom" class="form-control">
-                    <option value="Nam">Nam</option>
-                    <option value="Nữ">Nữ</option>
-                </select>
-                <span asp-validation-for="Mowroom" class="text-danger"></span>
+                     
+                    <div class="form-group col-12">
+                        <label asp-for="Status" class="control-label">Trạng thái</label>
+                        <select asp-for="Status" class="form-control">
+                            <option value="false">False</option>
+                            <option value="true">True</option>
+                        </select>
+                        <span asp-validation-for="Status" class="text-danger"></span>
+                    </div>
+                    <div class="form-group d-flex justify-content-center">
+                        <input type="submit" value="Tạo mới" class="btn btn-primary" />
+                    </div>
+                </form>
             </div>
-            <div class="form-group">
-                <label asp-for="Building" class="control-label">Toà</label>
-                <select asp-for="Building" class="form-control">
-                    <option value="A">A</option>
-                    <option value="B">B</option>
-                </select>
-                <span asp-validation-for="Building" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Floor" class="control-label">Tầng</label>
-                <input asp-for="Floor" class="form-control" />
-                <span asp-validation-for="Floor" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="NumberRoom" class="control-label">Phòng số</label>
-                <input asp-for="NumberRoom" class="form-control" />
-                <span asp-validation-for="NumberRoom" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="BedNumber" class="control-label">Số giường</label>
-                <input asp-for="BedNumber" class="form-control" />
-                <span asp-validation-for="BedNumber" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="NumberOfStudents" class="control-label">Số sinh viên</label>
-                <input asp-for="NumberOfStudents" class="form-control" />
-                <span asp-validation-for="NumberOfStudents" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Status" class="control-label">Trạng thái</label>
-                <select asp-for="Status" class="form-control">
-                    <option value="false">False</option>
-                </select>
-                <span asp-validation-for="Status" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Tạo mới" class="btn btn-primary" />
-            </div>
-        </form>
+        </div>
     </div>
 </div>
+
+
 
 <div>
     <a asp-action="Index" class="btn btn-secondary">Quay lại Danh sách</a>

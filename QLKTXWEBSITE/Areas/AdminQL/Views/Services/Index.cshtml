@@ -8,32 +8,62 @@
 <h1>Danh sách dịch vụ</h1>
 
 <p>
-    <a asp-action="Create" class="btn btn-primary">Tạo mới</a>
+    <a asp-action="Create" class="btn btn-primary"><i class="fa-solid fa-circle-plus fa-xl me-2"></i>Tạo mới</a>
 </p>
-
-<table class="table">
-    <thead>
+<table class="table mt-4 table-striped">
+    <thead class="thead-dark ">
         <tr>
             <th>
-                Phòng
+                <div class="ms-3">
+                    Phòng
+                </div>
             </th>
             <th>
-                Sinh viên
+                <div class="text-center">
+                    <p class="mb-0">
+                        Sinh viên
+                    </p>
+                </div>
             </th>
             <th>
-                Dịch vụ
+                <div class="text-center">
+                    <p class="mb-0">
+                        Dịch vụ
+                    </p>
+                </div>
             </th>
             <th>
-                Tháng
+                <div class="text-center">
+                    <p class="mb-0">
+                        Tháng
+                    </p>
+                </div>
+
             </th>
             <th>
-                Giá
+                <div class="text-center">
+                    <p class="mb-0">
+                        Giá
+                    </p>
+                </div>
+
             </th>
             <th>
-                Trạng thái
+                <div class="text-center">
+                    <p class="mb-0">
+                        Trạng thái
+                    </p>
+                </div>
+
             </th>
-            
-            <th></th>
+            <th>
+                <div class="text-center">
+                    <p class="mb-0">
+                        Hành động
+                    </p>
+                </div>
+
+            </th>
         </tr>
     </thead>
     <tbody>
@@ -41,35 +71,52 @@
         {
             <tr>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Room.NumberRoom)
+                    <div class="d-flex align-items-center ms-3" style="height:38px">
+                        <p class="mb-0">@Html.DisplayFor(modelItem => item.Room.NumberRoom)</p>
+                    </div>
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Student.FullName)
+                    <div class="d-flex align-items-center" style="height:38px">
+                        <p class="mb-0 w-100 text-center">@Html.DisplayFor(modelItem => item.Student.FullName)</p>
+                    </div>
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.ServiceName)
+                    <div class="d-flex align-items-center" style="height:38px">
+                        <p class="mb-0 w-100 text-center">@Html.DisplayFor(modelItem => item.ServiceName)</p>
+                    </div>
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Month)
+                    <div class="d-flex align-items-center" style="height:38px">
+                        <p class="mb-0 w-100 text-center">@Html.DisplayFor(modelItem => item.Month)</p>
+                    </div>
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Price)
+                    <div class="d-flex align-items-center" style="height:38px">
+                        <p class="mb-0 w-100 text-center">@Html.DisplayFor(modelItem => item.Price) VND</p>
+                    </div>
                 </td>
                 <td>
                     @if (item.Status == true)
                     {
-                        <text>Đã thanh toán</text>
+                        <div class="d-flex align-items-center" style="height:38px">
+                            <p class="mb-0 w-100 text-center text-success">Đã thanh toán</p>
+                        </div>
                     }
                     else
                     {
-                        <text>Chưa thanh toán</text>
+                        <div class="d-flex align-items-center" style="height:38px">
+                            <p class="mb-0 w-100 text-center text-danger">Chưa thanh toán</p>
+                        </div>
                     }
                 </td>
-                
+
+
                 <td>
-                    <a asp-action="Edit" asp-route-id="@item.ServiceId" class="btn btn-primary">Sửa</a> 
-                    <a asp-action="Details" asp-route-id="@item.ServiceId" class="btn btn-info">Chi tiết</a> 
-                    <a asp-action="Delete" asp-route-id="@item.ServiceId" class="btn btn-danger">Xóa</a>
+                    <div class=" d-flex justify-content-center">
+                        <a asp-action="Edit" asp-route-id="@item.ServiceId" class="btn btn-primary">Sửa</a>
+                        <a asp-action="Details" asp-route-id="@item.ServiceId" class="btn btn-success mx-3">Chi tiết</a>
+                        <a asp-action="Delete" asp-route-id="@item.ServiceId" class="btn btn-danger">Xoá</a>
+                    </div>
                 </td>
             </tr>
         }

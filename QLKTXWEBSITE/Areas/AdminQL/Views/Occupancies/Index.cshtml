@@ -8,62 +8,122 @@
 <h1>Index</h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Create" class="btn btn-primary"> <i class="fa-solid fa-circle-plus fa-xl me-2"></i>Tạo hơp đồng mới mới</a>
 </p>
 <p>
-    <a asp-action="SendEmailToOccupants">Gửi Email tới Cư dân</a>
+    <a asp-action="SendEmailToOccupants" class="btn btn-primary">Gửi Email tới Cư dân</a>
 </p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>Họ và tên</th>
-            <th>Email</th>
-            <th>
-                @Html.DisplayNameFor(model => model.RenewalDate)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ExpirationDate)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.CycleMonths)
-            </th>
-            <th>
-                Phòng số
-            </th>
-            <th>
-               Trạng thái
-            </th>
 
-            <th></th>
+
+<table class="table mt-4 table-striped">
+    <thead class="thead-dark ">
+        <tr>
+            <th>
+                <div class="ms-3">
+                    <p class="mb-0">
+                        Họ và tên
+                    </p>
+                </div>
+            </th>
+            <th>
+                <div class="text-center">
+                    <p class="mb-0">
+                        Email
+                    </p>
+                </div>
+            </th>
+            <th>
+                <div class="text-center">
+                    <p class="mb-0">
+                        @Html.DisplayNameFor(model => model.RenewalDate)
+                    </p>
+                </div>
+            </th>
+            <th>
+                <div class="text-center">
+                    <p class="mb-0">
+                        @Html.DisplayNameFor(model => model.ExpirationDate)
+                    </p>
+                </div>
+            </th>
+            <th>
+                <div class="text-center">
+                    <p class="mb-0">
+                        @Html.DisplayNameFor(model => model.CycleMonths)
+                    </p>
+                </div>
+            </th>
+            <th>
+                <div class="text-center">
+                    <p class="mb-0">
+                         Phòng số
+                    </p>
+                </div>
+            </th>
+            <th>
+                <div class="text-center">
+                    <p class="mb-0">
+                        Trạng thái
+                    </p>
+                </div>
+            </th>
+            <th>
+                <div class="text-center">
+                    <p class="mb-0">
+                        Hành động
+                    </p>
+                </div>
+            </th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-                <td>@Html.DisplayFor(modelItem => item.Student.FullName)</td>
-                <td>@Html.DisplayFor(modelItem => item.Student.Email)</td>
-            <td>
-                @Html.DisplayFor(modelItem => item.RenewalDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ExpirationDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CycleMonths)
-            </td>
-            <td>
-                    @Html.DisplayFor(modelItem => item.Room.NumberRoom)
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    <div class="d-flex align-items-center ms-3" style="height:38px">
+                        <p class="mb-0">@Html.DisplayFor(modelItem => item.Student.FullName)</p>
+                    </div>
+                </td>
+                <td>
+                    <div class="d-flex align-items-center" style="height:38px">
+                        <p class="mb-0 w-100 text-center">@Html.DisplayFor(modelItem => item.Student.Email)</p>
+                    </div>
+                </td>
+                <td>
+                    <div class="d-flex align-items-center" style="height:38px">
+                        <p class="mb-0 w-100 text-center">@Html.DisplayFor(modelItem => item.RenewalDate)</p>
+                    </div>
+                </td>
+                <td>
+                    <div class="d-flex align-items-center" style="height:38px">
+                        <p class="mb-0 w-100 text-center">@Html.DisplayFor(modelItem => item.ExpirationDate)</p>
+                    </div>
+                </td>
+                <td>
+                    <div class="d-flex align-items-center" style="height:38px">
+                        <p class="mb-0 w-100 text-center">@Html.DisplayFor(modelItem => item.CycleMonths)</p>
+                    </div>
+                </td>
+                <td>
+                    <div class="d-flex align-items-center" style="height:38px">
+                        <p class="mb-0 w-100 text-center">@Html.DisplayFor(modelItem => item.Room.NumberRoom)</p>
+                    </div>
+                </td>
+                <td>
+                    <div class="d-flex align-items-center" style="height:38px">
+                        <p class="mb-0 w-100 text-center">@Html.DisplayFor(modelItem => item.Status)</p>
+                    </div>
+                </td>
+                <td>
+                    <div class=" d-flex justify-content-center">
+                        <a asp-action="Edit" asp-route-id="@item.OccupancyId" class="btn btn-primary">Sửa</a>
+                        <a asp-action="Details" asp-route-id="@item.OccupancyId" class="btn btn-success mx-3">Chi tiết</a>
+                        <a asp-action="Delete" asp-route-id="@item.OccupancyId" class="btn btn-danger">Xoá</a>
 
-            </td>
-            <td>
-                    @Html.DisplayFor(modelItem => item.Status)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.OccupancyId">Edit</a>
-                <a asp-action="Details" asp-route-id="@item.OccupancyId">Details</a>
-                <a asp-action="Delete" asp-route-id="@item.OccupancyId">Delete</a>
-            </td>
-        </tr>
-}
+                    </div>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>
