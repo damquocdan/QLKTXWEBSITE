@@ -15,6 +15,12 @@
     <thead>
         <tr>
             <th>
+                Phòng
+            </th>
+            <th>
+                Sinh viên
+            </th>
+            <th>
                 Dịch vụ
             </th>
             <th>
@@ -26,12 +32,7 @@
             <th>
                 Trạng thái
             </th>
-            <th>
-                Phòng
-            </th>
-            <th>
-                Sinh viên
-            </th>
+            
             <th></th>
         </tr>
     </thead>
@@ -39,6 +40,12 @@
         @foreach (var item in Model)
         {
             <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Room.NumberRoom)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Student.FullName)
+                </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.ServiceName)
                 </td>
@@ -51,12 +58,7 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.Status)
                 </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Room.RoomId)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Student.StudentId)
-                </td>
+                
                 <td>
                     <a asp-action="Edit" asp-route-id="@item.ServiceId" class="btn btn-primary">Sửa</a> 
                     <a asp-action="Details" asp-route-id="@item.ServiceId" class="btn btn-info">Chi tiết</a> 

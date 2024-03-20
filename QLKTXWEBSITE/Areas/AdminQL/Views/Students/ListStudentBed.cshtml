@@ -5,13 +5,11 @@
     Layout = "~/Areas/AdminQL/Views/Shared/Admin.cshtml";
 }
 
-<h1>ListStudentBed</h1>
+<h1 class="my-4">Danh sách các sinh viên chưa có giường</h1>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
 <input type="hidden" name="bedId" value="@ViewData["bedId"]" />
-<form method="get" class="form-inline">
+
+<form method="get" class="form-inline mb-4">
     <div class="form-group mr-2">
         <label for="gender">Giới tính:</label>
         <select id="gender" name="gender" class="form-control">
@@ -22,42 +20,31 @@
     </div>
     <button type="submit" class="btn btn-primary">Tìm kiếm</button>
 </form>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.FullName)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Gender)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.StudentCode)
-            </th>
 
-            <th></th>
+<table class="table table-striped">
+    <thead class="thead-dark">
+        <tr>
+            <th scope="col">Họ và tên</th>
+            <th scope="col">Giới tính</th>
+            <th scope="col">Mã sinh viên</th>
+            <th scope="col"></th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.FullName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Gender)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.StudentCode)
-            </td>
-            <td>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@Html.DisplayFor(modelItem => item.FullName)</td>
+                <td>@Html.DisplayFor(modelItem => item.Gender)</td>
+                <td>@Html.DisplayFor(modelItem => item.StudentCode)</td>
+                <td>
                     <form asp-action="ChooseBed" asp-controller="Students" method="post">
                         <input type="hidden" name="studentId" value="@item.StudentId" />
                         <input type="hidden" name="bedId" value="@ViewData["bedId"]" />
                         <button type="submit" class="btn btn-primary btn-sm">Chọn</button>
                     </form>
-             </td>
-        </tr>
-}
+                </td>
+            </tr>
+        }
     </tbody>
 </table>

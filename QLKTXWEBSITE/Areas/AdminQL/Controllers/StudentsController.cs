@@ -42,32 +42,32 @@ namespace QLKTXWEBSITE.Areas.AdminQL.Controllers
 
             return View(studentsWithoutBed);
         }
-        // POST: AdminQL/Students/ChooseBed/5
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> ChooseBed(int studentId, int bedId)
+        public IActionResult ChooseBed(int studentId, int bedId)
         {
-            var student = await _context.Students.FindAsync(studentId);
-            if (student == null)
+            try
             {
-                return NotFound();
-            }
+                var student = _context.Students.Find(studentId);
 
-            var bed = await _context.BedOfRooms.FindAsync(bedId);
-            if (bed == null)
+                if (student == null)
+                {
+                    return NotFound();
+                }
+
+                student.BedId = bedId;
+
+                _context.SaveChanges();
+
+                return RedirectToAction("Index", "BedOfRoom");
+            }
+            catch (DbUpdateException ex)
             {
-                return NotFound();
+                Console.WriteLine(ex.InnerException);
+                return RedirectToAction("Error", "Home");
             }
-
-            // Cập nhật ID giường cho sinh viên
-            student.BedId = bedId;
-            // Đặt trạng thái của giường là đã chọn
-            bed.Status = true;
-
-            await _context.SaveChangesAsync();
-
-            return RedirectToAction("Index","BedOfRooms");
         }
+
+
         public async Task<IActionResult> Index(string name)
         {
             IQueryable<Student> students = _context.Students.Include(s => s.Bed).Include(s => s.Department).Include(s => s.Dh).Include(s => s.Room);

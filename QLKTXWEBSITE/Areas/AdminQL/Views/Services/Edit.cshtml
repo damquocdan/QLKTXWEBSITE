@@ -16,32 +16,32 @@
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                 <input type="hidden" asp-for="ServiceId" />
                 <div class="form-group">
-                    <label asp-for="ServiceName" class="control-label"></label>
+                    <label asp-for="ServiceName" class="control-label">Tên dịch vụ</label>
                     <input asp-for="ServiceName" class="form-control" />
                     <span asp-validation-for="ServiceName" class="text-danger"></span>
                 </div>
                 <div class="form-group">
-                    <label asp-for="Month" class="control-label"></label>
+                    <label asp-for="Month" class="control-label">Tháng</label>
                     <input asp-for="Month" class="form-control" />
                     <span asp-validation-for="Month" class="text-danger"></span>
                 </div>
                 <div class="form-group">
-                    <label asp-for="Price" class="control-label"></label>
+                    <label asp-for="Price" class="control-label">Số tiền</label>
                     <input asp-for="Price" class="form-control" />
                     <span asp-validation-for="Price" class="text-danger"></span>
                 </div>
                 <div class="form-group">
-                    <label asp-for="RoomId" class="control-label"></label>
+                    <label asp-for="RoomId" class="control-label">Số phòng</label>
                     <select asp-for="RoomId" class="form-control" asp-items="ViewBag.RoomId"></select>
                     <span asp-validation-for="RoomId" class="text-danger"></span>
                 </div>
                 <div class="form-group">
-                    <label asp-for="StudentId" class="control-label"></label>
+                    <label asp-for="StudentId" class="control-label">Tên sinh viên</label>
                     <select asp-for="StudentId" class="form-control" asp-items="ViewBag.StudentId"></select>
                     <span asp-validation-for="StudentId" class="text-danger"></span>
                 </div>
                 <div class="form-group">
-                    <label asp-for="Status" class="control-label"></label>
+                    <label asp-for="Status" class="control-label">Trạng thái</label>
                     <input asp-for="Status" class="form-control" />
                     <span asp-validation-for="Status" class="text-danger"></span>
                 </div>

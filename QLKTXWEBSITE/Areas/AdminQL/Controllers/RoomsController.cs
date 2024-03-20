@@ -37,22 +37,26 @@ namespace QLKTXWEBSITE.Areas.AdminQL.Controllers
 
             if (!string.IsNullOrEmpty(numberRoom))
             {
-                rooms = rooms.Where(r => r.NumberRoom.Equals(numberRoom));
+                int roomNumber;
+                if (int.TryParse(numberRoom, out roomNumber))
+                {
+                    rooms = rooms.Where(r => r.NumberRoom == roomNumber);
+                }
             }
 
             if (!string.IsNullOrEmpty(status))
             {
-                if (status == "Trống")
-                {
-                    rooms = rooms.Where(r => r.NumberOfStudents < r.BedNumber);
-                }
-                else
+                bool isFull = status == "True"; // Kiểm tra nếu status là "True" (đầy) thì isFull là true, ngược lại là false
+
+                if (isFull)
                 {
                     rooms = rooms.Where(r => r.NumberOfStudents == r.BedNumber);
                 }
-              
+                else
+                {
+                    rooms = rooms.Where(r => r.NumberOfStudents < r.BedNumber);
+                }
             }
-
 
 
             // Thực hiện truy vấn để lấy dữ liệu phòng
@@ -70,6 +74,7 @@ namespace QLKTXWEBSITE.Areas.AdminQL.Controllers
 
             return View(roomList);
         }
+
 
         public async Task<IActionResult> BedList(int? id)
         {
@@ -158,14 +163,7 @@ namespace QLKTXWEBSITE.Areas.AdminQL.Controllers
 
             // Lấy số lượng sinh viên trong phòng
             var numberOfStudents = _context.Students.Count(student => student.RoomId == room.RoomId);
-            if (numberOfStudents == room.BedNumber)
-            {
-                ViewData["Status"] = true;
-            }
-            else
-            {
-                ViewData["Status"] = false;
-            }
+            
             // Thêm số lượng sinh viên vào ViewData để truyền vào view
             ViewData["NumberOfStudents"] = numberOfStudents;
 

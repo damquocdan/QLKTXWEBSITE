@@ -32,10 +32,10 @@
             <th>Họ và tên</th>
             <th>Mã sinh viên</th>
             <th>Lớp</th>
-            <th>Giờng số</th>
             <th>Khoa</th>
             <th>Khoá</th>
             <th>Phòng số</th>
+            <th>Giờng số</th>
             <th>CHức năng</th>
         </tr>
     </thead>
@@ -46,10 +46,10 @@
                 <td>@Html.DisplayFor(modelItem => item.FullName)</td>
                 <td>@Html.DisplayFor(modelItem => item.StudentCode)</td>
                 <td>@Html.DisplayFor(modelItem => item.Class)</td>
-                <td>@Html.DisplayFor(modelItem => item.Bed.NumberBed)</td>
                 <td>@Html.DisplayFor(modelItem => item.Department.DepartmentName)</td>
                 <td>@Html.DisplayFor(modelItem => item.Dh.Dhcode)</td>
                 <td>@Html.DisplayFor(modelItem => item.Room.NumberRoom)</td>
+                <td>@Html.DisplayFor(modelItem => item.Bed.NumberBed)</td>
                 <td>
                     <a asp-action="Edit" asp-route-id="@item.StudentId" class="btn btn-primary btn-sm">Sửa</a>
                     <a asp-action="Details" asp-route-id="@item.StudentId" class="btn btn-info btn-sm">Chi tiết</a>
