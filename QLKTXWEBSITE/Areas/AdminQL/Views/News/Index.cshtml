@@ -10,10 +10,54 @@
 <p>
     <a asp-action="Create">Tạo mới</a>
 </p>
-<div class="container">
-    <table class="table">
-        <thead>
+
+<table class="table mt-4 table-striped">
+    <thead class="thead-dark ">
+        <tr>
+            <th>
+                <div class="ms-3">
+                    <p class="mb-0">
+                        Tiêu đề
+                    </p>
+                </div>
+            </th>
+            <th>
+                <div class="text-center">
+                    <p class="mb-0">
+                        Nội dung
+                    </p>
+                </div>
+            </th>
+            <th>
+                <div class="text-center">
+                    <p class="mb-0">
+                        Ngày tạo
+                    </p>
+                </div>
+            </th>
+            <th>
+                <div class="text-center">
+                    <p class="mb-0">
+                        Tác giả
+                    </p>
+                </div>
+
+            </th>
+            <th>
+                <div class="text-center">
+                    <p class="mb-0">
+                        Hành động
+                    </p>
+                </div>
+
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
             <tr>
+<<<<<<< HEAD
                 <th>
                     Tiêu đề
                 </th>
@@ -49,3 +93,37 @@
         </tbody>
     </table>
 </div>
+=======
+                <td>
+                    <div class="d-flex align-items-center ms-3" style="height:38px">
+                        <p class="mb-0">@Html.DisplayFor(modelItem => item.Title)</p>
+                    </div>
+                </td>
+                <td>
+                    <div class="d-flex align-items-center" style="height:38px">
+                        <p class="mb-0 w-100 text-center">@Html.DisplayFor(modelItem => item.Content)</p>
+                    </div>
+                </td>
+                <td>
+                    <div class="d-flex align-items-center" style="height:38px">
+                        <p class="mb-0 w-100 text-center">@Html.DisplayFor(modelItem => item.PublishedDate)</p>
+                    </div>
+                </td>
+                <td>
+                    <div class="d-flex align-items-center" style="height:38px">
+                        <p class="mb-0 w-100 text-center">@Html.DisplayFor(modelItem => item.Author)</p>
+                    </div>
+                </td>
+                <td>
+                    <div class=" d-flex justify-content-center">
+                        <a asp-action="Edit" asp-route-id="@item.NewsId" class="btn btn-primary">Sửa</a>
+                        <a asp-action="Details" asp-route-id="@item.NewsId" class="btn btn-success mx-3">Chi tiết</a>
+                        <a asp-action="Delete" asp-route-id="@item.NewsId" class="btn btn-danger">Xoá</a>
+
+                    </div>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+>>>>>>> 98c5e5e0c394e7b24e3696eda8952df6a6bdca33

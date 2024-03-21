@@ -115,78 +115,31 @@ button.login:hover {
 <div class="section">
 <div class="cont">
     <div class="main-box">
-        <div class="create">
-            <form asp-action="Create">
-                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                <h2>Tạo tài khoản quản lý</h2>
-                <i class="fa fa-fw fa-user-o" aria-hidden="true"></i>
-                <input asp-for="FullName" type="text" class="user" placeholder="Họ và tên" />
-
-                <i class="fa fa-fw fa-envelope-o" aria-hidden="true"></i>
-                <input asp-for="Email" type="text" class="email" placeholder="Email" />
-
-
-                <i class="fa fa-fw fa-lock" aria-hidden="true"></i>
-                <input asp-for="Password" type="password" class="pass" placeholder="Mật khẩu" />
-
-                <button type = "submit" class="login">Tạo</button>
-            </form>
-
-                <form asp-action="Create">
-                    <!-- Email input -->
-                    <div class="form-outline mb-4">
-                        <input type="email" id="form2Example1" class="form-control" />
-                        <label class="form-label" for="form2Example1">Email address</label>
-                    </div>
-
-                    <!-- Password input -->
-                    <div class="form-outline mb-4">
-                        <input type="password" id="form2Example2" class="form-control" />
-                        <label class="form-label" for="form2Example2">Password</label>
-                    </div>
-
-                    <!-- 2 column grid layout for inline styling -->
-                    <div class="row mb-4">
-                        <div class="col d-flex justify-content-center">
-                            <!-- Checkbox -->
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="" id="form2Example31" checked />
-                                <label class="form-check-label" for="form2Example31"> Remember me </label>
-                            </div>
+        <div class="create d-flex justify-content-center ">
+            <div class="col-md-4">
+                  <form asp-action="Create">
+                        <!-- FullName input -->
+                        <div class="form-outline mb-4">
+                            <label class="form-label" for="fullName">Họ và tên</label>
+                            <input asp-for="FullName" type="text" id="fullName" class="form-control" required />
                         </div>
 
-                        <div class="col">
-                            <!-- Simple link -->
-                            <a href="#!">Forgot password?</a>
+                        <div class="form-outline mb-4">
+                            <label class="form-label" for="form2Example1">Email</label>
+                            <input asp-for="Email" type="email" id="form2Example1" class="form-control" required />
                         </div>
-                    </div>
 
-                    <!-- Submit button -->
-                    <button type="button" class="btn btn-primary btn-block mb-4">Sign in</button>
+                        <!-- Password input -->
+                        <div class="form-outline mb-4">
+                            <label class="form-label" for="form2Example2">Mật khẩu</label>
+                            <input asp-for="Password" type="password" id="form2Example2" class="form-control" required />
+                        </div>
 
-                    <!-- Register buttons -->
-                    <div class="text-center">
-                        <p>Not a member? <a href="#!">Register</a></p>
-                        <p>or sign up with:</p>
-                        <button type="button" class="btn btn-link btn-floating mx-1">
-                            <i class="fab fa-facebook-f"></i>
-                        </button>
-
-                        <button type="button" class="btn btn-link btn-floating mx-1">
-                            <i class="fab fa-google"></i>
-                        </button>
-
-                        <button type="button" class="btn btn-link btn-floating mx-1">
-                            <i class="fab fa-twitter"></i>
-                        </button>
-
-                        <button type="button" class="btn btn-link btn-floating mx-1">
-                            <i class="fab fa-github"></i>
-                        </button>
-                    </div>
-                </form>
+                        <!-- Submit button -->
+                        <button type="submit" class="btn btn-primary btn-block mb-4 col-md-3">Đăng ký</button>
+                    </form>
+             </div>    
         </div>
-
     </div>
 </div>
 </div>

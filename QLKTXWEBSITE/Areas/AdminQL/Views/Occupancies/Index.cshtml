@@ -5,20 +5,25 @@
     Layout = "~/Areas/AdminQL/Views/Shared/Admin.cshtml";
 }
 
-<h1>Index</h1>
+<h1>Quản lý hợp đồng</h1>
 
 <p>
+<<<<<<< HEAD
     <a asp-action="Create">Tạo hợp đồng gia hạn mới</a>
+=======
+    <a asp-action="Create" class="btn btn-primary"> <i class="fa-solid fa-circle-plus fa-xl me-2"></i>Tạo hơp đồng mới</a>
+>>>>>>> 98c5e5e0c394e7b24e3696eda8952df6a6bdca33
 </p>
 <p>
-    <a asp-action="SendEmailToOccupants">Gửi Email tới Cư dân</a>
+    <a asp-action="SendEmailToOccupants" class="btn btn-primary"><i class="fa-regular fa-paper-plane fa-xl me-2"></i> Gửi Email tới Cư dân</a>
 </p>
-<table class="table">
-    <thead>
+
+
+<table class="table mt-4 table-striped">
+    <thead class="thead-dark ">
         <tr>
-            <th>Họ và tên</th>
-            <th>Email</th>
             <th>
+<<<<<<< HEAD
                 Ngày bắt đầu
             </th>
             <th>
@@ -26,18 +31,67 @@
             </th>
             <th>
                 Số tháng
+=======
+                <div class="ms-3">
+                    <p class="mb-0">
+                        Họ và tên
+                    </p>
+                </div>
             </th>
             <th>
-                Phòng số
+                <div class="text-center">
+                    <p class="mb-0">
+                        Email
+                    </p>
+                </div>
             </th>
             <th>
-               Trạng thái
+                <div class="text-center">
+                    <p class="mb-0">
+                        @Html.DisplayNameFor(model => model.RenewalDate)
+                    </p>
+                </div>
+>>>>>>> 98c5e5e0c394e7b24e3696eda8952df6a6bdca33
             </th>
-
-            <th></th>
+            <th>
+                <div class="text-center">
+                    <p class="mb-0">
+                        @Html.DisplayNameFor(model => model.ExpirationDate)
+                    </p>
+                </div>
+            </th>
+            <th>
+                <div class="text-center">
+                    <p class="mb-0">
+                        @Html.DisplayNameFor(model => model.CycleMonths)
+                    </p>
+                </div>
+            </th>
+            <th>
+                <div class="text-center">
+                    <p class="mb-0">
+                         Phòng số
+                    </p>
+                </div>
+            </th>
+            <th>
+                <div class="text-center">
+                    <p class="mb-0">
+                        Trạng thái
+                    </p>
+                </div>
+            </th>
+            <th>
+                <div class="text-center">
+                    <p class="mb-0">
+                        Hành động
+                    </p>
+                </div>
+            </th>
         </tr>
     </thead>
     <tbody>
+<<<<<<< HEAD
 @foreach (var item in Model) {
         <tr>
             <td>@Html.DisplayFor(modelItem => item.Student.FullName)</td>
@@ -65,5 +119,55 @@
             </td>
         </tr>
 }
+=======
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    <div class="d-flex align-items-center ms-3" style="height:38px">
+                        <p class="mb-0">@Html.DisplayFor(modelItem => item.Student.FullName)</p>
+                    </div>
+                </td>
+                <td>
+                    <div class="d-flex align-items-center" style="height:38px">
+                        <p class="mb-0 w-100 text-center">@Html.DisplayFor(modelItem => item.Student.Email)</p>
+                    </div>
+                </td>
+                <td>
+                    <div class="d-flex align-items-center" style="height:38px">
+                        <p class="mb-0 w-100 text-center">@Html.DisplayFor(modelItem => item.RenewalDate)</p>
+                    </div>
+                </td>
+                <td>
+                    <div class="d-flex align-items-center" style="height:38px">
+                        <p class="mb-0 w-100 text-center">@Html.DisplayFor(modelItem => item.ExpirationDate)</p>
+                    </div>
+                </td>
+                <td>
+                    <div class="d-flex align-items-center" style="height:38px">
+                        <p class="mb-0 w-100 text-center">@Html.DisplayFor(modelItem => item.CycleMonths)</p>
+                    </div>
+                </td>
+                <td>
+                    <div class="d-flex align-items-center" style="height:38px">
+                        <p class="mb-0 w-100 text-center">@Html.DisplayFor(modelItem => item.Room.NumberRoom)</p>
+                    </div>
+                </td>
+                <td>
+                    <div class="d-flex align-items-center" style="height:38px">
+                        <p class="mb-0 w-100 text-center">@Html.DisplayFor(modelItem => item.Status)</p>
+                    </div>
+                </td>
+                <td>
+                    <div class=" d-flex justify-content-center">
+                        <a asp-action="Edit" asp-route-id="@item.OccupancyId" class="btn btn-primary">Sửa</a>
+                        <a asp-action="Details" asp-route-id="@item.OccupancyId" class="btn btn-success mx-3">Chi tiết</a>
+                        <a asp-action="Delete" asp-route-id="@item.OccupancyId" class="btn btn-danger">Xoá</a>
+
+                    </div>
+                </td>
+            </tr>
+        }
+>>>>>>> 98c5e5e0c394e7b24e3696eda8952df6a6bdca33
     </tbody>
 </table>
