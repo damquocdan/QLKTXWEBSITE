@@ -5,51 +5,53 @@
     Layout = "~/Areas/AdminQL/Views/Shared/Admin.cshtml";
 }
 
-<h1>Details</h1>
+<h1>Thông tin chi tiết</h1>
 
 <div>
-    <h4>Occupancy</h4>
+    <h4>Hợp đồng gia hạn</h4>
     <hr />
     <dl class="row">
+        <dt class="col-sm-2">
+            Họ và tên
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Student.FullName)
+        </dd>
+        <dt class="col-sm-2">
+            Phòng số
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Room.NumberRoom)
+        </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.RenewalDate)
+            Ngày bắt đầu
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.RenewalDate)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.ExpirationDate)
+            Ngày kết thúc
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.ExpirationDate)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.CycleMonths)
+            Số tháng
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.CycleMonths)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Status)
+            Trạng thái
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.Status)
         </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Room)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Room.RoomId)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Student)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Student.StudentId)
-        </dd>
+        
+        
     </dl>
 </div>
 <div>
-    <a asp-action="Edit" asp-route-id="@Model?.OccupancyId">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Edit" asp-route-id="@Model?.OccupancyId">Sửa</a> |
+    <a asp-action="Index">Quay lại danh sách</a>
 </div>

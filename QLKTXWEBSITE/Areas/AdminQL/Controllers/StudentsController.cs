@@ -260,6 +260,11 @@ namespace QLKTXWEBSITE.Areas.AdminQL.Controllers
         // GET: AdminQL/Students/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
+            var departmentNames = _context.Departments.Select(d => d.DepartmentName).ToList();
+            var bedNumbers = _context.BedOfRooms.Select(b => b.NumberBed).ToList();
+            var dhCodes = _context.Dhs.Select(d => d.Dhcode).ToList();
+            var roomNumbers = _context.Rooms.Select(r => r.NumberRoom).ToList();
+
             if (id == null || _context.Students == null)
             {
                 return NotFound();
@@ -270,10 +275,16 @@ namespace QLKTXWEBSITE.Areas.AdminQL.Controllers
             {
                 return NotFound();
             }
-            ViewData["BedId"] = new SelectList(_context.BedOfRooms, "BedId", "BedId", student.BedId);
-            ViewData["DepartmentId"] = new SelectList(_context.Departments, "DepartmentId", "DepartmentId", student.DepartmentId);
-            ViewData["Dhid"] = new SelectList(_context.Dhs, "Dhid", "Dhid", student.Dhid);
-            ViewData["RoomId"] = new SelectList(_context.Rooms, "RoomId", "RoomId", student.RoomId);
+            //ViewData["BedId"] = new SelectList(_context.BedOfRooms, "BedId", "BedNumber", student.BedId);
+            ////ViewData["DepartmentId"] = new SelectList(_context.Departments, "DepartmentId", "DepartmentName", student.DepartmentId);
+            
+            //ViewData["Dhid"] = new SelectList(_context.Dhs, "Dhid", "Dhcode", student.Dhid);
+            //ViewData["RoomId"] = new SelectList(_context.Rooms, "RoomId", "NumberRoom", student.RoomId);
+            ViewData["DepartmentNames"] = new SelectList(departmentNames);
+            ViewData["BedNumbers"] = new SelectList(bedNumbers);
+            ViewData["DhCodes"] = new SelectList(dhCodes);
+            ViewData["RoomNumbers"] = new SelectList(roomNumbers);
+
             return View(student);
         }
 

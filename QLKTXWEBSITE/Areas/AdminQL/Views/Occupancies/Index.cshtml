@@ -8,7 +8,7 @@
 <h1>Index</h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Create">Tạo hợp đồng gia hạn mới</a>
 </p>
 <p>
     <a asp-action="SendEmailToOccupants">Gửi Email tới Cư dân</a>
@@ -19,13 +19,13 @@
             <th>Họ và tên</th>
             <th>Email</th>
             <th>
-                @Html.DisplayNameFor(model => model.RenewalDate)
+                Ngày bắt đầu
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.ExpirationDate)
+                Ngày kết thúc
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.CycleMonths)
+                Số tháng
             </th>
             <th>
                 Phòng số
@@ -40,8 +40,8 @@
     <tbody>
 @foreach (var item in Model) {
         <tr>
-                <td>@Html.DisplayFor(modelItem => item.Student.FullName)</td>
-                <td>@Html.DisplayFor(modelItem => item.Student.Email)</td>
+            <td>@Html.DisplayFor(modelItem => item.Student.FullName)</td>
+            <td>@Html.DisplayFor(modelItem => item.Student.Email)</td>
             <td>
                 @Html.DisplayFor(modelItem => item.RenewalDate)
             </td>
@@ -59,9 +59,9 @@
                     @Html.DisplayFor(modelItem => item.Status)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.OccupancyId">Edit</a>
-                <a asp-action="Details" asp-route-id="@item.OccupancyId">Details</a>
-                <a asp-action="Delete" asp-route-id="@item.OccupancyId">Delete</a>
+                <a asp-action="Edit" asp-route-id="@item.OccupancyId">Sửa</a>
+                <a asp-action="Details" asp-route-id="@item.OccupancyId">Xem chi tiết</a>
+                <a asp-action="Delete" asp-route-id="@item.OccupancyId">Xoá</a>
             </td>
         </tr>
 }
