@@ -8,11 +8,7 @@
 <h1>Quản lý hợp đồng</h1>
 
 <p>
-<<<<<<< HEAD
     <a asp-action="Create">Tạo hợp đồng gia hạn mới</a>
-=======
-    <a asp-action="Create" class="btn btn-primary"> <i class="fa-solid fa-circle-plus fa-xl me-2"></i>Tạo hơp đồng mới</a>
->>>>>>> 98c5e5e0c394e7b24e3696eda8952df6a6bdca33
 </p>
 <p>
     <a asp-action="SendEmailToOccupants" class="btn btn-primary"><i class="fa-regular fa-paper-plane fa-xl me-2"></i> Gửi Email tới Cư dân</a>
@@ -23,15 +19,6 @@
     <thead class="thead-dark ">
         <tr>
             <th>
-<<<<<<< HEAD
-                Ngày bắt đầu
-            </th>
-            <th>
-                Ngày kết thúc
-            </th>
-            <th>
-                Số tháng
-=======
                 <div class="ms-3">
                     <p class="mb-0">
                         Họ và tên
@@ -48,22 +35,21 @@
             <th>
                 <div class="text-center">
                     <p class="mb-0">
-                        @Html.DisplayNameFor(model => model.RenewalDate)
-                    </p>
-                </div>
->>>>>>> 98c5e5e0c394e7b24e3696eda8952df6a6bdca33
-            </th>
-            <th>
-                <div class="text-center">
-                    <p class="mb-0">
-                        @Html.DisplayNameFor(model => model.ExpirationDate)
+                        Ngày bắt đầu
                     </p>
                 </div>
             </th>
             <th>
                 <div class="text-center">
                     <p class="mb-0">
-                        @Html.DisplayNameFor(model => model.CycleMonths)
+                        Ngày kết thúc
+                    </p>
+                </div>
+            </th>
+            <th>
+                <div class="text-center">
+                    <p class="mb-0">
+                        Số tháng
                     </p>
                 </div>
             </th>
@@ -91,35 +77,6 @@
         </tr>
     </thead>
     <tbody>
-<<<<<<< HEAD
-@foreach (var item in Model) {
-        <tr>
-            <td>@Html.DisplayFor(modelItem => item.Student.FullName)</td>
-            <td>@Html.DisplayFor(modelItem => item.Student.Email)</td>
-            <td>
-                @Html.DisplayFor(modelItem => item.RenewalDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ExpirationDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CycleMonths)
-            </td>
-            <td>
-                    @Html.DisplayFor(modelItem => item.Room.NumberRoom)
-
-            </td>
-            <td>
-                    @Html.DisplayFor(modelItem => item.Status)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.OccupancyId">Sửa</a>
-                <a asp-action="Details" asp-route-id="@item.OccupancyId">Xem chi tiết</a>
-                <a asp-action="Delete" asp-route-id="@item.OccupancyId">Xoá</a>
-            </td>
-        </tr>
-}
-=======
         @foreach (var item in Model)
         {
             <tr>
@@ -168,6 +125,5 @@
                 </td>
             </tr>
         }
->>>>>>> 98c5e5e0c394e7b24e3696eda8952df6a6bdca33
     </tbody>
 </table>
