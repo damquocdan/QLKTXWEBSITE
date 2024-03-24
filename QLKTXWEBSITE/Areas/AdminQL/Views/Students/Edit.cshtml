@@ -71,13 +71,25 @@
             <div class="col-md-4">
                 <div class="form-group">
                     <label asp-for="Dhid" class="control-label">Khoá</label>
-                    <select asp-for="Dhid" class="form-control" asp-items="@((SelectList)ViewData["DhCodes"])"></select>
+                    <select asp-for="Dhid" class="form-control">
+                        <option value="">-- Chọn số giường --</option>
+                        @foreach (var dh in ViewData["DhCodes"] as List<Dh>)
+                        {
+                            <option value="@dh.Dhid">@dh.Dhcode</option>
+                        }
+                    </select>
                     <span asp-validation-for="Dhid" class="text-danger"></span>
                 </div>
 
                 <div class="form-group">
                     <label asp-for="DepartmentId" class="control-label">Khoa</label>
-                    <select asp-for="DepartmentId" class="form-control" asp-items="@((SelectList)ViewData["DepartmentNames"])"></select>
+                    <select asp-for="DepartmentId" class="form-control">
+                        <option value="">-- Chọn số giường --</option>
+                        @foreach (var d in ViewData["DepartmentNames"] as List<Department>)
+                        {
+                            <option value="@d.DepartmentId">@d.DepartmentName</option>
+                        }
+                    </select>
                     <span asp-validation-for="DepartmentId" class="text-danger"></span>
                 </div>
 
@@ -99,7 +111,13 @@
             <div class="col-md-4">
                 <div class="form-group">
                     <label asp-for="RoomId" class="control-label">Phòng</label>
-                    <select asp-for="RoomId" class="form-control" asp-items="@((SelectList)ViewData["RoomNumbers"])"></select>
+                    <select asp-for="RoomId" class="form-control">
+                        <option value="">-- Chọn số giường --</option>
+                        @foreach (var room in ViewData["RoomNumbers"] as List<Room>)
+                        {
+                            <option value="@room.RoomId">@room.NumberRoom</option>
+                        }
+                    </select>                    
                     <span asp-validation-for="RoomId" class="text-danger"></span>
                 </div>
             </div>
@@ -107,7 +125,13 @@
             <div class="col-md-4">
                 <div class="form-group">
                     <label asp-for="BedId" class="control-label">Giường</label>
-                    <select asp-for="BedId" class="form-control" asp-items="@((SelectList)ViewData["BedNumbers"])"></select>
+                    <select asp-for="BedId" class="form-control">
+                        <option value="">-- Chọn số giường --</option>
+                        @foreach (var bed in ViewData["BedNumbers"] as List<BedOfRoom>)
+                        {
+                            <option value="@bed.BedId">@bed.NumberBed</option>
+                        }
+                    </select>
                     <span asp-validation-for="BedId" class="text-danger"></span>
                 </div>
             </div>
