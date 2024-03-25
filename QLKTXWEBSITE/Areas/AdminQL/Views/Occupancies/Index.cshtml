@@ -7,15 +7,16 @@
 
 <h1>Quản lý hợp đồng</h1>
 
+
 <p>
-    <a asp-action="Create">Tạo hợp đồng gia hạn mới</a>
+    <a asp-action="Create" class="btn btn-success"><i class="fas fa-plus"></i>Tạo hợp đồng gia hạn mới</a>
 </p>
 <p>
     <a asp-action="SendEmailToOccupants" class="btn btn-primary"><i class="fa-regular fa-paper-plane fa-xl me-2"></i> Gửi Email tới Cư dân</a>
 </p>
 
 
-<table class="table mt-4 table-striped">
+<table class="table mt-4 table-striped mb-5">
     <thead class="thead-dark ">
         <tr>
             <th>
@@ -111,9 +112,18 @@
                     </div>
                 </td>
                 <td>
-                    <div class="d-flex align-items-center" style="height:38px">
-                        <p class="mb-0 w-100 text-center">@Html.DisplayFor(modelItem => item.Status)</p>
-                    </div>
+                    @if (item.Status == true)
+                    {
+                        <div class="d-flex align-items-center" style="height:38px">
+                            <p class="mb-0 w-100 text-center text-success">Đã thanh toán</p>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="d-flex align-items-center" style="height:38px">
+                            <p class="mb-0 w-100 text-center text-danger">Chưa thanh toán</p>
+                        </div>
+                    }
                 </td>
                 <td>
                     <div class=" d-flex justify-content-center">

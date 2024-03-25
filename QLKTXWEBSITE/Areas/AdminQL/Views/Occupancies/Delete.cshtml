@@ -5,12 +5,23 @@
     Layout = "~/Areas/AdminQL/Views/Shared/Admin.cshtml";
 }
 
-<h1>Delete</h1>
 
 <h3>Bạn có muốn xoá hợp đồng này</h3>
 <div>
     <hr />
     <dl class="row">
+        <dt class="col-sm-2">
+            Họ và tên
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Student.FullName)
+        </dd>
+        <dt class="col-sm-2">
+            Phòng số
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Room.NumberRoom)
+        </dd>
         <dt class = "col-sm-2">
             Ngày gia hạn
         </dt>
@@ -33,25 +44,26 @@
             Trạng thái
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Status)
+            @if (Model.Status == true)
+            {
+                <div class="d-flex align-items-center" style="height:38px">
+                    <p class="mb-0 text-success">Đã thanh toán</p>
+                </div>
+            }
+            else
+            {
+                <div class="d-flex align-items-center" style="height:38px">
+                    <p class="mb-0 text-danger">Chưa thanh toán</p>
+                </div>
+            }
         </dd>
-        <dt class = "col-sm-2">
-            Phòng số
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Room.NumberRoom)
-        </dd>
-        <dt class = "col-sm-2">
-            Họ và tên
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Student.FullName)
-        </dd>
+       
+        
     </dl>
     
     <form asp-action="Delete">
         <input type="hidden" asp-for="OccupancyId" />
-        <input type="submit" value="Xoá" class="btn btn-danger" /> |
-        <a asp-action="Index">Quay lại danh sách</a>
+        <input type="submit" value="Xoá" class="btn btn-danger" />
+        <a asp-action="Index" class="btn btn-secondary ">Quay lại danh sách</a>
     </form>
 </div>

@@ -8,23 +8,16 @@
 <h1>Danh sách</h1>
 
 <p>
-    <a asp-action="Create">Tạo mới</a>
+    <a asp-action="Create" class="btn btn-success"><i class="fas fa-plus"></i>Tạo tin tức mới</a>
 </p>
 
-<table class="table mt-4 table-striped">
+<table class="table">
     <thead class="thead-dark ">
         <tr>
             <th>
                 <div class="ms-3">
                     <p class="mb-0">
                         Tiêu đề
-                    </p>
-                </div>
-            </th>
-            <th>
-                <div class="text-center">
-                    <p class="mb-0">
-                        Nội dung
                     </p>
                 </div>
             </th>
@@ -49,59 +42,16 @@
                         Hành động
                     </p>
                 </div>
-
             </th>
         </tr>
     </thead>
     <tbody>
         @foreach (var item in Model)
         {
-            <tr>
-<<<<<<< HEAD
-                <th>
-                    Tiêu đề
-                </th>
-                <th>
-                    Ngày xuất bản
-                </th>
-                <th>
-                    Ảnh
-                </th>
-                <th></th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var item in Model)
-            {
-                <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Title)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.PublishedDate)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Author)
-                    </td>
-                    <td>
-                        <a asp-action="Edit" asp-route-id="@item.NewsId" class="btn btn-primary">Sửa</a> 
-                        <a asp-action="Details" asp-route-id="@item.NewsId" class="btn btn-info">Chi tiết</a> 
-                        <a asp-action="Delete" asp-route-id="@item.NewsId" class="btn btn-danger">Xóa</a>
-                    </td>
-                </tr>
-            }
-        </tbody>
-    </table>
-</div>
-=======
+            <tr> 
                 <td>
                     <div class="d-flex align-items-center ms-3" style="height:38px">
                         <p class="mb-0">@Html.DisplayFor(modelItem => item.Title)</p>
-                    </div>
-                </td>
-                <td>
-                    <div class="d-flex align-items-center" style="height:38px">
-                        <p class="mb-0 w-100 text-center">@Html.DisplayFor(modelItem => item.Content)</p>
                     </div>
                 </td>
                 <td>
@@ -119,11 +69,9 @@
                         <a asp-action="Edit" asp-route-id="@item.NewsId" class="btn btn-primary">Sửa</a>
                         <a asp-action="Details" asp-route-id="@item.NewsId" class="btn btn-success mx-3">Chi tiết</a>
                         <a asp-action="Delete" asp-route-id="@item.NewsId" class="btn btn-danger">Xoá</a>
-
                     </div>
                 </td>
             </tr>
         }
     </tbody>
 </table>
->>>>>>> 98c5e5e0c394e7b24e3696eda8952df6a6bdca33

@@ -10,44 +10,31 @@
 <p>
     <a asp-action="Create" class="btn btn-primary"> <i class="fa-solid fa-circle-plus fa-xl pe-2"></i>Tạo mới</a>
 </p>
-<table class="table mt-4 table-striped">
+<table class="table mb-5">
     <thead class="thead-dark ">
         <tr>
             <th>
+                <div class="text-center">
+                    <p class="mb-0">
+                        Họ và tên
+                    </p>
+                </div>
+            </th>
+            <th>
                 <div class="ms-3">
                     <p class="mb-0">
-                        @Html.DisplayNameFor(model => model.Amount)
+                        Số tiền
                     </p>
                 </div>
             </th>
             <th>
                 <div class="text-center">
                     <p class="mb-0">
-                        @Html.DisplayNameFor(model => model.Description)
+                        Ngày giao dịch
                     </p>
                 </div>
             </th>
-            <th>
-                <div class="text-center">
-                    <p class="mb-0">
-                        @Html.DisplayNameFor(model => model.TransactionCode)
-                    </p>
-                </div>
-            </th>
-            <th>
-                <div class="text-center">
-                    <p class="mb-0">
-                        @Html.DisplayNameFor(model => model.TransactionDate)
-                    </p>
-                </div>
-            </th>
-            <th>
-                <div class="text-center">
-                    <p class="mb-0">
-                        @Html.DisplayNameFor(model => model.Student)
-                    </p>
-                </div>
-            </th>
+     
             <th>
                 <div class="text-center">
                     <p class="mb-0">
@@ -62,28 +49,19 @@
         {
             <tr>
                 <td>
+                    <div class="d-flex align-items-center" style="height:38px">
+                        <p class="mb-0 w-100 text-center">@Html.DisplayFor(modelItem => item.Student.FullName)</p>
+                    </div>
+                </td>
+                <td>
                     <div class="d-flex align-items-center ms-3" style="height:38px">
                         <p class="mb-0">@Html.DisplayFor(modelItem => item.Amount)</p>
                     </div>
                 </td>
-                <td>
-                    <div class="d-flex align-items-center" style="height:38px">
-                        <p class="mb-0 w-100 text-center">@Html.DisplayFor(modelItem => item.Description)</p>
-                    </div>
-                </td>
-                <td>
-                    <div class="d-flex align-items-center" style="height:38px">
-                        <p class="mb-0 w-100 text-center">@Html.DisplayFor(modelItem => item.TransactionCode)</p>
-                    </div>
-                </td>
+                
                 <td>
                     <div class="d-flex align-items-center" style="height:38px">
                         <p class="mb-0 w-100 text-center">@Html.DisplayFor(modelItem => item.TransactionDate)</p>
-                    </div>
-                </td>
-                <td>
-                    <div class="d-flex align-items-center" style="height:38px">
-                        <p class="mb-0 w-100 text-center">@Html.DisplayFor(modelItem => item.Student.StudentId)</p>
                     </div>
                 </td>
                 <td>

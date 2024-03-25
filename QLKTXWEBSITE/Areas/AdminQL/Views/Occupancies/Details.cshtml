@@ -45,13 +45,24 @@
             Trạng thái
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Status)
+            @if (Model.Status == true)
+            {
+                <div class="d-flex align-items-center" style="height:38px">
+                    <p class="mb-0 text-success">Đã thanh toán</p>
+                </div>
+            }
+            else
+            {
+                <div class="d-flex align-items-center" style="height:38px">
+                    <p class="mb-0 text-danger">Chưa thanh toán</p>
+                </div>
+            }
         </dd>
         
         
     </dl>
 </div>
 <div>
-    <a asp-action="Edit" asp-route-id="@Model?.OccupancyId">Sửa</a> |
-    <a asp-action="Index">Quay lại danh sách</a>
+    <a asp-action="Edit" asp-route-id="@Model?.OccupancyId" class="btn btn-primary">Sửa</a>
+    <a asp-action="Index" class="btn btn-secondary">Quay lại danh sách</a>
 </div>

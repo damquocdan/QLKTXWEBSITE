@@ -250,10 +250,10 @@ namespace QLKTXWEBSITE.Areas.AdminQL.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["BedId"] = new SelectList(_context.BedOfRooms, "BedId", "BedId", student.BedId);
-            ViewData["DepartmentId"] = new SelectList(_context.Departments, "DepartmentId", "DepartmentId", student.DepartmentId);
-            ViewData["Dhid"] = new SelectList(_context.Dhs, "Dhid", "Dhid", student.Dhid);
-            ViewData["RoomId"] = new SelectList(_context.Rooms, "RoomId", "RoomId", student.RoomId);
+            ViewData["DepartmentNames"] = new SelectList(_context.Departments, "DepartmentId", "DepartmentName", student.DepartmentId);
+            ViewData["BedNumbers"] = new SelectList(_context.BedOfRooms, "BedId", "BedNumber", student.BedId);
+            ViewData["DhCodes"] = new SelectList(_context.Dhs, "Dhid", "Dhcode", student.Dhid);
+            ViewData["RoomNumbers"] = new SelectList(_context.Rooms, "RoomId", "NumberRoom", student.RoomId);
             return View(student);
         }
 
@@ -311,10 +311,10 @@ namespace QLKTXWEBSITE.Areas.AdminQL.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["BedId"] = new SelectList(_context.BedOfRooms, "BedId", "BedId", student.BedId);
-            ViewData["DepartmentId"] = new SelectList(_context.Departments, "DepartmentId", "DepartmentId", student.DepartmentId);
-            ViewData["Dhid"] = new SelectList(_context.Dhs, "Dhid", "Dhid", student.Dhid);
-            ViewData["RoomId"] = new SelectList(_context.Rooms, "RoomId", "RoomId", student.RoomId);
+            ViewData["BedNumbers"] = new SelectList(_context.BedOfRooms, "BedId", "BedNumber", student.BedId);
+            ViewData["DepartmentNames"] = new SelectList(_context.Departments, "DepartmentId", "DepartmentName", student.DepartmentId);
+            ViewData["DhCodes"] = new SelectList(_context.Dhs, "Dhid", "Dhcode", student.Dhid);
+            ViewData["RoomNumbers"] = new SelectList(_context.Rooms, "RoomId", "NumberRoom", student.RoomId);
             return View(student);
         }
 

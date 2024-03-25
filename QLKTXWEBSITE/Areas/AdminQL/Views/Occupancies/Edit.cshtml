@@ -7,7 +7,7 @@
 
 <h1>Chỉnh sửa</h1>
 
-<h4>Besetzung</h4>
+<h4>Thông tin gia hạn</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -15,32 +15,32 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="OccupancyId" />
             <div class="form-group">
-                <label asp-for="StudentId" class="control-label"></label>
+                <label asp-for="StudentId" class="control-label">Họ và tên</label>
                 <select asp-for="StudentId" class="form-control" asp-items="ViewBag.StudentId"></select>
                 <span asp-validation-for="StudentId" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="RoomId" class="control-label"></label>
+                <label asp-for="RoomId" class="control-label">Phòng số</label>
                 <select asp-for="RoomId" class="form-control" asp-items="ViewBag.RoomId"></select>
                 <span asp-validation-for="RoomId" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="RenewalDate" class="control-label"></label>
+                <label asp-for="RenewalDate" class="control-label">Ngày ra hạn</label>
                 <input asp-for="RenewalDate" class="form-control" />
                 <span asp-validation-for="RenewalDate" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="ExpirationDate" class="control-label"></label>
+                <label asp-for="ExpirationDate" class="control-label">Ngày kết thúc</label>
                 <input asp-for="ExpirationDate" class="form-control" />
                 <span asp-validation-for="ExpirationDate" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="CycleMonths" class="control-label"></label>
+                <label asp-for="CycleMonths" class="control-label">Số tháng</label>
                 <input asp-for="CycleMonths" class="form-control" />
                 <span asp-validation-for="CycleMonths" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Status" class="control-label"></label>
+                <label asp-for="Status" class="control-label">Trạng thái</label>
                 <input asp-for="Status" class="form-control" />
                 <span asp-validation-for="Status" class="text-danger"></span>
             </div>
@@ -52,7 +52,7 @@
 </div>
 
 <div>
-    <a asp-action="Index">Quay lại danh sách</a>
+    <a asp-action="Index" class="btn btn-secondary mb-5">Quay lại danh sách</a>
 </div>
 
 @section Scripts {

@@ -5,47 +5,47 @@
     Layout = "~/Areas/AdminQL/Views/Shared/Admin.cshtml";
 }
 
-<h1>Create</h1>
+<h1>Tạo mới giao dịch</h1>
 
-<h4>Transaction</h4>
+<h4>Giao dịch</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="StudentId" class="control-label"></label>
+                <label asp-for="StudentId" class="control-label">Họ và tên</label>
                 <select asp-for="StudentId" class ="form-control" asp-items="ViewBag.StudentId"></select>
             </div>
             <div class="form-group">
-                <label asp-for="Amount" class="control-label"></label>
+                <label asp-for="Amount" class="control-label">Số tiền</label>
                 <input asp-for="Amount" class="form-control" />
                 <span asp-validation-for="Amount" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Description" class="control-label"></label>
+                <label asp-for="Description" class="control-label">Mô tả</label>
                 <input asp-for="Description" class="form-control" />
                 <span asp-validation-for="Description" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="TransactionCode" class="control-label"></label>
+                <label asp-for="TransactionCode" class="control-label">Mã giao dịch</label>
                 <input asp-for="TransactionCode" class="form-control" />
                 <span asp-validation-for="TransactionCode" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="TransactionDate" class="control-label"></label>
+                <label asp-for="TransactionDate" class="control-label">Ngày giao dịch</label>
                 <input asp-for="TransactionDate" class="form-control" />
                 <span asp-validation-for="TransactionDate" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+                <input type="submit" value="Tạo" class="btn btn-primary" />
             </div>
         </form>
     </div>
 </div>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Index" class="btn btn-secondary mb-5">Quay lại danh sách</a>
 </div>
 
 @section Scripts {
