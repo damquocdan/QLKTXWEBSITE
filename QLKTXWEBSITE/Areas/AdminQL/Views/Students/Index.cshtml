@@ -22,7 +22,7 @@
         </form>
     </div>
     <div class="col-md-6 text-right">
-        <a asp-action="Create" class="btn btn-success"><i class="fas fa-plus"></i>Tạo sinh viên mới</a>
+        <a asp-action="Create" class="btn btn-success"><i class="fas fa-plus me-2"></i>Tạo sinh viên mới</a>
     </div>
 </div>
 
@@ -35,8 +35,12 @@
             <th>Khoa</th>
             <th>Khoá</th>
             <th>Phòng số</th>
-            <th>Giuờng số</th>
-            <th>Chức năng</th>
+            <th>Giường số</th>
+            <th>
+                <div class="text-center">
+                    Chức năng
+                </div>
+            </th>
         </tr>
     </thead>
     <tbody>
@@ -51,9 +55,12 @@
                 <td>@Html.DisplayFor(modelItem => item.Room.NumberRoom)</td>
                 <td>@Html.DisplayFor(modelItem => item.Bed.NumberBed)</td>
                 <td>
-                    <a asp-action="Edit" asp-route-id="@item.StudentId" class="btn btn-primary btn-sm">Sửa</a>
-                    <a asp-action="Details" asp-route-id="@item.StudentId" class="btn btn-info btn-sm">Chi tiết</a>
-                    <a asp-action="Delete" asp-route-id="@item.StudentId" class="btn btn-danger btn-sm">Xoá</a>
+                    <div class="d-flex justify-content-center">
+                        <a asp-action="Edit" asp-route-id="@item.StudentId" class="btn btn-primary btn-sm">Sửa</a>
+                        <a asp-action="Details" asp-route-id="@item.StudentId" class="btn btn-success mx-3 btn-sm">Chi tiết</a>
+                        <a asp-action="Delete" asp-route-id="@item.StudentId" class="btn btn-danger btn-sm">Xoá</a>
+                    </div>
+                    
                 </td>
             </tr>
         }
