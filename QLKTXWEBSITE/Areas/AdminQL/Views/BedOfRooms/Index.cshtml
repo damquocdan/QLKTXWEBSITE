@@ -10,6 +10,62 @@
 <p>
     <a asp-action="Create" class="btn btn-primary">Tạo giường mới</a>
 </p>
+
+<!-- Modal cho popup -->
+<div id="studentDetailsModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Thông tin sinh viên</h4>
+            </div>
+            <div class="modal-body" id="studentDetails">
+                <div class="row">
+                    <div class="col-sm-4"><strong>Họ và tên:</strong></div>
+                    <div class="col-sm-8" id="studentFullName"></div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-4"><strong>Ngày sinh:</strong></div>
+                    <div class="col-sm-8" id="studentDateOfBirth"></div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-4"><strong>Giới tính:</strong></div>
+                    <div class="col-sm-8" id="studentGender"></div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-4"><strong>Số điện thoại:</strong></div>
+                    <div class="col-sm-8" id="studentPhoneNumber"></div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-4"><strong>Số điện thoại phụ huynh:</strong></div>
+                    <div class="col-sm-8" id="studentParentPhoneNumber"></div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-4"><strong>Email:</strong></div>
+                    <div class="col-sm-8" id="studentEmail"></div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-4"><strong>Mã sinh viên:</strong></div>
+                    <div class="col-sm-8" id="studentStudentCode"></div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-4"><strong>Khoa:</strong></div>
+                    <div class="col-sm-8" id="studentDepartment"></div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-4"><strong>Lớp:</strong></div>
+                    <div class="col-sm-8" id="studentClass"></div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-4"><strong>Xác nhận nhập học:</strong></div>
+                    <div class="col-sm-8" id="studentAdmissionConfirmation"></div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
 <div class="row mb-5">
     @foreach (var item in Model)
     {
@@ -28,10 +84,33 @@
                     }
                     else
                     {
-                        <a asp-controller="Students" asp-action="Details" asp-route-id="@item.BedId" class="btn btn-primary btn-block">Thông tin sinh viên</a>
+                        <!-- Thêm data-bed-id để chứa BedId -->
+                        <a href="#" class="btn btn-primary btn-block btn-details" data-bed-id="@item.BedId">Thông tin sinh viên</a>
                     }
                 </div>
             </div>
         </div>
     }
 </div>
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            $('.btn-details').click(function (e) {
+                e.preventDefault(); // Ngăn chặn hành động mặc định của thẻ a
+                var bedId = $(this).data('bed-id');
+
+                // Sử dụng AJAX để tải dữ liệu chi tiết của sinh viên
+                $.get('/Students/DetailsPop', { id: bedId })
+                    .done(function (data) {
+                        // Hiển thị dữ liệu chi tiết trong modal
+                        $('#studentDetails').html(data);
+                        $('#studentDetailsModal').modal('show');
+                    })
+                    .fail(function () {
+                        alert('Không thể tải chi tiết sinh viên.');
+                    });
+            });
+        });
+    </script>
+}

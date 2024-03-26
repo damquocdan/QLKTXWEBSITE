@@ -45,6 +45,7 @@ namespace QLKTXWEBSITE.Areas.AdminQL.Controllers
 
             return View(studentsWithoutBed);
         }
+
         [HttpPost]
         public IActionResult ChooseBed(int studentId, int bedId)
         {
@@ -69,7 +70,6 @@ namespace QLKTXWEBSITE.Areas.AdminQL.Controllers
                 return RedirectToAction("Error", "Home");
             }
         }
-
 
         public async Task<IActionResult> Index(string name)
         {

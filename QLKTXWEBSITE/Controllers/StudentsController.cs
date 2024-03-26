@@ -69,6 +69,24 @@ namespace QLKTXWEBSITE.Controllers
 
             return View(student);
         }
+        public async Task<IActionResult> DetailsPop(int? id)
+        {
+            if (id == null || _context.Students == null)
+            {
+                return NotFound();
+            }
+
+            var student = await _context.Students
+                .Include(s => s.Bed)
+                .Include(s => s.Room)
+                .FirstOrDefaultAsync(m => m.StudentId == id);
+            if (student == null)
+            {
+                return NotFound();
+            }
+
+            return View(student);
+        }
 
         // GET: Students/Create
         public IActionResult Create()
