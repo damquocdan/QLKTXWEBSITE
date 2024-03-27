@@ -85,9 +85,12 @@
                     <label asp-for="Dhid" class="control-label">Khoá</label>
                     <select asp-for="Dhid" class="form-control">
                         <option value="">-- Chọn khoá --</option>
-                        @foreach (var dh in ViewData["DhCodes"] as IEnumerable<Dh>)
+                        @if (ViewData["DhCodes"] != null)
                         {
-                            <option value="@dh.Dhid">@dh.Dhcode</option>
+                            foreach (var dh in ViewData["DhCodes"] as IEnumerable<Dh>)
+                            {
+                                <option value="@dh.Dhid">@dh.Dhcode</option>
+                            }
                         }
                     </select>
                     <span asp-validation-for="Dhid" class="text-danger"></span>
