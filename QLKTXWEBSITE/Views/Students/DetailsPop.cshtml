@@ -3,8 +3,8 @@
 @{
     ViewData["Title"] = "DetailsPop";
 }
-<div style="background-color:aliceblue;margin-top:-200px;position:absolute;">
-    <div >
+<div style="background-color:aliceblue; top:-70px; right: 0; position:absolute; width: 600px">
+   @*  <div >
         <dl class="row">
             <dt class="col-sm-2">
                 @Html.DisplayNameFor(model => model.FullName)
@@ -91,6 +91,86 @@
                 @Html.DisplayFor(model => model.Room.RoomId)
             </dd>
         </dl>
+    </div> *@
+    <div class="card w-100" >
+        <img style="width:50px" src="~/dist/img/logo.png" class="card-img-top ms-3" alt="...">
+        <div class="card-body">
+            <h4 class="card-title">Thông tin sinh viên</h4>
+        </div>
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item d-flex">
+                <div class="col-md-4">
+                    <p class="mb-0">Họ và tên</p>
+                </div>
+                <div class="col-md-8">
+                    <p class="mb-0">@Html.DisplayFor(model => model.FullName)</p>
+                </div>
+            </li>
+            <li class="list-group-item d-flex">
+                <div class="col-md-4">
+                    <p class="mb-0">Giới tính</p>
+                </div>
+                <div class="col-md-8">
+                    <p class="mb-0">@Html.DisplayFor(model => model.Gender)</p>
+                </div>
+            </li>
+            <li class="list-group-item d-flex">
+                <div class="col-md-4">
+                    <p class="mb-0">Số điện thoại</p>
+                </div>
+                <div class="col-md-8">
+                    <p class="mb-0">@Html.DisplayFor(model => model.PhoneNumber)</p>
+                </div>
+            </li>
+            <li class="list-group-item d-flex">
+                <div class="col-md-4">
+                    <p class="mb-0">Email</p>
+                </div>
+                <div class="col-md-8">
+                    <p class="mb-0">@Html.DisplayFor(model => model.Email)</p>
+                </div>
+            </li>
+            <li class="list-group-item d-flex">
+                <div class="col-md-4">
+                    <p class="mb-0">Mã sinh viên</p>
+                </div>
+                <div class="col-md-8">
+                    <p class="mb-0">@Html.DisplayFor(model => model.StudentCode)</p>
+                </div>
+            </li>
+            <li class="list-group-item d-flex">
+                <div class="col-md-4">
+                    <p class="mb-0">Lớp</p>
+                </div>
+                <div class="col-md-8">
+                    <p class="mb-0">@Html.DisplayFor(model => model.Class)</p>
+                </div>
+            </li>
+            <li class="list-group-item d-flex">
+                <div class="col-md-4">
+                    <p class="mb-0">Số điện thoại</p>
+                </div>
+                <div class="col-md-8">
+                    <p class="mb-0">@Html.DisplayFor(model => model.PhoneNumber)</p>
+                </div>
+            </li>
+            <li class="list-group-item d-flex">
+                <div class="col-md-4">
+                    <p class="mb-0">Ngành</p>
+                </div>
+                <div class="col-md-8">
+                    <p class="mb-0">@Html.DisplayFor(model => model.DepartmentId)</p>
+                </div>
+            </li>
+            <li class="list-group-item d-flex">
+                <div class="col-md-4">
+                    <p class="mb-0">Khóa</p>
+                </div>
+                <div class="col-md-8">
+                    <p class="mb-0">@Html.DisplayFor(model => model.Dhid)</p>
+                </div>
+            </li>       
+        </ul>
     </div>
 </div>
 
