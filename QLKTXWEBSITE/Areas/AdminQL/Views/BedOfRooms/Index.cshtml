@@ -80,7 +80,8 @@
                     <h5 class="card-title">Giường số: @Html.DisplayFor(modelItem => item.NumberBed)</h5>
                     @if (item.Status == false)
                     {
-                        <a asp-controller="Students" asp-action="ListStudentBed" asp-route-bedId="@item.BedId" class="btn btn-warning btn-block">Chọn sinh viên</a>
+                        <input type="hidden" name="bedId" value="@item.BedId" />
+                        <a asp-action="ListStudentBed" asp-route-bedId="@item.BedId" class="btn btn-warning btn-block">Chọn sinh viên</a>
                     }
                     else
                     {

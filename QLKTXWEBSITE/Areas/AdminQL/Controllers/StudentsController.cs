@@ -27,50 +27,6 @@ namespace QLKTXWEBSITE.Areas.AdminQL.Controllers
         }
 
         // GET: AdminQL/Students
-        public async Task<IActionResult> ListStudentBed(string gender)
-        {
-            IQueryable<Student> studentsWithoutBedQuery = _context.Students
-                .Where(s => s.BedId == null)
-                .Include(s => s.Bed)
-                .Include(s => s.Department)
-                .Include(s => s.Dh)
-                .Include(s => s.Room);
-
-            if (!string.IsNullOrEmpty(gender))
-            {
-                studentsWithoutBedQuery = studentsWithoutBedQuery.Where(r => r.Gender == gender);
-            }
-
-            var studentsWithoutBed = await studentsWithoutBedQuery.ToListAsync();
-
-            return View(studentsWithoutBed);
-        }
-
-        [HttpPost]
-        public IActionResult ChooseBed(int studentId, int bedId)
-        {
-            try
-            {
-                var student = _context.Students.Find(studentId);
-
-                if (student == null)
-                {
-                    return NotFound();
-                }
-
-                student.BedId = bedId;
-
-                _context.SaveChanges();
-
-                return RedirectToAction("Index", "BedOfRoom");
-            }
-            catch (DbUpdateException ex)
-            {
-                Console.WriteLine(ex.InnerException);
-                return RedirectToAction("Error", "Home");
-            }
-        }
-
         public async Task<IActionResult> Index(string name)
         {
             IQueryable<Student> students = _context.Students.Include(s => s.Bed).Include(s => s.Department).Include(s => s.Dh).Include(s => s.Room);

@@ -4,28 +4,20 @@
     ViewData["Title"] = "ListStudentBed";
     Layout = "~/Areas/AdminQL/Views/Shared/Admin.cshtml";
 }
-@{
-    ViewData["Title"] = "ListStudentBed";
-    Layout = "~/Areas/AdminQL/Views/Shared/Admin.cshtml";
-
-    // Retrieve the selected gender from TempData, if available
-    string selectedGender = TempData["SelectedGender"] as string;
-}
 
 <h1 class="my-4">Danh sách các sinh viên chưa có giường</h1>
-
-@using (Html.BeginForm("ListStudentBed", "Students", FormMethod.Get, new { @class = "form-inline mb-4" }))
-{
-    <div class="form-group mr-2">
-        <label for="gender">Giới tính:</label>
-        <select id="gender" name="gender" class="form-control">
-            <option value="">Tất cả</option>
+<form asp-action="ListStudentBed" method="get">
+    <div class="form-group">
+        <label asp-for="Gender" class="control-label">Gender:</label>
+        <select asp-for="Gender" class="form-control">
+            <option value="">-- Select Gender --</option>
             <option value="Nam">Nam</option>
             <option value="Nữ">Nữ</option>
         </select>
     </div>
-    <button type="submit" class="btn btn-primary">Tìm kiếm</button>
-}
+    <button type="submit" class="btn btn-primary">Search</button>
+</form>
+
 <table class="table table-striped">
     <thead class="thead-dark">
         <tr>
@@ -43,10 +35,9 @@
                 <td>@Html.DisplayFor(modelItem => item.Gender)</td>
                 <td>@Html.DisplayFor(modelItem => item.StudentCode)</td>
                 <td>
-                    <form asp-action="ChooseBed" asp-controller="Students" method="post">
+                    <form asp-action="ChooseBed" method="post">
                         <input type="hidden" name="studentId" value="@item.StudentId" />
-                        <!-- Include the selected gender as a hidden field -->
-                        <input type="hidden" name="gender" value="@selectedGender" />
+                        <input type="hidden" name="bedId" value="@ViewBag.BedId" />
                         <button type="submit" class="btn btn-primary btn-sm">Chọn</button>
                     </form>
                 </td>

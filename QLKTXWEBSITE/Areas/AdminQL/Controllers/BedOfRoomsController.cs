@@ -29,7 +29,49 @@ namespace QLKTXWEBSITE.Areas.AdminQL.Controllers
 
             return View(bedsInRoom);
         }
+        public async Task<IActionResult> ListStudentBed(string gender,int bedId)
+        {
+            IQueryable<Student> studentsWithoutBedQuery = _context.Students
+                .Where(s => s.BedId == null)
+                .Include(s => s.Bed)
+                .Include(s => s.Department)
+                .Include(s => s.Dh)
+                .Include(s => s.Room);
 
+            if (!string.IsNullOrEmpty(gender))
+            {
+                studentsWithoutBedQuery = studentsWithoutBedQuery.Where(r => r.Gender == gender);
+            }
+
+            var studentsWithoutBed = await studentsWithoutBedQuery.ToListAsync();
+            ViewBag.BedId = bedId;
+            return View(studentsWithoutBed);
+        }
+        [HttpPost]
+        public IActionResult ChooseBed(int studentId, int bedId)
+        {
+            var student = _context.Students.Find(studentId);
+
+            if (student == null)
+            {
+                return NotFound();
+            }
+
+            // Tìm giường cụ thể dựa trên bedId
+            var bed = _context.BedOfRooms.Find(bedId);
+
+            if (bed == null)
+            {
+                return NotFound("Bed not found");
+            }
+
+            // Gán giường cho sinh viên
+            student.Bed = bed;
+
+            _context.SaveChanges();
+
+            return RedirectToAction("Index", "BedOfRoom");
+        }
         // GET: AdminQL/BedOfRooms/Details/5
         public async Task<IActionResult> Details(int? id)
         {
