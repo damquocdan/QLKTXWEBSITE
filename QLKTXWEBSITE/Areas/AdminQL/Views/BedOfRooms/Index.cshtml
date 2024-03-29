@@ -81,7 +81,7 @@
                     @if (item.Status == false)
                     {
                         <input type="hidden" name="bedId" value="@item.BedId" />
-                        <a asp-action="ListStudentBed" asp-route-bedId="@item.BedId" class="btn btn-warning btn-block">Chọn sinh viên</a>
+                        <a asp-action="ListStudentBed" asp-route-bedId="@ViewBag.BedId" class="btn btn-warning btn-block">Chọn sinh viên</a>
                     }
                     else
                     {
