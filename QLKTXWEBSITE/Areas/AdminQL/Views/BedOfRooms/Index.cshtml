@@ -78,6 +78,7 @@
                 <img src="~/img/logogiuong.jpg" class="card-img-top" alt="Bed Image" style="width: 100%;">
                 <div class="card-body">
                     <h5 class="card-title">Giường số: @Html.DisplayFor(modelItem => item.NumberBed)</h5>
+                    <br/>
                     @if (item.Status == false)
                     {
                         <input type="hidden" name="bedId" value="@item.BedId" />

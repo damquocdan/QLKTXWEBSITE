@@ -19,21 +19,21 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse " id="navbarSupportedContent">
-                    <ul class="navbar-nav me-auto mb- mb-lg-0 d-flex align-items-center">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Trang chủ</a>
+                    <ul class="navbar-nav me-auto mt-0 ms-3 d-flex align-items-center">
+                        <li class="nav-item ">
+                            <a class="nav-link a-title position-relative" style="font-size:1.3rem; font-weight:500; color:green" asp-area="" asp-controller="Home" asp-action="Index">Trang chủ</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Về kí túc xá</a>
+                            <a class="nav-link a-title position-relative" style="font-size:1.3rem; font-weight:500; color:green" asp-area="" asp-controller="Home" asp-action="Index">Về kí túc xá</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="New">Tin tức</a>
+                            <a class="nav-link a-title position-relative" style="font-size:1.3rem; font-weight:500; color:green" asp-area="" asp-controller="Home" asp-action="New">Tin tức</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Dịch vụ</a>
+                            <a class="nav-link a-title position-relative" style="font-size:1.3rem; font-weight:500; color:green" asp-area="" asp-controller="Home" asp-action="Index">Dịch vụ</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Liên hệ</a>
+                            <a class="nav-link a-title position-relative" style="font-size:1.3rem; font-weight:500; color:green" asp-area="" asp-controller="Home" asp-action="Index">Liên hệ</a>
                         </li>
                     </ul>
                     <div class="dk-dn d-flex position-absolute end-0">
@@ -106,13 +106,13 @@
             </div>
         </nav>
     </header>
-    <div class="container">
+    <div class="container" style="z-index:inherit">
         <main role="main">
             @RenderBody()
         </main>
     </div>
 
-    <footer class="w-100" style="background-color:aquamarine;">
+    @* <footer class="w-100" style="background-color:aquamarine;">
         <div class="container">
             <div class="row">
                 <div class="col--12 col__md--7 medium gutter t--r footer__right right">
@@ -128,6 +128,75 @@
                     Điện thoại: 0902.130.130 <span class="clr--silver">|</span>
                     Email: <a href="mailto:DHTNMT@hunre.edu.vn">DHTNMT@hunre.edu.vn</a>
                     <br>© 2024, Trường Đại học Tài nguyên và Môi trường Hà Nội . All rights reversed.
+                </div>
+            </div>
+        </div>
+    </footer> *@
+    <footer class="w-100">
+        <div class="container-fluid mt-5">
+            <div class="card bg-white pb-0">
+                <div class="row mb-4">
+                    <div class="col-md-4 col-sm-4 col-xs-4">
+                        <div class="footer-text pull-left">
+                            <div class="d-flex">
+                                <img src="~/img/logofooter.png" alt="Hunre" style="width:500px;background-color:#ccc" />
+                            </div>
+                            <p class="text-uppercase fw-bold mb-0 pt-2" style="font-size:18px">Trường Đại học Tài nguyên và Môi trường Hà Nội</p>
+                            <p class="mb-0">Địa chỉ: 
+                                <a href="https://maps.app.goo.gl/Cn3Rk12pYxJJ8ucf8" target="_blank">
+                                    41A Đ. Phú Diễn, Phú Diễn, Bắc Từ Liêm, Hà Nội, Việt Nam
+                                </a>
+                             </p>
+                            <p class="mb-0">Điện thoại: 0999.999.999</p>
+                            <p class="mb-0">Email: <a href="mailto:DHTNMT@hunre.edu.vn">DHTNMT@hunre.edu.vn</a></p>
+                            <div class="social mt-2 mb-3"> <i class="fa-brands fa-facebook fa-xl"></i> <i class="fa-brands fa-youtube fa-xl"></i> <i class="fa-brands fa-tiktok fa-xl"></i></div>
+                        </div>
+                    </div>
+                    <div class="col-md-2 col-sm-2 col-xs-2">
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d930.9141425359347!2d105.7619989!3d21.0464232!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x313454c3ce577141%3A0xb1a1ac92701777bc!2zVHLGsOG7nW5nIMSQ4bqhaSBo4buNYyBUw6BpIG5ndXnDqm4gdsOgIE3DtGkgdHLGsOG7nW5nIEjDoCBO4buZaQ!5e0!3m2!1svi!2s!4v1711714428427!5m2!1svi!2s" width="400" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    </div>
+                    <div class="col-md-2 col-sm-2 col-xs-2">
+                        <h5 class="heading">Dịch vụ</h5>
+                        <ul class="ps-0">
+                            <li>IT Consulting</li>
+                            <li>Development</li>
+                            <li>Cloud</li>
+                            <li>Support</li>
+                        </ul>
+                    </div>
+                    <div class="col-md-2 col-sm-2 col-xs-2">
+                        <h5 class="heading">Tin tức</h5>
+                        <ul class="card-text ps-0">
+                            <li>Finance</li>
+                            <li>Public Sector</li>
+                            <li>Smart Office</li>
+                            <li>Retail</li>
+                        </ul>
+                    </div>
+                    <div class="col-md-2 col-sm-2 col-xs-2">
+                        <h5 class="heading">Thông tin khác</h5>
+                        <ul class="card-text ps-0">
+                            <li>About Us</li>
+                            <li>Blog</li>
+                            <li>Contact</li>
+                            <li>Join Us</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="divider mb-4"> </div>
+                <div class="row" style="font-size:10px;">
+                    <div class="col-md-6 col-sm-6 col-xs-6">
+                        <div class="pull-left">
+                            <p><i class="fa fa-copyright"></i> 2024 copyright</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-sm-6 col-xs-6 ">
+                        <div class="pull-right mr-4 d-flex policy">
+                            <div>Terms of Use</div>
+                            <div>Privacy Policy</div>
+                            <div>Cookie Policy</div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
