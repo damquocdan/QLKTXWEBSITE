@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.CodeAnalysis.Differencing;
 using Microsoft.EntityFrameworkCore;
 using QLKTXWEBSITE.Models;
 
@@ -26,7 +27,14 @@ namespace QLKTXWEBSITE.Areas.AdminQL.Controllers
                                 .Include(b => b.Room)
                                 .Where(b => b.RoomId == roomId)
                                 .ToListAsync();
-
+            if (bedsInRoom.Any())
+            {
+                ViewBag.BedId = bedsInRoom.First().BedId; // Lấy bedId của giường đầu tiên trong phòng
+            }
+            else
+            {
+                ViewBag.BedId = null; // Không có giường nào trong phòng
+            }
             return View(bedsInRoom);
         }
         public async Task<IActionResult> ListStudentBed(string gender,int bedId)

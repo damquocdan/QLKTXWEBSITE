@@ -5,12 +5,12 @@
     Layout = "~/Areas/AdminQL/Views/Shared/Admin.cshtml";
 }
 
-<h1 class="my-4">Danh sách các sinh viên chưa có giường</h1>
-<form asp-action="ListStudentBed" method="get">
+<h1 class="my-4">Danh sách các sinh viên chưa có giường.</h1>
+<form asp-action="ListStudentBed">
     <div class="form-group">
-        <label asp-for="Gender" class="control-label">Gender:</label>
-        <select asp-for="Gender" class="form-control">
-            <option value="">-- Select Gender --</option>
+        <label class="control-label">Giới tính:</label>
+        <select name="gender" class="form-control">
+            <option value="">-- Chọn giới tính --</option>
             <option value="Nam">Nam</option>
             <option value="Nữ">Nữ</option>
         </select>
