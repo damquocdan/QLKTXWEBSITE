@@ -13,7 +13,6 @@
     <div class="col-md-4">
         <form asp-action="Edit">
             <div class="row">
-                <div class="col-md-6">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="RoomId" />
             <div class="form-group">
@@ -25,14 +24,6 @@
                 <span asp-validation-for="Mowroom" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Building" class="control-label">Toà</label>
-                <select asp-for="Building" class="form-control">
-                    <option value="A">A</option>
-                    <option value="B">B</option>
-                </select>
-                <span asp-validation-for="Building" class="text-danger"></span>
-            </div>
-            <div class="form-group">
                 <label asp-for="Floor" class="control-label">Tầng</label>
                 <input asp-for="Floor" class="form-control" />
                 <span asp-validation-for="Floor" class="text-danger"></span>
@@ -42,28 +33,13 @@
                 <input asp-for="NumberRoom" class="form-control" />
                 <span asp-validation-for="NumberRoom" class="text-danger"></span>
             </div>
-            </div>
-                <div class="col-md-6">
             <div class="form-group">
                 <label asp-for="BedNumber" class="control-label">Số giường</label>
                 <input asp-for="BedNumber" class="form-control" />
                 <span asp-validation-for="BedNumber" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="NumberOfStudents" class="control-label">Số sinh viên</label>
-                        <input asp-for="@ViewData["NumberOfStudents"]" class="form-control" />
-                        <span asp-validation-for="NumberOfStudents" class="text-danger"></span>
             </div>
-                    <div class="form-group">
-                        <label asp-for="Status" class="control-label">Trạng thái</label>
-                        <select asp-for="Status" class="form-control">
-                            <option value="True">Đầy</option>
-                            <option value="False">Trống</option>
-                        </select>
-                        <span asp-validation-for="Status" class="text-danger"></span>
-                    </div>
-                </div>
-                <div class="form-group m-auto">
+             <div class="form-group m-auto">
                 <button type="submit" class="btn btn-primary">Lưu</button>
             </div>
         </form>

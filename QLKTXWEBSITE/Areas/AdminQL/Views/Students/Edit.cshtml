@@ -82,61 +82,19 @@
                     <span asp-validation-for="AdmissionConfirmation" class="text-danger"></span>
                 </div>
                 <div class="form-group">
-                    <label asp-for="Dhid" class="control-label">Khoá</label>
-                    <select asp-for="Dhid" class="form-control">
-                        <option value="">-- Chọn khoá --</option>
-                        @if (ViewData["DhCodes"] != null)
-                        {
-                            foreach (var dh in ViewData["DhCodes"] as IEnumerable<Dh>)
-                            {
-                                <option value="@dh.Dhid">@dh.Dhcode</option>
-                            }
-                        }
-                    </select>
+                    <label asp-for="Dhid" class="control-label"></label>
+                    <select asp-for="Dhid" class="form-control" asp-items="ViewBag.Dhid"></select>
                     <span asp-validation-for="Dhid" class="text-danger"></span>
                 </div>
 
                 <div class="form-group">
                     <label asp-for="DepartmentId" class="control-label">Khoa</label>
-                    <select asp-for="DepartmentId" class="form-control">
-                        <option value="">-- Chọn khoa --</option>
-                        @foreach (var d in ViewData["DepartmentNames"] as IEnumerable<Department>)
-                        {
-                            <option value="@d.DepartmentId">@d.DepartmentName</option>
-                        }
-                    </select>
+                    <select asp-for="DepartmentId" class="form-control" asp-items="ViewBag.DepartmentId"></select>
                     <span asp-validation-for="DepartmentId" class="text-danger"></span>
                 </div>
 
             </div>
         </div>
-
-        <div class="row justify-content-center">
-            <div class="form-group">
-                <label asp-for="RoomId" class="control-label">Phòng</label>
-                <select asp-for="RoomId" class="form-control">
-                    <option value="">-- Chọn phòng --</option>
-                    @foreach (var room in ViewData["RoomNumbers"] as IEnumerable<Room>)
-                    {
-                        <option value="@room.RoomId">@room.NumberRoom</option>
-                    }
-                </select>
-                <span asp-validation-for="RoomId" class="text-danger"></span>
-            </div>
-
-            <div class="form-group">
-                <label asp-for="BedId" class="control-label">Giường</label>
-                <select asp-for="BedId" class="form-control">
-                    <option value="">-- Chọn giường --</option>
-                    @foreach (var bed in ViewData["BedNumbers"] as IEnumerable<BedOfRoom>)
-                    {
-                        <option value="@bed.BedId">@bed.NumberBed</option>
-                    }
-                </select>
-                <span asp-validation-for="BedId" class="text-danger"></span>
-            </div>
-        </div>
-
         <div class="row justify-content-center">
             <div class="col-md-2">
                 <input type="submit" value="Lưu" class="btn btn-primary btn-block" />
@@ -150,6 +108,7 @@
         </div>
     </div>
 </div>
+
 
 @section Scripts {
     @{

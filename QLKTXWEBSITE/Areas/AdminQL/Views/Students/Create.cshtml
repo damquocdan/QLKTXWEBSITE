@@ -56,7 +56,7 @@
                 <span asp-validation-for="StudentCode" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Dhid" class="control-label">Khoá</label>
+                <label asp-for="Dhid" class="control-label"></label>
                 <select asp-for="Dhid" class="form-control" asp-items="ViewBag.Dhid"></select>
             </div>
             <div class="form-group">
@@ -75,11 +75,11 @@
             </div>
             <div class="form-group">
                 <label asp-for="RoomId" class="control-label">Phòng số</label>
-                <select asp-for="RoomId" class="form-control" asp-items="ViewBag.RoomId"></select>
+                <select id="RoomId" asp-for="RoomId" class="form-control" asp-items="ViewBag.RoomId"></select>
             </div>
             <div class="form-group">
-                <label asp-for="BedId" class="control-label">Giường số</label>
-                <select asp-for="BedId" class="form-control" asp-items="ViewBag.BedId"></select>
+                <label asp-for="BedId" class="control-label">Giường</label>
+                <select id="BedId" asp-for="BedId" class="form-control"></select>
             </div>
             <div class="form-group">
                 <input type="submit" value="Tạo" class="btn btn-primary" />
@@ -96,4 +96,23 @@
     @{
         await Html.RenderPartialAsync("_ValidationScriptsPartial");
     }
+    <script>
+        $('#RoomId').change(function () {
+            var roomId = $(this).val(); // Lấy giá trị của "Số phòng" đã chọn
+            // Gửi yêu cầu Ajax để lấy danh sách giường thuộc "Số phòng" đó
+            $.ajax({
+                url: '/AdminQL/Students/GetBedsByRoomId', // Đường dẫn tới action để lấy danh sách giường
+                type: 'GET',
+                data: { roomId: roomId }, // Truyền tham số "Số phòng"
+                success: function (data) {
+                    // Xóa tất cả các option trong dropdown "Giường"
+                    $('#BedId').empty();
+                    // Thêm các option mới vào dropdown "Giường" dựa trên dữ liệu lấy được
+                    $.each(data, function (key, value) {
+                        $('#BedId').append('<option value="' + value.value + '">' + value.text + '</option>');
+                    });
+                }
+            });
+        });
+    </script>
 }

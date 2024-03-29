@@ -137,6 +137,16 @@ namespace QLKTXWEBSITE.Areas.AdminQL.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("RoomId,Mowroom,Building,Floor,NumberRoom,BedNumber,NumberOfStudents,Status")] Room room)
         {
+            // Kiểm tra xem phòng đã tồn tại hay không
+            var existingRoom = await _context.Rooms.FirstOrDefaultAsync(r => r.Building == room.Building && r.NumberRoom == room.NumberRoom);
+            if (existingRoom != null)
+            {
+                // Nếu phòng đã tồn tại, thì hiển thị thông báo lỗi
+                ModelState.AddModelError(string.Empty, "Phòng đã tồn tại.");
+                return View(room);
+            }
+
+            // Tiếp tục quá trình tạo phòng mới
             if (ModelState.IsValid)
             {
                 _context.Add(room);

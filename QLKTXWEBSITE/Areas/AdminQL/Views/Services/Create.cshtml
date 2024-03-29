@@ -15,31 +15,40 @@
             <form asp-action="Create">
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                 <div class="form-group">
-                    <label asp-for="ServiceName" class="control-label"></label>
+                    <label asp-for="ServiceName" class="control-label">Tên dịch vụ</label>
                     <input asp-for="ServiceName" class="form-control" />
                     <span asp-validation-for="ServiceName" class="text-danger"></span>
                 </div>
                 <div class="form-group">
-                    <label asp-for="Month" class="control-label"></label>
+                    <label asp-for="Month" class="control-label">Dịch vụ tháng</label>
                     <input asp-for="Month" class="form-control" />
                     <span asp-validation-for="Month" class="text-danger"></span>
                 </div>
                 <div class="form-group">
-                    <label asp-for="Price" class="control-label"></label>
+                    <label asp-for="Price" class="control-label">Giá</label>
                     <input asp-for="Price" class="form-control" />
                     <span asp-validation-for="Price" class="text-danger"></span>
                 </div>
                 <div class="form-group">
-                    <label asp-for="RoomId" class="control-label"></label>
-                    <select asp-for="RoomId" class="form-control" asp-items="ViewBag.RoomId"></select>
+                    <label asp-for="Room.Building" class="control-label">Toà</label>
+                    <select id="Building" asp-for="Room.Building" class="form-control">
+                        <option value="A">A</option>
+                        <option value="B">B</option>
+                    </select>
+                    <span asp-validation-for="Room.Building" class="text-danger"></span>
                 </div>
                 <div class="form-group">
-                    <label asp-for="StudentId" class="control-label"></label>
-                    <select asp-for="StudentId" class="form-control" asp-items="ViewBag.StudentId"></select>
+                    <label asp-for="RoomId" class="control-label">Số phòng</label>
+                    <select id="RoomId" asp-for="RoomId" class="form-control"></select>
+                    <span asp-validation-for="RoomId" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="StudentId" class="control-label">Sinh viên</label>
+                    <select id="StudentId" asp-for="StudentId" class="form-control"></select>
                 </div>
                 <div class="form-group">
                     <label asp-for="Status" class="control-label"></label>
-                    <input asp-for="Status" class="form-control" />
+                    <input asp-for="Status" value="false" class="form-control" />
                     <span asp-validation-for="Status" class="text-danger"></span>
                 </div>
                 <div class="form-group">
@@ -58,4 +67,42 @@
     @{
         await Html.RenderPartialAsync("_ValidationScriptsPartial");
     }
+    <script>
+        $(document).ready(function () {
+            $('#Building').change(function () {
+                var building = $(this).val(); // Lấy giá trị của "Toà" đã chọn
+                // Gửi yêu cầu Ajax để lấy danh sách các "Số phòng" thuộc "Toà" đó
+                $.ajax({
+                    url: '/AdminQL/Services/GetRoomsByBuilding', // Đường dẫn tới action để lấy danh sách "Số phòng"
+                    type: 'GET',
+                    data: { building: building }, // Truyền tham số "Toà"
+                    success: function (data) {
+                        // Xóa tất cả các option trong dropdown list "Số phòng"
+                        $('#RoomId').empty();
+                        // Thêm các option mới vào dropdown list "Số phòng" dựa trên dữ liệu lấy được
+                        $.each(data, function (key, value) {
+                            $('#RoomId').append('<option value="' + value.value + '">' + value.text + '</option>');
+                        });
+                    }
+                });
+            });
+        });
+        $('#RoomId').change(function () {
+            var roomId = $(this).val(); // Lấy giá trị của "Số phòng" đã chọn
+            // Gửi yêu cầu Ajax để lấy danh sách sinh viên thuộc "Số phòng" đó
+            $.ajax({
+                url: '/AdminQL/Services/GetStudentsByRoom', // Đường dẫn tới action để lấy danh sách sinh viên
+                type: 'GET',
+                data: { roomId: roomId }, // Truyền tham số "Số phòng"
+                success: function (data) {
+                    // Xóa tất cả các option trong dropdown "Sinh viên"
+                    $('#StudentId').empty();
+                    // Thêm các option mới vào dropdown "Sinh viên" dựa trên dữ liệu lấy được
+                    $.each(data, function (key, value) {
+                        $('#StudentId').append('<option value="' + value.value + '">' + value.text + '</option>');
+                    });
+                }
+            });
+        });
+    </script>
 }
