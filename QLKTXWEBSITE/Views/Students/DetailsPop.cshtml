@@ -4,96 +4,8 @@
     ViewData["Title"] = "DetailsPop";
 }
 <div style="background-color:aliceblue; top:-70px; right: 0; position:absolute; width: 600px">
-   @*  <div >
-        <dl class="row">
-            <dt class="col-sm-2">
-                @Html.DisplayNameFor(model => model.FullName)
-            </dt>
-            <dd class="col-sm-10">
-                @Html.DisplayFor(model => model.FullName)
-            </dd>
-            <dt class="col-sm-2">
-                @Html.DisplayNameFor(model => model.DateOfBirth)
-            </dt>
-            <dd class="col-sm-10">
-                @Html.DisplayFor(model => model.DateOfBirth)
-            </dd>
-            <dt class="col-sm-2">
-                @Html.DisplayNameFor(model => model.Gender)
-            </dt>
-            <dd class="col-sm-10">
-                @Html.DisplayFor(model => model.Gender)
-            </dd>
-            <dt class="col-sm-2">
-                @Html.DisplayNameFor(model => model.PhoneNumber)
-            </dt>
-            <dd class="col-sm-10">
-                @Html.DisplayFor(model => model.PhoneNumber)
-            </dd>
-            <dt class="col-sm-2">
-                @Html.DisplayNameFor(model => model.ParentPhoneNumber)
-            </dt>
-            <dd class="col-sm-10">
-                @Html.DisplayFor(model => model.ParentPhoneNumber)
-            </dd>
-            <dt class="col-sm-2">
-                @Html.DisplayNameFor(model => model.Email)
-            </dt>
-            <dd class="col-sm-10">
-                @Html.DisplayFor(model => model.Email)
-            </dd>
-            <dt class="col-sm-2">
-                @Html.DisplayNameFor(model => model.Password)
-            </dt>
-            <dd class="col-sm-10">
-                @Html.DisplayFor(model => model.Password)
-            </dd>
-            <dt class="col-sm-2">
-                @Html.DisplayNameFor(model => model.StudentCode)
-            </dt>
-            <dd class="col-sm-10">
-                @Html.DisplayFor(model => model.StudentCode)
-            </dd>
-            <dt class="col-sm-2">
-                @Html.DisplayNameFor(model => model.Class)
-            </dt>
-            <dd class="col-sm-10">
-                @Html.DisplayFor(model => model.Class)
-            </dd>
-            <dt class="col-sm-2">
-                @Html.DisplayNameFor(model => model.AdmissionConfirmation)
-            </dt>
-            <dd class="col-sm-10">
-                @Html.DisplayFor(model => model.AdmissionConfirmation)
-            </dd>
-            <dt class="col-sm-2">
-                @Html.DisplayNameFor(model => model.Bed)
-            </dt>
-            <dd class="col-sm-10">
-                @Html.DisplayFor(model => model.Bed.BedId)
-            </dd>
-            <dt class="col-sm-2">
-                @Html.DisplayNameFor(model => model.Department)
-            </dt>
-            <dd class="col-sm-10">
-                @Html.DisplayFor(model => model.Department.DepartmentId)
-            </dd>
-            <dt class="col-sm-2">
-                @Html.DisplayNameFor(model => model.Dh)
-            </dt>
-            <dd class="col-sm-10">
-                @Html.DisplayFor(model => model.Dh.Dhid)
-            </dd>
-            <dt class="col-sm-2">
-                @Html.DisplayNameFor(model => model.Room)
-            </dt>
-            <dd class="col-sm-10">
-                @Html.DisplayFor(model => model.Room.RoomId)
-            </dd>
-        </dl>
-    </div> *@
     <div class="card w-100" >
-        <img style="width:50px" src="~/dist/img/logo.png" class="card-img-top ms-3" alt="...">
+        <img style="width:50px" src="~/dist/img/logo.png" class="card-img-top ms-3 mt-3" alt="...">
         <div class="card-body">
             <h4 class="card-title">Thông tin sinh viên</h4>
         </div>
@@ -159,7 +71,7 @@
                     <p class="mb-0">Ngành</p>
                 </div>
                 <div class="col-md-8">
-                    <p class="mb-0">@Html.DisplayFor(model => model.DepartmentId)</p>
+                    <p class="mb-0">@Html.DisplayFor(model => model.Department.DepartmentName)</p>
                 </div>
             </li>
             <li class="list-group-item d-flex">
@@ -167,7 +79,7 @@
                     <p class="mb-0">Khóa</p>
                 </div>
                 <div class="col-md-8">
-                    <p class="mb-0">@Html.DisplayFor(model => model.Dhid)</p>
+                    <p class="mb-0">@Html.DisplayFor(model => model.Dh.Dhcode)</p>
                 </div>
             </li>       
         </ul>
