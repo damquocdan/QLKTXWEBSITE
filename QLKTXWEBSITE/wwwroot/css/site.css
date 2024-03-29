@@ -1,4 +1,4 @@
-* {
+﻿* {
     margin: 0 0 0 0;
     padding: 0 0 0 0;
     text-decoration: none;
@@ -38,6 +38,23 @@ header {
     display: flex;
     padding-left: 40px;
     font-size: 16px;
+}
+
+.a-title::before {
+    content: "";
+    position: absolute;
+    bottom: 5px;
+    width: 0%;
+    right: 0; 
+    height: 5px; 
+    background: green; 
+    transition: 0.3s linear; 
+    z-index: 1; 
+}
+
+.a-title:hover::before {
+    width: 100%;
+    left: 0%;
 }
 
 .dk-dn .registry:hover,
@@ -126,6 +143,7 @@ header {
         border: solid 2px #63E6BE;
         border-radius: 10px;
         display: none;
+        z-index:1;
     }
 
 .user {
@@ -164,4 +182,63 @@ header {
 .menu_user li:hover div {
     background-color: #fff;
     border-radius: 10px;
+}
+
+
+/*footer*/
+@import url('https://fonts.googleapis.com/css2?family=Titillium+Web:wght@700&display=swap');
+
+body {
+    background-color: #f3f6fd;
+    font-size: 13px;
+    font-weight: bold;
+    color: rgb(189, 196, 203)
+}
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0
+}
+
+    ul > li {
+        padding: 4px;
+        color: #C5CAE9;
+    }
+
+        ul > li:hover {
+            color: green;
+            cursor: pointer
+        }
+
+hr {
+    border-width: 3px
+}
+
+.card {
+    padding: 2% 7%;
+
+}
+
+.social > i {
+    padding: 1%;
+    font-size: 15px
+}
+
+    .social > i:hover {
+        color: green;
+        cursor: pointer
+    }
+
+.policy > div {
+    padding: 4px
+}
+
+.heading {
+    font-family: 'Titillium Web', sans-serif;
+    color: black
+}
+
+.divider {
+    border-top: 2px solid green;
 }
