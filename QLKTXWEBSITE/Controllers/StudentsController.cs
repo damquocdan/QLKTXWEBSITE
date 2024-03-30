@@ -22,30 +22,15 @@ namespace QLKTXWEBSITE.Controllers
         // GET: Students
         public IActionResult Index(Student model)
         {
-            if (!ModelState.IsValid)
-            {
-                return View(model);
-            }
-            var user = model.StudentCode;
-            var pass = model.Password;
-            var dataLogin = _context.Students.FirstOrDefault(x => x.StudentCode == model.StudentCode && x.Password == model.Password);
-
-            if (dataLogin != null)
-            {
-
-                return RedirectToAction("Details", "Students", new { id = dataLogin.StudentId });
-            }
-            return View(model);
-
-            // Nếu thông tin không hợp lệ, hiển thị thông báo lỗi
-            ModelState.AddModelError("", "Invalid username or password.");
-            return View(model);
+            return View();
         }
 
 
         [HttpGet]// thoát đăng nhập, huỷ session
         public IActionResult Logout()
         {
+
+           /* HttpContext.Session.Remove("AdminLogin");*/ // huỷ session với key AdminLogin đã lưu trước đó
 
             return RedirectToAction("Index");
         }

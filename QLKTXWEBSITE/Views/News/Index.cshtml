@@ -11,10 +11,10 @@
         <div class="row">
         @foreach (var item in Model)
         {
-            <div class="col-md-3">
+            <div class="col-md-4" style="height:400px">
                 <div class="card" style="width=100%">
                     <img src="@item.Author" alt="@item.Title" class="mb-0 w-100 text-center" width="100%" height="150px" />
-                    <div class="card-body" style="width:240px">
+                    <div class="card-body">
                         <h5 class="card-title">@Html.DisplayFor(modelItem => item.Title)</h5>
                         <p class="card-text">@Html.DisplayFor(modelItem => item.PublishedDate)</p>
                         <a asp-action="Details" asp-route-id="@item.NewsId" class="btn btn-primary">Xem thêm</a>
@@ -25,6 +25,6 @@
         </div>
     </div>
     <div class="col-md-3">
-        ...
+        cài ở đây những hình ảnh cứng rồi gắn url nhwu trang "https://hunre.edu.vn/tin-tuc"
     </div>
 </div>

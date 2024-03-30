@@ -1,0 +1,93 @@
+﻿@model QLKTXWEBSITE.Models.LoginUser
+@{
+    ViewData["Title"] = "Index";
+}
+@if (!ViewData.ModelState.IsValid)
+{
+    <div class="alert alert-danger">
+        <ul>
+            @foreach (var modelState in ViewData.ModelState.Values)
+            {
+                foreach (var error in modelState.Errors)
+                {
+                    <li>@error.ErrorMessage</li>
+                }
+            }
+        </ul>
+    </div>
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>AdminLTE 3 | Log in</title>
+
+    <!-- Google Font: Source Sans Pro -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="../../plugins/fontawesome-free/css/all.min.css">
+    <!-- icheck bootstrap -->
+    <link rel="stylesheet" href="../../plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="../../dist/css/adminlte.min.css">
+</head>
+<body>
+    <div class="d-flex justify-content-center align-items-center" style="height:659px">
+        <section>
+            <h2 class="text-center mb-5">Đăng nhập</h2>
+            <div class="container-fluid">
+                <div class="row d-flex justify-content-center align-items-center">
+                    <div class="col-md-9 col-lg-6 col-xl-5">
+                        <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.webp"
+                             class="img-fluid" alt="Sample image">
+                    </div>
+                    <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
+                        <form asp-action="Index" method="post">
+                            <!-- Email input -->
+                            <div class="form-outline mb-4">
+                                <input asp-for="StudentCode" type="studentcode" id="form3Example3" class="custom-input form-control form-control-lg "
+                                       placeholder="Mã sinh viên" required />
+
+                            </div>
+
+                            <!-- Password input -->
+                            <div class="form-outline mb-3">
+                                <input asp-for="Password" type="password" id="form3Example4" class="custom-input form-control form-control-lg"
+                                       placeholder="Mật khẩu" required />
+
+                            </div>
+
+                            <div class="d-flex justify-content-between align-items-center">
+                                <!-- Checkbox -->
+                                <div class="form-check mb-0">
+                                    <input class="form-check-input me-2" type="checkbox" value="" id="form2Example3" />
+                                    <label class="form-check-label" for="form2Example3">
+                                        Remember me
+                                    </label>
+                                </div>
+                                <a href="#!" class="text-body">Forgot password?</a>
+                            </div>
+
+                            <div class="text-center text-lg-start mt-4 pt-2">
+                                <button type="submit" class="btn btn-primary btn-lg"
+                                        style="padding-left: 2.5rem; padding-right: 2.5rem;">
+                                    Đăng nhập
+                                </button>
+                                <p class="small fw-bold mt-2 pt-1 mb-0">
+                                    Bạn chưa có tài khoản? <a asp-controller="Students" asp-action="Create" class="link-danger">Đăng ký</a>
+                                </p>
+                            </div>
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script src="../../plugins/jquery/jquery.min.js"></script>
+    <script src="../../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="../../dist/js/adminlte.min.js"></script>
+</body>
+</html>

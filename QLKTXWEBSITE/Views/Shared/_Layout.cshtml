@@ -1,4 +1,4 @@
-﻿﻿
+﻿
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -77,27 +77,32 @@
                                 <i class="fa-regular fa-user fa-2xl" style="color: #63E6BE;"></i>
                                 <div class="menu_user" id="menu_user">
                                     <ul>
-                                        <li>
-                                            <div class="py-2 text-start d-flex align-items-center">
-                                                <p class="ms-2">Thông tin</p>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="py-2 text-start">
-                                                <a asp-action="Index" class="text-decoration-none"><p class="ms-2">Đăng xuất</p></a>
-                                            </div>
-                                        </li>
-
-                                        <li>
-                                            <div class="py-2 text-start">
-                                                <a asp-controller="Students" asp-action="Index" class="text-decoration-none"><p class="ms-2">Đăng nhập</p></a>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="py-2 text-start">
-                                                <a asp-controller="Students" asp-action="Create" class="text-decoration-none"><p class="ms-2">Đăng ký</p></a>
-                                            </div>
-                                        </li>
+                                       @*  @if (ViewBag.IsLoggedIn == true) // hoặc (bool)ViewData["IsLoggedIn"] ?? false
+                                        { *@
+                                            <li>
+                                                <div class="py-2 text-start d-flex align-items-center">
+                                                    <a asp-controller="Students" asp-action="Details" class="text-decoration-none"><p class="ms-2">Thông tin</p></a>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div class="py-2 text-start">
+                                                    <a asp-controller="Login" asp-action="Logout" class="text-decoration-none"><p class="ms-2">Đăng xuất</p></a>
+                                                </div>
+                                            </li>
+                                        @* }
+                                        else
+                                        { *@
+                                            <li>
+                                                <div class="py-2 text-start">
+                                                    <a asp-controller="Login" asp-action="Index" class="text-decoration-none"><p class="ms-2">Đăng nhập</p></a>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div class="py-2 text-start">
+                                                    <a asp-controller="Students" asp-action="Create" class="text-decoration-none"><p class="ms-2">Đăng ký</p></a>
+                                                </div>
+                                            </li>
+                                        @* } *@
                                     </ul>
                                 </div>
                             </button>

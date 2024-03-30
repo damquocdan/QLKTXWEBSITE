@@ -1,17 +1,19 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Filters;
 
 namespace QLKTXWEBSITE.Controllers
 {
-	public class BaseController : Controller
-	{
-		protected bool IsLoggedIn
-		{
-			get
-			{
-				// Thực hiện logic kiểm tra xem người dùng đã đăng nhập hay chưa
-				// Ví dụ: 
-				return User.Identity.IsAuthenticated;
-			}
-		}
-	}
+    public class BaseController : Controller, IActionFilter
+    {
+        public override void OnActionExecuted(ActionExecutedContext context)
+        {
+            if (context.HttpContext.Session.GetString("StudentLogin") == null)
+            {
+                context.Result = new RedirectToRouteResult(
+                    new RouteValueDictionary(new { Controller = "Login", Action = "Index" }));
+            }
+            base.OnActionExecuted(context);
+
+        }
+    }
 }

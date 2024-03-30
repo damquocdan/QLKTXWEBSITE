@@ -1,5 +1,10 @@
-﻿﻿@{
+﻿@model List<QLKTXWEBSITE.Models.News>
+﻿@{
     ViewData["Title"] = "Trang Chủ";
+    // Tính số lượng phần tử trong danh sách tin tức
+    var totalNewsCount = Model.Count();
+    // Lấy 8 phần tử cuối cùng của danh sách tin tức
+    var lastEightNews = Model.Skip(totalNewsCount - 8).Take(8);
 }
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 <div id="carouselExampleControls" class="carousel slide position-relative" data-bs-ride="carousel">
@@ -46,182 +51,28 @@
 </div>
 <div class="section">
     <div class="proprietary container-box">
-        <h1 class="my-5 text-center fw-bold">PROPRIETARY PROJECTS</h1>
+        <h1 class="my-5 text-center fw-bold">Tin Tức</h1>
         <div class="row list-projects">
-            <div class="col-md-3">
-                <div class="card mb-5">
-                    <div class="position-relative">
-                        <img src="../img/work/Layer 10.png" class="card-img-top" alt="...">
-                        <div class="align-items-end position-absolute w-100 h-100 top-0 start-0 d-none overlay">
-                            <div class="ms-3">
-                                <p class="text-white mb-0">For more information</p>
-                                <h3 class="text-white">
-                                    Contasct Us<i class="fa-solid fa-arrow-right fa-xs text-white ps-2"></i>
-                                </h3>
-                            </div>
+            @foreach (var item in lastEightNews)
+            {
+                <div class="col-md-3" style="height:400px">
+                    <div class="card" style="width=100%">
+                        <img src="@item.Author" alt="@item.Title" class="mb-0 w-100 text-center" width="100%" height="150px" />
+                        <div class="card-body">
+                            <h5 class="card-title">@Html.DisplayFor(modelItem => item.Title)</h5>
+                            <p class="card-text">@Html.DisplayFor(modelItem => item.PublishedDate)</p>
+                            <a asp-action="Details" asp-route-id="@item.NewsId" class="btn btn-primary">Xem thêm</a>
                         </div>
                     </div>
-                    <div class="card-body">
-                        <p class="card-text text-center">
-                            Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-                            Modi fugit consectetur esse quaerat temporibus voluptates.
-                        </p>
-                    </div>
                 </div>
-            </div>
-            <div class="col-md-3">
-                <div class="card mb-5">
-                    <div class="position-relative">
-                        <img src="../img/work/Layer 17.png" class="card-img-top" alt="...">
-                        <div class="align-items-end position-absolute w-100 h-100 top-0 start-0 d-none overlay">
-                            <div class="ms-3">
-                                <p class="text-white mb-0">For more information</p>
-                                <h3 class="text-white">
-                                    Contasct Us<i class="fa-solid fa-arrow-right fa-xs text-white ps-2"></i>
-                                </h3>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card-body">
-                        <p class="card-text text-center">
-                            Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-                            Modi fugit consectetur esse quaerat temporibus voluptates.
-                        </p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="card mb-5">
-                    <div class="position-relative">
-                        <img src="../img/work/Layer 11.png" class="card-img-top" alt="...">
-                        <div class="align-items-end position-absolute w-100 h-100 top-0 start-0 d-none overlay">
-                            <div class="ms-3">
-                                <p class="text-white mb-0">For more information</p>
-                                <h3 class="text-white">
-                                    Contasct Us<i class="fa-solid fa-arrow-right fa-xs text-white ps-2"></i>
-                                </h3>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card-body">
-                        <p class="card-text text-center">
-                            Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-                            Modi fugit consectetur esse quaerat temporibus voluptates.
-                        </p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="card mb-5">
-                    <div class="position-relative">
-                        <img src="../img/work/Layer 12.png" class="card-img-top" alt="...">
-                        <div class="align-items-end position-absolute w-100 h-100 top-0 start-0 d-none overlay">
-                            <div class="ms-3">
-                                <p class="text-white mb-0">For more information</p>
-                                <h3 class="text-white">
-                                    Contasct Us<i class="fa-solid fa-arrow-right fa-xs text-white ps-2"></i>
-                                </h3>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card-body">
-                        <p class="card-text text-center">
-                            Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-                            Modi fugit consectetur esse quaerat temporibus voluptates.
-                        </p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="card mb-5">
-                    <div class="position-relative">
-                        <img src="../img/work/Layer 13.png" class="card-img-top" alt="...">
-                        <div class="align-items-end position-absolute w-100 h-100 top-0 start-0 d-none overlay">
-                            <div class="ms-3">
-                                <p class="text-white mb-0">For more information</p>
-                                <h3 class="text-white">
-                                    Contasct Us<i class="fa-solid fa-arrow-right fa-xs text-white ps-2"></i>
-                                </h3>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card-body">
-                        <p class="card-text text-center">
-                            Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-                            Modi fugit consectetur esse quaerat temporibus voluptates.
-                        </p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="card mb-5">
-                    <div class="position-relative">
-                        <img src="../img/work/Layer 14.png" class="card-img-top" alt="...">
-                        <div class="align-items-end position-absolute w-100 h-100 top-0 start-0 d-none overlay">
-                            <div class="ms-3">
-                                <p class="text-white mb-0">For more information</p>
-                                <h3 class="text-white">
-                                    Contasct Us<i class="fa-solid fa-arrow-right fa-xs text-white ps-2"></i>
-                                </h3>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card-body">
-                        <p class="card-text text-center">
-                            Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-                            Modi fugit consectetur esse quaerat temporibus voluptates.
-                        </p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="card mb-5">
-                    <div class="position-relative">
-                        <img src="../img/work/Layer 15.png" class="card-img-top" alt="...">
-                        <div class="align-items-end position-absolute w-100 h-100 top-0 start-0 d-none overlay">
-                            <div class="ms-3">
-                                <p class="text-white mb-0">For more information</p>
-                                <h3 class="text-white">
-                                    Contasct Us<i class="fa-solid fa-arrow-right fa-xs text-white ps-2"></i>
-                                </h3>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card-body">
-                        <p class="card-text text-center">
-                            Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-                            Modi fugit consectetur esse quaerat temporibus voluptates.
-                        </p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="card mb-5">
-                    <div class="position-relative">
-                        <img src="../img/work/Layer 16.png" class="card-img-top" alt="...">
-                        <div class="align-items-end position-absolute w-100 h-100 top-0 start-0 d-none overlay">
-                            <div class="ms-3">
-                                <p class="text-white mb-0">For more information</p>
-                                <h3 class="text-white">
-                                    Contasct Us<i class="fa-solid fa-arrow-right fa-xs text-white ps-2"></i>
-                                </h3>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card-body">
-                        <p class="card-text text-center">
-                            Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-                            Modi fugit consectetur esse quaerat temporibus voluptates.
-                        </p>
-                    </div>
-                </div>
-            </div>
+            }
         </div>
         <div class="d-flex justify-content-center">
-            <button type="button" class="btn btn-primary btn-lg rounded-0 my-5"
-                    onclick="showProjects()">
-                MORE
-            </button>
+            <a asp-controller="news">
+                <button type="button" class="btn btn-primary btn-lg rounded-0 my-5">
+                    Xem tất cả
+                </button>
+            </a>
         </div>
     </div>
 </div>

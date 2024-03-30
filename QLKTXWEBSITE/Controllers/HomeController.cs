@@ -1,21 +1,24 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using QLKTXWEBSITE.Models;
 using System.Diagnostics;
 
 namespace QLKTXWEBSITE.Controllers
 {
-    public class HomeController : BaseController
+    public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
+        private readonly QlktxContext _context;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(QlktxContext context)
         {
-            _logger = logger;
+            _context = context;
         }
 
         public IActionResult Index()
+            
         {
-            return View();
+            var news = _context.News.ToList();
+            return View(news);
         }
 
         public IActionResult Aboutus()
