@@ -60,6 +60,19 @@ namespace QLKTXWEBSITE.Areas.AdminQL.Controllers
         {
             if (ModelState.IsValid)
             {
+                var files = HttpContext.Request.Form.Files;
+                if(files.Count() > 0 && files[0].Length >0)
+                {
+                    var file = files[0];
+                    var FileName = file.FileName;
+                    var path = Path.Combine(Directory.GetCurrentDirectory(),"wwwroot\\images\\news", FileName);
+                    using (var stream = new FileStream(path, FileMode.Create))
+                    {
+                        file.CopyTo(stream);
+                        news.Author = "/images/news/" + FileName;
+                    }
+                    news.PublishedDate= DateTime.Now;
+                }
                 _context.Add(news);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -99,6 +112,18 @@ namespace QLKTXWEBSITE.Areas.AdminQL.Controllers
             {
                 try
                 {
+                    var files = HttpContext.Request.Form.Files;
+                    if (files.Count() > 0 && files[0].Length > 0)
+                    {
+                        var file = files[0];
+                        var FileName = file.FileName;
+                        var path = Path.Combine(Directory.GetCurrentDirectory(),"wwwroot\\images\\news", FileName);
+                        using (var stream = new FileStream(path, FileMode.Create))
+                        {
+                            file.CopyTo(stream);
+                            news.Author = "/images/news/" + FileName;
+                        }
+                    }
                     _context.Update(news);
                     await _context.SaveChangesAsync();
                 }

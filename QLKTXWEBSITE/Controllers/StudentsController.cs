@@ -95,7 +95,27 @@ namespace QLKTXWEBSITE.Controllers
             ViewData["RoomId"] = new SelectList(_context.Rooms, "RoomId", "RoomId");
             return View();
         }
+        public IActionResult Contact()
+        {
+            return View();
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Contact(Student student)
+        {
+            if (ModelState.IsValid)
+            {
+                // Lưu dữ liệu vào cơ sở dữ liệu
+                _context.Add(student);
+                await _context.SaveChangesAsync();
 
+                // Hiển thị thông báo thành công
+                TempData["SuccessMessage"] = "Thông tin đã được gửi thành công! Vui lòng đợi để được liên hệ";
+
+                return RedirectToAction(nameof(Contact));
+            }
+            return View(student);
+        }
         // POST: Students/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.

@@ -24,6 +24,7 @@
 
   <ItemGroup>
     <Folder Include="Areas\AdminQL\Data\" />
+    <Folder Include="wwwroot\images\news\" />
     <Folder Include="wwwroot\plugins\ckfinder\App_Data\" />
     <Folder Include="wwwroot\plugins\ckfinder\src\CKFinder.Connector.Plugin.DiskQuota\bin\Debug\" />
     <Folder Include="wwwroot\plugins\ckfinder\src\CKFinder.Connector.Plugin.DiskQuota\bin\Release\" />

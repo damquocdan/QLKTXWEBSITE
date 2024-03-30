@@ -18,11 +18,14 @@ namespace QLKTXWEBSITE.Controllers
             return View();
         }
 
-        public IActionResult Privacy()
+        public IActionResult Aboutus()
         {
             return View();
         }
-
+        public IActionResult Service()
+        {
+            return View();
+        }
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {

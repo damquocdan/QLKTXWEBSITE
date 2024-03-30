@@ -31,7 +31,7 @@
             <th>
                 <div class="text-center">
                     <p class="mb-0">
-                        Tác giả
+                        Ảnh
                     </p>
                 </div>
 
@@ -50,18 +50,18 @@
         {
             <tr> 
                 <td>
-                    <div class="d-flex align-items-center ms-3" style="height:38px">
+                    <div class="d-flex align-items-center ms-3" style="height:74px">
                         <p class="mb-0">@Html.DisplayFor(modelItem => item.Title)</p>
                     </div>
                 </td>
                 <td>
-                    <div class="d-flex align-items-center" style="height:38px">
+                    <div class="d-flex align-items-center" style="height:74px">
                         <p class="mb-0 w-100 text-center">@Html.DisplayFor(modelItem => item.PublishedDate)</p>
                     </div>
                 </td>
                 <td>
-                    <div class="d-flex align-items-center" style="height:38px">
-                        <p class="mb-0 w-100 text-center">@Html.DisplayFor(modelItem => item.Author)</p>
+                    <div class="d-flex align-items-center" style="height:74px">
+                        <img src="@item.Author" alt="@item.Title" class="mb-0 w-100 text-center" width="100px" height="100px"/>
                     </div>
                 </td>
                 <td>

@@ -20,6 +20,12 @@
                     @Html.DisplayFor(model => model.Title)
                 </dd>
                 <dt class="col-sm-2">
+                    Ảnh
+                </dt>
+                <dd class="col-sm-10">
+                    <img src="@Model.Author" alt="@Model.Title" width="400px" height="100%" />
+                </dd>
+                <dt class="col-sm-2">
                     Nội dung
                 </dt>
                 <dd class="col-sm-10">
@@ -31,12 +37,7 @@
                 <dd class="col-sm-10">
                     @Html.DisplayFor(model => model.PublishedDate)
                 </dd>
-                <dt class="col-sm-2">
-                    Ảnh
-                </dt>
-                <dd class="col-sm-10">
-                    @Html.DisplayFor(model => model.Author)
-                </dd>
+                
             </dl>
         </div>
     </div>
