@@ -13,93 +13,59 @@
         </div>
         <hr />
         <dl class="row">
-            <dt class="col-sm-2">
-                <h5>Họ và tên</h5>
-            </dt>
-            <dd class="col-sm-10">
-                @Html.DisplayFor(model => model.FullName)
-            </dd>
-            <dt class="col-sm-2">
-                <h5>Ngày sinh</h5>
-            </dt>
-            <dd class="col-sm-10">
-                @Html.DisplayFor(model => model.DateOfBirth)
-            </dd>
-            <dt class="col-sm-2">
-                <h5>Giới tính</h5>
-            </dt>
-            <dd class="col-sm-10">
-                @Html.DisplayFor(model => model.Gender)
-            </dd>
-            <dt class="col-sm-2">
-                <h5>Số điện thoại</h5>
-            </dt>
-            <dd class="col-sm-10">
-                @Html.DisplayFor(model => model.PhoneNumber)
-            </dd>
-            <dt class="col-sm-2">
-                @Html.DisplayNameFor(model => model.ParentPhoneNumber)
-            </dt>
-            <dd class="col-sm-10">
-                @Html.DisplayFor(model => model.ParentPhoneNumber)
-            </dd>
-            <dt class="col-sm-2">
-                <h5>Email</h5>
-            </dt>
-            <dd class="col-sm-10">
-                @Html.DisplayFor(model => model.Email)
-            </dd>
-            <dt class="col-sm-2">
-                <h5>Mật khẩu</h5>
-            </dt>
-            <dd class="col-sm-10">
-                @Html.DisplayFor(model => model.Password)
-            </dd>
-            <dt class="col-sm-2">
-                <h5>Mã sinh viên</h5>
-            </dt>
-            <dd class="col-sm-10">
-                @Html.DisplayFor(model => model.StudentCode)
-            </dd>
-            <dt class="col-sm-2">
-                <h5>Khóa</h5>
-            </dt>
-            <dd class="col-sm-10">
-                @Html.DisplayFor(model => model.Dh)
-            </dd>
-            <dt class="col-sm-2">
-                @Html.DisplayNameFor(model => model.Department)
-            </dt>
-            <dd class="col-sm-10">
-                @Html.DisplayFor(model => model.Department)
-            </dd>
-            <dt class="col-sm-2">
-                @Html.DisplayNameFor(model => model.AdmissionConfirmation)
-            </dt>
-            <dd class="col-sm-10">
-                @Html.DisplayFor(model => model.AdmissionConfirmation)
-            </dd>
-            <dt class="col-sm-2">
-                @Html.DisplayNameFor(model => model.Bed)
-            </dt>
-            <dd class="col-sm-10">
-                @Html.DisplayFor(model => model.Bed.BedId)
-            </dd>
-            <dt class="col-sm-2">
-                @Html.DisplayNameFor(model => model.Room)
-            </dt>
-            <dd class="col-sm-10">
-                @Html.DisplayFor(model => model.Room.RoomId)
-            </dd>
+            <dt class="col-sm-4">Họ và tên:</dt>
+            <dd class="col-sm-8">@Html.DisplayFor(model => model.FullName)</dd>
+
+            <dt class="col-sm-4">Ngày sinh:</dt>
+            <dd class="col-sm-8">@Html.DisplayFor(model => model.DateOfBirth)</dd>
+
+            <dt class="col-sm-4">Giới tính:</dt>
+            <dd class="col-sm-8">@Html.DisplayFor(model => model.Gender)</dd>
+
+            <dt class="col-sm-4">Số điện thoại:</dt>
+            <dd class="col-sm-8">@Html.DisplayFor(model => model.PhoneNumber)</dd>
+
+            <dt class="col-sm-4">Số điện thoại phụ huynh:</dt>
+            <dd class="col-sm-8">@Html.DisplayFor(model => model.ParentPhoneNumber)</dd>
+
+            <dt class="col-sm-4">Email:</dt>
+            <dd class="col-sm-8">@Html.DisplayFor(model => model.Email)</dd>
+
+            <dt class="col-sm-4">Mã sinh viên:</dt>
+            <dd class="col-sm-8">@Html.DisplayFor(model => model.StudentCode)</dd>
+
+            <dt class="col-sm-4">Lớp:</dt>
+            <dd class="col-sm-8">@Html.DisplayFor(model => model.Class)</dd>
+
+            <dt class="col-sm-4">Giấy xác nhận nhập học:</dt>
+            <dd class="col-sm-8">@Html.DisplayFor(model => model.AdmissionConfirmation)</dd>
+
+            <dt class="col-sm-4">Ngành:</dt>
+            <dd class="col-sm-8">@Html.DisplayFor(model => model.Department.DepartmentName)</dd>
+
+            <dt class="col-sm-4">Khoá:</dt>
+            <dd class="col-sm-8">@Html.DisplayFor(model => model.Dh.Dhcode)</dd>
+
+            <dt class="col-sm-4">Phòng Số:</dt>
+            <dd class="col-sm-8">@Html.DisplayFor(model => model.Room.NumberRoom)</dd>
+
+            <dt class="col-sm-4">Giường Số:</dt>
+            <dd class="col-sm-8">@Html.DisplayFor(model => model.Bed.NumberBed)</dd>
         </dl>
     </div>
 </div>
 
 <div>
+    <a asp-controller="Occupancies" asp-action="Index" asp-route-studentId="@Model?.StudentId">
+        <button type="button" class="btn btn-primary btn-sm"
+                style="padding-left: 2.5rem; padding-right: 2.5rem;">
+            Gia hạn phòng
+        </button>
+    </a>
     <a asp-action="Edit" asp-route-id="@Model?.StudentId">
         <button type="button" class="btn btn-primary btn-sm"
                 style="padding-left: 2.5rem; padding-right: 2.5rem;">
-            Sửa
+            Sửa thông tin
         </button>
     </a>
     <a asp-controller="Login" asp-action="Logout">

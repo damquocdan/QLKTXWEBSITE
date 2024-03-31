@@ -9,7 +9,7 @@ using QLKTXWEBSITE.Models;
 
 namespace QLKTXWEBSITE.Areas.StudentUser.Controllers
 {
-    [Area("StudentUser")]
+    //[Area("StudentUser")]
     public class StudentsController : BaseController
     {
         private readonly QlktxContext _context;

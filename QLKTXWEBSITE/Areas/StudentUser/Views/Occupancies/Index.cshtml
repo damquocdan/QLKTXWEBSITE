@@ -1,0 +1,62 @@
+﻿@model IEnumerable<QLKTXWEBSITE.Models.Occupancy>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Danh sách các hợp đồng gia hạn</h1>
+
+<p>
+    <a asp-action="Create" asp-route-studentId="@Model?.FirstOrDefault()?.StudentId">Tạo hợp đồng mới</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Ngày bắt đầu
+            </th>
+            <th>
+                Ngày kết thúc
+            </th>
+            <th>
+                Số Tháng
+            </th>
+            <th class="text-center">
+                Trạng thái
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.RenewalDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ExpirationDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CycleMonths)
+            </td>
+            <td>
+                    @if (item.Status == true)
+                    {
+                        <div class="d-flex align-items-center" style="height:38px">
+                            <p class="mb-0 w-100 text-center text-success">Đã thanh toán</p>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="d-flex align-items-center" style="height:38px">
+                            <p class="mb-0 w-100 text-center text-danger">Chưa thanh toán</p>
+                        </div>
+                    }
+            </td>
+            <td>
+                <a asp-action="Details" asp-route-id="@item.OccupancyId">Xem chi tiết</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
