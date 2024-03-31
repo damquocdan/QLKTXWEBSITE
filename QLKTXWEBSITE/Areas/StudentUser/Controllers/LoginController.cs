@@ -1,8 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using QLKTXWEBSITE.Models;
 
-namespace QLKTXWEBSITE.Controllers
+namespace QLKTXWEBSITE.Areas.StudentUser.Controllers
 {
+    [Area("StudentUser")]
     public class LoginController : Controller
     {
         public QlktxContext _context;
@@ -29,7 +30,7 @@ namespace QLKTXWEBSITE.Controllers
             {
                 ViewBag.IsLoggedIn = true;
                 HttpContext.Session.SetString("StudentLogin", model.StudentCode);
-                return RedirectToAction("Details", "Students",new {id = dataLogin.StudentId});
+                return RedirectToAction("Details", "Students", new { id = dataLogin.StudentId });
             }
             else
             {
@@ -43,7 +44,7 @@ namespace QLKTXWEBSITE.Controllers
         {
             HttpContext.Session.Remove("StudentLogin"); // huỷ session với key AdminLogin đã lưu trước đó
 
-            return RedirectToAction("Create","Students");
+            return RedirectToAction("Create", "Students");
         }
     }
 }
