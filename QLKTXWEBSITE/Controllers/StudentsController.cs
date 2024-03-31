@@ -30,7 +30,7 @@ namespace QLKTXWEBSITE.Controllers
         public IActionResult Logout()
         {
 
-           /* HttpContext.Session.Remove("AdminLogin");*/ // huỷ session với key AdminLogin đã lưu trước đó
+            HttpContext.Session.Remove("StudentLogin"); // huỷ session với key AdminLogin đã lưu trước đó
 
             return RedirectToAction("Index");
         }
@@ -70,9 +70,8 @@ namespace QLKTXWEBSITE.Controllers
                 return NotFound();
             }
 
-            return View(student);
+            return PartialView("PopUpStudent",student);
         }
-
         // GET: Students/Create
         public IActionResult Create()
         {

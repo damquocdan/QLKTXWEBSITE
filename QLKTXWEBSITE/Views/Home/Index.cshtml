@@ -61,7 +61,7 @@
                         <div class="card-body">
                             <h5 class="card-title">@Html.DisplayFor(modelItem => item.Title)</h5>
                             <p class="card-text">@Html.DisplayFor(modelItem => item.PublishedDate)</p>
-                            <a asp-action="Details" asp-route-id="@item.NewsId" class="btn btn-primary">Xem thêm</a>
+                            <a asp-controller="News" asp-action="Details" asp-route-id="@item.NewsId" class="btn btn-primary">Xem thêm</a>
                         </div>
                     </div>
                 </div>
