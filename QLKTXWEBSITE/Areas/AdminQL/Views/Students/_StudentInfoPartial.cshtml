@@ -1,0 +1,36 @@
+﻿@model QLKTXWEBSITE.Models.Student
+
+<div>
+    <h4>Thông tin sinh viên</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-3">Họ và tên:</dt>
+        <dd class="col-sm-9">@Model.FullName</dd>
+
+        <dt class="col-sm-3">Ngày sinh:</dt>
+        <dd class="col-sm-9">@Model.DateOfBirth</dd>
+
+        <dt class="col-sm-3">Giới tính:</dt>
+        <dd class="col-sm-9">@Model.Gender</dd>
+
+        <dt class="col-sm-3">Số điện thoại:</dt>
+        <dd class="col-sm-9">@Model.PhoneNumber</dd>
+
+        <dt class="col-sm-4">Số điện thoại phụ huynh:</dt>
+        <dd class="col-sm-8">@Html.DisplayFor(model => model.ParentPhoneNumber)</dd>
+
+        <dt class="col-sm-4">Email:</dt>
+        <dd class="col-sm-8">@Html.DisplayFor(model => model.Email)</dd>
+
+        <dt class="col-sm-4">Mã sinh viên:</dt>
+        <dd class="col-sm-8">@Html.DisplayFor(model => model.StudentCode)</dd>
+
+        <dt class="col-sm-4">Lớp:</dt>
+        <dd class="col-sm-8">@Html.DisplayFor(model => model.Class)</dd>
+        <dt class="col-sm-4">Ngành:</dt>
+        <dd class="col-sm-8">@Html.DisplayFor(model => model.Department.DepartmentName)</dd>
+
+        <dt class="col-sm-4">Khoá:</dt>
+        <dd class="col-sm-8">@Html.DisplayFor(model => model.Dh.Dhcode)</dd>
+    </dl>
+</div>

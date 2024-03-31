@@ -7,8 +7,9 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using QLKTXWEBSITE.Models;
 
-namespace QLKTXWEBSITE.Controllers
+namespace QLKTXWEBSITE.Areas.StudentUser.Controllers
 {
+    [Area("StudentUser")]
     public class OccupanciesController : Controller
     {
         private readonly QlktxContext _context;
@@ -18,14 +19,20 @@ namespace QLKTXWEBSITE.Controllers
             _context = context;
         }
 
-        // GET: Occupancies
-        public async Task<IActionResult> Index()
+        // GET: StudentUser/Occupancies
+        public async Task<IActionResult> Index(int? studentId)
         {
-            var qlktxContext = _context.Occupancies.Include(o => o.Room).Include(o => o.Student);
-            return View(await qlktxContext.ToListAsync());
+            IQueryable<Occupancy> occupancies = _context.Occupancies.Include(o => o.Room).Include(o => o.Student);
+
+            if (studentId != null)
+            {
+                occupancies = occupancies.Where(o => o.StudentId == studentId);
+            }
+
+            return View(await occupancies.ToListAsync());
         }
 
-        // GET: Occupancies/Details/5
+        // GET: StudentUser/Occupancies/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null || _context.Occupancies == null)
@@ -45,15 +52,33 @@ namespace QLKTXWEBSITE.Controllers
             return View(occupancy);
         }
 
-        // GET: Occupancies/Create
-        public IActionResult Create()
+        // GET: StudentUser/Occupancies/Create
+        public IActionResult Create(int? studentId)
         {
-            ViewData["RoomId"] = new SelectList(_context.Rooms, "RoomId", "RoomId");
-            ViewData["StudentId"] = new SelectList(_context.Students, "StudentId", "StudentId");
-            return View();
+            if (studentId == null)
+            {
+                return RedirectToAction(nameof(Index));
+            }
+
+            // Lấy thông tin sinh viên từ ID
+            var student = _context.Students.FirstOrDefault(s => s.StudentId == studentId);
+            if (student == null)
+            {
+                return RedirectToAction(nameof(Index));
+            }
+
+            // Tạo SelectList cho RoomId và truyền thông tin sinh viên
+            ViewData["RoomId"] = new SelectList(_context.Rooms, "RoomId", "NumberRoom");
+            ViewData["StudentId"] = new SelectList(_context.Students, "StudentId", "FullName", studentId);
+
+            // Tạo đối tượng Occupancy và set StudentId
+            var occupancy = new Occupancy { StudentId = studentId };
+
+            // Truyền occupancy vào view
+            return View(occupancy);
         }
 
-        // POST: Occupancies/Create
+        // POST: StudentUser/Occupancies/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
@@ -64,14 +89,14 @@ namespace QLKTXWEBSITE.Controllers
             {
                 _context.Add(occupancy);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                // Chuyển hướng đến trang danh sách hợp đồng của sinh viên đó
+                return RedirectToAction("Index", "Occupancies", new { studentId = occupancy.StudentId });
             }
-            ViewData["RoomId"] = new SelectList(_context.Rooms, "RoomId", "RoomId", occupancy.RoomId);
-            ViewData["StudentId"] = new SelectList(_context.Students, "StudentId", "StudentId", occupancy.StudentId);
+            ViewData["RoomId"] = new SelectList(_context.Rooms, "RoomId", "NumberRoom", occupancy.RoomId);
+            ViewData["StudentId"] = new SelectList(_context.Students, "StudentId", "FullName", occupancy.StudentId);
             return View(occupancy);
         }
-
-        // GET: Occupancies/Edit/5
+        // GET: StudentUser/Occupancies/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null || _context.Occupancies == null)
@@ -89,7 +114,7 @@ namespace QLKTXWEBSITE.Controllers
             return View(occupancy);
         }
 
-        // POST: Occupancies/Edit/5
+        // POST: StudentUser/Occupancies/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
@@ -126,7 +151,7 @@ namespace QLKTXWEBSITE.Controllers
             return View(occupancy);
         }
 
-        // GET: Occupancies/Delete/5
+        // GET: StudentUser/Occupancies/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null || _context.Occupancies == null)
@@ -146,7 +171,7 @@ namespace QLKTXWEBSITE.Controllers
             return View(occupancy);
         }
 
-        // POST: Occupancies/Delete/5
+        // POST: StudentUser/Occupancies/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)

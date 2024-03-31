@@ -5,13 +5,6 @@
     Layout = "~/Areas/AdminQL/Views/Shared/Admin.cshtml";
 }
 
-<h1>Danh sách các giường của phòng</h1>
-
-<p>
-    <a asp-action="Create" class="btn btn-primary">Tạo giường mới</a>
-</p>
-
-<!-- Modal cho popup -->
 <div id="studentDetailsModal" class="modal fade" role="dialog">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -20,99 +13,70 @@
                 <h4 class="modal-title">Thông tin sinh viên</h4>
             </div>
             <div class="modal-body" id="studentDetails">
-                <div class="row">
-                    <div class="col-sm-4"><strong>Họ và tên:</strong></div>
-                    <div class="col-sm-8" id="studentFullName"></div>
-                </div>
-                <div class="row">
-                    <div class="col-sm-4"><strong>Ngày sinh:</strong></div>
-                    <div class="col-sm-8" id="studentDateOfBirth"></div>
-                </div>
-                <div class="row">
-                    <div class="col-sm-4"><strong>Giới tính:</strong></div>
-                    <div class="col-sm-8" id="studentGender"></div>
-                </div>
-                <div class="row">
-                    <div class="col-sm-4"><strong>Số điện thoại:</strong></div>
-                    <div class="col-sm-8" id="studentPhoneNumber"></div>
-                </div>
-                <div class="row">
-                    <div class="col-sm-4"><strong>Số điện thoại phụ huynh:</strong></div>
-                    <div class="col-sm-8" id="studentParentPhoneNumber"></div>
-                </div>
-                <div class="row">
-                    <div class="col-sm-4"><strong>Email:</strong></div>
-                    <div class="col-sm-8" id="studentEmail"></div>
-                </div>
-                <div class="row">
-                    <div class="col-sm-4"><strong>Mã sinh viên:</strong></div>
-                    <div class="col-sm-8" id="studentStudentCode"></div>
-                </div>
-                <div class="row">
-                    <div class="col-sm-4"><strong>Khoa:</strong></div>
-                    <div class="col-sm-8" id="studentDepartment"></div>
-                </div>
-                <div class="row">
-                    <div class="col-sm-4"><strong>Lớp:</strong></div>
-                    <div class="col-sm-8" id="studentClass"></div>
-                </div>
-                <div class="row">
-                    <div class="col-sm-4"><strong>Xác nhận nhập học:</strong></div>
-                    <div class="col-sm-8" id="studentAdmissionConfirmation"></div>
-                </div>
 
             </div>
         </div>
     </div>
 </div>
+<h1>Danh sách các giường của phòng</h1>
 
-<div class="row mb-5">
-    @foreach (var item in Model)
-    {
-        <div class="col-md-3 mb-4">
-            <div class="card">
-                <div class="position-absolute" style="top: 10px; right: 10px;">
-                    <a asp-action="Edit" asp-route-id="@item.BedId" class="btn btn-sm btn-primary">Sửa</a>
-                    <a asp-action="Delete" asp-route-id="@item.BedId" class="btn btn-sm btn-danger">Xoá</a>
+<p>
+    <a asp-action="Create" class="btn btn-primary">Tạo giường mới</a>
+</p>
+
+<div class="row">
+    <div class="col-md-9">
+        <div class="row">
+            @foreach (var item in Model)
+            {
+            
+                <div class="col-md-3 mb-4">
+                    <div class="card">
+                        <div class="position-absolute" style="top: 10px; right: 10px;">
+                            <a asp-action="Edit" asp-route-id="@item.BedId" class="btn btn-sm btn-primary">Sửa</a>
+                            <a asp-action="Delete" asp-route-id="@item.BedId" class="btn btn-sm btn-danger">Xoá</a>
+                        </div>
+                        <img src="~/img/logogiuong.jpg" class="card-img-top" alt="Bed Image" style="width: 100%;">
+                        <div class="card-body">
+                            <h5 class="card-title">Giường số: @Html.DisplayFor(modelItem => item.NumberBed)</h5>
+                            <br />
+                            @if (item.Status == false)
+                            {
+                                <input type="hidden" name="bedId" value="@item.BedId" />
+                                <a asp-action="ListStudentBed" asp-route-bedId="@ViewBag.BedId" class="btn btn-warning btn-block">Chọn sinh viên</a>
+                            }
+                            else
+                            {
+                                <!-- Thêm data-bed-id để chứa BedId -->
+                                <a href="#" class="btn btn-primary btn-block btn-details" data-bed-id="@item.BedId">Thông tin sinh viên</a>
+                            }
+                        </div>
+                    </div>
                 </div>
-                <img src="~/img/logogiuong.jpg" class="card-img-top" alt="Bed Image" style="width: 100%;">
-                <div class="card-body">
-                    <h5 class="card-title">Giường số: @Html.DisplayFor(modelItem => item.NumberBed)</h5>
-                    <br/>
-                    @if (item.Status == false)
-                    {
-                        <input type="hidden" name="bedId" value="@item.BedId" />
-                        <a asp-action="ListStudentBed" asp-route-bedId="@ViewBag.BedId" class="btn btn-warning btn-block">Chọn sinh viên</a>
-                    }
-                    else
-                    {
-                        <!-- Thêm data-bed-id để chứa BedId -->
-                        <a href="#" class="btn btn-primary btn-block btn-details" data-bed-id="@item.BedId">Thông tin sinh viên</a>
-                    }
-                </div>
-            </div>
+            
+            }
         </div>
-    }
+    </div>
 </div>
-
 @section Scripts {
     <script>
         $(document).ready(function () {
             $('.btn-details').click(function (e) {
-                e.preventDefault(); // Ngăn chặn hành động mặc định của thẻ a
-                var bedId = $(this).data('bed-id');
+                e.preventDefault(); // Ngăn chặn hành động mặc định của thẻ
+            var bedId = $(this).data('bed-id');
 
-                // Sử dụng AJAX để tải dữ liệu chi tiết của sinh viên
-                $.get('/Students/DetailsPop', { id: bedId })
-                    .done(function (data) {
-                        // Hiển thị dữ liệu chi tiết trong modal
-                        $('#studentDetails').html(data);
-                        $('#studentDetailsModal').modal('show');
-                    })
-                    .fail(function () {
-                        alert('Không thể tải chi tiết sinh viên.');
-                    });
+            // Sử dụng AJAX để tải dữ liệu chi tiết của sinh viên
+            $.get('/Students/DetailsPop', { id: bedId })
+                .done(function (data) {
+                    // Hiển thị dữ liệu chi tiết trong modal
+                    $('#studentDetails').html(data);
+                    $('#studentDetailsModal').modal('show');
+                })
+                .fail(function () {
+                    alert('Không thể tải chi tiết sinh viên.');
+                });
             });
         });
     </script>
 }
+

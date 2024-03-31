@@ -1,5 +1,4 @@
-﻿
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -12,7 +11,7 @@
 </head>
 <body class="mb-0">
     <header>
-        
+
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <div class="container-fluid">
                 <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4e/HUNRE_Logo.png/768px-HUNRE_Logo.png" width="100px" title="logo" />
@@ -40,7 +39,7 @@
                     <div class="dk-dn d-flex position-absolute end-0">
                         <div class="user me-4">
                             <button id="button_user" type="button" class="border-0 ">
-                                <a asp-area="StudentUser" asp-controller="Login" asp-action="Index"><i class="fa-regular fa-user fa-2xl" style="color: #63E6BE;"></i></a>
+                                <i class="fa-regular fa-user fa-2xl" style="color: #63E6BE;"></i>
                             </button>
                         </div>
                     </div>
@@ -50,7 +49,9 @@
     </header>
     <div class="container" style="z-index:inherit">
         <main role="main">
-            @RenderBody()
+                <div class="col-md-10">
+                    @RenderBody()
+                </div>
         </main>
     </div>
     <footer class="w-100">
@@ -63,17 +64,19 @@
                                 <img src="~/img/logofooter.png" alt="Hunre" style="width:500px;background-color:#ccc" />
                             </div>
                             <p class="text-uppercase fw-bold mb-0 pt-2" style="font-size:18px">Trường Đại học Tài nguyên và Môi trường Hà Nội</p>
-                            <p class="mb-0">Địa chỉ: 
+                            <p class="mb-0">
+                                Địa chỉ:
                                 <a href="https://maps.app.goo.gl/Cn3Rk12pYxJJ8ucf8" target="_blank">
                                     41A Đ. Phú Diễn, Phú Diễn, Bắc Từ Liêm, Hà Nội, Việt Nam
                                 </a>
-                             </p>
+                            </p>
                             <p class="mb-0">Điện thoại: 0999.999.999</p>
                             <p class="mb-0">Email: <a href="mailto:DHTNMT@hunre.edu.vn">DHTNMT@hunre.edu.vn</a></p>
                             <div class="social mt-2 mb-3"> <i class="fa-brands fa-facebook fa-xl"></i> <i class="fa-brands fa-youtube fa-xl"></i> <i class="fa-brands fa-tiktok fa-xl"></i></div>
                         </div>
                     </div>
                     <div class="col-md-2 col-sm-2 col-xs-2">
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d930.9141425359347!2d105.7619989!3d21.0464232!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x313454c3ce577141%3A0xb1a1ac92701777bc!2zVHLGsOG7nW5nIMSQ4bqhaSBo4buNYyBUw6BpIG5ndXnDqm4gdsOgIE3DtGkgdHLGsOG7nW5nIEjDoCBO4buZaQ!5e0!3m2!1svi!2s!4v1711714428427!5m2!1svi!2s" width="400" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                     </div>
                     <div class="col-md-2 col-sm-2 col-xs-2">
                         <h5 class="heading">Dịch vụ</h5>

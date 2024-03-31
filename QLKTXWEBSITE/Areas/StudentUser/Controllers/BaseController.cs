@@ -1,8 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 
-namespace QLKTXWEBSITE.Controllers
+namespace QLKTXWEBSITE.Areas.StudentUser.Controllers
 {
+    [Area("StudentUser")]
     public class BaseController : Controller, IActionFilter
     {
         public override void OnActionExecuted(ActionExecutedContext context)

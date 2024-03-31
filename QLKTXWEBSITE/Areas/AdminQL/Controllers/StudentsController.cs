@@ -67,7 +67,6 @@ namespace QLKTXWEBSITE.Areas.AdminQL.Controllers
 
             return View("Index", students);
         }
-
         public async Task<IActionResult> ExportToExcel()
             {
                 var students = await _context.Students

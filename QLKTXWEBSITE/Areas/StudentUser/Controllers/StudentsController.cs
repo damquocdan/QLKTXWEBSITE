@@ -7,26 +7,25 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using QLKTXWEBSITE.Models;
 
-namespace QLKTXWEBSITE.Areas.AdminQL.Controllers
+namespace QLKTXWEBSITE.Areas.StudentUser.Controllers
 {
-    [Area("AdminQL")]
-    public class Students1Controller : Controller
+    //[Area("StudentUser")]
+    public class StudentsController : BaseController
     {
         private readonly QlktxContext _context;
 
-        public Students1Controller(QlktxContext context)
+        public StudentsController(QlktxContext context)
         {
             _context = context;
         }
 
-        // GET: AdminQL/Students1
+        // GET: StudentUser/Students
         public async Task<IActionResult> Index()
         {
-            var qlktxContext = _context.Students.Include(s => s.Bed).Include(s => s.Department).Include(s => s.Dh).Include(s => s.Room);
-            return View(await qlktxContext.ToListAsync());
+            return View();
         }
 
-        // GET: AdminQL/Students1/Details/5
+        // GET: StudentUser/Students/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null || _context.Students == null)
@@ -48,17 +47,17 @@ namespace QLKTXWEBSITE.Areas.AdminQL.Controllers
             return View(student);
         }
 
-        // GET: AdminQL/Students1/Create
+        // GET: StudentUser/Students/Create
         public IActionResult Create()
         {
-            ViewData["BedId"] = new SelectList(_context.BedOfRooms, "BedId", "NumberBed");
+            ViewData["BedId"] = new SelectList(_context.BedOfRooms, "BedId", "BedId");
             ViewData["DepartmentId"] = new SelectList(_context.Departments, "DepartmentId", "DepartmentId");
-            ViewData["Dhid"] = new SelectList(_context.Dhs, "Dhid", "Dhcode");
+            ViewData["Dhid"] = new SelectList(_context.Dhs, "Dhid", "Dhid");
             ViewData["RoomId"] = new SelectList(_context.Rooms, "RoomId", "RoomId");
             return View();
         }
 
-        // POST: AdminQL/Students1/Create
+        // POST: StudentUser/Students/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
@@ -71,14 +70,14 @@ namespace QLKTXWEBSITE.Areas.AdminQL.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["BedId"] = new SelectList(_context.BedOfRooms, "BedId", "NumberBed", student.BedId);
+            ViewData["BedId"] = new SelectList(_context.BedOfRooms, "BedId", "BedId", student.BedId);
             ViewData["DepartmentId"] = new SelectList(_context.Departments, "DepartmentId", "DepartmentId", student.DepartmentId);
-            ViewData["Dhid"] = new SelectList(_context.Dhs, "Dhid", "Dhcode", student.Dhid);
+            ViewData["Dhid"] = new SelectList(_context.Dhs, "Dhid", "Dhid", student.Dhid);
             ViewData["RoomId"] = new SelectList(_context.Rooms, "RoomId", "RoomId", student.RoomId);
             return View(student);
         }
 
-        // GET: AdminQL/Students1/Edit/5
+        // GET: StudentUser/Students/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null || _context.Students == null)
@@ -91,14 +90,14 @@ namespace QLKTXWEBSITE.Areas.AdminQL.Controllers
             {
                 return NotFound();
             }
-            ViewData["BedId"] = new SelectList(_context.BedOfRooms, "BedId", "NumberBed", student.BedId);
+            ViewData["BedId"] = new SelectList(_context.BedOfRooms, "BedId", "BedId", student.BedId);
             ViewData["DepartmentId"] = new SelectList(_context.Departments, "DepartmentId", "DepartmentId", student.DepartmentId);
-            ViewData["Dhid"] = new SelectList(_context.Dhs, "Dhid", "Dhcode", student.Dhid);
+            ViewData["Dhid"] = new SelectList(_context.Dhs, "Dhid", "Dhid", student.Dhid);
             ViewData["RoomId"] = new SelectList(_context.Rooms, "RoomId", "RoomId", student.RoomId);
             return View(student);
         }
 
-        // POST: AdminQL/Students1/Edit/5
+        // POST: StudentUser/Students/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
@@ -130,14 +129,14 @@ namespace QLKTXWEBSITE.Areas.AdminQL.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["BedId"] = new SelectList(_context.BedOfRooms, "BedId", "NumberBed", student.BedId);
+            ViewData["BedId"] = new SelectList(_context.BedOfRooms, "BedId", "BedId", student.BedId);
             ViewData["DepartmentId"] = new SelectList(_context.Departments, "DepartmentId", "DepartmentId", student.DepartmentId);
             ViewData["Dhid"] = new SelectList(_context.Dhs, "Dhid", "Dhid", student.Dhid);
             ViewData["RoomId"] = new SelectList(_context.Rooms, "RoomId", "RoomId", student.RoomId);
             return View(student);
         }
 
-        // GET: AdminQL/Students1/Delete/5
+        // GET: StudentUser/Students/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null || _context.Students == null)
@@ -159,7 +158,7 @@ namespace QLKTXWEBSITE.Areas.AdminQL.Controllers
             return View(student);
         }
 
-        // POST: AdminQL/Students1/Delete/5
+        // POST: StudentUser/Students/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)

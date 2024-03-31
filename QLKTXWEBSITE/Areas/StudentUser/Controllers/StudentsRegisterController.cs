@@ -7,35 +7,26 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using QLKTXWEBSITE.Models;
 
-namespace QLKTXWEBSITE.Controllers
+namespace QLKTXWEBSITE.Areas.StudentUser.Controllers
 {
-    public class StudentsController : Controller
+    [Area("StudentUser")]
+    public class StudentsRegisterController : Controller
     {
         private readonly QlktxContext _context;
-        
 
-        public StudentsController(QlktxContext context)
+        public StudentsRegisterController(QlktxContext context)
         {
             _context = context;
         }
 
-        // GET: Students
-        public IActionResult Index(Student model)
+        // GET: StudentUser/StudentsRegister
+        public async Task<IActionResult> Index()
         {
-            return View();
+            var qlktxContext = _context.Students.Include(s => s.Bed).Include(s => s.Department).Include(s => s.Dh).Include(s => s.Room);
+            return View(await qlktxContext.ToListAsync());
         }
 
-
-        [HttpGet]// thoát đăng nhập, huỷ session
-        public IActionResult Logout()
-        {
-
-            HttpContext.Session.Remove("StudentLogin"); // huỷ session với key AdminLogin đã lưu trước đó
-
-            return RedirectToAction("Index");
-        }
-
-        // GET: Students/Details/5
+        // GET: StudentUser/StudentsRegister/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null || _context.Students == null)
@@ -45,6 +36,8 @@ namespace QLKTXWEBSITE.Controllers
 
             var student = await _context.Students
                 .Include(s => s.Bed)
+                .Include(s => s.Department)
+                .Include(s => s.Dh)
                 .Include(s => s.Room)
                 .FirstOrDefaultAsync(m => m.StudentId == id);
             if (student == null)
@@ -54,58 +47,23 @@ namespace QLKTXWEBSITE.Controllers
 
             return View(student);
         }
-        public async Task<IActionResult> DetailsPop(int? id)
-        {
-            if (id == null || _context.Students == null)
-            {
-                return NotFound();
-            }
 
-            var student = await _context.Students
-                .Include(s => s.Bed)
-                .Include(s => s.Room)
-                .FirstOrDefaultAsync(m => m.StudentId == id);
-            if (student == null)
-            {
-                return NotFound();
-            }
-
-            return PartialView("PopUpStudent",student);
-        }
-        // GET: Students/Create
+        // GET: StudentUser/StudentsRegister/Create
         public IActionResult Create()
         {
             ViewData["BedId"] = new SelectList(_context.BedOfRooms, "BedId", "BedId");
+            ViewData["DepartmentId"] = new SelectList(_context.Departments, "DepartmentId", "DepartmentId");
+            ViewData["Dhid"] = new SelectList(_context.Dhs, "Dhid", "Dhid");
             ViewData["RoomId"] = new SelectList(_context.Rooms, "RoomId", "RoomId");
             return View();
         }
-        public IActionResult Contact()
-        {
-            return View();
-        }
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Contact(Student student)
-        {
-            if (ModelState.IsValid)
-            {
-                // Lưu dữ liệu vào cơ sở dữ liệu
-                _context.Add(student);
-                await _context.SaveChangesAsync();
 
-                // Hiển thị thông báo thành công
-                TempData["SuccessMessage"] = "Thông tin đã được gửi thành công! Vui lòng đợi để được liên hệ";
-
-                return RedirectToAction(nameof(Contact));
-            }
-            return View(student);
-        }
-        // POST: Students/Create
+        // POST: StudentUser/StudentsRegister/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("FullName,DateOfBirth,Gender,PhoneNumber,ParentPhoneNumber,Email,Password,StudentCode,Dh,Department,AdmissionConfirmation,RoomId,BedId")] Student student)
+        public async Task<IActionResult> Create([Bind("StudentId,FullName,DateOfBirth,Gender,PhoneNumber,ParentPhoneNumber,Email,Password,StudentCode,Dhid,DepartmentId,Class,AdmissionConfirmation,RoomId,BedId")] Student student)
         {
             if (ModelState.IsValid)
             {
@@ -114,12 +72,13 @@ namespace QLKTXWEBSITE.Controllers
                 return RedirectToAction(nameof(Index));
             }
             ViewData["BedId"] = new SelectList(_context.BedOfRooms, "BedId", "BedId", student.BedId);
+            ViewData["DepartmentId"] = new SelectList(_context.Departments, "DepartmentId", "DepartmentId", student.DepartmentId);
+            ViewData["Dhid"] = new SelectList(_context.Dhs, "Dhid", "Dhid", student.Dhid);
             ViewData["RoomId"] = new SelectList(_context.Rooms, "RoomId", "RoomId", student.RoomId);
             return View(student);
         }
 
-
-        // GET: Students/Edit/5
+        // GET: StudentUser/StudentsRegister/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null || _context.Students == null)
@@ -133,16 +92,18 @@ namespace QLKTXWEBSITE.Controllers
                 return NotFound();
             }
             ViewData["BedId"] = new SelectList(_context.BedOfRooms, "BedId", "BedId", student.BedId);
+            ViewData["DepartmentId"] = new SelectList(_context.Departments, "DepartmentId", "DepartmentId", student.DepartmentId);
+            ViewData["Dhid"] = new SelectList(_context.Dhs, "Dhid", "Dhid", student.Dhid);
             ViewData["RoomId"] = new SelectList(_context.Rooms, "RoomId", "RoomId", student.RoomId);
             return View(student);
         }
 
-        // POST: Students/Edit/5
+        // POST: StudentUser/StudentsRegister/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("StudentId,FirstName,LastName,DateOfBirth,Gender,PhoneNumber,ParentPhoneNumber,Email,Password,StudentCode,Dh,Department,AdmissionConfirmation,RoomId,BedId")] Student student)
+        public async Task<IActionResult> Edit(int id, [Bind("StudentId,FullName,DateOfBirth,Gender,PhoneNumber,ParentPhoneNumber,Email,Password,StudentCode,Dhid,DepartmentId,Class,AdmissionConfirmation,RoomId,BedId")] Student student)
         {
             if (id != student.StudentId)
             {
@@ -170,11 +131,13 @@ namespace QLKTXWEBSITE.Controllers
                 return RedirectToAction(nameof(Index));
             }
             ViewData["BedId"] = new SelectList(_context.BedOfRooms, "BedId", "BedId", student.BedId);
+            ViewData["DepartmentId"] = new SelectList(_context.Departments, "DepartmentId", "DepartmentId", student.DepartmentId);
+            ViewData["Dhid"] = new SelectList(_context.Dhs, "Dhid", "Dhid", student.Dhid);
             ViewData["RoomId"] = new SelectList(_context.Rooms, "RoomId", "RoomId", student.RoomId);
             return View(student);
         }
 
-        // GET: Students/Delete/5
+        // GET: StudentUser/StudentsRegister/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null || _context.Students == null)
@@ -184,6 +147,8 @@ namespace QLKTXWEBSITE.Controllers
 
             var student = await _context.Students
                 .Include(s => s.Bed)
+                .Include(s => s.Department)
+                .Include(s => s.Dh)
                 .Include(s => s.Room)
                 .FirstOrDefaultAsync(m => m.StudentId == id);
             if (student == null)
@@ -194,7 +159,7 @@ namespace QLKTXWEBSITE.Controllers
             return View(student);
         }
 
-        // POST: Students/Delete/5
+        // POST: StudentUser/StudentsRegister/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
@@ -208,14 +173,14 @@ namespace QLKTXWEBSITE.Controllers
             {
                 _context.Students.Remove(student);
             }
-
+            
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool StudentExists(int id)
         {
-            return (_context.Students?.Any(e => e.StudentId == id)).GetValueOrDefault();
+          return (_context.Students?.Any(e => e.StudentId == id)).GetValueOrDefault();
         }
     }
 }
