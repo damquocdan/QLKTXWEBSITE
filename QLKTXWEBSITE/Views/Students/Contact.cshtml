@@ -9,37 +9,40 @@
         @TempData["SuccessMessage"]
     </div>
 }
-<h1>Liên hệ</h1>
+<h1 style="color:green;">Liên hệ</h1>
 
-<hr />
+<hr style="color:green; height:2px"/>
 <div class="row">
-    <div class="col-md-4">
+
+    
+    <div class="col-md-4"> 
+        <iframe class="w-100" src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d930.9141425359347!2d105.7619989!3d21.0464232!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x313454c3ce577141%3A0xb1a1ac92701777bc!2zVHLGsOG7nW5nIMSQ4bqhaSBo4buNYyBUw6BpIG5ndXnDqm4gdsOgIE3DtGkgdHLGsOG7nW5nIEjDoCBO4buZaQ!5e0!3m2!1svi!2s!4v1711797672734!5m2!1svi!2s" width="600" height="450" style="border:solid 1px green; border-radius:15px" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </div>
+    <div class="col-md-2"></div>
+
+    <div class="col-md-6">
         <form asp-action="Contact">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="FullName" class="control-label"></label>
-                <input asp-for="FullName" class="form-control" />
+                <label asp-for="FullName" class="control-label" style="font-size:1.3rem; color:green; font-weight:500">Họ và tên</label>
+                <input asp-for="FullName" class="form-control" style="border:solid 1px green; border-radius:5px" />
                 <span asp-validation-for="FullName" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="PhoneNumber" class="control-label"></label>
-                <input asp-for="PhoneNumber" class="form-control" />
+            <div class="form-group my-2">
+                <label asp-for="PhoneNumber" class="control-label" style="font-size:1.3rem; color:green; font-weight:500 ">Số điện thoại</label>
+                <input asp-for="PhoneNumber" class="form-control" style="border:solid 1px green; border-radius:5px" />
                 <span asp-validation-for="PhoneNumber" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="ParentPhoneNumber" class="control-label"></label>
-                <input asp-for="ParentPhoneNumber" class="form-control" />
-                <span asp-validation-for="ParentPhoneNumber" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Email" class="control-label"></label>
-                <input asp-for="Email" class="form-control" />
+                <label asp-for="Email" class="control-label" style="font-size:1.3rem; color:green; font-weight:500">Email</label>
+                <input asp-for="Email" class="form-control" style="border:solid 1px green; border-radius:5px" />
                 <span asp-validation-for="Email" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <input type="submit" value="Gửi thông tin" class="btn btn-primary" />
+            <div class="form-group mt-3 w-100 ">
+                <button type="submit" class="btn btn-success col-md-2 float-end"><i class="fa-regular fa-paper-plane fa-xl me-2" style="color:#fff"></i>Gửi</button>
             </div>
         </form>
+        
     </div>
 </div>
 @section Scripts {

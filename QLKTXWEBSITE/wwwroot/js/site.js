@@ -37,3 +37,5 @@ btn_user.addEventListener("click", function () {
         menu_user.style.display = "none"; // Ẩn nếu đang hiển thị
     }
 });
+
+/*contact*/
