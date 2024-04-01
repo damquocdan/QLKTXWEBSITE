@@ -4,31 +4,22 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<h1>Danh sách các dịch vụ</h1>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
 <table class="table">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.ServiceName)
+                Tên dịch vụ
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Month)
+                Dịch vụ tháng
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Price)
+                Giá
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Status)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Room)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Student)
+            <th class="text-center">
+                Trạng thái
             </th>
             <th></th>
         </tr>
@@ -40,24 +31,27 @@
                 @Html.DisplayFor(modelItem => item.ServiceName)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Month)
+                @Html.DisplayFor(modelItem => item.Month)/2024
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Price)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Status)
+                    @if (item.Status == true)
+                    {
+                        <div class="d-flex align-items-center" style="height:38px">
+                            <p class="mb-0 w-100 text-center text-success">Đã thanh toán</p>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="d-flex align-items-center" style="height:38px">
+                            <p class="mb-0 w-100 text-center text-danger">Chưa thanh toán</p>
+                        </div>
+                    }
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Room.RoomId)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Student.StudentId)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.ServiceId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.ServiceId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.ServiceId">Delete</a>
+                <a asp-action="Details" asp-route-id="@item.ServiceId">Xemn chi tiết</a>
             </td>
         </tr>
 }

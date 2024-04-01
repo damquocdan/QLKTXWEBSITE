@@ -20,17 +20,15 @@
                                         <div class="form-outline mb-4 col-6">
                                             <input asp-for="FullName" type="text" id="form3Example1cg" class="form-control form-control-lg custom-input"
                                                    placeholder="Tên của bạn" required />
-                                            @* <label class="form-label" for="form3Example1cg">Tên của bạn</label> *@
                                         </div>
                                         <div class="form-outline mb-4 col-6">
                                             <input asp-for="StudentCode" type="text" id="form3Example3cg" class="form-control form-control-lg custom-input"
                                                    placeholder="Mã sinh viên" required />
-                                            @* <label class="form-label" for="form3Example3cg">Mã sinh viên</label> *@
                                         </div>
                                     </div>
 
                                     <div class="row d-flex">
-                                        <div class="form-outline mb-4 col-12">
+                                        <div class="form-outline mb-4 col-6">
                                             <select asp-for="Dh" class="form-control  custom-input" id="inputGroupSelect02" style="height:46px; color:#6c757d">
                                                 <option value="Chưa chọn">Khóa</option>
                                                 <option value="1">DH11</option>
@@ -39,7 +37,13 @@
                                                 <option value="4">DH14</option>
                                             </select>
                                         </div>
-
+                                        <div class="form-outline mb-4 col-6">
+                                            <select asp-for="Gender" class="form-control  custom-input" id="inputGroupSelect02" style="height:46px; color:#6c757d">
+                                                <option value="Chưa chọn">Giới tính</option>
+                                                <option value="Nam">Nam</option>
+                                                <option value="Nữ">Nữ</option>
+                                            </select>
+                                        </div>
 
                                     </div>
 

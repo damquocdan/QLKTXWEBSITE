@@ -4,51 +4,50 @@
     ViewData["Title"] = "Details";
 }
 
-<h1>Details</h1>
+<h1>Chi tiết dịch vụ</h1>
 
 <div>
     <h4>Service</h4>
     <hr />
     <dl class="row">
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.ServiceName)
+            Tên dịch vụ
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.ServiceName)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Month)
+            Dịch vụ tháng
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Month)
+            @Html.DisplayFor(model => model.Month)/2024
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Price)
+            Giá
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.Price)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Status)
+            Trạng thái
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Status)
+            @if (Model.Status == true)
+            {
+                <div class="d-flex align-items-center" style="height:38px">
+                    <p class="mb-0 w-100  text-success">Đã thanh toán</p>
+                </div>
+            }
+            else
+            {
+                <div class="d-flex align-items-center" style="height:38px">
+                    <p class="mb-0 w-100 text-danger">Chưa thanh toán</p>
+                </div>
+            }
         </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Room)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Room.RoomId)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Student)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Student.StudentId)
-        </dd>
+
     </dl>
 </div>
 <div>
-    <a asp-action="Edit" asp-route-id="@Model?.ServiceId">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+    <a href="#" onclick="window.history.back();" class="link">Quay lại</a>
 </div>

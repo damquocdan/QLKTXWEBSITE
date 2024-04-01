@@ -90,10 +90,10 @@ namespace QLKTXWEBSITE.Areas.StudentUser.Controllers
             {
                 return NotFound();
             }
-            ViewData["BedId"] = new SelectList(_context.BedOfRooms, "BedId", "BedId", student.BedId);
-            ViewData["DepartmentId"] = new SelectList(_context.Departments, "DepartmentId", "DepartmentId", student.DepartmentId);
-            ViewData["Dhid"] = new SelectList(_context.Dhs, "Dhid", "Dhid", student.Dhid);
-            ViewData["RoomId"] = new SelectList(_context.Rooms, "RoomId", "RoomId", student.RoomId);
+            ViewData["BedId"] = new SelectList(_context.BedOfRooms, "BedId", "NumberBed", student.BedId);
+            ViewData["DepartmentId"] = new SelectList(_context.Departments, "DepartmentId", "DepartmentName", student.DepartmentId);
+            ViewData["Dhid"] = new SelectList(_context.Dhs, "Dhid", "Dhcode", student.Dhid);
+            ViewData["RoomId"] = new SelectList(_context.Rooms, "RoomId", "NumberRoom", student.RoomId);
             return View(student);
         }
 
@@ -127,12 +127,12 @@ namespace QLKTXWEBSITE.Areas.StudentUser.Controllers
                         throw;
                     }
                 }
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction("Details", new { id = student.StudentId });
             }
-            ViewData["BedId"] = new SelectList(_context.BedOfRooms, "BedId", "BedId", student.BedId);
-            ViewData["DepartmentId"] = new SelectList(_context.Departments, "DepartmentId", "DepartmentId", student.DepartmentId);
-            ViewData["Dhid"] = new SelectList(_context.Dhs, "Dhid", "Dhid", student.Dhid);
-            ViewData["RoomId"] = new SelectList(_context.Rooms, "RoomId", "RoomId", student.RoomId);
+            ViewData["BedId"] = new SelectList(_context.BedOfRooms, "BedId", "NumberBed", student.BedId);
+            ViewData["DepartmentId"] = new SelectList(_context.Departments, "DepartmentId", "DepartmentName", student.DepartmentId);
+            ViewData["Dhid"] = new SelectList(_context.Dhs, "Dhid", "Dhcode", student.Dhid);
+            ViewData["RoomId"] = new SelectList(_context.Rooms, "RoomId", "NumberRoom", student.RoomId);
             return View(student);
         }
 
@@ -181,5 +181,70 @@ namespace QLKTXWEBSITE.Areas.StudentUser.Controllers
         {
           return (_context.Students?.Any(e => e.StudentId == id)).GetValueOrDefault();
         }
+        // GET: StudentUser/Students/ChangePassword
+        public async Task<IActionResult> ChangePassword(int? id)
+        {
+            if (id == null || _context.Students == null)
+            {
+                return NotFound();
+            }
+
+            var student = await _context.Students.FindAsync(id);
+            if (student == null)
+            {
+                return NotFound();
+            }
+            ViewData["BedId"] = new SelectList(_context.BedOfRooms, "BedId", "NumberBed", student.BedId);
+            ViewData["DepartmentId"] = new SelectList(_context.Departments, "DepartmentId", "DepartmentName", student.DepartmentId);
+            ViewData["Dhid"] = new SelectList(_context.Dhs, "Dhid", "Dhcode", student.Dhid);
+            ViewData["RoomId"] = new SelectList(_context.Rooms, "RoomId", "NumberRoom", student.RoomId);
+            return View(student);
+        }
+
+        // POST: StudentUser/Students/ChangePassword
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> ChangePassword(int id, string password, string newPassword, string confirmNewPassword)
+        {
+            if (id == null || _context.Students == null)
+            {
+                return NotFound();
+            }
+
+            var student = await _context.Students.FindAsync(id);
+            if (student == null)
+            {
+                return NotFound();
+            }
+
+            // Kiểm tra mật khẩu cũ
+            if (student.Password != password)
+            {
+                ModelState.AddModelError(string.Empty, "Mật khẩu cũ không chính xác.");
+                return View(student);
+            }
+
+            // Kiểm tra mật khẩu mới và xác nhận mật khẩu mới
+            if (newPassword != confirmNewPassword)
+            {
+                ModelState.AddModelError(string.Empty, "Mật khẩu mới và xác nhận mật khẩu mới không khớp.");
+                return View(student);
+            }
+
+            // Cập nhật mật khẩu mới
+            student.Password = newPassword;
+
+            try
+            {
+                await _context.SaveChangesAsync();
+                return RedirectToAction("Details", new { id = student.StudentId });
+            }
+            catch (Exception)
+            {
+                // Xử lý lỗi nếu có
+                return RedirectToAction("Error");
+            }
+        }
+
     }
 }

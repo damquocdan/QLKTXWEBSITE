@@ -20,10 +20,15 @@ namespace QLKTXWEBSITE.Areas.StudentUser.Controllers
         }
 
         // GET: StudentUser/Services
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(int? studentId)
         {
-            var qlktxContext = _context.Services.Include(s => s.Room).Include(s => s.Student);
-            return View(await qlktxContext.ToListAsync());
+            IQueryable<Service> services = _context.Services.Include(s => s.Room).Include(s => s.Student);
+            if (studentId != null)
+            {
+                services = services.Where(o => o.StudentId == studentId);
+            }
+
+            return View(await services.ToListAsync());
         }
 
         // GET: StudentUser/Services/Details/5
