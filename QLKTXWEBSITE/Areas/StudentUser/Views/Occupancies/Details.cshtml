@@ -3,81 +3,86 @@
 @{
     ViewData["Title"] = "Details";
 }
+<div class="row" style="margin:auto;">
+    <div class="col-md-9">
+        <h1 style="text-align:center;">Cộng hoà xã hội chủ nghĩa Việt Nam</h1>
+        <h2 style="text-align:center;">Độc lập - Tự Do - Hạnh phúc</h2>
+        <hr />
+        <dl class="row">
+            <dt class="col-sm-2">
+                Họ và tên
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Student.FullName)
+            </dd>
+            <dt class="col-sm-2">
+                Mã sinh viên
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Student.StudentCode)
+            </dd>
+            <dt class="col-sm-2">
+                Số điện thoại
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Student.PhoneNumber)
+            </dd>
+            <dt class="col-sm-2">
+                Email
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Student.Email)
+            </dd>
+            <dt class="col-sm-2">
+                Số phòng
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Room.NumberRoom)
+            </dd>
 
-<h1>Chi tiết hợp đồng</h1>
-
-<div>
-    <h4>Cộng hoà xã hội chủ nghĩa Việt Nam ...</h4>
-    <hr />
-    <dl class="row">
-        <dt class="col-sm-2">
-            Họ và tên
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Student.FullName)
-        </dd>
-        <dt class="col-sm-2">
-            Mã sinh viên
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Student.StudentCode)
-        </dd>
-        <dt class="col-sm-2">
-            Số điện thoại
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Student.PhoneNumber)
-        </dd>
-        <dt class="col-sm-2">
-            Email
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Student.Email)
-        </dd>
-        <dt class="col-sm-2">
-            Số phòng
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Room.NumberRoom)
-        </dd>
-        
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.RenewalDate)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.RenewalDate)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.ExpirationDate)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.ExpirationDate)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.CycleMonths)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.CycleMonths)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Status)
-        </dt>
-        <dd class = "col-sm-10">
-            @if (Model.Status == true)
-            {
-                <div class="d-flex align-items-center" style="height:38px">
-                    <p class="mb-0 w-100 text-center text-success">Đã thanh toán</p>
-                </div>
-            }
-            else
-            {
-                <div class="d-flex align-items-center" style="height:38px">
-                    <p class="mb-0 w-100 text-center text-danger">Chưa thanh toán</p>
-                </div>
-            }
-        </dd>
-    </dl>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.RenewalDate)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.RenewalDate)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.ExpirationDate)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.ExpirationDate)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.CycleMonths)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.CycleMonths)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Status)
+            </dt>
+            <dd class="col-sm-10">
+                @if (Model.Status == true)
+                {
+                    <div class="d-flex align-items-center" style="height:38px">
+                        <p class="mb-0 w-100 text-center text-success">Đã thanh toán</p>
+                    </div>
+                }
+                else
+                {
+                    <div class="d-flex align-items-center" style="height:38px">
+                        <p class="mb-0 w-100 text-center text-danger">Chưa thanh toán</p>
+                    </div>
+                }
+            </dd>
+        </dl>
+    </div>
+    <div class="col-md-3">
+        <h2>Vui lòng thanh toán đúng hạn</h2>
+        <img width="100%" src="~/img/QR.jpg" />
+    </div>
 </div>
+
 <div>
     <a href="#" onclick="window.history.back();" class="link">Quay lại</a>
 </div>

@@ -19,7 +19,7 @@
                 <span asp-validation-for="FullName" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="DateOfBirth" class="control-label"></label>
+                <label asp-for="DateOfBirth" class="control-label">Ngày sinh</label>
                 <input asp-for="DateOfBirth" class="form-control" />
                 <span asp-validation-for="DateOfBirth" class="text-danger"></span>
             </div>
@@ -29,17 +29,17 @@
                 <span asp-validation-for="Gender" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="PhoneNumber" class="control-label"></label>
+                <label asp-for="PhoneNumber" class="control-label">Số điện thoại</label>
                 <input asp-for="PhoneNumber" class="form-control" />
                 <span asp-validation-for="PhoneNumber" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="ParentPhoneNumber" class="control-label"></label>
+                <label asp-for="ParentPhoneNumber" class="control-label">Số điện thoại phụ huynh</label>
                 <input asp-for="ParentPhoneNumber" class="form-control" />
                 <span asp-validation-for="ParentPhoneNumber" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Email" class="control-label"></label>
+                <label asp-for="Email" class="control-label">Email</label>
                 <input asp-for="Email" class="form-control" />
                 <span asp-validation-for="Email" class="text-danger"></span>
             </div>
@@ -49,28 +49,28 @@
                 <span asp-validation-for="Password" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="StudentCode" class="control-label"></label>
+                <label asp-for="StudentCode" class="control-label">Mã sinh viên</label>
                 <input asp-for="StudentCode" class="form-control" />
                 <span asp-validation-for="StudentCode" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Dhid" class="control-label"></label>
+                <label asp-for="Dhid" class="control-label">Khoá</label>
                 <select asp-for="Dhid" class="form-control" asp-items="ViewBag.Dhid"></select>
                 <span asp-validation-for="Dhid" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="DepartmentId" class="control-label"></label>
+                <label asp-for="DepartmentId" class="control-label">Khoa</label>
                 <select asp-for="DepartmentId" class="form-control" asp-items="ViewBag.DepartmentId"></select>
                 <span asp-validation-for="DepartmentId" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Class" class="control-label"></label>
+                <label asp-for="Class" class="control-label">Lớp</label>
                 <input asp-for="Class" class="form-control" />
                 <span asp-validation-for="Class" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="AdmissionConfirmation" class="control-label"></label>
-                <input asp-for="AdmissionConfirmation" class="form-control" />
+                <label asp-for="AdmissionConfirmation" class="control-label">Ảnh (4 x 6)</label>
+                <input asp-for="AdmissionConfirmation" type="file" class="form-control" />
                 <span asp-validation-for="AdmissionConfirmation" class="text-danger"></span>
             </div>
             <div class="form-group" style="display: none;">

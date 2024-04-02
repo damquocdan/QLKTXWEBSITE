@@ -175,59 +175,69 @@ namespace QLKTXWEBSITE.Areas.AdminQL.Controllers
         // POST: AdminQL/Occupancies/SendEmailToOccupants
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> SendEmailToOccupants()
+        public IActionResult SendEmailToOccupants()
         {
             try
             {
-                var occupants = await _context.Occupancies
-                    .Include(o => o.Student)
-                    .ToListAsync();
+                var occupants = _context.Occupancies
+                    .Include(o => o.Student) // Đảm bảo rằng thông tin của sinh viên được bao gồm
+                    .Where(o => o.Status == false)
+                    .ToList();
 
-                foreach (var occupancy in occupants)
+                // Gửi email cho từng cư dân trong danh sách
+                foreach (var occupant in occupants)
                 {
-                    // Gửi email tới địa chỉ email của cư dân
-                    string toEmail = occupancy.Student.Email;
-                    string subject = "Thông báo từ hệ thống quản lý KTX";
-                    string body = "Xin chào " + occupancy.Student.FullName + ",\n\n"
-                                + "Nội dung email: Bạn đang ở trong phòng số " + occupancy.Room.NumberRoom + ".\n\n"
-                                + "Xin vui lòng kiểm tra thông tin đăng nhập tại đây: https://yourwebsite.com/login\n\n"
-                                + "Trân trọng,\n"
-                                + "Hệ thống quản lý KTX";
-
-                    // Thiết lập thông tin của email người gửi
-                    string fromEmail = "21111064572@gmail.com";
-                    string fromPassword = "Danli29.03"; // Nhập mật khẩu ứng với tài khoản Gmail
-                    string host = "smtp.gmail.com";
-                    int port = 587;
-
-                    // Gửi email
-                    var smtpClient = new SmtpClient(host, port)
-                    {
-                        Credentials = new NetworkCredential(fromEmail, fromPassword),
-                        EnableSsl = true
-                    };
-
-                    var mailMessage = new MailMessage
-                    {
-                        From = new MailAddress(fromEmail),
-                        Subject = subject,
-                        Body = body,
-                        IsBodyHtml = true 
-                    };
-
-                    mailMessage.To.Add(toEmail);
-
-                    await smtpClient.SendMailAsync(mailMessage);
+                    string email = occupant.Student.Email;
+                    string subject = "Ký túc xá trường đại học tài nguyên và môi trường";
+                    string studentCode = occupant.Student.StudentCode;
+                    var listName = _context.Students.FirstOrDefault(c => c.StudentCode.Equals(studentCode));
+                    string name = !string.IsNullOrEmpty(listName.FullName) ? listName.FullName : studentCode;
+                    string htmlBody = "<div>" +
+                                        "<h2>Dear " + name + "!</h2>" +
+                                        "<p>Mời bạn vào trang web ký túc xá để gia hạn phòng!</p>" +
+                                        "<a href=\"#\">Nhấp vào đây để tới trang web</a>" +
+                                    "</div>";
+                    SendEmail(email, subject, htmlBody);
                 }
 
-                TempData["SuccessMessage"] = "Email đã được gửi thành công cho tất cả cư dân.";
+                ViewBag.Message = "Email đã được gửi thành công đến tất cả cư dân.";
             }
             catch (Exception ex)
             {
-                TempData["ErrorMessage"] = "Đã xảy ra lỗi khi gửi email: " + ex.Message;
+                ViewBag.Error = "Đã xảy ra lỗi khi gửi email: " + ex.Message;
             }
 
-            return RedirectToAction(nameof(Index));
+            return View();
+        }
+
+        // Phương thức gửi email
+        private void SendEmail(string email, string subject, string body)
+        {
+            var fromAddress = new MailAddress("21111064572@hunre.edu.vn");
+            var toAddress = new MailAddress(email);
+            const string fromPassword = "Danli29.03";
+            string host = "smtp.gmail.com";
+            int port = 587;
+
+            var smtp = new SmtpClient
+            {
+                Host = host,
+                Port = port,
+                EnableSsl = true,
+                DeliveryMethod = SmtpDeliveryMethod.Network,
+                UseDefaultCredentials = false,
+                Credentials = new NetworkCredential(fromAddress.Address, fromPassword)
+            };
+
+            using (var message = new MailMessage(fromAddress, toAddress)
+            {
+                Subject = subject,
+                Body = body,
+                IsBodyHtml = true
+            })
+            {
+                smtp.Send(message);
+            }
         }
 
     }

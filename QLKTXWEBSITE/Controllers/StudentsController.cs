@@ -54,6 +54,25 @@ namespace QLKTXWEBSITE.Controllers
 
             return View(student);
         }
+        public async Task<IActionResult> Notifications(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var student = await _context.Students
+                .Include(s => s.Occupancies)
+                .Include(s => s.Services)
+                .FirstOrDefaultAsync(m => m.StudentId == id);
+
+            if (student == null)
+            {
+                return NotFound();
+            }
+
+            return PartialView("Notifications", student);
+        }
         public async Task<IActionResult> DetailsPop(int? id)
         {
             if (id == null || _context.Students == null)

@@ -15,12 +15,11 @@
 <div class="row">
 
     
-    <div class="col-md-4"> 
+    <div class="col-md-8"> 
         <iframe class="w-100" src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d930.9141425359347!2d105.7619989!3d21.0464232!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x313454c3ce577141%3A0xb1a1ac92701777bc!2zVHLGsOG7nW5nIMSQ4bqhaSBo4buNYyBUw6BpIG5ndXnDqm4gdsOgIE3DtGkgdHLGsOG7nW5nIEjDoCBO4buZaQ!5e0!3m2!1svi!2s!4v1711797672734!5m2!1svi!2s" width="600" height="450" style="border:solid 1px green; border-radius:15px" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
     </div>
-    <div class="col-md-2"></div>
 
-    <div class="col-md-6">
+    <div class="col-md-4">
         <form asp-action="Contact">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
@@ -39,7 +38,7 @@
                 <span asp-validation-for="Email" class="text-danger"></span>
             </div>
             <div class="form-group mt-3 w-100 ">
-                <button type="submit" class="btn btn-success col-md-2 float-end"><i class="fa-regular fa-paper-plane fa-xl me-2" style="color:#fff"></i>Gửi</button>
+                <button type="submit" class="btn btn-success col-md-2"><i class="fa-regular fa-paper-plane fa-xl me-2" style="color:#fff"></i>Gửi</button>
             </div>
         </form>
         

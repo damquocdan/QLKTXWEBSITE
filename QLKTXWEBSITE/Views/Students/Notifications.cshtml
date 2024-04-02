@@ -1,0 +1,15 @@
+﻿@model QLKTXWEBSITE.Models.Student
+<h3>Danh sách thông báo, hợp đồng và dịch vụ</h3>
+<ul>
+    <!-- Lặp qua danh sách hợp đồng -->
+    @foreach (var occupancy in Model.Occupancies)
+    {
+        <li>Hợp đồng: @occupancy.CycleMonths - @occupancy.ExpirationDate đến @occupancy.RenewalDate</li>
+    }
+
+    <!-- Lặp qua danh sách dịch vụ -->
+    @foreach (var service in Model.Services)
+    {
+        <li>Dịch vụ: @service.ServiceName - @service.Price</li>
+    }
+</ul>
