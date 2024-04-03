@@ -1,40 +1,110 @@
 ﻿@model QLKTXWEBSITE.Models.Student
+<style>
+    .popup-tb .row:hover {
+        background-color: #f2f2f2;
 
+    }
+    .popup-tb .row{
+        align-items:center;
+    }
+    .popup-tb .row p{
+       margin:0 0;
+       padding: 0.6rem 0;
+        
+    }
+</style>
 <div>
     <h4>Thông tin sinh viên</h4>
-    <hr />
-    <dl class="row">
-        <dt class="col-sm-3">Họ và tên:</dt>
-        <dd class="col-sm-9">@Model.FullName</dd>
-
-        <dt class="col-sm-3">Ngày sinh:</dt>
-        <dd class="col-sm-9">@Model.DateOfBirth</dd>
-
-        <dt class="col-sm-3">Giới tính:</dt>
-        <dd class="col-sm-9">@Model.Gender</dd>
-
-        <dt class="col-sm-3">Số điện thoại:</dt>
-        <dd class="col-sm-9">@Model.PhoneNumber</dd>
-
-        <dt class="col-sm-4">Số điện thoại phụ huynh:</dt>
-        <dd class="col-sm-8">@Html.DisplayFor(model => model.ParentPhoneNumber)</dd>
-
-        <dt class="col-sm-4">Email:</dt>
-        <dd class="col-sm-8">@Html.DisplayFor(model => model.Email)</dd>
-
-        <dt class="col-sm-4">Mã sinh viên:</dt>
-        <dd class="col-sm-8">@Html.DisplayFor(model => model.StudentCode)</dd>
-
-        <dt class="col-sm-4">Lớp:</dt>
-        <dd class="col-sm-8">@Html.DisplayFor(model => model.Class)</dd>
-
-        <dt class="col-sm-4">Giấy xác nhận nhập học:</dt>
-        <dd class="col-sm-8">@Html.DisplayFor(model => model.AdmissionConfirmation)</dd>
-
-        <dt class="col-sm-4">Ngành:</dt>
-        <dd class="col-sm-8">@Html.DisplayFor(model => model.Department.DepartmentName)</dd>
-
-        <dt class="col-sm-4">Khoá:</dt>
-        <dd class="col-sm-8">@Html.DisplayFor(model => model.Dh.Dhcode)</dd>
-    </dl>
+    <hr style="color:green" />
+    <div class="mx-4 popup-tb">
+        <div class="row">
+            <div class="col-md-4">
+                <p class="fw-bold">Họ và tên</p>
+            </div>
+            <div class="col-md-8">
+                <p>@Model.FullName</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <p class="fw-bold">Ngày sinh</p>
+            </div>
+            <div class="col-md-8">
+                <p>@Model.DateOfBirth</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <p class="fw-bold">Giới tính</p>
+            </div>
+            <div class="col-md-8">
+                <p>@Model.Gender</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <p class="fw-bold">Số điện thoại</p>
+            </div>
+            <div class="col-md-8">
+                <p>@Model.PhoneNumber</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <p class="fw-bold">Số điện thoại phụ huynh</p>
+            </div>
+            <div class="col-md-8">
+                <p>@Model.ParentPhoneNumber</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <p class="fw-bold">Email</p>
+            </div>
+            <div class="col-md-8">
+                <p>@Model.Email</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <p class="fw-bold">Mã sinh viên</p>
+            </div>
+            <div class="col-md-8">
+                <p>@Model.StudentCode</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <p class="fw-bold">Lớp</p>
+            </div>
+            <div class="col-md-8">
+                <p>@Model.Class</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <p class="fw-bold">Giấy xác nhận nhập học</p>
+            </div>
+            <div class="col-md-8">
+                <p>@Model.AdmissionConfirmation</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <p class="fw-bold">Ngành học</p>
+            </div>
+            <div class="col-md-8">
+                <p>@Model.Department</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <p class="fw-bold">Khóa</p>
+            </div>
+            <div class="col-md-8">
+                <p>@Html.DisplayFor(model => model.Dh.Dhcode)</p>
+            </div>
+        </div>
+        
+    </div>
 </div>

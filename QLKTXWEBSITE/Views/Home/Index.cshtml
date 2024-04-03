@@ -56,18 +56,25 @@
         <div class="row list-projects">
             @foreach (var item in lastEightNews)
             {
-                <div class="col-md-3" style="height:400px">
-                    <div class="card" style="width=100%">
-                        <img src="@item.Author" alt="@item.Title" class="mb-0 w-100 text-center" width="100%" height="150px" />
+                <div class="col-md-3">
+                    <div class="card" style="width:100%; height:450px">
+                        <div class="py-3">
+                            <img src="@item.Author" alt="@item.Title" class="mb-0 w-100 text-center" style="width:100%; height:190px; border-radius:5px;" />
+                        </div>
                         <div class="card-body">
-                            <h5 class="card-title">@Html.DisplayFor(modelItem => item.Title)</h5>
-                            <p class="card-text">@Html.DisplayFor(modelItem => item.PublishedDate)</p>
+                            <h5 class="card-title text-center">@Html.DisplayFor(modelItem => item.Title)</h5>
+                            <div class="w-100" style="height:100px;overflow: hidden;text-overflow: ellipsis;">
+                                <p class="card-text" style="text-align:justify">@Html.DisplayFor(modelItem => item.Content)</p>
+                            </div>
+                            <p class="card-text float-end" style="font-size:0.6rem; color:#ccc;">@Html.DisplayFor(modelItem => item.PublishedDate)</p>
+                            <br/>
                             <a asp-controller="News" asp-action="Details" asp-route-id="@item.NewsId" class="btn btn-primary">Xem thêm</a>
                         </div>
                     </div>
                 </div>
             }
         </div>
+
         <div class="d-flex justify-content-center">
             <a asp-controller="news">
                 <button type="button" class="btn btn-primary btn-lg rounded-0 my-5">
@@ -77,6 +84,7 @@
         </div>
     </div>
 </div>
+
 
 <div class="contact d-flex justify-content-center my-4">
     <div class="d-flex" style="margin:0 320px 0 320px;">

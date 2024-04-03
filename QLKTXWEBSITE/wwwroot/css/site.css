@@ -244,3 +244,22 @@ hr {
 }
 
 /*contact*/
+ 
+
+/*index*/
+
+@keyframes showSd {
+    from {
+        box-shadow: 0px 0px 0px 0px #dfdfdf;
+    }
+
+    to {
+        box-shadow: 0px 0px 60px 10px #dfdfdf;
+    }
+}
+
+.card:hover {
+    box-shadow: 0px 0px 60px 10px #dfdfdf;
+    animation: showSd 1s;
+}
+

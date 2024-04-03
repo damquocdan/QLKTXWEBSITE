@@ -80,20 +80,22 @@ namespace QLKTXWEBSITE.Areas.AdminQL.Controllers
                 {
                     var worksheet = package.Workbook.Worksheets.Add("Students");
 
-                    // Header row
-                    worksheet.Cells[1, 1].Value = "Họ và tên";
-                    worksheet.Cells[1, 2].Value = "NTNS";
-                    worksheet.Cells[1, 3].Value = "Giới tính";
-                    worksheet.Cells[1, 4].Value = "Điện thoại";
-                    worksheet.Cells[1, 5].Value = "Parent Phone Number";
-                    worksheet.Cells[1, 6].Value = "Email";
-                    worksheet.Cells[1, 7].Value = "Mã sinh viên";
-                    worksheet.Cells[1, 8].Value = "Department";
-                    worksheet.Cells[1, 9].Value = "Lớp";
-                    worksheet.Cells[1, 10].Value = "Admission Confirmation";
+                // Header row
+                    worksheet.Cells[1, 1].Value = "STT";
+                    worksheet.Cells[1, 2].Value = "Mã sinh viên";
+                    worksheet.Cells[1, 3].Value = "Họ và tên";
+                    worksheet.Cells[1, 4].Value = "NTNS";
+                    worksheet.Cells[1, 5].Value = "Giới tính";
+                    worksheet.Cells[1, 6].Value = "Điện thoại";
+                    worksheet.Cells[1, 7].Value = "Parent Phone Number";
+                    worksheet.Cells[1, 8].Value = "Email";
+                    worksheet.Cells[1, 9].Value = "Khoa";
+                    worksheet.Cells[1, 10].Value = "Lớp";
+                    worksheet.Cells[1, 11].Value = "Admission Confirmation";
 
-                    // Style for header row
-                    using (var range = worksheet.Cells["A1:J1"])
+
+                // Style for header row
+                using (var range = worksheet.Cells["A1:K1"])
                     {
                             range.Style.Font.Bold = true;
                             range.Style.Fill.PatternType = ExcelFillStyle.Solid;
@@ -111,16 +113,17 @@ namespace QLKTXWEBSITE.Areas.AdminQL.Controllers
 
                             // Custom width for each column
                             worksheet.Row(1).Height = 35;
-                            worksheet.Column(1).Width = 40; 
-                            worksheet.Column(2).Width = 15;
-                            worksheet.Column(3).Width = 15;
-                            worksheet.Column(4).Width = 20;
-                            worksheet.Column(5).Width = 32;
-                            worksheet.Column(6).Width = 30;
-                            worksheet.Column(7).Width = 30;
-                            worksheet.Column(8).Width = 35;
-                            worksheet.Column(9).Width = 15;
-                            worksheet.Column(10).Width = 30; 
+                            worksheet.Column(1).Width = 10;
+                            worksheet.Column(2).Width = 30;
+                            worksheet.Column(3).Width = 40; 
+                            worksheet.Column(4).Width = 15;
+                            worksheet.Column(5).Width = 15;
+                            worksheet.Column(6).Width = 20;
+                            worksheet.Column(7).Width = 32;
+                            worksheet.Column(8).Width = 30;
+                            worksheet.Column(9).Width = 35;
+                            worksheet.Column(10).Width = 15;
+                            worksheet.Column(11).Width = 30; 
 
                             // Custom height for header row
                             range.Style.Font.Bold = false;
@@ -138,27 +141,31 @@ namespace QLKTXWEBSITE.Areas.AdminQL.Controllers
 
                         // Data rows
                         int row = 2;
-                    foreach (var student in students)
+                        int stt = 1;
+                foreach (var student in students)
                     {   
                         worksheet.Row(row).Height = 20;
-                        worksheet.Cells[row, 1].Value = student.FullName;
-                        worksheet.Cells[row, 2].Value = student.DateOfBirth;
-                        worksheet.Cells[row, 3].Value = student.Gender;
-                        worksheet.Cells[row, 4].Value = student.PhoneNumber;
-                        worksheet.Cells[row, 5].Value = student.ParentPhoneNumber;
-                        worksheet.Cells[row, 6].Value = student.Email;
-                        worksheet.Cells[row, 7].Value = student.StudentCode;
-                        worksheet.Cells[row, 8].Value = student.Department?.DepartmentName; // Assuming DepartmentName property exists
-                        worksheet.Cells[row, 9].Value = student.Class;
-                        worksheet.Cells[row, 10].Value = student.AdmissionConfirmation;
-                        row++;
+                        worksheet.Cells[row, 1].Value = stt;
+                        worksheet.Cells[row, 2].Value = student.StudentCode;
+                        worksheet.Cells[row, 3].Value = student.FullName;
+                        worksheet.Cells[row, 4].Value = Convert.ToDateTime(student.DateOfBirth).ToString("dd/MM/yyyy");
+                        worksheet.Cells[row, 5].Value = student.Gender;
+                        worksheet.Cells[row, 6].Value = student.PhoneNumber;
+                        worksheet.Cells[row, 7].Value = student.ParentPhoneNumber;
+                        worksheet.Cells[row, 8].Value = student.Email;
+                        worksheet.Cells[row, 9].Value = student.Department?.DepartmentName; // Assuming DepartmentName property exists
+                        worksheet.Cells[row, 10].Value = student.Class;
+                        worksheet.Cells[row, 11].Value = student.Dhid;
+                    
+                    row++;
+                    stt++;
                     }
 
                     // Auto-fit columns
                     //worksheet.Cells.AutoFitColumns();
 
                     // Add borders for all cells
-                    using (var range = worksheet.Cells[1, 1, row - 1, 10])
+                    using (var range = worksheet.Cells[1, 1, row - 1, 11])
                     {
                         range.Style.Border.Top.Style = ExcelBorderStyle.Thin;
                         range.Style.Border.Bottom.Style = ExcelBorderStyle.Thin;
@@ -176,8 +183,79 @@ namespace QLKTXWEBSITE.Areas.AdminQL.Controllers
                 }
             }
 
-    // GET: AdminQL/Students/Details/5
-    public async Task<IActionResult> Details(int? id)
+        // POST: AdminQL/Students/ImportFromExcel
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> ImportFromExcel(IFormFile file)
+        {
+            var departments = await _context.Departments.ToListAsync();
+            Dictionary<string, int> departmentMappings = departments.ToDictionary(d => d.DepartmentName, d => d.DepartmentId);
+
+            if (file == null || file.Length <= 0)
+            {
+                ModelState.AddModelError("", "Vui lòng chọn một tệp Excel.");
+                return RedirectToAction(nameof(Index));
+            }
+
+            using (var stream = new MemoryStream())
+            {
+                await file.CopyToAsync(stream);
+                stream.Position = 0;
+
+                using (var package = new ExcelPackage(stream))
+                {
+                    var worksheet = package.Workbook.Worksheets.FirstOrDefault();
+
+                    if (worksheet == null)
+                    {
+                        ModelState.AddModelError("", "Không tìm thấy bảng dữ liệu trong tệp Excel.");
+                        return RedirectToAction(nameof(Index));
+                    }
+
+                    var rowCount = worksheet.Dimension.Rows;
+                    var importedStudents = new List<Student>();
+
+                    // Bắt đầu từ dòng thứ 2 để bỏ qua dòng tiêu đề
+                    for (int row = 2; row <= rowCount; row++)
+                    {
+                        string departmentName = worksheet.Cells[row, 9].Value?.ToString();
+                        if (departmentMappings.ContainsKey(departmentName))
+                        {
+                            var newStudent = new Student
+                            {
+                                StudentCode = worksheet.Cells[row, 2].Value?.ToString(),
+                                FullName = worksheet.Cells[row, 3].Value?.ToString(),
+                                DateOfBirth = Convert.ToDateTime(worksheet.Cells[row, 4].Value),
+                                Gender = worksheet.Cells[row, 5].Value?.ToString(),
+                                PhoneNumber = worksheet.Cells[row, 6].Value?.ToString(),
+                                ParentPhoneNumber = worksheet.Cells[row, 7].Value?.ToString(),
+                                Email = worksheet.Cells[row, 8].Value?.ToString(),
+                                DepartmentId = departmentMappings[departmentName],
+                                Class = worksheet.Cells[row, 10].Value?.ToString(),
+                                AdmissionConfirmation = worksheet.Cells[row, 11].Value?.ToString(),
+                                // Khởi tạo các giá trị còn lại tùy theo cấu trúc của model Student
+                                // Ví dụ: Dhid, RoomId, BedId, ...
+                            };
+
+                            importedStudents.Add(newStudent);
+                        }
+                        else
+                        {
+                            // Xử lý khi không tìm thấy phòng ban trong từ điển
+                        }
+                    }
+
+                    // Thêm danh sách sinh viên từ Excel vào cơ sở dữ liệu
+                    _context.Students.AddRange(importedStudents);
+                    await _context.SaveChangesAsync();
+
+                    return RedirectToAction(nameof(Index));
+                }
+            }
+        }
+
+        // GET: AdminQL/Students/Details/5
+        public async Task<IActionResult> Details(int? id)
         {
             if (id == null || _context.Students == null)
             {

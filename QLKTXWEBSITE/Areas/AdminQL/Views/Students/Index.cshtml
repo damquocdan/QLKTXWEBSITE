@@ -10,6 +10,16 @@
 <p>
     <a asp-action="ExportToExcel" class="btn btn-primary">Xuất dữ liệu ra Excel</a>
 </p>
+<div class="mb-2 col-md-3">
+    <div class="card p-2">
+        <p>Upload dữ liệu từ excel</p>
+        <form asp-controller="Students" asp-action="ImportFromExcel" method="post" enctype="multipart/form-data">
+            <input type="file" name="file" />
+            <button type="submit" class="btn btn-primary">Nhập</button>
+        </form>
+    </div>
+</div>
+
 
 <div class="row">
     <div class="col-md-6 mb-2">
@@ -29,40 +39,125 @@
 <table class="table mb-5">
     <thead class="thead-dark">
         <tr>
-            <th>Họ và tên</th>
-            <th>Mã sinh viên</th>
-            <th>Lớp</th>
-            <th>Khoa</th>
-            <th>Khoá</th>
-            <th>Phòng số</th>
-            <th>Giường số</th>
             <th>
                 <div class="text-center">
-                    Chức năng
+                    <p class="mb-0">
+                        STT
+                    </p>
+                </div>
+            </th>
+            <th>
+                <div class="ms-3">
+                    Họ và tên
+                </div>
+            </th>
+            <th>
+                <div class="text-center">
+                    <p class="mb-0">
+                        Mã sinh viên
+                    </p>
+                </div>
+            </th>
+            <th>
+                <div class="text-center">
+                    <p class="mb-0">
+                        Lớp
+                    </p>
+                </div>
+            </th>
+            <th>
+                <div class="text-center">
+                    <p class="mb-0">
+                        Khoa
+                    </p>
+                </div>
+            </th>
+            <th>
+                <div class="text-center">
+                    <p class="mb-0">
+                        Khóa
+                    </p>
+                </div>
+            </th>
+            <th>
+                <div class="text-center">
+                    <p class="mb-0">
+                        Giường số
+                    </p>
+                </div>
+            </th>
+            <th>
+                <div class="text-center">
+                    <p class="mb-0">
+                        Phòng số
+                    </p>
+                </div>
+            </th>
+            <th>
+                <div class="text-center">
+                    <p class="mb-0">
+                        Chức năng
+                    </p>
                 </div>
             </th>
         </tr>
     </thead>
     <tbody>
+        @{
+            int stt = 1;
+        }
         @foreach (var item in Model)
         {
             <tr>
-                <td>@Html.DisplayFor(modelItem => item.FullName)</td>
-                <td>@Html.DisplayFor(modelItem => item.StudentCode)</td>
-                <td>@Html.DisplayFor(modelItem => item.Class)</td>
-                <td>@Html.DisplayFor(modelItem => item.Department.DepartmentName)</td>
-                <td>@Html.DisplayFor(modelItem => item.Dh.Dhcode)</td>
-                <td>@Html.DisplayFor(modelItem => item.Room.NumberRoom)</td>
-                <td>@Html.DisplayFor(modelItem => item.Bed.NumberBed)</td>
                 <td>
-                    <div class="d-flex justify-content-center">
-                        <a asp-action="Edit" asp-route-id="@item.StudentId" class="btn btn-primary btn-sm">Sửa</a>
-                        <a asp-action="Details" asp-route-id="@item.StudentId" class="btn btn-success mx-3 btn-sm">Chi tiết</a>
-                        <a asp-action="Delete" asp-route-id="@item.StudentId" class="btn btn-danger btn-sm">Xoá</a>
+                    <div class="d-flex align-items-center" style="height:38px">
+                        <p class="mb-0 w-100 text-center">@stt</p>
                     </div>
-                    
+                </td>
+                <td>
+                    <div class="d-flex align-items-center ms-3" style="height:38px">
+                        <p class="mb-0">@Html.DisplayFor(modelItem => item.FullName)</p>
+                    </div>
+                </td>
+                <td>
+                    <div class="d-flex align-items-center" style="height:38px">
+                        <p class="mb-0 w-100 text-center">@Html.DisplayFor(modelItem => item.StudentCode)</p>
+                    </div>
+                </td>
+                <td>
+                    <div class="d-flex align-items-center" style="height:38px">
+                        <p class="mb-0 w-100 text-center">@Html.DisplayFor(modelItem => item.Class)</p>
+                    </div>
+                </td>
+                <td>
+                    <div class="d-flex align-items-center" style="height:38px">
+                        <p class="mb-0 w-100 text-center">@Html.DisplayFor(modelItem => item.Department.DepartmentName)</p>
+                    </div>
+                </td>
+                <td>
+                    <div class="d-flex align-items-center" style="height:38px">
+                        <p class="mb-0 w-100 text-center">@Html.DisplayFor(modelItem => item.Dh.Dhcode)</p>
+                    </div>
+                </td>
+                <td>
+                    <div class="d-flex align-items-center" style="height:38px">
+                        <p class="mb-0 w-100 text-center">@Html.DisplayFor(modelItem => item.Room.NumberRoom)</p>
+                    </div>
+                </td>
+                <td>
+                    <div class="d-flex align-items-center" style="height:38px">
+                        <p class="mb-0 w-100 text-center">@Html.DisplayFor(modelItem => item.Bed.NumberBed)</p>
+                    </div>
+                </td>
+                <td>
+                    <div class=" d-flex justify-content-center">
+                        <a asp-action="Edit" asp-route-id="@item.StudentId" class="btn btn-primary">Sửa</a>
+                        <a asp-action="Details" asp-route-id="@item.StudentId" class="btn btn-success mx-3">Chi tiết</a>
+                        <a asp-action="Delete" asp-route-id="@item.StudentId" class="btn btn-danger">Xoá</a>
+                    </div>
                 </td>
             </tr>
+            stt++;
         }
     </tbody>
 </table>
