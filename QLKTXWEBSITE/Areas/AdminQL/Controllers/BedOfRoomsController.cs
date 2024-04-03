@@ -24,23 +24,16 @@ namespace QLKTXWEBSITE.Areas.AdminQL.Controllers
         public async Task<IActionResult> Index(int roomId)
         {
             var bedsInRoom = await _context.BedOfRooms
-                                .Include(b => b.Room)
-                                .Where(b => b.RoomId == roomId)
-                                .ToListAsync();
-            if (bedsInRoom.Any())
-            {
-                ViewBag.BedId = bedsInRoom.First().BedId; // Lấy bedId của giường đầu tiên trong phòng
-            }
-            else
-            {
-                ViewBag.BedId = null; // Không có giường nào trong phòng
-            }
+                        .Include(b => b.Room)
+                        .Where(b => b.RoomId == roomId)
+                        .ToListAsync();
             return View(bedsInRoom);
         }
-        public async Task<IActionResult> ListStudentBed(string gender,int bedId)
+        public async Task<IActionResult> ListStudentBed(string gender, int bedId, int roomId)
         {
+            // Truy vấn danh sách sinh viên chưa có giường
             IQueryable<Student> studentsWithoutBedQuery = _context.Students
-                .Where(s => s.BedId == null)
+                .Where(s => s.BedId == null && s.RoomId == null) // Chỉ lấy sinh viên ở phòng cần chọn giường
                 .Include(s => s.Bed)
                 .Include(s => s.Department)
                 .Include(s => s.Dh)
@@ -53,10 +46,11 @@ namespace QLKTXWEBSITE.Areas.AdminQL.Controllers
 
             var studentsWithoutBed = await studentsWithoutBedQuery.ToListAsync();
             ViewBag.BedId = bedId;
+            ViewBag.RoomId = roomId;
             return View(studentsWithoutBed);
         }
         [HttpPost]
-        public IActionResult ChooseBed(int studentId, int bedId)
+        public IActionResult ChooseBed(int studentId, int bedId,int roomId)
         {
             var student = _context.Students.Find(studentId);
 
@@ -72,13 +66,31 @@ namespace QLKTXWEBSITE.Areas.AdminQL.Controllers
             {
                 return NotFound("Bed not found");
             }
+            var room = _context.Rooms.Find(roomId);
 
+            if (room == null)
+            {
+                return NotFound("Room not found");
+            }
+            bed.Status = true;
             // Gán giường cho sinh viên
             student.Bed = bed;
+            student.Room= room;
 
+            room.NumberOfStudents++;
+
+            // Kiểm tra nếu số lượng sinh viên bằng số lượng giường thì cập nhật trạng thái của các giường
+            if (room.NumberOfStudents == room.BedNumber)
+            {
+                var roomStatus = _context.Rooms.Where(b => b.RoomId == roomId).ToList();
+                foreach (var r in roomStatus)
+                {
+                    r.Status = true;
+                }
+            }
             _context.SaveChanges();
 
-            return RedirectToAction("Index", "BedOfRoom");
+            return RedirectToAction("Index", "BedOfRooms", new { roomid = roomId });
         }
         // GET: AdminQL/BedOfRooms/Details/5
         public async Task<IActionResult> Details(int? id)
@@ -102,7 +114,7 @@ namespace QLKTXWEBSITE.Areas.AdminQL.Controllers
         // GET: AdminQL/BedOfRooms/Create
         public IActionResult Create()
         {
-            ViewData["RoomId"] = new SelectList(_context.Rooms, "RoomId", "RoomId");
+            ViewData["RoomId"] = new SelectList(_context.Rooms, "RoomId", "NumberRoom");
             return View();
         }
 
@@ -119,7 +131,7 @@ namespace QLKTXWEBSITE.Areas.AdminQL.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["RoomId"] = new SelectList(_context.Rooms, "RoomId", "RoomId", bedOfRoom.RoomId);
+            ViewData["RoomId"] = new SelectList(_context.Rooms, "RoomId", "NumberRoom", bedOfRoom.RoomId);
             return View(bedOfRoom);
         }
 

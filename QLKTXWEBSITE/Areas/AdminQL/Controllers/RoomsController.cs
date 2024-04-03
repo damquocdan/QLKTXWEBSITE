@@ -151,10 +151,25 @@ namespace QLKTXWEBSITE.Areas.AdminQL.Controllers
             {
                 _context.Add(room);
                 await _context.SaveChangesAsync();
+
+                // Tạo các giường tương ứng với số lượng BedNumber
+                for (int i = 0; i < room.BedNumber; i++)
+                {
+                    var bed = new BedOfRoom
+                    {
+                        RoomId = room.RoomId,
+                        NumberBed = i + 1, // Số giường bắt đầu từ 1
+                        Status = false // Mặc định giường chưa được sử dụng
+                    };
+                    _context.Add(bed);
+                }
+                await _context.SaveChangesAsync();
+
                 return RedirectToAction(nameof(Index));
             }
             return View(room);
         }
+
 
         // GET: AdminQL/Rooms/Edit/5
         public async Task<IActionResult> Edit(int? id)

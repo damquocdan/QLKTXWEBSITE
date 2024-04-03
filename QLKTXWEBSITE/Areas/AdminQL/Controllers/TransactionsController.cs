@@ -48,7 +48,8 @@ namespace QLKTXWEBSITE.Areas.AdminQL.Controllers
         // GET: AdminQL/Transactions/Create
         public IActionResult Create()
         {
-            ViewData["StudentId"] = new SelectList(_context.Students, "StudentId", "StudentId");
+            ViewData["RoomId"] = new SelectList(_context.Rooms, "RoomId", "NumberRoom");
+            ViewData["StudentId"] = new SelectList(_context.Students, "StudentId", "FullName");
             return View();
         }
 
@@ -65,7 +66,8 @@ namespace QLKTXWEBSITE.Areas.AdminQL.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["StudentId"] = new SelectList(_context.Students, "StudentId", "StudentId", transaction.StudentId);
+            ViewData["RoomId"] = new SelectList(_context.Rooms, "RoomId", "NumberRoom", transaction.Student.Room);
+            ViewData["StudentId"] = new SelectList(_context.Students, "StudentId", "FullName", transaction.StudentId);
             return View(transaction);
         }
 
@@ -82,7 +84,8 @@ namespace QLKTXWEBSITE.Areas.AdminQL.Controllers
             {
                 return NotFound();
             }
-            ViewData["StudentId"] = new SelectList(_context.Students, "StudentId", "StudentId", transaction.StudentId);
+            ViewData["RoomId"] = new SelectList(_context.Rooms, "RoomId", "NumberRoom", transaction.Student.Room);
+            ViewData["StudentId"] = new SelectList(_context.Students, "StudentId", "FullName", transaction.StudentId);
             return View(transaction);
         }
 
@@ -118,7 +121,8 @@ namespace QLKTXWEBSITE.Areas.AdminQL.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["StudentId"] = new SelectList(_context.Students, "StudentId", "StudentId", transaction.StudentId);
+            ViewData["RoomId"] = new SelectList(_context.Rooms, "RoomId", "NumberRoom", transaction.Student.Room);
+            ViewData["StudentId"] = new SelectList(_context.Students, "StudentId", "FullName", transaction.StudentId);
             return View(transaction);
         }
 
@@ -163,6 +167,24 @@ namespace QLKTXWEBSITE.Areas.AdminQL.Controllers
         private bool TransactionExists(int id)
         {
           return (_context.Transactions?.Any(e => e.TransactionId == id)).GetValueOrDefault();
+        }
+        [HttpGet]
+        public IActionResult GetRoomsByBuilding(string building)
+        {
+            var rooms = _context.Rooms.Where(r => r.Building == building)
+                                      .Select(r => new { value = r.RoomId, text = r.RoomId })
+                                      .ToList();
+            return Json(rooms);
+        }
+
+        // Action để lấy danh sách sinh viên theo phòng
+        [HttpGet]
+        public IActionResult GetStudentsByRoom(int roomId)
+        {
+            var students = _context.Students.Where(s => s.RoomId == roomId)
+                                            .Select(s => new { value = s.StudentId, text = s.FullName })
+                                            .ToList();
+            return Json(students);
         }
     }
 }

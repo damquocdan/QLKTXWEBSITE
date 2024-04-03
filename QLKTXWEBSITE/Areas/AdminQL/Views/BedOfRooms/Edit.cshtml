@@ -21,7 +21,10 @@
             </div>
             <div class="form-group">
                 <label asp-for="Status" class="control-label">Trạng thái</label>
-                <input asp-for="Status" class="form-control" />
+                <select asp-for="Status" class="form-control">
+                    <option value="false">Giường trống</option>
+                    <option value="true">Giường đã có sinh viên</option>
+                </select>
                 <span asp-validation-for="Status" class="text-danger"></span>
             </div>
             <div class="form-group">

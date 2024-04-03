@@ -53,7 +53,7 @@ namespace QLKTXWEBSITE.Areas.StudentUser.Controllers
         {
             ViewData["BedId"] = new SelectList(_context.BedOfRooms, "BedId", "BedId");
             ViewData["DepartmentId"] = new SelectList(_context.Departments, "DepartmentId", "DepartmentId");
-            ViewData["Dhid"] = new SelectList(_context.Dhs, "Dhid", "Dhid");
+            ViewData["Dhid"] = new SelectList(_context.Dhs, "Dhid", "Dhcode");
             ViewData["RoomId"] = new SelectList(_context.Rooms, "RoomId", "RoomId");
             return View();
         }
@@ -69,11 +69,11 @@ namespace QLKTXWEBSITE.Areas.StudentUser.Controllers
             {
                 _context.Add(student);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction("Index", "Login");
             }
             ViewData["BedId"] = new SelectList(_context.BedOfRooms, "BedId", "BedId", student.BedId);
             ViewData["DepartmentId"] = new SelectList(_context.Departments, "DepartmentId", "DepartmentId", student.DepartmentId);
-            ViewData["Dhid"] = new SelectList(_context.Dhs, "Dhid", "Dhid", student.Dhid);
+            ViewData["Dhid"] = new SelectList(_context.Dhs, "Dhid", "Dhcode", student.Dhid);
             ViewData["RoomId"] = new SelectList(_context.Rooms, "RoomId", "RoomId", student.RoomId);
             return View(student);
         }

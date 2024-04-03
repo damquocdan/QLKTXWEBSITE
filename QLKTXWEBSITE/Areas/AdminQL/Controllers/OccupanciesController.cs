@@ -51,8 +51,8 @@ namespace QLKTXWEBSITE.Areas.AdminQL.Controllers
         // GET: AdminQL/Occupancies/Create
         public IActionResult Create()
         {
-            ViewData["RoomId"] = new SelectList(_context.Rooms, "RoomId", "RoomId");
-            ViewData["StudentId"] = new SelectList(_context.Students, "StudentId", "StudentId");
+            ViewData["RoomId"] = new SelectList(_context.Rooms, "RoomId", "NumberRoom");
+            ViewData["StudentId"] = new SelectList(_context.Students, "StudentId", "FullName");
             return View();
         }
 
@@ -69,8 +69,8 @@ namespace QLKTXWEBSITE.Areas.AdminQL.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["RoomId"] = new SelectList(_context.Rooms, "RoomId", "RoomId", occupancy.RoomId);
-            ViewData["StudentId"] = new SelectList(_context.Students, "StudentId", "StudentId", occupancy.StudentId);
+            ViewData["RoomId"] = new SelectList(_context.Rooms, "RoomId", "NumberRoom", occupancy.RoomId);
+            ViewData["StudentId"] = new SelectList(_context.Students, "StudentId", "FullName", occupancy.StudentId);
             return View(occupancy);
         }
 
@@ -87,8 +87,8 @@ namespace QLKTXWEBSITE.Areas.AdminQL.Controllers
             {
                 return NotFound();
             }
-            ViewData["RoomId"] = new SelectList(_context.Rooms, "RoomId", "RoomId", occupancy.RoomId);
-            ViewData["StudentId"] = new SelectList(_context.Students, "StudentId", "StudentId", occupancy.StudentId);
+            ViewData["RoomId"] = new SelectList(_context.Rooms, "RoomId", "NumberRoom", occupancy.RoomId);
+            ViewData["StudentId"] = new SelectList(_context.Students, "StudentId", "FullName", occupancy.StudentId);
             return View(occupancy);
         }
 
@@ -124,8 +124,8 @@ namespace QLKTXWEBSITE.Areas.AdminQL.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["RoomId"] = new SelectList(_context.Rooms, "RoomId", "RoomId", occupancy.RoomId);
-            ViewData["StudentId"] = new SelectList(_context.Students, "StudentId", "StudentId", occupancy.StudentId);
+            ViewData["RoomId"] = new SelectList(_context.Rooms, "RoomId", "NumberRoom", occupancy.RoomId);
+            ViewData["StudentId"] = new SelectList(_context.Students, "StudentId", "FullName", occupancy.StudentId);
             return View(occupancy);
         }
 
@@ -238,6 +238,20 @@ namespace QLKTXWEBSITE.Areas.AdminQL.Controllers
             {
                 smtp.Send(message);
             }
+        }
+        public IActionResult GetRoomsByBuilding(string building)
+        {
+            var rooms = _context.Rooms.Where(r => r.Building == building)
+                                       .Select(r => new { value = r.RoomId, text = r.NumberRoom })
+                                       .ToList();
+            return Json(rooms);
+        }
+        public IActionResult GetStudentsByRoom(int roomId)
+        {
+            var students = _context.Students.Where(s => s.RoomId == roomId)
+                                            .Select(s => new { value = s.StudentId, text = s.FullName })
+                                            .ToList();
+            return Json(students);
         }
 
     }

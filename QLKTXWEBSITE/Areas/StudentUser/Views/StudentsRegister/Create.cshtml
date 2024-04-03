@@ -29,13 +29,7 @@
 
                                     <div class="row d-flex">
                                         <div class="form-outline mb-4 col-6">
-                                            <select asp-for="Dh" class="form-control  custom-input" id="inputGroupSelect02" style="height:46px; color:#6c757d">
-                                                <option value="Chưa chọn">Khóa</option>
-                                                <option value="1">DH11</option>
-                                                <option value="2">DH12</option>
-                                                <option value="3">DH13</option>
-                                                <option value="4">DH14</option>
-                                            </select>
+                                            <select asp-for="Dhid" class="form-controlcustom-input" id="inputGroupSelect02" style="height:46px; color:#6c757d" asp-items="ViewBag.Dhid"></select>
                                         </div>
                                         <div class="form-outline mb-4 col-6">
                                             <select asp-for="Gender" class="form-control  custom-input" id="inputGroupSelect02" style="height:46px; color:#6c757d">

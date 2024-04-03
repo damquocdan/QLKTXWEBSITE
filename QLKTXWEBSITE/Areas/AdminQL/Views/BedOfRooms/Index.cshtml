@@ -40,15 +40,14 @@
                         <div class="card-body">
                             <h5 class="card-title">Giường số: @Html.DisplayFor(modelItem => item.NumberBed)</h5>
                             <br />
-                            @if (item.Status == false)
+                            @if (item.Status == true)
                             {
-                                <input type="hidden" name="bedId" value="@item.BedId" />
-                                <a asp-action="ListStudentBed" asp-route-bedId="@ViewBag.BedId" class="btn btn-warning btn-block">Chọn sinh viên</a>
+                                <a href="#" class="btn btn-primary btn-block btn-details" data-bed-id="@item.BedId">Thông tin sinh viên</a>
                             }
                             else
                             {
-                                <!-- Thêm data-bed-id để chứa BedId -->
-                                <a href="#" class="btn btn-primary btn-block btn-details" data-bed-id="@item.BedId">Thông tin sinh viên</a>
+                                <input type="hidden" name="bedId" value="@item.BedId" />
+                                <a asp-action="ListStudentBed" asp-route-bedId="@item.BedId" asp-route-roomId="@item.RoomId" class="btn btn-warning btn-block">Chọn sinh viên</a>
                             }
                         </div>
                     </div>
@@ -63,18 +62,18 @@
         $(document).ready(function () {
             $('.btn-details').click(function (e) {
                 e.preventDefault(); // Ngăn chặn hành động mặc định của thẻ
-            var bedId = $(this).data('bed-id');
+                var bedId = $(this).data('bed-id');
 
-            // Sử dụng AJAX để tải dữ liệu chi tiết của sinh viên
-            $.get('/Students/DetailsPop', { id: bedId })
-                .done(function (data) {
-                    // Hiển thị dữ liệu chi tiết trong modal
-                    $('#studentDetails').html(data);
-                    $('#studentDetailsModal').modal('show');
-                })
-                .fail(function () {
-                    alert('Không thể tải chi tiết sinh viên.');
-                });
+                // Sử dụng AJAX để tải dữ liệu chi tiết của sinh viên
+                $.get('/Students/DetailsPop', { id: bedId })
+                    .done(function (data) {
+                        // Hiển thị dữ liệu chi tiết trong modal
+                        $('#studentDetails').html(data);
+                        $('#studentDetailsModal').modal('show');
+                    })
+                    .fail(function () {
+                        alert('Không thể tải chi tiết sinh viên.');
+                    });
             });
         });
     </script>

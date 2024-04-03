@@ -38,6 +38,7 @@
                     <form asp-action="ChooseBed" method="post">
                         <input type="hidden" name="studentId" value="@item.StudentId" />
                         <input type="hidden" name="bedId" value="@ViewBag.BedId" />
+                        <input type="hidden" name="roomId" value="@ViewBag.RoomId" />
                         <button type="submit" class="btn btn-primary btn-sm">Chọn</button>
                     </form>
                 </td>

@@ -89,8 +89,9 @@ namespace QLKTXWEBSITE.Controllers
                 return NotFound();
             }
 
-            return PartialView("PopUpStudent",student);
+            return PartialView("PopUpStudent", student);
         }
+
         // GET: Students/Create
         public IActionResult Create()
         {
