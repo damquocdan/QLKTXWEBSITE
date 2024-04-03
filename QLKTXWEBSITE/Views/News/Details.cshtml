@@ -3,24 +3,27 @@
 @{
     ViewData["Title"] = "Details";
 }
-
+<hr style="color:green" />
 <h1> @Html.DisplayFor(model => model.Title)</h1>
 
-<div>
-    <h4><a asp-action="Index">Trở lại</a></h4>
-    <hr />
+<div class="d-flex">
+    
         <div>
-        <img src="@Model.Author" alt="@Model.Title" width="800px" height="100%" />
+            <img src="@Model.Author" alt="@Model.Title" style="width:800px; height:100%; border-radius:5px" />
         </div>
-
-        <div>
-            @Html.DisplayFor(model => model.Content)
+        <div class="ps-5">
+            <div class="row" >
+                <p class="fw-normal" style="font-size:1.2rem">@Html.DisplayFor(model => model.Content)</p>
+            </div>
+            <div class="row float-end">
+                <p class="" style="font-size:0.8rem; color:#ccc;">@Html.DisplayFor(model => model.PublishedDate)</p>
+            </div>
         </div>
-
-        <div>
-            @Html.DisplayFor(model => model.PublishedDate)
-        </div>      
+              
 </div>
-<div>
-    <a asp-action="Index">Back to List</a>
+
+<div class="mt-2">
+    <a asp-action="Index" style="text-decoration:none">
+        <div class="d-flex align-items-center"><i class="fa-solid fa-arrow-left fa-xl"></i><p class="mb-0 ps-2">Quay trở lại</p></div>
+    </a>
 </div>
