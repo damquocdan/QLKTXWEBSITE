@@ -22,11 +22,30 @@ namespace QLKTXWEBSITE.Areas.AdminQL.Controllers
         }
 
         // GET: AdminQL/Occupancies
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string name, string room, string status)
         {
-            var qlktxContext = _context.Occupancies.Include(o => o.Room).Include(o => o.Student);
-            return View(await qlktxContext.ToListAsync());
+            IQueryable<Occupancy> occupancies = _context.Occupancies.Include(o => o.Student).Include(o => o.Room);
+
+            if (!string.IsNullOrEmpty(name))
+            {
+                occupancies = occupancies.Where(o => o.Student.FullName.Contains(name));
+            }
+
+            if (!string.IsNullOrEmpty(status))
+            {
+                if (status == "paid")
+                {
+                    occupancies = occupancies.Where(o => o.Status == true);
+                }
+                else if (status == "unpaid")
+                {
+                    occupancies = occupancies.Where(o => o.Status == false);
+                }
+            }
+
+            return View(await occupancies.ToListAsync());
         }
+
 
         // GET: AdminQL/Occupancies/Details/5
         public async Task<IActionResult> Details(int? id)

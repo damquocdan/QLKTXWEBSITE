@@ -10,7 +10,17 @@
 <p>
     <a asp-action="Create" class="btn btn-success"><i class="fas fa-plus"></i>Tạo tin tức mới</a>
 </p>
-
+<form method="get">
+    <div class="row mb-3">
+        <div class="col-md-6">
+            <label for="title" class="form-label">Tiêu đề:</label>
+            <input type="text" class="form-control" id="title" name="title">
+        </div>
+        <div class="col-md-3">
+            <button type="submit" class="btn btn-primary mt-4">Tìm kiếm</button>
+        </div>
+    </div>
+</form>
 <table class="table mb-5">
     <thead class="thead-dark ">
         <tr>

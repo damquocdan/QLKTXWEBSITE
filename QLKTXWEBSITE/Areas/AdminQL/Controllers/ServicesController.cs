@@ -20,10 +20,39 @@ namespace QLKTXWEBSITE.Areas.AdminQL.Controllers
         }
 
         // GET: AdminQL/Services
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string studentName, string serviceName, string month, bool? status)
         {
-            var qlktxContext = _context.Services.Include(s => s.Room).Include(s => s.Student);
-            return View(await qlktxContext.ToListAsync());
+            // Lấy toàn bộ dữ liệu dịch vụ từ cơ sở dữ liệu
+            var services = _context.Services.Include(s => s.Room).Include(s => s.Student).AsQueryable();
+
+            // Áp dụng các điều kiện tìm kiếm nếu được cung cấp
+            if (!string.IsNullOrEmpty(studentName))
+            {
+                services = services.Where(s => s.Student.FullName.Contains(studentName));
+            }
+
+            if (!string.IsNullOrEmpty(serviceName))
+            {
+                services = services.Where(s => s.ServiceName.Contains(serviceName));
+            }
+
+            if (!string.IsNullOrEmpty(month))
+            {
+                if (int.TryParse(month, out int monthValue))
+                {
+                    services = services.Where(s => s.Month == monthValue);
+                }
+            }
+
+            if (status.HasValue)
+            {
+                services = services.Where(s => s.Status == status);
+            }
+
+            // Thực hiện truy vấn để lấy dữ liệu dịch vụ và chuyển sang danh sách
+            var serviceList = await services.ToListAsync();
+
+            return View(serviceList);
         }
 
         // GET: AdminQL/Services/Details/5

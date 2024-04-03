@@ -10,6 +10,53 @@
 <p>
     <a asp-action="Create" class="btn btn-primary"><i class="fa-solid fa-circle-plus fa-xl me-2"></i>Tạo mới</a>
 </p>
+<form method="get">
+    <div class="row mb-3">
+        <div class="col-md-3">
+            <label for="studentName" class="form-label">Tên sinh viên:</label>
+            <input type="text" class="form-control" id="studentName" name="studentName">
+        </div>
+        <div class="col-md-3">
+            <label for="serviceName" class="form-label">Tên dịch vụ:</label>
+            <select class="form-select" id="serviceName" name="serviceName">
+                <option value="">Tất cả</option>
+                <option value="Điện">Dịch vụ điện</option>
+                <option value="Nước">Dịch vụ nước</option>
+            </select>
+
+        </div>
+        <div class="col-md-3">
+            <label for="month" class="form-label">Tháng:</label>
+            <select class="form-select" id="month" name="month">
+                <option value="">Tất cả</option>
+                <option value="1">Tháng 1/2024</option>
+                <option value="2">Tháng 2/2024</option>
+                <option value="3">Tháng 3/2024</option>
+                <option value="4">Tháng 4/2024</option>
+                <option value="5">Tháng 5/2024</option>
+                <option value="6">Tháng 6/2024</option>
+                <option value="7">Tháng 7/2024</option>
+                <option value="8">Tháng 8/2024</option>
+                <option value="9">Tháng 9/2024</option>
+                <option value="10">Tháng 10/2024</option>
+                <option value="11">Tháng 11/2024</option>
+                <option value="12">Tháng 12/2024</option>
+
+            </select>
+        </div>
+        <div class="col-md-3">
+            <label for="status" class="form-label">Trạng thái:</label>
+            <select class="form-select" id="status" name="status">
+                <option value="">Tất cả</option>
+                <option value="true">Đã thanh toán</option>
+                <option value="false">Chưa thanh toán</option>
+            </select>
+        </div>
+        <div class="col-md-3">
+            <button type="submit" class="btn btn-primary mt-4">Tìm kiếm</button>
+        </div>
+    </div>
+</form>
 <table class="table mt-4 table-striped mb-5">
     <thead class="thead-dark ">
         <tr>

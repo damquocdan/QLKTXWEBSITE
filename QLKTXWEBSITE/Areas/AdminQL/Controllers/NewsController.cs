@@ -20,13 +20,22 @@ namespace QLKTXWEBSITE.Areas.AdminQL.Controllers
         }
 
         // GET: AdminQL/News
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string title)
         {
-              return _context.News != null ? 
-                          View(await _context.News.ToListAsync()) :
-                          Problem("Entity set 'QlktxContext.News'  is null.");
-        }
+            // Lấy toàn bộ dữ liệu tin tức từ cơ sở dữ liệu
+            var news = _context.News.AsQueryable();
 
+            // Áp dụng điều kiện tìm kiếm nếu tiêu đề được cung cấp
+            if (!string.IsNullOrEmpty(title))
+            {
+                news = news.Where(n => n.Title.Contains(title));
+            }
+
+            // Thực hiện truy vấn để lấy dữ liệu tin tức và chuyển sang danh sách
+            var newsList = await news.ToListAsync();
+
+            return View(newsList);
+        }
         // GET: AdminQL/News/Details/5
         public async Task<IActionResult> Details(int? id)
         {

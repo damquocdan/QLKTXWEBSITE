@@ -13,6 +13,7 @@ using OfficeOpenXml.Table;
 using OfficeOpenXml;
 using OfficeOpenXml.Style;
 using System.Drawing;
+using System.Security.Cryptography;
 
 namespace QLKTXWEBSITE.Areas.AdminQL.Controllers
 {
@@ -27,7 +28,7 @@ namespace QLKTXWEBSITE.Areas.AdminQL.Controllers
         }
 
         // GET: AdminQL/Students
-        public async Task<IActionResult> Index(string name)
+        public async Task<IActionResult> Index(string name,string bed)
         {
             IQueryable<Student> students = _context.Students.Include(s => s.Bed).Include(s => s.Department).Include(s => s.Dh).Include(s => s.Room);
 
@@ -35,7 +36,17 @@ namespace QLKTXWEBSITE.Areas.AdminQL.Controllers
             {
                 students = students.Where(s => s.FullName.Contains(name));
             }
-
+            if (!string.IsNullOrEmpty(bed))
+            {
+                if (bed == "null")
+                {
+                    students = students.Where(s => s.BedId == null);
+                }
+                else if (bed == "notnull")
+                {
+                    students = students.Where(s => s.BedId != null);
+                }
+            }
             return View(await students.ToListAsync());
 
         }
