@@ -25,7 +25,10 @@
             </div>
             <div class="form-group">
                 <label asp-for="Gender" class="control-label">Giới tính</label>
-                <input asp-for="Gender" class="form-control" />
+                <select asp-for="Gender" class="form-control">
+                    <option value="Nam">Nam</option>
+                    <option value="Nữ">Nữ</option>
+                </select>
                 <span asp-validation-for="Gender" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -56,7 +59,7 @@
                 <span asp-validation-for="StudentCode" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Dhid" class="control-label"></label>
+                <label asp-for="Dhid" class="control-label">Khoá</label>
                 <select asp-for="Dhid" class="form-control" asp-items="ViewBag.Dhid"></select>
             </div>
             <div class="form-group">

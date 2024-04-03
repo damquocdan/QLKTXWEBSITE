@@ -16,37 +16,57 @@
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                 <div class="form-group">
                     <label asp-for="ServiceName" class="control-label">Tên dịch vụ</label>
-                    <input asp-for="ServiceName" class="form-control" />
+                    <select asp-for="ServiceName" class="form-control">
+                        <option value="Điện">Điện</option>
+                        <option value="Nước">Nước</option>
+                    </select>
                     <span asp-validation-for="ServiceName" class="text-danger"></span>
                 </div>
                 <div class="form-group">
-                    <label asp-for="Month" class="control-label">Dịch vụ tháng</label>
-                    <input asp-for="Month" class="form-control" />
+                    <label asp-for="Month" class="control-label">Dịch vụ tháng (Năm 2024)</label>
+                    <select id="Month" asp-for="Month" class="form-control">
+                        <option value="1">Tháng 1</option>
+                        <option value="2">Tháng 2</option>
+                        <option value="3">Tháng 3</option>
+                        <option value="4">Tháng 4</option>
+                        <option value="5">Tháng 5</option>
+                        <option value="6">Tháng 6</option>
+                        <option value="7">Tháng 7</option>
+                        <option value="8">Tháng 8</option>
+                        <option value="9">Tháng 9</option>
+                        <option value="10">Tháng 10</option>
+                        <option value="11">Tháng 11</option>
+                        <option value="12">Tháng 12</option>
+                    </select>
                     <span asp-validation-for="Month" class="text-danger"></span>
                 </div>
                 <div class="form-group">
-                    <label asp-for="Price" class="control-label">Giá</label>
+                    <label asp-for="Price" class="control-label">Số tiền thanh toán</label>
                     <input asp-for="Price" class="form-control" />
                     <span asp-validation-for="Price" class="text-danger"></span>
                 </div>
                 <div class="form-group">
-                    <label asp-for="Room.Building" class="control-label">Toà</label>
+                    <label asp-for="Room.Building" class="control-label">Khu vực</label>
                     <select id="Building" asp-for="Room.Building" class="form-control">
-                        <option value="A">A</option>
-                        <option value="B">B</option>
+                        <option value="O">Vui lòng chọn toà</option>
+                        <option value="D">Toà D</option>
+                        <option value="E">Toà E</option>
+                        <option value="G">Toà G</option>
                     </select>
                     <span asp-validation-for="Room.Building" class="text-danger"></span>
                 </div>
                 <div class="form-group">
-                    <label asp-for="RoomId" class="control-label">Số phòng</label>
-                    <select id="RoomId" asp-for="RoomId" class="form-control"></select>
+                    <label asp-for="RoomId" class="control-label">Phòng số</label>
+                    <select id="RoomId" asp-for="RoomId" class="form-control">
+                        <option value="O">Vui lòng chọn phòng</option>
+                    </select>
                     <span asp-validation-for="RoomId" class="text-danger"></span>
                 </div>
                 <div class="form-group">
-                    <label asp-for="StudentId" class="control-label">Sinh viên</label>
+                    <label asp-for="StudentId" class="control-label">Họ và tên sinh viên</label>
                     <select id="StudentId" asp-for="StudentId" class="form-control"></select>
                 </div>
-                <div class="form-group">
+                <div class="form-group" style="display:none;">
                     <label asp-for="Status" class="control-label"></label>
                     <select asp-for="Status" class="form-control">
                         <option value="false">False</option>

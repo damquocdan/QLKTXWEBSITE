@@ -24,8 +24,9 @@
                         <div class="form-group col-6">
                             <label asp-for="Building" class="control-label">Toà</label>
                             <select asp-for="Building" class="form-control">
-                                <option value="A">A</option>
-                                <option value="B">B</option>
+                                <option value="D">D</option>
+                                <option value="E">E</option>
+                                <option value="G">G</option>
                             </select>
                             <span asp-validation-for="Building" class="text-danger"></span>
                         </div>
@@ -50,15 +51,15 @@
                             <input asp-for="BedNumber" class="form-control" required />
                             <span asp-validation-for="BedNumber" class="text-danger"></span>
                         </div>
-                        <div class="form-group col-6">
-                            <label asp-for="NumberOfStudents" class="control-label">Số sinh viên</label>
-                            <input asp-for="NumberOfStudents" class="form-control" required />
-                            <span asp-validation-for="NumberOfStudents" class="text-danger"></span>
-                        </div>
+                        
                     </div>
 
-                     
-                    <div class="form-group col-12">
+                    <div class="form-group col-6" style="display:none;">
+                        <label asp-for="NumberOfStudents" class="control-label">Số sinh viên</label>
+                        <input asp-for="NumberOfStudents" value="0" class="form-control" required />
+                        <span asp-validation-for="NumberOfStudents" class="text-danger"></span>
+                    </div>
+                    <div class="form-group col-12" style="display:none;">
                         <label asp-for="Status" class="control-label">Trạng thái</label>
                         <select asp-for="Status" class="form-control">
                             <option value="false">False</option>
