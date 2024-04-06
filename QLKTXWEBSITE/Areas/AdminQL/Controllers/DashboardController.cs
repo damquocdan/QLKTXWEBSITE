@@ -45,5 +45,38 @@ namespace QLKTXWEBSITE.Areas.AdminQL.Controllers
 
             return View(viewModel);
         }
+        [HttpGet]
+        public IActionResult GetIncomeData()
+        {
+            var transactions = _context.Transactions.OrderBy(t => t.TransactionDate).ToList();
+
+            var labels = new List<string>();
+            var totalWithStudent = new List<decimal>();
+            var totalWithoutStudent = new List<decimal>();
+
+            decimal accumulatedTotalWithStudent = 0;
+            decimal accumulatedTotalWithoutStudent = 0;
+
+            foreach (var transaction in transactions)
+            {
+                labels.Add(transaction.TransactionDate.Value.ToString("MM/yyyy"));
+
+                if (transaction.StudentId != null)
+                {
+                    accumulatedTotalWithStudent += transaction.Amount.Value;
+                    accumulatedTotalWithoutStudent += 0;
+                }
+                else
+                {
+                    accumulatedTotalWithStudent += 0;
+                    accumulatedTotalWithoutStudent += transaction.Amount.Value;
+                }
+
+                totalWithStudent.Add(accumulatedTotalWithStudent);
+                totalWithoutStudent.Add(accumulatedTotalWithoutStudent);
+            }
+
+            return Json(new { labels, totalWithStudent, totalWithoutStudent });
+        }
     }
 }
