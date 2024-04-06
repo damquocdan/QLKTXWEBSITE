@@ -26,9 +26,9 @@ namespace QLKTXWEBSITE.Areas.StudentUser.Controllers
         }
 
         // GET: StudentUser/Students/Details/5
-        public async Task<IActionResult> Details(int? id)
+        public async Task<IActionResult> Details(int? studentId)
         {
-            if (id == null || _context.Students == null)
+            if (studentId == null || _context.Students == null)
             {
                 return NotFound();
             }
@@ -38,7 +38,7 @@ namespace QLKTXWEBSITE.Areas.StudentUser.Controllers
                 .Include(s => s.Department)
                 .Include(s => s.Dh)
                 .Include(s => s.Room)
-                .FirstOrDefaultAsync(m => m.StudentId == id);
+                .FirstOrDefaultAsync(m => m.StudentId == studentId);
             if (student == null)
             {
                 return NotFound();
