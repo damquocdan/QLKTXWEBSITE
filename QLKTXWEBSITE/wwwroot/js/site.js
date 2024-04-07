@@ -2,15 +2,15 @@
 // for details on configuring this project to bundle and minify static web assets.
 
 // Write your JavaScript code.
-var btn_thong_bao = document.getElementById("button_thong_bao");
-var noi_dung = document.getElementById("noi_dung");
+//var btn_thong_bao = document.getElementById("button_thong_bao");
+//var noi_dung = document.getElementById("noi_dung");
 
-var btn_user = document.getElementById("button_user");
-var menu_user = document.getElementById("menu_user");
+//var btn_user = document.getElementById("button_user");
+//var menu_user = document.getElementById("menu_user");
 
-var display = document.querySelectorAll('*');
+//var display = document.querySelectorAll('*');
 
-//Lặp qua mỗi phần tử và gán trình lắng nghe sự kiện click cho từng phần tử
+////Lặp qua mỗi phần tử và gán trình lắng nghe sự kiện click cho từng phần tử
 //display.forEach(function (element) {
 //    element.addEventListener("click", function () {
 //        menu_user.style.display = "none";
