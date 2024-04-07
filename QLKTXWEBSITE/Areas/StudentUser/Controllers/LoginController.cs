@@ -30,7 +30,8 @@ namespace QLKTXWEBSITE.Areas.StudentUser.Controllers
             {
                 ViewBag.IsLoggedIn = true;
                 HttpContext.Session.SetString("StudentLogin", model.StudentCode);
-                return RedirectToAction("Details", "Students", new { id = dataLogin.StudentId });
+                HttpContext.Session.SetInt32("StudentId", dataLogin.StudentId);
+                return RedirectToAction("Index", "Dashboard", new { studentId = dataLogin.StudentId });
             }
             else
             {

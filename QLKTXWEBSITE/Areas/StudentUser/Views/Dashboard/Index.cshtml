@@ -1,5 +1,110 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
+﻿@model List<QLKTXWEBSITE.Models.News>
+﻿@{
+    ViewData["Title"] = "Trang Chủ";
+    // Tính số lượng phần tử trong danh sách tin tức
+    var totalNewsCount = Model.Count();
+    // Lấy 8 phần tử cuối cùng của danh sách tin tức
+    var lastEightNews = Model.Skip(totalNewsCount - 8).Take(8);
 }
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+<div id="carouselExampleControls" class="carousel slide position-relative" data-bs-ride="carousel">
+    <div class="carousel-inner">
+        <div class="carousel-item active">
+            <img src="~/img/slide1.png" class="d-block w-100 h-100" alt="..." style="border-radius:15px; border:solid 1px green">
+        </div>
+        <div class="carousel-item">
+            <img src="~/img/slide2.png" class="d-block w-100 h-100" alt="..." style="border-radius:15px; border:solid 1px green">
+        </div>
+        <div class="carousel-item">
+            <img src="~/img/slide3.png" class="d-block w-100 h-100" alt="..." style="border-radius:15px; border:solid 1px green">
+        </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+    </button>
+</div>
+<div class="new text-center my-5">
+    <h1>Chào mừng bạn đến với Ký túc xá của Trường Đại Học Tài Nguyên và Môi Trường Hà Nội (HUNRE)!</h1>
+    <h2>Về chúng tôi</h2>
+    <div style="margin: 0 220px 0 220px;">
+        <p style="font-size:20px;">
+            HUNRE là một trong những trường đại học hàng đầu tại Việt Nam chuyên về
+            lĩnh vực tài nguyên và môi trường và với rất nhiều chuyên ngành đa dạng.
+            Với hơn 60 năm xây dựng và phát triển, chúng tôi tự hào là ngôi nhà của
+            những con người tài năng và đam mê với sứ mệnh bảo vệ và bảo vệ tài nguyên
+            thiên nhiên cho thế hệ tương lai.
+        </p>
+        <p style="font-size:20px;">
+            Chúng tôi cam kết cung cấp một môi trường ở ký túc xá có học tập và nghiên cứu chất lượng
+            cao, nơi mà sinh viên có cơ hội phát triển toàn diện, hòa nhập với cộng
+            đồng và đóng góp tích cực với xã hội
+        </p>
+    </div>
+    <div style="margin: 0 320px 0 320px;">
+        <a asp-action="Aboutus">Xem thêm...</a>
+    </div>
+</div>
+<img src="~/images/aboutus/anh2.jpg" width="100%" style="border-radius:50%" />
+<div class="section">
+    <div class="proprietary container-box">
+        <h1 class="my-5 text-center fw-bold">Tin Tức</h1>
+        <div class="row list-projects">
+            @foreach (var item in lastEightNews)
+            {
+                <div class="col-md-3">
+                    <div class="card" style="width:100%; height:450px">
+                        <div class="py-3">
+                            <img src="@item.Author" alt="@item.Title" class="mb-0 w-100 text-center" style="width:100%; height:190px; border-radius:5px;" />
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title text-center">@Html.DisplayFor(modelItem => item.Title)</h5>
+                            <div class="w-100" style="height:100px;overflow: hidden;text-overflow: ellipsis;">
+                                <p class="card-text" style="text-align:justify">@Html.DisplayFor(modelItem => item.Content)</p>
+                            </div>
+                            <p class="card-text float-end" style="font-size:0.6rem; color:#ccc;">@Html.DisplayFor(modelItem => item.PublishedDate)</p>
+                            <br />
+                            <a asp-controller="News" asp-action="Details" asp-route-id="@item.NewsId" class="btn btn-primary">Xem thêm</a>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+
+        <div class="d-flex justify-content-center">
+            <a asp-controller="news">
+                <button type="button" class="btn btn-primary btn-lg rounded-0 my-5">
+                    Xem tất cả
+                </button>
+            </a>
+        </div>
+    </div>
+</div>
+
+
+<div class="contact d-flex justify-content-center my-4">
+    <div class="d-flex" style="margin:0 320px 0 320px;">
+        <div class="me-5">
+            <ul>
+                <li>Liên hệ nhanh</li>
+                <li>Sdt : 0999.999.999</li>
+                <li>Email : hunre@gmail.com</li>
+            </ul>
+        </div>
+        <div class="col-md-10">
+            <form action="">
+                <input type="text" placeholder="Tên của bạn" name="name" class="mx-2 my-2">
+                <input type="number" placeholder="Số điện thoại" name="sdt" class="mx-2 my-2">
+                <input type="email" name="email" id="email" placeholder="Email của bạn" class="mx-2 my-2">
+                <br>
+                <input type="text" placeholder="Ghi chú của bạn" name="ghichu" class="mx-2 my-2 col-md-7">
+                <button name="send" class="ms-2 my-2 col-md-2">Gửi đi</button>
+            </form>
+        </div>
+    </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>

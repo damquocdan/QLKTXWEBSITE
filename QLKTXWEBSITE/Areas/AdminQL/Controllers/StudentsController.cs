@@ -14,6 +14,7 @@ using OfficeOpenXml;
 using OfficeOpenXml.Style;
 using System.Drawing;
 using System.Security.Cryptography;
+using System.Globalization;
 
 namespace QLKTXWEBSITE.Areas.AdminQL.Controllers
 {
@@ -232,11 +233,19 @@ namespace QLKTXWEBSITE.Areas.AdminQL.Controllers
                         string departmentName = worksheet.Cells[row, 9].Value?.ToString();
                         if (departmentMappings.ContainsKey(departmentName))
                         {
+                            DateTime dateOfBirth;
+                            string dateOfBirthString = worksheet.Cells[row, 4].Value?.ToString();
+                            if (!DateTime.TryParseExact(dateOfBirthString, "dd/MM/yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out dateOfBirth))
+                            {
+                                ModelState.AddModelError("", $"Không thể chuyển đổi ngày sinh '{dateOfBirthString}' thành DateTime.");
+                                return RedirectToAction(nameof(Index));
+                            }
+
                             var newStudent = new Student
                             {
                                 StudentCode = worksheet.Cells[row, 2].Value?.ToString(),
                                 FullName = worksheet.Cells[row, 3].Value?.ToString(),
-                                DateOfBirth = Convert.ToDateTime(worksheet.Cells[row, 4].Value),
+                                DateOfBirth = dateOfBirth,
                                 Gender = worksheet.Cells[row, 5].Value?.ToString(),
                                 PhoneNumber = worksheet.Cells[row, 6].Value?.ToString(),
                                 ParentPhoneNumber = worksheet.Cells[row, 7].Value?.ToString(),
@@ -264,6 +273,8 @@ namespace QLKTXWEBSITE.Areas.AdminQL.Controllers
                 }
             }
         }
+
+
 
         // GET: AdminQL/Students/Details/5
         public async Task<IActionResult> Details(int? id)

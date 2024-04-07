@@ -9,6 +9,22 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/QLKTXWEB.styles.css" asp-append-version="true" />
+    <style>
+        #dropdown_menu {
+            display: none;
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background-color: white;
+            border: 1px solid #ccc;
+            padding: 10px 0;
+        }
+
+        .user:hover #dropdown_menu {
+            display: block;
+        }
+
+    </style>
 </head>
 <body class="mb-0 position-relative">
     <header>
@@ -38,9 +54,13 @@
                     </ul>
                     <div class="dk-dn d-flex position-absolute end-0">
                         <div class="user me-4">
-                            <button id="button_user" type="button" class="border-0 ">
-                                <a asp-area="StudentUser" asp-controller="Login" asp-action="Index"><i class="fa-regular fa-user fa-2xl" style="color: #63E6BE;"></i></a>
+                            <button id="button_user" type="button" class="border-0">
+                                <i class="fa-regular fa-user fa-2xl" style="color: #63E6BE;"></i>
                             </button>
+                            <ul id="dropdown_menu" class="dropdown-menu">
+                                <li><a class="dropdown-item" asp-area="StudentUser" asp-controller="StudentsRegister" asp-action="Create">Đăng ký</a></li>
+                                <li><a class="dropdown-item" asp-area="StudentUser" asp-controller="Login" asp-action="Index">Đăng nhập</a></li>
+                            </ul>
                         </div>
                     </div>
                 </div>

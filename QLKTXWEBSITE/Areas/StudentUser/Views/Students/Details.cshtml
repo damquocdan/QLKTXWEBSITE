@@ -54,28 +54,17 @@
 </div>
 
 <div>
-    <a asp-action="ChangePassword" asp-route-id="@Model?.StudentId">
-        <button type="button" class="btn btn-primary btn-sm"
-                style="padding-left: 2.5rem; padding-right: 2.5rem;">
-            Đổi mật khẩu
-        </button>
-    </a>
-    <a asp-controller="Services" asp-action="Index" asp-route-studentId="@Model?.StudentId">
-        <button type="button" class="btn btn-primary btn-sm"
-                style="padding-left: 2.5rem; padding-right: 2.5rem;">
-            Dịch vụ hàng tháng
-        </button>
-    </a>
-    <a asp-controller="Occupancies" asp-action="Index" asp-route-studentId="@Model?.StudentId">
-        <button type="button" class="btn btn-primary btn-sm"
-                style="padding-left: 2.5rem; padding-right: 2.5rem;">
-            Danh sách hợp đồng gia hạn
-        </button>
-    </a>
+
     <a asp-action="Edit" asp-route-id="@Model?.StudentId">
         <button type="button" class="btn btn-primary btn-sm"
                 style="padding-left: 2.5rem; padding-right: 2.5rem;">
             Sửa thông tin
+        </button>
+    </a>
+    <a asp-action="ChangePassword" asp-route-id="@Model?.StudentId">
+        <button type="button" class="btn btn-primary btn-sm"
+                style="padding-left: 2.5rem; padding-right: 2.5rem;">
+            Đổi mật khẩu
         </button>
     </a>
     <a asp-controller="Login" asp-action="Logout">
