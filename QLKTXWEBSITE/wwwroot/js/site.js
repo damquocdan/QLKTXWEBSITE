@@ -18,24 +18,45 @@ var display = document.querySelectorAll('*');
 //    });
 //});
 
-btn_thong_bao.addEventListener("click", function () {
-    // Kiểm tra lớp .hienthi có hiển thị hay không
-    if (noi_dung.style.display === "none" || noi_dung.style.display === "") {
-        noi_dung.style.display = "block";
-        menu_user.style.display = "none";// Hiển thị nếu đang ẩn
-    } else {
-        noi_dung.style.display = "none"; // Ẩn nếu đang hiển thị
-    }
-});
+//btn_thong_bao.addEventListener("click", function () {
+//    // Kiểm tra lớp .hienthi có hiển thị hay không
+//    if (noi_dung.style.display === "none" || noi_dung.style.display === "") {
+//        noi_dung.style.display = "block";
+//        menu_user.style.display = "none";// Hiển thị nếu đang ẩn
+//    } else {
+//        noi_dung.style.display = "none"; // Ẩn nếu đang hiển thị
+//    }
+//});
 
-btn_user.addEventListener("click", function () {
-    // Kiểm tra lớp .hienthi có hiển thị hay không
-    if (menu_user.style.display === "none" || menu_user.style.display === "") {
-        menu_user.style.display = "block";
-        noi_dung.style.display = "none"; // Hiển thị nếu đang ẩn
-    } else {
-        menu_user.style.display = "none"; // Ẩn nếu đang hiển thị
-    }
-});
+//btn_user.addEventListener("click", function () {
+//    // Kiểm tra lớp .hienthi có hiển thị hay không
+//    if (menu_user.style.display === "none" || menu_user.style.display === "") {
+//        menu_user.style.display = "block";
+//        noi_dung.style.display = "none"; // Hiển thị nếu đang ẩn
+//    } else {
+//        menu_user.style.display = "none"; // Ẩn nếu đang hiển thị
+//    }
+//});
 
 /*contact*/
+
+
+/*btn scrollToTop*/
+const btnScrollToTop = document.getElementById('btnScrollToTop');
+const docEl = document.documentElement
+
+document.addEventListener('scroll', () => {
+    const scrollToTall = docEl.scrollHeight - docEl.clientHeight
+    if ((docEl.scrollTop / scrollToTall) >= 0.4) {
+        btnScrollToTop.hidden = false
+    } else {
+        btnScrollToTop.hidden = true
+    }
+});
+
+btnScrollToTop.addEventListener('click', () => {
+    docEl.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+    })
+})

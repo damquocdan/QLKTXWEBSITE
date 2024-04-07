@@ -10,9 +10,8 @@
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/QLKTXWEB.styles.css" asp-append-version="true" />
 </head>
-<body class="mb-0">
+<body class="mb-0 position-relative">
     <header>
-        
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <div class="container-fluid">
                 <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4e/HUNRE_Logo.png/768px-HUNRE_Logo.png" width="100px" title="logo" />
@@ -53,6 +52,7 @@
             @RenderBody()
         </main>
     </div>
+    <button type="button" class="btn btn-success" id="btnScrollToTop" hidden><i class="fa-solid fa-arrow-up fa-xl" style="color: #fff;"></i></button>
     <footer class="w-100">
         <div class="container-fluid mt-5">
             <div class="card bg-white pb-0">
