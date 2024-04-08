@@ -25,7 +25,7 @@ namespace QLKTXWEBSITE.Areas.StudentUser.Controllers
             }
 
             var pass = model.Password;
-            var dataLogin = _context.Students.FirstOrDefault(x => x.StudentCode.Equals(model.StudentCode) && x.Password.Equals(pass));
+            var dataLogin = _context.Students.Where(x => x.StudentCode.Equals(model.StudentCode) && x.Password.Equals(pass)).FirstOrDefault();
             if (dataLogin != null)
             {
                 ViewBag.IsLoggedIn = true;
