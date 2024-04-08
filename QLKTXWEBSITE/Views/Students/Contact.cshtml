@@ -23,22 +23,19 @@
         <form asp-action="Contact">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="FullName" class="control-label" style="font-size:1.3rem; color:green; font-weight:500">Họ và tên</label>
-                <input asp-for="FullName" class="form-control" style="border:solid 1px green; border-radius:5px" />
+                <label asp-for="FullName" class="control-label" style="font-size:1.3rem; color:green; font-weight:500">Ban quản lý Ký túc xá thuộc Trung tâm Dịch vụ trường học, Phòng 604, Tòa B, 
+                    Trường Đại học Tài nguyên và Môi trường Hà Nội, số 41A Đường Phú Diễn, Quận Bắc Từ Liêm, Tp Hà Nội.  </label>
                 <span asp-validation-for="FullName" class="text-danger"></span>
             </div>
+            <hr />
             <div class="form-group my-2">
-                <label asp-for="PhoneNumber" class="control-label" style="font-size:1.3rem; color:green; font-weight:500 ">Số điện thoại</label>
-                <input asp-for="PhoneNumber" class="form-control" style="border:solid 1px green; border-radius:5px" />
+                <label asp-for="PhoneNumber" class="control-label" style="font-size:1.3rem; color:green; font-weight:500 ">Liên hệ Cô Nga 0987.896.268, Thầy Việt 0986.206.122 để được hỗ trợ.</label>
                 <span asp-validation-for="PhoneNumber" class="text-danger"></span>
             </div>
+            <hr />
             <div class="form-group">
-                <label asp-for="Email" class="control-label" style="font-size:1.3rem; color:green; font-weight:500">Email</label>
-                <input asp-for="Email" class="form-control" style="border:solid 1px green; border-radius:5px" />
+                <label asp-for="Email" class="control-label" style="font-size:1.3rem; color:green; font-weight:500">Email:trungtamdichvutruonghoc@hunre.edu.vn</label>
                 <span asp-validation-for="Email" class="text-danger"></span>
-            </div>
-            <div class="form-group mt-3 w-100 ">
-                <button type="submit" class="btn btn-success col-md-3"><i class="fa-regular fa-paper-plane fa-xl me-2" style="color:#fff"></i>Gửi</button>
             </div>
         </form>
         

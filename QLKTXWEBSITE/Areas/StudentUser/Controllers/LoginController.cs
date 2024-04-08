@@ -25,12 +25,12 @@ namespace QLKTXWEBSITE.Areas.StudentUser.Controllers
             }
 
             var pass = model.Password;
-            var dataLogin = _context.Students.FirstOrDefault(x => x.StudentCode.Equals(model.StudentCode) && x.Password.Equals(pass));
+            var dataLogin = _context.Students.Where(x => x.StudentCode.Equals(model.StudentCode) && x.Password.Equals(pass)).FirstOrDefault();
             if (dataLogin != null)
             {
                 ViewBag.IsLoggedIn = true;
                 HttpContext.Session.SetString("StudentLogin", model.StudentCode);
-                HttpContext.Session.SetInt32("StudentId", dataLogin.StudentId);
+                HttpContext.Session.SetInt32("StudentId", dataLogin.StudentId); // Access StudentId from dataLogin
                 return RedirectToAction("Index", "Dashboard", new { studentId = dataLogin.StudentId });
             }
             else
@@ -38,8 +38,8 @@ namespace QLKTXWEBSITE.Areas.StudentUser.Controllers
                 ModelState.AddModelError(string.Empty, "Thông tin đăng nhập không chính xác.");
                 return View(model);
             }
-
         }
+
         [HttpGet]// thoát đăng nhập, huỷ session
         public IActionResult Logout()
         {

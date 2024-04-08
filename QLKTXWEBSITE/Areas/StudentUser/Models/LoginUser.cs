@@ -9,5 +9,6 @@ namespace QLKTXWEBSITE.Models
             [Required(ErrorMessage = "Mật khẩu không để trống")]
             public string Password { get; set; }
             public bool Remember { get; set; }
+            public int StudentId { get; internal set; }
     }
 }

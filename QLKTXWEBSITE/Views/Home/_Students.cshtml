@@ -1,0 +1,28 @@
+﻿@model List<QLKTXWEBSITE.Models.Student>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h2>Danh sách sinh viên</h2>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Họ và tên</th>
+                        <th>Số điện thoại</th>
+                        <!-- Thêm các cột khác nếu cần -->
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var student in Model)
+                    {
+                        <tr>
+                            <td>@student.FullName</td>
+                            <td>@student.PhoneNumber</td>
+                            <!-- Thêm các cột khác nếu cần -->
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
