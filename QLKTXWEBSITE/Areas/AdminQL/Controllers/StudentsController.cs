@@ -474,7 +474,6 @@ namespace QLKTXWEBSITE.Areas.AdminQL.Controllers
             {
                 SendEmail(student.Email, "Tiêu đề email", "Nội dung email");
             }
-
             return RedirectToAction("Index"); // Chuyển hướng sau khi gửi email
         }
 

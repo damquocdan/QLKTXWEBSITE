@@ -3,53 +3,62 @@
     .disabled-room {
         pointer-events: none;
         cursor: not-allowed;
-        background-color: #ffcccc;
+        background-color: antiquewhite;
         height:70px;
         font-size: 20px;
     }
 
     .enabled-room {
-        background-color: #ccffcc; /* Màu xanh */
+        background-color: lawngreen ; /* Màu xanh */
         height: 70px;
         font-size:20px;
+    }
+
+    .trapezoid {
+        border-bottom: 70px solid #007bff; /* Độ dài đáy dưới */
+        border-left: 40px solid transparent; /* Độ dài cạnh trái */
+        border-right: 40px solid transparent; /* Độ dài cạnh phải */
+        height: 0;
+        width: 100%; /* Chiều rộng của hình thang */
+        text-align: center; /* Căn giữa nội dung */
     }
 </style>
 <div class="row" style="height:400px">
     <h1>Ký túc xá HUNRE</h1>
     <div class="col-md-4">
-        <h3 style="text-align:center">Toà D</h3>
+        <h3 class="trapezoid" style="text-align:center">Toà D</h3>
         <div class="row" >
             @foreach (var room in Model[0])
             {
                 <div class="col-md-2 @if(room.Status == true) { <text>disabled-room</text> }else{<text>enabled-room</text>}">
                     <a href="#" class="room-link"  data-room-id="@room.RoomId">P.@room.NumberRoom</a>
-                    <h4>@room.Floor</h4>
+                    <p style="font-size:10px">@room.Floor .000đ</p>
                 </div>
                 <!-- Hiển thị các thông tin khác của phòng -->
             }
         </div>
     </div>
     <div class="col-md-4">
-        <h3 style="text-align:center">Toà E</h3>
+        <h3 class="trapezoid" style="text-align:center">Toà E</h3>
         <div class="row">
             @foreach (var room in Model[1])
             {
-                <div class="col-md-2">
-                    <a href="#" class="room-link" data-room-id="@room.RoomId">@room.NumberRoom</a>
-                    <h4>@room.Floor</h4>
+                <div class="col-md-2 @if(room.Status == true) { <text>disabled-room</text> }else{<text>enabled-room</text>}">
+                    <a href="#" class="room-link"  data-room-id="@room.RoomId">P.@room.NumberRoom</a>
+                    <p style="font-size:10px">@room.Floor .000đ</p>
                 </div>
                 <!-- Hiển thị các thông tin khác của phòng -->
             }
         </div>
     </div>
     <div class="col-md-4"> 
-        <h3 style="text-align:center">Toà G</h3>
+        <h3 class="trapezoid" style="text-align:center">Toà G</h3>
         <div class="row">
             @foreach (var room in Model[2])
             {
-                <div class="col-md-2">
-                    <a href="#" class="room-link" data-room-id="@room.RoomId">@room.NumberRoom</a>
-                    <h4>@room.Floor</h4>
+                <div class="col-md-2 @if(room.Status == true) { <text>disabled-room</text> }else{<text>enabled-room</text>}">
+                    <a href="#" class="room-link"  data-room-id="@room.RoomId">P.@room.NumberRoom</a>
+                    <p style="font-size:10px">@room.Floor .000đ</p>
                 </div>
                 <!-- Hiển thị các thông tin khác của phòng -->
             }
