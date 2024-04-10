@@ -3,13 +3,13 @@
     .disabled-room {
         pointer-events: none;
         cursor: not-allowed;
-        background-color: #ffcccc;
+        background-color: antiquewhite;
         height:70px;
         font-size: 20px;
     }
 
     .enabled-room {
-        background-color: #ccffcc; /* Màu xanh */
+        background-color: lawngreen ; /* Màu xanh */
         height: 70px;
         font-size:20px;
         border-radius:5px;
@@ -36,6 +36,15 @@
 
     .enabled-room:active{
         background-color: #00ff21;
+    }
+
+    .trapezoid {
+        border-bottom: 70px solid #007bff; /* Độ dài đáy dưới */
+        border-left: 40px solid transparent; /* Độ dài cạnh trái */
+        border-right: 40px solid transparent; /* Độ dài cạnh phải */
+        height: 0;
+        width: 100%; /* Chiều rộng của hình thang */
+        text-align: center; /* Căn giữa nội dung */
     }
 </style>
 <div class="row" style="height:400px">
