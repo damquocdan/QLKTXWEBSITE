@@ -20,7 +20,11 @@
     </div>
 </div>
 
-
+<div>
+    <form asp-action="SendEmailToAllStudents" method="post">
+        <button type="submit" class="btn btn-primary">Gửi email cho toàn bộ sinh viên</button>
+    </form>
+</div>
 <div class="row">
     <div class="col-md-6 mb-2">
         <form action="" method="get" class="form-inline">
@@ -44,6 +48,9 @@
     </div>
 </div>
 
+<div class="text-right mb-2">
+    <button id="deleteSelected" class="btn btn-danger">Xoá sinh viên đã chọn</button>
+</div>
 <table class="table mb-5">
     <thead class="thead-dark">
         <tr>
@@ -62,7 +69,7 @@
             <th>
                 <div class="text-center">
                     <p class="mb-0">
-                        Mã sinh viên
+                       Email
                     </p>
                 </div>
             </th>
@@ -103,6 +110,11 @@
             </th>
             <th>
                 <div class="text-center">
+                    <input type="checkbox" id="selectAll" />
+                </div>
+            </th>
+            <th>
+                <div class="text-center">
                     <p class="mb-0">
                         Chức năng
                     </p>
@@ -129,7 +141,7 @@
                 </td>
                 <td>
                     <div class="d-flex align-items-center" style="height:38px">
-                        <p class="mb-0 w-100 text-center">@Html.DisplayFor(modelItem => item.StudentCode)</p>
+                        <p class="mb-0 w-100 text-center">@Html.DisplayFor(modelItem => item.Email)</p>
                     </div>
                 </td>
                 <td>
@@ -158,6 +170,11 @@
                     </div>
                 </td>
                 <td>
+                    <div class="text-center">
+                        <input type="checkbox" class="studentCheckbox" value="@item.StudentId" />
+                    </div>
+                </td>
+                <td>
                     <div class=" d-flex justify-content-center">
                         <a asp-action="Edit" asp-route-id="@item.StudentId" class="btn btn-primary">Sửa</a>
                         <a asp-action="Details" asp-route-id="@item.StudentId" class="btn btn-success mx-3">Chi tiết</a>
@@ -169,3 +186,69 @@
         }
     </tbody>
 </table>
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            // Chọn / bỏ chọn tất cả các checkbox khi click vào checkbox "selectAll"
+            $("#selectAll").click(function () {
+                $(".studentCheckbox").prop("checked", $(this).prop("checked"));
+            });
+
+            // Xử lý sự kiện khi nút "Xoá đã chọn" được nhấn
+            $("#deleteSelected").click(function () {
+                var selectedIds = [];
+
+                $(".studentCheckbox:checked").each(function () {
+                    selectedIds.push($(this).val());
+                });
+
+                if (selectedIds.length > 0) {
+                    deleteStudents(selectedIds);
+                } else {
+                    alert("Vui lòng chọn ít nhất một sinh viên để xoá.");
+                }
+            });
+
+            // Hàm xử lý xoá sinh viên
+            function deleteStudents(ids) {
+                $.ajax({
+                    type: "POST",
+                    url: "/AdminQL/Students/DeleteSelected",
+                    data: { ids: ids },
+                    success: function () {
+                        window.location.reload(); // Tải lại trang sau khi xoá
+                    },
+                    error: function (xhr, status, error) {
+                        console.error(xhr.responseText);
+                    }
+                });
+            }
+        });
+        $("#sendEmailToSelected").click(function () {
+            var selectedIds = [];
+
+            $(".studentCheckbox:checked").each(function () {
+                selectedIds.push($(this).val());
+            });
+
+            if (selectedIds.length > 0) {
+                sendEmailToSelectedStudents(selectedIds);
+            } else {
+                alert("Vui lòng chọn ít nhất một sinh viên để gửi email.");
+            }
+        });
+        function sendEmailToSelectedStudents(ids) {
+            $.ajax({
+                type: "POST",
+                url: "/AdminQL/Students/SendEmailToSelected",
+                data: { ids: ids },
+                success: function () {
+                    alert("Email đã được gửi thành công cho các sinh viên đã chọn.");
+                },
+                error: function (xhr, status, error) {
+                    console.error(xhr.responseText);
+                }
+            });
+        }
+    </script>
+}

@@ -15,7 +15,8 @@ using OfficeOpenXml.Style;
 using System.Drawing;
 using System.Security.Cryptography;
 using System.Globalization;
-
+using System.Net.Mail;
+using System.Net;
 namespace QLKTXWEBSITE.Areas.AdminQL.Controllers
 {
     //[Area("AdminQL")]
@@ -441,6 +442,80 @@ namespace QLKTXWEBSITE.Areas.AdminQL.Controllers
         private bool StudentExists(int id)
         {
           return (_context.Students?.Any(e => e.StudentId == id)).GetValueOrDefault();
+        }
+        [HttpPost]
+        public IActionResult SendEmailToSelected(List<int> ids)
+        {
+            try
+            {
+                foreach (var id in ids)
+                {
+                    var student = _context.Students.FirstOrDefault(s => s.StudentId == id);
+                    if (student != null && !string.IsNullOrEmpty(student.Email))
+                    {
+                        // Gửi email cho sinh viên ở đây
+                        SendEmail(student.Email, "Tiêu đề email", "Nội dung email");
+                    }
+                }
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
+        }
+        public IActionResult SendEmailToAllStudents()
+        {
+            // Lấy danh sách sinh viên từ cơ sở dữ liệu
+            var students = _context.Students.ToList();
+
+            // Gửi email cho từng sinh viên trong danh sách
+            foreach (var student in students)
+            {
+                SendEmail(student.Email, "Tiêu đề email", "Nội dung email");
+            }
+
+            return RedirectToAction("Index"); // Chuyển hướng sau khi gửi email
+        }
+
+        private void SendEmail(string toEmail, string subject, string body)
+        {
+            using (MailMessage mail = new MailMessage())
+            {
+                mail.From = new MailAddress("21111064572@hunre.edu.vn"); // Địa chỉ email người gửi
+                mail.To.Add(toEmail); // Địa chỉ email người nhận
+                mail.Subject = subject; // Tiêu đề email
+                mail.Body = body; // Nội dung email
+                mail.IsBodyHtml = true; // Thiết lập email có dạng HTML (tuỳ chọn)
+
+                // Cấu hình thông tin SMTP
+                using (SmtpClient smtp = new SmtpClient("smtp.gmail.com", 587))
+                {
+                    smtp.Credentials = new NetworkCredential("21111064572@hunre.edu.vn", "Danli29.03");
+                    smtp.UseDefaultCredentials = false;
+                    smtp.EnableSsl = true;
+                    smtp.Send(mail);
+                }
+            }
+        }
+
+
+        [HttpPost]
+        public IActionResult DeleteSelected(List<int> ids)
+        {
+            // Xử lý logic xoá các sinh viên với ids được truyền vào
+            // Ví dụ: 
+            foreach (var id in ids)
+            {
+                var student = _context.Students.Find(id);
+                if (student != null)
+                {
+                    _context.Students.Remove(student);
+                }
+            }
+            _context.SaveChanges();
+
+            return Ok(); // Trả về mã HTTP 200 OK nếu xoá thành công
         }
     }
 }
