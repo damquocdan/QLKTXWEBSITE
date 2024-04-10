@@ -12,45 +12,83 @@
         background-color: #ccffcc; /* Màu xanh */
         height: 70px;
         font-size:20px;
+        border-radius:5px;
+    }
+
+    .building-D {
+        border:solid 1px green;
+        border-radius:5px;
+    }
+
+    .building-E {
+        border: solid 1px yellow;
+        border-radius: 5px;
+    }
+
+    .building-G {
+        border: solid 1px blue;
+        border-radius: 5px;
+    }
+
+    .enabled-room:hover{
+        border:solid 1px green;
+    }
+
+    .enabled-room:active{
+        background-color: #00ff21;
     }
 </style>
 <div class="row" style="height:400px">
-    <h1>Ký túc xá HUNRE</h1>
-    <div class="col-md-4">
+    <h1 class="text-center">Ký túc xá HUNRE</h1>
+    <div class="col building-D card-D">
         <h3 style="text-align:center">Toà D</h3>
         <div class="row" >
             @foreach (var room in Model[0])
             {
-                <div class="col-md-2 @if(room.Status == true) { <text>disabled-room</text> }else{<text>enabled-room</text>}">
-                    <a href="#" class="room-link"  data-room-id="@room.RoomId">P.@room.NumberRoom</a>
-                    <h4>@room.Floor</h4>
-                </div>
+                <a href="#" class="room-link col-md-2 mb-2 px-1 text-decoration-none" data-room-id="@room.RoomId">
+                    <div class=" @if(room.Status == true) { <text>disabled-room</text> }else{<text>enabled-room</text>}" >
+                        <p class="text-center mb-1 pt-2" style="font-size:1rem">P.@room.NumberRoom</p>
+                        <p class="text-center" style="font-size:0.8rem">Tầng @room.Floor</p>
+                    </div>
+                </a>
                 <!-- Hiển thị các thông tin khác của phòng -->
             }
         </div>
     </div>
-    <div class="col-md-4">
+    <div class="col building-E mx-2 card-E">
         <h3 style="text-align:center">Toà E</h3>
         <div class="row">
             @foreach (var room in Model[1])
             {
-                <div class="col-md-2">
-                    <a href="#" class="room-link" data-room-id="@room.RoomId">@room.NumberRoom</a>
-                    <h4>@room.Floor</h4>
-                </div>
+                <a href="#" class="room-link col-md-2 mb-2 px-1 text-decoration-none " data-room-id="@room.RoomId">
+                    <div class=" @if(room.Status == true) {
+                                     <text>disabled-room</text>} 
+                                  else{
+                                     <text>enabled-room</text>
+                                  }">
+                        <p class="text-center mb-1 pt-2" style="font-size:1rem">P.@room.NumberRoom</p>
+                        <p class="text-center" style="font-size:0.8rem">Tầng @room.Floor</p>
+                    </div>
+                </a>
                 <!-- Hiển thị các thông tin khác của phòng -->
             }
         </div>
     </div>
-    <div class="col-md-4"> 
+    <div class="col building-G card-G">
         <h3 style="text-align:center">Toà G</h3>
         <div class="row">
             @foreach (var room in Model[2])
             {
-                <div class="col-md-2">
-                    <a href="#" class="room-link" data-room-id="@room.RoomId">@room.NumberRoom</a>
-                    <h4>@room.Floor</h4>
-                </div>
+                <a href="#" class="room-link col-md-2 mb-2 px-1 text-decoration-none" data-room-id="@room.RoomId">
+                    <div class=" @if(room.Status == true) {
+                                     <text>disabled-room</text>}
+                                  else{
+                                     <text>enabled-room</text>
+                                  }">
+                          <p class="text-center mb-1 pt-2" style="font-size:1rem">P.@room.NumberRoom</p>
+                          <p class="text-center" style="font-size:0.8rem">Tầng @room.Floor</p>
+                      </div>
+                </a>
                 <!-- Hiển thị các thông tin khác của phòng -->
             }
         </div>

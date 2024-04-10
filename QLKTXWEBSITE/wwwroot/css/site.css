@@ -258,6 +258,49 @@ hr {
     }
 }
 
+@keyframes card-D {
+    from {
+        box-shadow: 0px 0px 0px 0px #ccffcc;
+    }
+
+    to {
+        box-shadow: 0px 0px 60px 10px #ccffcc;
+    }
+}
+.card-D:hover {
+    box-shadow: 0px 0px 60px 10px #ccffcc;
+    animation: card-D 1s;
+}
+
+@keyframes card-E {
+    from {
+        box-shadow: 0px 0px 0px 0px rgba(255, 255, 0, 0.2);
+    }
+
+    to {
+        box-shadow: 0px 0px 60px 10px rgba(255, 255, 0, 0.2);
+    }
+}
+.card-E:hover {
+    box-shadow: 0px 0px 60px 10px rgba(255, 255, 0, 0.2);
+    animation: card-E 1s;
+}
+
+@keyframes card-G {
+    from {
+        box-shadow: 0px 0px 0px 0px rgba(0, 0, 255, 0.2);
+    }
+
+    to {
+        box-shadow: 0px 0px 60px 10px rgba(0, 0, 255, 0.2);
+    }
+}
+
+.card-G:hover {
+    box-shadow: 0px 0px 60px 10px rgba(0, 0, 255, 0.2);
+    animation: card-G 1s;
+}
+
 .card:hover {
     box-shadow: 0px 0px 60px 10px #dfdfdf;
     animation: showSd 1s;
