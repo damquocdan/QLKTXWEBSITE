@@ -45,7 +45,7 @@
                             <a class="nav-link a-title position-relative" style="font-size:1.3rem; font-weight:500; color:green" asp-area="StudentUser" asp-controller="News" asp-action="Index">Tin tức</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link a-title position-relative" style="font-size:1.3rem; font-weight:500; color:green" asp-area="StudentUser" asp-controller="Home" asp-action="Service">Dịch vụ</a>
+                            <a class="nav-link a-title position-relative" style="font-size:1.3rem; font-weight:500; color:green" asp-area="StudentUser" asp-controller="Dashboard" asp-action="Service" asp-route-id="@Context.Session.GetInt32("StudentId")">Dịch vụ</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link a-title position-relative" style="font-size:1.3rem; font-weight:500; color:green" asp-area="StudentUser" asp-controller="Dashboard" asp-action="Contact">Liên hệ</a>

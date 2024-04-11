@@ -1,0 +1,59 @@
+﻿@using Microsoft.EntityFrameworkCore
+@model List<QLKTXWEBSITE.Models.BedOfRoom>
+<style>
+    .enabled-bed {
+        background-color: #ccffcc; /* Màu xanh */
+    }
+
+    .disabled-bed {
+        background-color: #ffcccc; /* Màu đỏ */
+    }
+
+</style>
+<div class="row">
+    <h3 style="text-align:center">Danh sách các giường</h3>
+    @foreach (var bed in Model)
+    {
+        <div class="col-md-3 @if(bed.Status==true){
+                <text>disabled-bed</text>
+            }else{
+                    <text>enabled-bed</text>
+            }" style="border: solid 3px white; height:200px" >
+            @if (bed.Status == true)
+            {
+                                <h4>Giường số :@bed.NumberBed</h4>
+                        <a href="#" class="btn btn-danger btn-details" data-bed-id="@bed.BedId">Đã có sinh viên</a>
+                            <div class="modal-body">
+                                <div id="student-details"></div>
+                            </div>
+            }
+            else
+            {
+                                <h4>Giường số :@bed.NumberBed</h4>
+                                <a asp-area="StudentUser" asp-controller="Login" asp-action="Index" class="btn btn-primary btn-block btn-details">Đăng ký</a>
+            }
+
+            </div>
+    }
+</div>
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            $('.btn-details').click(function () {
+                var bedId = $(this).data('bed-id');
+
+                $.ajax({
+                    url: '@Url.Action("GetStudents", "Home")',
+                    type: 'GET',
+                    data: { BedId: bedId },
+                    success: function (data) {
+                        $('#student-details').html(data);
+                    },
+                    error: function () {
+                        alert('Đã xảy ra lỗi khi tải danh sách giường.');
+                    }
+                });
+            });
+        });
+    </script>
+}
