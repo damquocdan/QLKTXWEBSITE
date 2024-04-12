@@ -1,6 +1,6 @@
 ﻿@model QLKTXWEBSITE.Models.LoginUser
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Đăng nhập";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 @if (!ViewData.ModelState.IsValid)
@@ -17,24 +17,8 @@
         </ul>
     </div>
 }
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>AdminLTE 3 | Log in</title>
-
-    <!-- Google Font: Source Sans Pro -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="../../plugins/fontawesome-free/css/all.min.css">
-    <!-- icheck bootstrap -->
-    <link rel="stylesheet" href="../../plugins/icheck-bootstrap/icheck-bootstrap.min.css">
-    <!-- Theme style -->
-    <link rel="stylesheet" href="../../dist/css/adminlte.min.css">
-</head>
 <body>
-    <div class="d-flex justify-content-center align-items-center" style="height:659px">
+    <div class="d-flex justify-content-center align-items-center" style="min-height:535px">
         <section>
             <h2 class="text-center mb-5">Đăng nhập</h2>
             <div class="container-fluid">
@@ -79,16 +63,13 @@
                                     Bạn chưa có tài khoản? <a asp-controller="StudentsRegister" asp-action="Create" class="link-danger">Đăng ký</a>
                                 </p>
                             </div>
-
                         </form>
                     </div>
                 </div>
             </div>
         </section>
     </div>
-
     <script src="../../plugins/jquery/jquery.min.js"></script>
     <script src="../../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="../../dist/js/adminlte.min.js"></script>
 </body>
-</html>
