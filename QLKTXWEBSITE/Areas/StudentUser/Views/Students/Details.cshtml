@@ -1,7 +1,7 @@
 ﻿ @model QLKTXWEBSITE.Models.Student
 
 @{
-    ViewData["Title"] = "Details";
+    ViewData["Title"] = "Thông tin tài khoản";
 }
 
 
@@ -55,22 +55,16 @@
 
 <div>
 
-    <a asp-action="Edit" asp-route-id="@Model?.StudentId">
-        <button type="button" class="btn btn-primary btn-sm"
-                style="padding-left: 2.5rem; padding-right: 2.5rem;">
+    <a asp-action="Edit" asp-route-id="@Model?.StudentId" class="btn btn-primary btn-sm"
+            style="padding-left: 2.5rem; padding-right: 2.5rem;">
             Sửa thông tin
-        </button>
     </a>
-    <a asp-action="ChangePassword" asp-route-id="@Model?.StudentId">
-        <button type="button" class="btn btn-primary btn-sm"
-                style="padding-left: 2.5rem; padding-right: 2.5rem;">
+    <a asp-action="ChangePassword" asp-route-id="@Model?.StudentId" class="btn btn-primary btn-sm"
+            style="padding-left: 2.5rem; padding-right: 2.5rem">
             Đổi mật khẩu
-        </button>
     </a>
-    <a asp-controller="Login" asp-action="Logout">
-        <button type="button" class="btn btn-primary btn-sm"
-                style="padding-left: 2.5rem; padding-right: 2.5rem;">
+    <a asp-controller="Login" asp-action="Logout" class="btn btn-primary btn-sm"
+       style="padding-left: 2.5rem; padding-right: 2.5rem">
             Đăng xuất
-        </button>
     </a>
 </div>
