@@ -1,8 +1,8 @@
 ﻿@using Microsoft.EntityFrameworkCore
 @model List<QLKTXWEBSITE.Models.BedOfRoom>
 @{
-    int RoomId = (int)ViewData["RoomId"];
-    string Building = (string)ViewData["Building"];
+    int RoomId = (int)(ViewData["RoomId"] ?? 0);
+    string Building = (string)(ViewData["Building"] ?? "");
 }
 <style>
     .enabled-bed {
@@ -12,31 +12,25 @@
     .disabled-bed {
         background-color: #ffcccc; /* Màu đỏ */
     }
-
 </style>
 <div class="row mt-3">
     <h3 style="text-align:center">Danh sách các giường phòng: @RoomId Tòa @Building</h3>
     @foreach (var bed in Model)
     {
-        <div class="card col-md-3 @if(bed.Status==true){
-                <text>disabled-bed</text>
-            }else{
-                    <text>enabled-bed</text>
-            }" style="border: solid 3px white; height:200px" >
+        <div class="card fadeIn-card col-md-3 @(bed.Status == true ? "disabled-bed" : "enabled-bed") fade-in " style="border: solid 3px white; height:200px;">
             @if (bed.Status == true)
             {
-                        <h4>Giường số: @bed.NumberBed</h4>
+                <h4>Giường số: @bed.NumberBed</h4>
                 <a href="#" class="btn btn-danger btn-details" data-bed-id="@bed.BedId">Đã có sinh viên</a>
-                    <div class="modal-body">
-                        <div id="student-details"></div>
-                    </div>
+                <div class="modal-body">
+                    <div id="student-details"></div>
+                </div>
             }
             else
             {
-                        <h4>Giường số: @bed.NumberBed</h4>
-                        <a asp-area="StudentUser" asp-controller="Login" asp-action="Index" class="btn btn-primary btn-block btn-details">Đăng ký</a>
+                <h4>Giường số: @bed.NumberBed</h4>
+                <a asp-area="StudentUser" asp-controller="Login" asp-action="Index" class="btn btn-primary btn-block btn-details">Đăng ký</a>
             }
-
         </div>
     }
 </div>
@@ -58,6 +52,10 @@
                     }
                 });
             });
+        });
+
+        $(document).ready(function () {
+            $('.card').hide().fadeIn(1000); // Hiệu ứng fade in với thời gian là 1 giây (1000 milliseconds)
         });
     </script>
 }
