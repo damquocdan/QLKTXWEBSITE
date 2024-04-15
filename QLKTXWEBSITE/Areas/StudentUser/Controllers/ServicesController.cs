@@ -20,7 +20,7 @@ namespace QLKTXWEBSITE.Areas.StudentUser.Controllers
         }
 
         // GET: StudentUser/Services
-        public async Task<IActionResult> Index(int? studentId)
+        public async Task<IActionResult> Index(int? studentId, int? serviceType)
         {
             IQueryable<Service> services = _context.Services.Include(s => s.Room).Include(s => s.Student);
             if (studentId != null)
@@ -28,6 +28,14 @@ namespace QLKTXWEBSITE.Areas.StudentUser.Controllers
                 services = services.Where(o => o.StudentId == studentId);
             }
 
+            if (serviceType == 1)
+            {
+                services = services.Where(o => o.ServiceName == "Điện");
+            }
+            else if (serviceType == 2)
+            {
+                services = services.Where(o => o.ServiceName == "Nước");
+            }
             return View(await services.ToListAsync());
         }
 

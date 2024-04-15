@@ -107,15 +107,52 @@ namespace QLKTXWEBSITE.Areas.AdminQL.Controllers
         {
             if (ModelState.IsValid)
             {
-                _context.Add(service);
+                // Lấy danh sách sinh viên trong phòng đã chọn
+                var studentsInRoom = await _context.Students.Where(s => s.RoomId == service.RoomId).ToListAsync();
+
+                // Tính giá trị dịch vụ cho mỗi sinh viên
+                decimal pricePerStudent;
+                if (service.Price == null)
+                {
+                    pricePerStudent = 0;
+                }
+                else
+                {
+                    pricePerStudent = (decimal)service.Price / studentsInRoom.Count;
+                }
+
+                // Gửi dịch vụ cho từng sinh viên trong danh sách
+                foreach (var student in studentsInRoom)
+                {
+                    // Thêm dịch vụ cho sinh viên
+                    var studentService = new Service
+                    {
+                        RoomId = service.RoomId,
+                        ServiceName = service.ServiceName,
+                        StudentId = student.StudentId,
+                        ServiceId = service.ServiceId,
+                        Month = service.Month,
+                        Price = pricePerStudent, // Giá trị dịch vụ cho mỗi sinh viên
+                        Status = service.Status
+                        // Các thuộc tính khác của StudentService nếu có
+                    };
+                    _context.Services.Add(studentService);
+                }
+
+                // Lưu các thay đổi vào cơ sở dữ liệu
                 await _context.SaveChangesAsync();
+
                 return RedirectToAction(nameof(Index));
             }
+
+            // Nếu ModelState không hợp lệ, trả về view với dữ liệu đã nhập và danh sách phòng
             ViewData["Building"] = new SelectList(_context.Rooms, "RoomId", "Building", service.RoomId);
             ViewData["RoomId"] = new SelectList(_context.Rooms, "RoomId", "NumberRoom", service.RoomId);
             ViewData["StudentId"] = new SelectList(_context.Students, "StudentId", "FullName", service.StudentId);
             return View(service);
         }
+
+
 
         // GET: AdminQL/Services/Edit/5
         public async Task<IActionResult> Edit(int? id)

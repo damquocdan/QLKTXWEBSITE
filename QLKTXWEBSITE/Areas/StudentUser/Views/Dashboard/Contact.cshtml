@@ -1,1 +1,50 @@
-﻿<p> Thông tin liên hệ của nhà trường thôi :(((</p>
+﻿@model QLKTXWEBSITE.Models.Student
+
+@{
+    ViewData["Title"] = "Liên hệ";
+}
+@if (TempData["SuccessMessage"] != null)
+{
+    <div class="alert alert-success" role="alert">
+        @TempData["SuccessMessage"]
+    </div>
+}
+<h1 style="color:green;">Liên hệ</h1>
+
+<hr style="color:green; height:2px" />
+<div class="row">
+
+
+    <div class="col-md-8">
+        <iframe class="w-100" src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d930.9141425359347!2d105.7619989!3d21.0464232!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x313454c3ce577141%3A0xb1a1ac92701777bc!2zVHLGsOG7nW5nIMSQ4bqhaSBo4buNYyBUw6BpIG5ndXnDqm4gdsOgIE3DtGkgdHLGsOG7nW5nIEjDoCBO4buZaQ!5e0!3m2!1svi!2s!4v1711797672734!5m2!1svi!2s" width="600" height="450" style="border:solid 1px green; border-radius:15px" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </div>
+
+    <div class="col-md-4">
+        <form asp-action="Contact">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="FullName" class="control-label" style="font-size:1.3rem; color:green; font-weight:500">
+                    Ban quản lý Ký túc xá thuộc Trung tâm Dịch vụ trường học, Phòng 604, Tòa B,
+                    Trường Đại học Tài nguyên và Môi trường Hà Nội, số 41A Đường Phú Diễn, Quận Bắc Từ Liêm, Tp Hà Nội.
+                </label>
+                <span asp-validation-for="FullName" class="text-danger"></span>
+            </div>
+            <hr />
+            <div class="form-group my-2">
+                <label asp-for="PhoneNumber" class="control-label" style="font-size:1.3rem; color:green; font-weight:500 ">Liên hệ Cô Nga 0987.896.268, Thầy Việt 0986.206.122 để được hỗ trợ.</label>
+                <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+            </div>
+            <hr />
+            <div class="form-group">
+                <label asp-for="Email" class="control-label" style="font-size:1.3rem; color:green; font-weight:500">Email:trungtamdichvutruonghoc@hunre.edu.vn</label>
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+        </form>
+
+    </div>
+</div>
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

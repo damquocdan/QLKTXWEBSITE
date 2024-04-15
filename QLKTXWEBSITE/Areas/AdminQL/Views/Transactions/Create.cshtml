@@ -16,8 +16,10 @@
             <div class="form-group">
                 <label asp-for="Student.Room.Building" class="control-label">Toà</label>
                 <select id="Building" asp-for="Student.Room.Building" class="form-control">
-                    <option value="A">A</option>
-                    <option value="B">B</option>
+                    <option value="">Vui lòng chọn toà</option>
+                    <option value="D">D</option>
+                    <option value="E">E</option>
+                    <option value="G">G</option>
                 </select>
                 <span asp-validation-for="Student.Room.Building" class="text-danger"></span>
             </div>
