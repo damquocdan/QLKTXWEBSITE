@@ -75,11 +75,10 @@ button {
 }
 
 .container {
-  max-width: 1170px;
-  margin: 0 auto;
-  padding: 0 15px;
+    margin: 0;
+    overflow: hidden;
+    height: 100vh;
 }
-
 .boxed {
   max-width: 550px;
   margin-left: auto;
