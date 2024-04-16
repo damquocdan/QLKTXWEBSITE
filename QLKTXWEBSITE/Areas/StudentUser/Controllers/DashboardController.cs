@@ -39,15 +39,15 @@ namespace QLKTXWEBSITE.Areas.StudentUser.Controllers
             if (student.BedId == null)
             {
                 var roomsInBuildingsD = _context.Rooms
-                .Where(r => r.Building == "D")
+                .Where(r => r.Building == "D" && r.Mowroom==student.Gender)
                 .ToList();
 
                 var roomsInBuildingsE = _context.Rooms
-                    .Where(r => r.Building == "E")
+                    .Where(r => r.Building == "E" && r.Mowroom == student.Gender)
                     .ToList();
 
                 var roomsInBuildingsG = _context.Rooms
-                    .Where(r => r.Building == "G")
+                    .Where(r => r.Building == "G" && r.Mowroom == student.Gender)
                     .ToList();
 
                 // Truyền danh sách phòng của các tòa nhà D, E, G đến view
@@ -123,10 +123,47 @@ namespace QLKTXWEBSITE.Areas.StudentUser.Controllers
                 room.Status = true;
             }
 
+            var contract = new Occupancy
+            {
+                StudentId = studentId,
+                RoomId = roomId,
+                RenewalDate = DateTime.Now,
+                ExpirationDate = DateTime.Now.AddMonths(6), // Hợp đồng có thời hạn 6 tháng
+                CycleMonths = 6,
+                Status = false // Chưa thanh toán
+            };
+
+            _context.Occupancies.Add(contract);
             _context.SaveChanges();
+
+            // Tạo một công việc lên lịch để kiểm tra thanh toán hợp đồng sau mỗi 3 ngày
+            ScheduleContractCheck(contract.OccupancyId, TimeSpan.FromDays(3));
 
             // Chuyển hướng về trang chủ sau khi đăng ký thành công
             return RedirectToAction("Index", "Dashboard");
+        }
+
+        private void ScheduleContractCheck(int contractId, TimeSpan interval)
+        {
+            // Tạo một công việc lên lịch để kiểm tra hợp đồng sau mỗi khoảng thời gian interval
+            // Ở đây, bạn có thể sử dụng một cơ chế như Hangfire hoặc Quartz.NET để quản lý công việc lên lịch.
+            // Đây là một ví dụ giả định sử dụng cách tiếp cận đơn giản với một Timer.
+            var timer = new System.Timers.Timer();
+            timer.Elapsed += (sender, e) => ContractCheck(contractId);
+            timer.Interval = interval.TotalMilliseconds;
+            timer.AutoReset = false;
+            timer.Start();
+        }
+
+        private void ContractCheck(int contractId)
+        {
+            // Kiểm tra hợp đồng và xóa nếu không được thanh toán
+            var contract = _context.Occupancies.Find(contractId);
+            if (contract != null && contract.Status==false)
+            {
+                _context.Occupancies.Remove(contract);
+                _context.SaveChanges();
+            }
         }
 
     }
