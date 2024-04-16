@@ -191,6 +191,34 @@ namespace QLKTXWEBSITE.Areas.AdminQL.Controllers
                 {
                     _context.Update(service);
                     await _context.SaveChangesAsync();
+
+                    // Nếu trạng thái đã thanh toán
+                    if (service.Status == true)
+                    {
+                        // Tạo một giao dịch mới
+                        var transaction = new Transaction
+                        {
+                            StudentId = service.StudentId,
+                            Amount = service.Price,
+                            Description = service.ServiceName,
+                            TransactionDate = DateTime.Now
+                        };
+
+                        _context.Transactions.Add(transaction);
+                        await _context.SaveChangesAsync();
+
+                        // Nếu dịch vụ là "Phòng ở ký túc xá", cập nhật trạng thái của bản ghi Occupancy thành true
+                        if (service.ServiceName == "Phòng ở ký túc xá")
+                        {
+                            var occupancy = _context.Occupancies.FirstOrDefault(o => o.StudentId == service.StudentId && o.RoomId == service.RoomId);
+                            if (occupancy != null)
+                            {
+                                occupancy.Status = true;
+                                _context.Update(occupancy);
+                                await _context.SaveChangesAsync();
+                            }
+                        }
+                    }
                 }
                 catch (DbUpdateConcurrencyException)
                 {
@@ -210,6 +238,8 @@ namespace QLKTXWEBSITE.Areas.AdminQL.Controllers
             ViewData["StudentId"] = new SelectList(_context.Students, "StudentId", "FullName", service.StudentId);
             return View(service);
         }
+
+
 
         // GET: AdminQL/Services/Delete/5
         public async Task<IActionResult> Delete(int? id)

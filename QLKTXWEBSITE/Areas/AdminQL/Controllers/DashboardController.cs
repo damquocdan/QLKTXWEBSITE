@@ -59,24 +59,48 @@ namespace QLKTXWEBSITE.Areas.AdminQL.Controllers
 
             foreach (var transaction in transactions)
             {
-                labels.Add(transaction.TransactionDate.Value.ToString("MM/yyyy"));
-
-                if (transaction.StudentId != null)
+                // Kiểm tra xem TransactionDate có giá trị không
+                if (transaction.TransactionDate.HasValue)
                 {
-                    accumulatedTotalWithStudent += transaction.Amount.Value;
-                    accumulatedTotalWithoutStudent += 0;
-                }
-                else
-                {
-                    accumulatedTotalWithStudent += 0;
-                    accumulatedTotalWithoutStudent += transaction.Amount.Value;
+                    var currentDate = transaction.TransactionDate.Value.ToString("dd/MM/yyyy");
+
+                    if (labels.Count > 0 && currentDate == labels.Last())
+                    {
+                        // Nếu ngày mới trùng với ngày cuối cùng trong danh sách nhãn
+                        var lastIndex = labels.Count - 1;
+
+                        // Cập nhật tổng số tiền tích lũy của ngày cuối cùng
+                        accumulatedTotalWithStudent -= totalWithStudent[lastIndex];
+                        accumulatedTotalWithoutStudent -= totalWithoutStudent[lastIndex];
+
+                        // Xóa giao dịch cũ và tổng số tiền tích lũy của ngày cuối cùng
+                        labels.RemoveAt(lastIndex);
+                        totalWithStudent.RemoveAt(lastIndex);
+                        totalWithoutStudent.RemoveAt(lastIndex);
+                    }
+
+                    // Thêm dữ liệu của ngày mới vào danh sách nhãn
+                    labels.Add(currentDate);
+
+                    // Tính toán lại tổng số tiền tích lũy cho cả sinh viên và không có sinh viên
+                    if (transaction.StudentId != null)
+                    {
+                        accumulatedTotalWithStudent += transaction.Amount.Value;
+                    }
+                    else
+                    {
+                        accumulatedTotalWithoutStudent += transaction.Amount.Value;
+                    }
+
+                    // Thêm giá trị tích lũy vào danh sách totalWithStudent và totalWithoutStudent
+                    totalWithStudent.Add(accumulatedTotalWithStudent);
+                    totalWithoutStudent.Add(accumulatedTotalWithoutStudent);
                 }
 
-                totalWithStudent.Add(accumulatedTotalWithStudent);
-                totalWithoutStudent.Add(accumulatedTotalWithoutStudent);
             }
 
             return Json(new { labels, totalWithStudent, totalWithoutStudent });
         }
+
     }
 }

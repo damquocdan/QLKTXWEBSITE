@@ -132,37 +132,55 @@ namespace QLKTXWEBSITE.Areas.StudentUser.Controllers
                 CycleMonths = 6,
                 Status = false // Chưa thanh toán
             };
-
+            var hd = new Service
+            {
+                StudentId = studentId,
+                RoomId = roomId,
+                ServiceName = "Phòng ở kí túc xá",
+                Month = DateTime.Now.Month,
+                Price = 1200000,
+                Status = false // Chưa thanh toán
+            };
+            _context.Services.Add(hd);
             _context.Occupancies.Add(contract);
             _context.SaveChanges();
 
             // Tạo một công việc lên lịch để kiểm tra thanh toán hợp đồng sau mỗi 3 ngày
-            ScheduleContractCheck(contract.OccupancyId, TimeSpan.FromDays(3));
+            ScheduleContractCheck(hd.ServiceId, TimeSpan.FromDays(3));
 
             // Chuyển hướng về trang chủ sau khi đăng ký thành công
             return RedirectToAction("Index", "Dashboard");
         }
 
-        private void ScheduleContractCheck(int contractId, TimeSpan interval)
+        private void ScheduleContractCheck(int serviceId, TimeSpan interval)
         {
             // Tạo một công việc lên lịch để kiểm tra hợp đồng sau mỗi khoảng thời gian interval
             // Ở đây, bạn có thể sử dụng một cơ chế như Hangfire hoặc Quartz.NET để quản lý công việc lên lịch.
             // Đây là một ví dụ giả định sử dụng cách tiếp cận đơn giản với một Timer.
             var timer = new System.Timers.Timer();
-            timer.Elapsed += (sender, e) => ContractCheck(contractId);
+            timer.Elapsed += (sender, e) => ContractCheck(serviceId);
             timer.Interval = interval.TotalMilliseconds;
             timer.AutoReset = false;
             timer.Start();
         }
 
-        private void ContractCheck(int contractId)
+        private void ContractCheck(int serviceId)
         {
-            // Kiểm tra hợp đồng và xóa nếu không được thanh toán
-            var contract = _context.Occupancies.Find(contractId);
-            if (contract != null && contract.Status==false)
+            // Kiểm tra hợp đồng
+            var hd = _context.Services.Find(serviceId);
+            if (hd != null && hd.Status == false)
             {
-                _context.Occupancies.Remove(contract);
+                // Xóa dịch vụ không được thanh toán
+                _context.Services.Remove(hd);
                 _context.SaveChanges();
+
+                // Xóa bản ghi Occupancy tương ứng
+                var occupancy = _context.Occupancies.FirstOrDefault(o => o.StudentId == hd.StudentId && o.RoomId == hd.RoomId);
+                if (occupancy != null)
+                {
+                    _context.Occupancies.Remove(occupancy);
+                    _context.SaveChanges();
+                }
             }
         }
 
