@@ -29,8 +29,13 @@
             }
             else
             {
-                                <h4>Giường số :@bed.NumberBed</h4>
-                                <a asp-area="StudentUser" asp-controller="Login" asp-action="Index" class="btn btn-primary btn-block btn-details">Đăng ký</a>
+                 <h4>Giường số :@bed.NumberBed</h4>
+                        <form asp-area="StudentUser" asp-controller="Dashboard" asp-action="RegisterBed" method="post">
+                            <input type="hidden" name="studentId" value="@Context.Session.GetInt32("StudentId")" />
+                            <input type="hidden" name="bedId" value="@bed.BedId" />
+                            <input type="hidden" name="roomId" value="@bed.RoomId" />
+                            <button type="submit" class="btn btn-primary btn-block btn-details">Đăng ký giường này</button>
+                        </form>
             }
 
             </div>
@@ -38,6 +43,7 @@
 </div>
 @section Scripts {
     <script>
+        var selectedBedId;
         $(document).ready(function () {
             $('.btn-details').click(function () {
                 var bedId = $(this).data('bed-id');
@@ -54,6 +60,7 @@
                     }
                 });
             });
+
         });
     </script>
 }

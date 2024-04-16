@@ -76,5 +76,58 @@ namespace QLKTXWEBSITE.Areas.StudentUser.Controllers
 
             return PartialView("_Students", studentsInRoom);
         }
+        [HttpPost]
+        public IActionResult RegisterBed(int? studentId, int bedId, int roomId)
+        {
+            if (studentId == null)
+            {
+                return BadRequest("Student ID is required.");
+            }
+
+            var student = _context.Students.Include(s => s.Bed).FirstOrDefault(s => s.StudentId == studentId);
+
+            if (student == null)
+            {
+                return NotFound("Student not found.");
+            }
+
+            var bed = _context.BedOfRooms.FirstOrDefault(b => b.BedId == bedId);
+
+            if (bed == null)
+            {
+                return NotFound("Bed not found");
+            }
+
+            if (bed.Status == true)
+            {
+                // Nếu giường đã có sinh viên, trả về thông báo lỗi
+                return BadRequest("This bed has already been registered.");
+            }
+
+            var room = _context.Rooms.FirstOrDefault(r => r.RoomId == roomId);
+
+            if (room == null)
+            {
+                return NotFound("Room not found");
+            }
+
+            // Cập nhật trạng thái của giường và thông tin giường cho sinh viên
+            bed.Status = true;
+            student.Bed = bed;
+            student.Room = room;
+
+            // Kiểm tra nếu số lượng sinh viên bằng số lượng giường thì cập nhật trạng thái của phòng
+            room.NumberOfStudents++;
+            if (room.NumberOfStudents == room.BedNumber)
+            {
+                room.Status = true;
+            }
+
+            _context.SaveChanges();
+
+            // Chuyển hướng về trang chủ sau khi đăng ký thành công
+            return RedirectToAction("Index", "Dashboard");
+        }
+
     }
 }
