@@ -1,78 +1,81 @@
 ﻿@model List<QLKTXWEBSITE.Models.Service>
+@{
+    ViewData["Title"] = "Dịch vụ";
+}
+<div style="min-height:535px">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>STT</th>
+                <th>Service Name</th>
+                <th>Month</th>
+                <th>Price</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>1</td>
+                <td>Tiền điện</td>
+                <td></td>
+                <td></td>
+                <td><a asp-controller="Services" asp-action="Index" asp-route-studentId="@Context.Session.GetInt32("StudentId")" asp-route-serviceType="1">Thanh toán</a></td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>Tiền Nước</td>
+                <td></td>
+                <td></td>
+                <td><a asp-controller="Services" asp-action="Index" asp-route-studentId="@Context.Session.GetInt32("StudentId")" asp-route-serviceType="2">Thanh toán</a></td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td>Máy giặt công cộng</td>
+                <td>Tháng @DateTime.Now.Month</td>
+                <td></td>
+                <td><a asp-controller="Services" asp-action="RegisterService" asp-route-studentId="@Context.Session.GetInt32("StudentId")" asp-route-serviceName="Máy giặt công cộng">Đăng ký dịch vụ</a></td>
 
-<table class="table">
-    <thead>
-        <tr>
-            <th>STT</th>
-            <th>Service Name</th>
-            <th>Month</th>
-            <th>Price</th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
+            </tr>
+            <tr>
+                <td>4</td>
+                <td>Gửi xe máy, xe đạp, xe điện</td>
+                <td>Tháng @DateTime.Now.Month</td>
+                <td></td>
+                <td><a asp-controller="Services" asp-action="RegisterService" asp-route-studentId="@Context.Session.GetInt32("StudentId")" asp-route-serviceName="Gửi xe máy, xe đạp, xe điện">Đăng ký dịch vụ</a></td>
 
-         <tr>
-            <td>1</td>
-            <td>Tiền điện</td>
-            <td></td>
-            <td></td>
-            <td><a asp-controller="Services" asp-action="Index" asp-route-studentId="@Context.Session.GetInt32("StudentId")" asp-route-serviceType="1">Thanh toán</a></td>
-         </tr>
-        <tr>
-            <td>2</td>
-            <td>Tiền Nước</td>
-            <td></td>
-            <td></td>
-            <td><a asp-controller="Services" asp-action="Index" asp-route-studentId="@Context.Session.GetInt32("StudentId")" asp-route-serviceType="2">Thanh toán</a></td>
-        </tr>
-        <tr>
-            <td>3</td>
-            <td>Máy giặt công cộng</td>
-            <td>Tháng @DateTime.Now.Month</td>
-            <td></td>
-            <td><a asp-controller="Services" asp-action="RegisterService" asp-route-studentId="@Context.Session.GetInt32("StudentId")" asp-route-serviceName="Máy giặt công cộng">Đăng ký dịch vụ</a></td>
+            </tr>
+            <tr>
+                <td>5</td>
+                <td>Hệ thống nhà ăn</td>
+                <td>Tháng @DateTime.Now.Month</td>
+                <td></td>
+                <td><a asp-controller="Services" asp-action="RegisterService" asp-route-studentId="@Context.Session.GetInt32("StudentId")" asp-route-serviceName="Hệ thống nhà ăn">Đăng ký dịch vụ</a></td>
 
-        </tr>
-        <tr>
-            <td>4</td>
-            <td>Gửi xe máy, xe đạp, xe điện</td>
-            <td>Tháng @DateTime.Now.Month</td>
-            <td></td>
-            <td><a asp-controller="Services" asp-action="RegisterService" asp-route-studentId="@Context.Session.GetInt32("StudentId")" asp-route-serviceName="Gửi xe máy, xe đạp, xe điện">Đăng ký dịch vụ</a></td>
+            </tr>
+            <tr>
+                <td>6</td>
+                <td>Hệ thống phòng máy tính</td>
+                <td>Tháng @DateTime.Now.Month</td>
+                <td></td>
+                <td><a asp-controller="Services" asp-action="RegisterService" asp-route-studentId="@Context.Session.GetInt32("StudentId")" asp-route-serviceName="Hệ thống phòng máy tính">Đăng ký dịch vụ</a></td>
 
-        </tr>
-        <tr>
-            <td>5</td>
-            <td>Hệ thống nhà ăn</td>
-            <td>Tháng @DateTime.Now.Month</td>
-            <td></td>
-            <td><a asp-controller="Services" asp-action="RegisterService" asp-route-studentId="@Context.Session.GetInt32("StudentId")" asp-route-serviceName="Hệ thống nhà ăn">Đăng ký dịch vụ</a></td>
+            </tr>
+            <tr>
+                <td>7</td>
+                <td>Hệ thống phòng tập gym</td>
+                <td>Tháng @DateTime.Now.Month</td>
+                <td></td>
+                <td><a asp-controller="Services" asp-action="RegisterService" asp-route-studentId="@Context.Session.GetInt32("StudentId")" asp-route-serviceName="Hệ thống phòng tập gym">Đăng ký dịch vụ</a></td>
 
-        </tr>
-        <tr>
-            <td>6</td>
-            <td>Hệ thống phòng máy tính</td>
-            <td>Tháng @DateTime.Now.Month</td>
-            <td></td>
-            <td><a asp-controller="Services" asp-action="RegisterService" asp-route-studentId="@Context.Session.GetInt32("StudentId")" asp-route-serviceName="Hệ thống phòng máy tính">Đăng ký dịch vụ</a></td>
+            </tr>
+            <tr>
+                <td>8</td>
+                <td>Hệ thống nhà sách</td>
+                <td>Tháng @DateTime.Now.Month</td>
+                <td></td>
+                <td><a asp-controller="Services" asp-action="RegisterService" asp-route-studentId="@Context.Session.GetInt32("StudentId")" asp-route-serviceName="Hệ thống nhà sách">Đăng ký dịch vụ</a></td>
 
-        </tr>
-        <tr>
-            <td>7</td>
-            <td>Hệ thống phòng tập gym</td>
-            <td>Tháng @DateTime.Now.Month</td>
-            <td></td>
-            <td><a asp-controller="Services" asp-action="RegisterService" asp-route-studentId="@Context.Session.GetInt32("StudentId")" asp-route-serviceName="Hệ thống phòng tập gym">Đăng ký dịch vụ</a></td>
-
-        </tr>
-        <tr>
-            <td>8</td>
-            <td>Hệ thống nhà sách</td>
-            <td>Tháng @DateTime.Now.Month</td>
-            <td></td>
-            <td><a asp-controller="Services" asp-action="RegisterService" asp-route-studentId="@Context.Session.GetInt32("StudentId")" asp-route-serviceName="Hệ thống nhà sách">Đăng ký dịch vụ</a></td>
-
-        </tr>
-    </tbody>
-</table>
+            </tr>
+        </tbody>
+    </table>
+</div>

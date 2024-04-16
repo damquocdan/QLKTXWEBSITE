@@ -197,7 +197,7 @@
             // Xử lý sự kiện khi nút "Xoá đã chọn" được nhấn
             $("#deleteSelected").click(function () {
                 var selectedIds = [];
-
+                confirm("Bạn có muốn xóa sinh viên đã chọn không?")
                 $(".studentCheckbox:checked").each(function () {
                     selectedIds.push($(this).val());
                 });
