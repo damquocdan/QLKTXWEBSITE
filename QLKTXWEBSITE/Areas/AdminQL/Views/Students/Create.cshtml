@@ -9,7 +9,7 @@
 
 <h4>Sinh viên</h4>
 <hr />
-<form asp-action="Create">
+<form asp-action="Create" enctype="multipart/form-data">
     <div class="row justify-content-center">
         <div class="col-md-3">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
@@ -72,8 +72,8 @@
                 <span asp-validation-for="Class" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="AdmissionConfirmation" class="control-label">Giấy xác nhận nhập học</label>
-                <input asp-for="AdmissionConfirmation" class="form-control" />
+                <label asp-for="AdmissionConfirmation" class="control-label">Ảnh đại diện(4x6)</label>
+                <input asp-for="AdmissionConfirmation" type="file" class="form-control" />
                 <span asp-validation-for="AdmissionConfirmation" class="text-danger"></span>
             </div>
             <div class="form-group">

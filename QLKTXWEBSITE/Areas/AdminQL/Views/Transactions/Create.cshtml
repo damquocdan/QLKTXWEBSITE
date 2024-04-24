@@ -13,7 +13,7 @@
     <div class="col-md-4">
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
+            <div class="form-group" style="display: none;">
                 <label asp-for="Student.Room.Building" class="control-label">Toà</label>
                 <select id="Building" asp-for="Student.Room.Building" class="form-control">
                     <option value="">Vui lòng chọn toà</option>
@@ -23,25 +23,26 @@
                 </select>
                 <span asp-validation-for="Student.Room.Building" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            <div class="form-group" style="display: none;">
                 <label asp-for="Student.RoomId" class="control-label">Số phòng</label>
                 <select id="RoomId" asp-for="Student.RoomId" class="form-control"></select>
                 <span asp-validation-for="Student.RoomId" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            <div class="form-group" style="display: none;">
                 <label asp-for="StudentId" class="control-label">Sinh viên</label>
                 <select id="StudentId" asp-for="StudentId" class="form-control"></select>
-            </div>
-            <div class="form-group">
-                <label asp-for="Amount" class="control-label">Số tiền</label>
-                <input asp-for="Amount" class="form-control" />
-                <span asp-validation-for="Amount" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Description" class="control-label">Mô tả</label>
                 <input asp-for="Description" class="form-control" />
                 <span asp-validation-for="Description" class="text-danger"></span>
             </div>
+            <div class="form-group">
+                <label asp-for="Amount" class="control-label">Số tiền</label>
+                <input asp-for="Amount" class="form-control" />
+                <span asp-validation-for="Amount" class="text-danger"></span>
+            </div>
+            
             <div class="form-group">
                 <label asp-for="TransactionCode" class="control-label">Mã giao dịch</label>
                 <input asp-for="TransactionCode" class="form-control" />

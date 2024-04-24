@@ -21,6 +21,13 @@
                 </div>
             </th>
             <th>
+                <div class="text-center">
+                    <p class="mb-0">
+                        Mô tả
+                    </p>
+                </div>
+            </th>
+            <th>
                 <div class="ms-3">
                     <p class="mb-0">
                         Số tiền
@@ -54,6 +61,11 @@
                     </div>
                 </td>
                 <td>
+                    <div class="d-flex align-items-center" style="height:38px">
+                        <p class="mb-0 w-100 text-center">@Html.DisplayFor(modelItem => item.Description)</p>
+                    </div>
+                </td>
+                <td>
                     <div class="d-flex align-items-center ms-3" style="height:38px">
                         <p class="mb-0">@Html.DisplayFor(modelItem => item.Amount)</p>
                     </div>
@@ -66,10 +78,8 @@
                 </td>
                 <td>
                     <div class=" d-flex justify-content-center">
-                        <a asp-action="Edit" asp-route-id="@item.TransactionId" class="btn btn-primary">Sửa</a>
                         <a asp-action="Details" asp-route-id="@item.TransactionId" class="btn btn-success mx-3">Chi tiết</a>
                         <a asp-action="Delete" asp-route-id="@item.TransactionId" class="btn btn-danger">Xoá</a>
-
                     </div>
                 </td>
             </tr>

@@ -37,7 +37,9 @@
             <dd class="col-sm-7">@Html.DisplayFor(model => model.Class)</dd>
 
             <dt class="col-sm-5">Giấy xác nhận nhập học:</dt>
-            <dd class="col-sm-7">@Html.DisplayFor(model => model.AdmissionConfirmation)</dd>
+            <dd class="col-sm-7">
+                <img src="@Model.AdmissionConfirmation" alt="@Model.FullName" width="120px" height="100%" />
+            </dd>
 
             <dt class="col-sm-5">Ngành:</dt>
             <dd class="col-sm-7">@Html.DisplayFor(model => model.Department.DepartmentName)</dd>

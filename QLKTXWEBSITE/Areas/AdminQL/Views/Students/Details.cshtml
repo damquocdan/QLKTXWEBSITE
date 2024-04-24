@@ -51,8 +51,10 @@
                         <dt class="col-sm-4">Giường Số:</dt>
                         <dd class="col-sm-8">@Html.DisplayFor(model => model.Bed.NumberBed)</dd>
 
-                        <dt class="col-sm-4">Ảnh:</dt>
-                        <dd class="col-sm-8">@Html.DisplayFor(model => model.AdmissionConfirmation)</dd>
+                        <dt class="col-sm-4">Ảnh đại diện:</dt>
+                        <dd class="col-sm-8">
+                            <img src="@Model.AdmissionConfirmation" alt="@Model.FullName" width="120px" height="100%" />
+                        </dd>
                     </dl>
                 </div>
             </div>

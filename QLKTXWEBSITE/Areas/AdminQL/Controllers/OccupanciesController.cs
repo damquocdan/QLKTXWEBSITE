@@ -8,6 +8,9 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using QLKTXWEBSITE.Models;
+using MailKit.Security;
+using MimeKit;
+using MailKit.Net.Smtp;
 
 namespace QLKTXWEBSITE.Areas.AdminQL.Controllers
 {
@@ -192,72 +195,7 @@ namespace QLKTXWEBSITE.Areas.AdminQL.Controllers
           return (_context.Occupancies?.Any(e => e.OccupancyId == id)).GetValueOrDefault();
         }
         // POST: AdminQL/Occupancies/SendEmailToOccupants
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public IActionResult SendEmailToOccupants()
-        {
-            try
-            {
-                var occupants = _context.Occupancies
-                    .Include(o => o.Student) // Đảm bảo rằng thông tin của sinh viên được bao gồm
-                    .Where(o => o.Status == false)
-                    .ToList();
-
-                // Gửi email cho từng cư dân trong danh sách
-                foreach (var occupant in occupants)
-                {
-                    string email = occupant.Student.Email;
-                    string subject = "Ký túc xá trường đại học tài nguyên và môi trường";
-                    string studentCode = occupant.Student.StudentCode;
-                    var listName = _context.Students.FirstOrDefault(c => c.StudentCode.Equals(studentCode));
-                    string name = !string.IsNullOrEmpty(listName.FullName) ? listName.FullName : studentCode;
-                    string htmlBody = "<div>" +
-                                        "<h2>Dear " + name + "!</h2>" +
-                                        "<p>Mời bạn vào trang web ký túc xá để gia hạn phòng!</p>" +
-                                        "<a href=\"#\">Nhấp vào đây để tới trang web</a>" +
-                                    "</div>";
-                    SendEmail(email, subject, htmlBody);
-                }
-
-                ViewBag.Message = "Email đã được gửi thành công đến tất cả cư dân.";
-            }
-            catch (Exception ex)
-            {
-                ViewBag.Error = "Đã xảy ra lỗi khi gửi email: " + ex.Message;
-            }
-
-            return View();
-        }
-
-        // Phương thức gửi email
-        private void SendEmail(string email, string subject, string body)
-        {
-            var fromAddress = new MailAddress("21111064572@hunre.edu.vn");
-            var toAddress = new MailAddress(email);
-            const string fromPassword = "Danli29.03";
-            string host = "smtp.gmail.com";
-            int port = 587;
-
-            var smtp = new SmtpClient
-            {
-                Host = host,
-                Port = port,
-                EnableSsl = true,
-                DeliveryMethod = SmtpDeliveryMethod.Network,
-                UseDefaultCredentials = false,
-                Credentials = new NetworkCredential(fromAddress.Address, fromPassword)
-            };
-
-            using (var message = new MailMessage(fromAddress, toAddress)
-            {
-                Subject = subject,
-                Body = body,
-                IsBodyHtml = true
-            })
-            {
-                smtp.Send(message);
-            }
-        }
+     
         public IActionResult GetRoomsByBuilding(string building)
         {
             var rooms = _context.Rooms.Where(r => r.Building == building)
