@@ -4,9 +4,7 @@
     ViewData["Title"] = "Edit";
 }
 
-<h1>Edit</h1>
-
-<h4>Student</h4>
+<h1>Sửa thông tin</h1>
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -20,7 +18,7 @@
             </div>
             <div class="form-group">
                 <label asp-for="DateOfBirth" class="control-label">Ngày sinh</label>
-                <input asp-for="DateOfBirth" class="form-control" />
+                <input asp-for="DateOfBirth" class="form-control"/>
                 <span asp-validation-for="DateOfBirth" class="text-danger"></span>
             </div>
             <div class="form-group" style="display: none;">
@@ -68,9 +66,9 @@
                 <input asp-for="Class" class="form-control" />
                 <span asp-validation-for="Class" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            <div class="form-group" style="display: none;">
                 <label asp-for="AdmissionConfirmation" class="control-label">Ảnh đại diện (4 x 6)</label>
-                <input asp-for="AdmissionConfirmation" type="file" class="form-control" />
+                <input asp-for="AdmissionConfirmation" class="form-control"/>
                 <span asp-validation-for="AdmissionConfirmation" class="text-danger"></span>
             </div>
             <div class="form-group" style="display: none;">

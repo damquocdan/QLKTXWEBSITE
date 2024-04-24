@@ -62,24 +62,7 @@
                 Số tiền phải đóng
             </dt>
             <dd class="col-sm-10">
-                1.200.000đ
-            </dd>
-            <dt class="col-sm-2">
-                Trạng thái
-            </dt>
-            <dd class="col-sm-10">
-                @if (Model.Status == true)
-                {
-                    <div class="d-flex align-items-center" style="height:38px">
-                        <p class="mb-0 w-100 text-center text-success">Đã thanh toán</p>
-                    </div>
-                }
-                else
-                {
-                    <div class="d-flex align-items-center" style="height:38px">
-                        <p class="mb-0 w-100 text-center text-danger">Chưa thanh toán</p>
-                    </div>
-                }
+                @Html.DisplayFor(model => model.Room.Floor)
             </dd>
         </dl>
     </div>

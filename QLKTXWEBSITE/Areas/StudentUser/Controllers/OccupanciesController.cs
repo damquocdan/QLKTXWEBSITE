@@ -82,20 +82,53 @@ namespace QLKTXWEBSITE.Areas.StudentUser.Controllers
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("OccupancyId,StudentId,RoomId,RenewalDate,ExpirationDate,CycleMonths,Status")] Occupancy occupancy)
+[ValidateAntiForgeryToken]
+public async Task<IActionResult> Create([Bind("OccupancyId,StudentId,RoomId,RenewalDate,ExpirationDate,CycleMonths,Status")] Occupancy occupancy)
+{
+    if (ModelState.IsValid)
+    {
+        // Thiết lập ngày bắt đầu là ngày hiện tại
+        occupancy.RenewalDate = DateTime.Today;
+
+        // Thiết lập ngày kết thúc là 6 tháng sau ngày hiện tại
+        occupancy.ExpirationDate = DateTime.Today.AddMonths(6);
+
+        // Thiết lập số tháng là 6
+        occupancy.CycleMonths = 6;
+
+        // Thiết lập trạng thái là chưa thanh toán
+        occupancy.Status = false;
+
+        // Lưu thông tin hợp đồng vào cơ sở dữ liệu
+        _context.Add(occupancy);
+        await _context.SaveChangesAsync();
+
+        // Tạo đối tượng dịch vụ
+        var room = _context.Rooms.FirstOrDefault(r => r.RoomId == occupancy.RoomId);
+        if (room != null)
         {
-            if (ModelState.IsValid)
+            var hd = new Service
             {
-                _context.Add(occupancy);
-                await _context.SaveChangesAsync();
-                // Chuyển hướng đến trang danh sách hợp đồng của sinh viên đó
-                return RedirectToAction("Index", "Occupancies", new { studentId = occupancy.StudentId });
-            }
-            ViewData["RoomId"] = new SelectList(_context.Rooms, "RoomId", "NumberRoom", occupancy.RoomId);
-            ViewData["StudentId"] = new SelectList(_context.Students, "StudentId", "FullName", occupancy.StudentId);
-            return View(occupancy);
+                StudentId = occupancy.StudentId,
+                RoomId = occupancy.RoomId,
+                ServiceName = "Phòng ở kí túc xá",
+                Month = DateTime.Now.Month,
+                Price = room.Floor, // Sử dụng giá trị Floor của phòng
+                Status = false // Chưa thanh toán
+            };
+            _context.Add(hd);
+            await _context.SaveChangesAsync();
         }
+
+        // Chuyển hướng đến trang danh sách hợp đồng của sinh viên đó
+        return RedirectToAction("Index", "Occupancies", new { studentId = occupancy.StudentId });
+    }
+
+    // Nếu ModelState không hợp lệ, trả về view với dữ liệu và thông báo lỗi
+    ViewData["RoomId"] = new SelectList(_context.Rooms, "RoomId", "NumberRoom", occupancy.RoomId);
+    ViewData["StudentId"] = new SelectList(_context.Students, "StudentId", "FullName", occupancy.StudentId);
+    return View(occupancy);
+}
         // GET: StudentUser/Occupancies/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {

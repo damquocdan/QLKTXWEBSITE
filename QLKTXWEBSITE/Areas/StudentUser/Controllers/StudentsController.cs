@@ -125,6 +125,18 @@ namespace QLKTXWEBSITE.Areas.StudentUser.Controllers
             {
                 try
                 {
+                    var files = HttpContext.Request.Form.Files;
+                    if (files.Count() > 0 && files[0].Length > 0)
+                    {
+                        var file = files[0];
+                        var FileName = file.FileName;
+                        var path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot\\images\\students", FileName);
+                        using (var stream = new FileStream(path, FileMode.Create))
+                        {
+                            file.CopyTo(stream);
+                            student.AdmissionConfirmation = "/images/students/" + FileName;
+                        }
+                    }
                     _context.Update(student);
                     await _context.SaveChangesAsync();
                 }
@@ -139,7 +151,7 @@ namespace QLKTXWEBSITE.Areas.StudentUser.Controllers
                         throw;
                     }
                 }
-                return RedirectToAction("Details", new { id = student.StudentId });
+                return RedirectToAction("Details", new { studentId = student.StudentId });
             }
             ViewData["BedId"] = new SelectList(_context.BedOfRooms, "BedId", "NumberBed", student.BedId);
             ViewData["DepartmentId"] = new SelectList(_context.Departments, "DepartmentId", "DepartmentName", student.DepartmentId);
@@ -249,7 +261,8 @@ namespace QLKTXWEBSITE.Areas.StudentUser.Controllers
             try
             {
                 await _context.SaveChangesAsync();
-                return RedirectToAction("Details", new { id = student.StudentId });
+                // Điều hướng đến trang Details của sinh viên sau khi đổi mật khẩu thành công
+                return RedirectToAction("Details", new { studentId = student.StudentId });
             }
             catch (Exception)
             {

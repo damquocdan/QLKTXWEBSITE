@@ -3,60 +3,84 @@
 @{
     ViewData["Title"] = "Hợp đồng";
 }
+@{
+    // Lấy ngày hiện tại
+    DateTime currentDate = DateTime.Today;
 
-<h1>Danh sách các hợp đồng gia hạn</h1>
+    // Tìm ngày `ExpirationDate` gần nhất trong danh sách các hợp đồng
+    DateTime? nearestExpirationDate = Model.Select(x => x.ExpirationDate).OrderByDescending(x => x).FirstOrDefault();
 
-<p>
-    <a asp-action="Create" asp-route-studentId="@Model?.FirstOrDefault()?.StudentId">Tạo hợp đồng mới</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                Ngày bắt đầu
-            </th>
-            <th>
-                Ngày kết thúc
-            </th>
-            <th>
-                Số Tháng
-            </th>
-            <th class="text-center">
-                Trạng thái
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.RenewalDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ExpirationDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CycleMonths)
-            </td>
-            <td>
-                    @if (item.Status == true)
-                    {
-                        <div class="d-flex align-items-center" style="height:38px">
-                            <p class="mb-0 w-100 text-center text-success">Đã thanh toán</p>
-                        </div>
-                    }
-                    else
-                    {
-                        <div class="d-flex align-items-center" style="height:38px">
-                            <p class="mb-0 w-100 text-center text-danger">Chưa thanh toán</p>
-                        </div>
-                    }
-            </td>
-            <td>
-                <a asp-action="Details" asp-route-id="@item.OccupancyId">Xem chi tiết</a>
-            </td>
-        </tr>
+    // Kiểm tra xem ngày hiện tại có quá 1 tháng so với ngày gần nhất không
+    bool isPastOneMonth = nearestExpirationDate != null && currentDate > nearestExpirationDate.Value.AddMonths(1);
+    bool hasRoom = Model.Any(x => x.RoomId != null);
 }
-    </tbody>
-</table>
+@if (hasRoom)
+{
+    <h1>Danh sách các hợp đồng gia hạn</h1>
+
+    @if (!isPastOneMonth)
+    {
+        <p>
+            <a asp-action="Create" asp-route-studentId="@Context.Session.GetInt32("StudentId")">Tạo hợp đồng mới</a>
+        </p>
+    }
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    Ngày bắt đầu
+                </th>
+                <th>
+                    Ngày kết thúc
+                </th>
+                <th>
+                    Số Tháng
+                </th>
+                <th class="text-center">
+                    Trạng thái
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.RenewalDate)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ExpirationDate)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CycleMonths)
+                    </td>
+                    <td>
+                        @if (item.Status == true)
+                        {
+                            <div class="d-flex align-items-center" style="height:38px">
+                                <p class="mb-0 w-100 text-center text-success">Đã thanh toán</p>
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="d-flex align-items-center" style="height:38px">
+                                <p class="mb-0 w-100 text-center text-danger">Chưa thanh toán</p>
+                            </div>
+                        }
+                    </td>
+                    <td>
+                        <a asp-action="Details" asp-route-id="@item.OccupancyId">Xem chi tiết</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+}
+else
+{
+    <div class="alert alert-warning" role="alert">
+        <p>Hiện tại bạn chưa có phòng ở. Vui lòng đăng ký phòng và giường.</p>
+    </div>
+}

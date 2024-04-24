@@ -138,7 +138,7 @@ namespace QLKTXWEBSITE.Areas.StudentUser.Controllers
                 RoomId = roomId,
                 ServiceName = "Phòng ở kí túc xá",
                 Month = DateTime.Now.Month,
-                Price = 1200000,
+                Price = room.Floor,
                 Status = false // Chưa thanh toán
             };
             _context.Services.Add(hd);

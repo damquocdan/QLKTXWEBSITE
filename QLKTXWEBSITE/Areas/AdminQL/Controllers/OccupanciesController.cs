@@ -210,6 +210,18 @@ namespace QLKTXWEBSITE.Areas.AdminQL.Controllers
                                             .ToList();
             return Json(students);
         }
+        public IActionResult StudentsWithoutContract()
+        {
+            // Lấy ngày hiện tại
+            DateTime currentDate = DateTime.Today;
+
+            // Lấy danh sách sinh viên không có hợp đồng ở ngày hiện tại
+            var studentsWithoutContract = _context.Students.Where(student =>
+                !student.Occupancies.Any(occupancy => occupancy.RenewalDate <= currentDate && occupancy.ExpirationDate >= currentDate)
+            ).ToList();
+
+            return View(studentsWithoutContract);
+        }
 
     }
 }

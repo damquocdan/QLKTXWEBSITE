@@ -55,12 +55,12 @@
             <div class="col-md-2 col-sm-4  tile_stats_count">
                 <span class="count_top"><i class="fa fa-user"></i>DV SV chưa thanh toán</span>
                 <div class="count">@Model.TotalFalseServices/@Model.TotalServices</div>
-                <span class="count_bottom"><i class="red"></i>@Model.TotalFalseServicesPercentage%</i></span>
+                <span class="count_bottom"><i class="red"></i>@Model.TotalFalseServicesPercentage.ToString("0.##")%</i></span>
             </div>
             <div class="col-md-2 col-sm-4  tile_stats_count">
                 <span class="count_top"><i class="fa fa-user"></i>SV chưa đóng tiền phòng</span>
                 <div class="count">@Model.NotPaymoney/@Model.TotalPaymoney</div>
-                <span class="count_bottom"><i class="green">@Model.NotPaymoneyPercentage%</i></span>
+                <span class="count_bottom"><i class="green">@Model.NotPaymoneyPercentage.ToString("0.##")%</i></span>
             </div>
             <div class="col-md-2 col-sm-4  tile_stats_count">
                 <span class="count_top"><i class="fa fa-user"></i>Thu nhập</span>
@@ -77,7 +77,7 @@
 
                 <div class="row x_title">
                     <div class="col-md-6">
-                        <h3>Network Activities <small>Graph title sub-title</small></h3>
+                        <h3><small>Biểu đồ thống kê</small> Thu nhập</h3>
                     </div>
                     <div class="col-md-6">
                         <div id="reportrange" class="pull-right" style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid green">
@@ -92,13 +92,13 @@
                 </div>
                 <div class="col-md-3 col-sm-3  bg-white">
                     <div class="x_title">
-                        <h2>Top Campaign Performance</h2>
+                        <h2>Sinh viên các khoá</h2>
                         <div class="clearfix"></div>
                     </div>
 
                     <div class="col-md-12 col-sm-12 ">
                         <div>
-                            <p>Facebook Campaign</p>
+                            <p>Khoá DH11</p>
                             <div class="">
                                 <div class="progress progress_sm" style="width: 76%;">
                                     <div class="progress-bar bg-green" role="progressbar" data-transitiongoal="80"></div>
@@ -106,7 +106,7 @@
                             </div>
                         </div>
                         <div>
-                            <p>Twitter Campaign</p>
+                            <p>Khoá DH12</p>
                             <div class="">
                                 <div class="progress progress_sm" style="width: 76%;">
                                     <div class="progress-bar bg-green" role="progressbar" data-transitiongoal="60"></div>
@@ -116,7 +116,7 @@
                     </div>
                     <div class="col-md-12 col-sm-12 ">
                         <div>
-                            <p>Conventional Media</p>
+                            <p>Khoá DH13</p>
                             <div class="">
                                 <div class="progress progress_sm" style="width: 76%;">
                                     <div class="progress-bar bg-green" role="progressbar" data-transitiongoal="40"></div>
@@ -124,7 +124,7 @@
                             </div>
                         </div>
                         <div>
-                            <p>Bill boards</p>
+                            <p>Khoá DH14</p>
                             <div class="">
                                 <div class="progress progress_sm" style="width: 76%;">
                                     <div class="progress-bar bg-green" role="progressbar" data-transitiongoal="50"></div>

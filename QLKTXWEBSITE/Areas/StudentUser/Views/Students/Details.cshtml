@@ -3,70 +3,132 @@
 @{
     ViewData["Title"] = "Thông tin tài khoản";
 }
+<style>
+    .row {
+    display: flex;
+    flex-wrap: wrap;
+}
 
+.col-md-3,
+.col-md-7,
+.col-md-2 {
+    flex: 1; /* Sử dụng phần bằng nhau của không gian */
+}
 
-<div class="">
-    <div class="col-md-9">
+/* CSS cho phần thông tin sinh viên */
+.student-info {
+    margin-top: 20px;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+}
+
+.student-info img {
+    display: block;
+    margin: 0 auto;
+    border-radius: 50%;
+}
+
+.student-info h4 {
+    text-align: center;
+}
+
+.student-info dl dt {
+    font-weight: bold;
+}
+
+/* CSS cho các nút sửa thông tin và đổi mật khẩu */
+.btn-container {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+}
+
+.btn-container a {
+    text-decoration: none;
+    padding: 10px;
+    border-radius: 5px;
+    background-color: aquamarine;
+}
+
+}
+</style>
+<div class="row">
+    <div class="col-md-3">
         <div>
-            <h1>Thông tin sinh viên</h1>
+            <p style="text-align:center;"><img src="@Model.AdmissionConfirmation" alt="@Model.FullName" width="150px" height="150px" style="border-radius:50%;" /></p>
+            <h4 style="text-align:center;">@Html.DisplayFor(model => model.FullName)</h4>
+            <p style="text-align:center;">@Html.DisplayFor(model => model.Email)</p>
+        </div>
+        <div class="row">
+            <div class="col-md-1">
+            </div>
+            <div class="col-md-5" style="background-color:aquamarine; border-radius:15px; padding:10px">
+                <a asp-action="Edit" asp-route-id="@Model?.StudentId" style="margin:auto;text-decoration: none">
+                    Sửa thông tin
+                </a>
+            </div>
+            <div class="col-md-2">
+
+            </div>
+            <div class="col-md-4" style="background-color:aquamarine; border-radius:15px; padding:10px">
+                <a asp-action="ChangePassword" asp-route-id="@Model?.StudentId" style="margin:auto ;text-decoration: none">
+                    Đổi mật khẩu
+                </a>
+            </div>
+            <div class="col-md-1">
+            </div>
+        </div>
+
+    </div>
+    <div class="col-md-6" style="border:2px solid #ccc; border-radius:20px">
+        <div>
+            <h1 style="text-align:center;">Thông tin sinh viên</h1>
         </div>
         <hr />
+        <hr />
         <dl class="row">
-            <dt class="col-sm-5">Họ và tên:</dt>
-            <dd class="col-sm-7">@Html.DisplayFor(model => model.FullName)</dd>
-
             <dt class="col-sm-5">Ngày sinh:</dt>
-            <dd class="col-sm-7">@Html.DisplayFor(model => model.DateOfBirth)</dd>
-
+            <dd class="col-sm-7">@Model.DateOfBirth?.ToString("dd/MM/yyyy")</dd>
+            <hr />
             <dt class="col-sm-5">Giới tính:</dt>
             <dd class="col-sm-7">@Html.DisplayFor(model => model.Gender)</dd>
-
+            <hr />
             <dt class="col-sm-5">Số điện thoại:</dt>
             <dd class="col-sm-7">@Html.DisplayFor(model => model.PhoneNumber)</dd>
-
+            <hr />
             <dt class="col-sm-5">Số điện thoại phụ huynh:</dt>
             <dd class="col-sm-7">@Html.DisplayFor(model => model.ParentPhoneNumber)</dd>
-
-            <dt class="col-sm-5">Email:</dt>
-            <dd class="col-sm-7">@Html.DisplayFor(model => model.Email)</dd>
-
+            <hr />
             <dt class="col-sm-5">Mã sinh viên:</dt>
             <dd class="col-sm-7">@Html.DisplayFor(model => model.StudentCode)</dd>
-
+            <hr />
             <dt class="col-sm-5">Lớp:</dt>
             <dd class="col-sm-7">@Html.DisplayFor(model => model.Class)</dd>
-
-            <dt class="col-sm-5">Giấy xác nhận nhập học:</dt>
-            <dd class="col-sm-7">
-                <img src="@Model.AdmissionConfirmation" alt="@Model.FullName" width="120px" height="100%" />
-            </dd>
-
+            <hr />
             <dt class="col-sm-5">Ngành:</dt>
             <dd class="col-sm-7">@Html.DisplayFor(model => model.Department.DepartmentName)</dd>
-
+            <hr />
             <dt class="col-sm-5">Khoá:</dt>
             <dd class="col-sm-7">@Html.DisplayFor(model => model.Dh.Dhcode)</dd>
-
+            <hr />
             <dt class="col-sm-5">Phòng Số:</dt>
             <dd class="col-sm-7">@Html.DisplayFor(model => model.Room.NumberRoom)</dd>
-
-
         </dl>
     </div>
-</div>
+    <div class="col-md-3">
+        @if (Model.DateOfBirth == null || string.IsNullOrEmpty(Model.Gender) || string.IsNullOrEmpty(Model.PhoneNumber) || string.IsNullOrEmpty(Model.ParentPhoneNumber) || string.IsNullOrEmpty(Model.StudentCode) || string.IsNullOrEmpty(Model.Class) || Model.Department == null || Model.Dh == null)
+        {
+            <div class="alert alert-warning" role="alert">
+                <strong>Cảnh báo!</strong> Bạn cần điền đủ thông tin trước khi tiếp tục.
+            </div>
+        }
+        else
+        {
+            <div class="alert alert-success" role="alert">
+                <strong>Thông báo!</strong> Bạn đã gửi đầy đủ thông tin.
+            </div>
+        }
+    </div>
 
-<div>
-
-    <a asp-action="Edit" asp-route-id="@Model?.StudentId" class="btn btn-primary btn-sm"
-            style="padding-left: 2.5rem; padding-right: 2.5rem;">
-            Sửa thông tin
-    </a>
-    <a asp-action="ChangePassword" asp-route-id="@Model?.StudentId" class="btn btn-primary btn-sm"
-            style="padding-left: 2.5rem; padding-right: 2.5rem">
-            Đổi mật khẩu
-    </a>
-    <a asp-controller="Login" asp-action="Logout" class="btn btn-primary btn-sm"
-       style="padding-left: 2.5rem; padding-right: 2.5rem">
-            Đăng xuất
-    </a>
 </div>
