@@ -2,78 +2,166 @@
 @{
     ViewData["Title"] = "Dịch vụ";
 }
-<div style="min-height:535px">
-    <table class="table">
-        <thead>
+<div class="row">
+    <h1 class="text-center mb-4">Dịch vụ</h1>
+    <div class="col-md-3">
+        <div class="card" style="width: 18rem;">
+            <img src="~/img/tramdien.png" class="card-img-top" alt="..." height="200px">
+            <div class="card-body">
+                <h5 class="card-title">Tiền điện</h5>
+                <p class="card-text">Tiện điện được tính riêng của từng phòng chia cho số người có ở phòng </p>
+                <a class="btn btn-primary" asp-controller="Services" asp-action="Index" asp-route-studentId="@Context.Session.GetInt32("StudentId")" asp-route-serviceType="1">Thanh toán</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card" style="width: 18rem;">
+            <img src="~/img/nuoc.jpg" class="card-img-top" alt="..." height="200px">
+            <div class="card-body">
+                <h5 class="card-title">Tiền nước</h5>
+                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                <a class="btn btn-primary" asp-controller="Services" asp-action="Index" asp-route-studentId="@Context.Session.GetInt32("StudentId")" asp-route-serviceType="2">Thanh toán</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card" style="width: 18rem;">
+            <img src="~/img/máy_giặt_gđ.jpg" class="card-img-top" alt="..." height="220px">
+            <div class="card-body">
+                <h5 class="card-title">Máy giặt công cộng</h5>
+                <p class="card-text">Tháng @DateTime.Now.Month</p>
+                <a class="btn btn-primary" asp-controller="Services" asp-action="RegisterService" asp-route-studentId="@Context.Session.GetInt32("StudentId")" asp-route-serviceName="Máy giặt công cộng">Đăng ký dịch vụ</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card" style="width: 18rem;">
+            <img src="~/img/nhaxe.jpg" class="card-img-top" alt="..." height="220px">
+            <div class="card-body">
+                <h5 class="card-title">Gửi xe máy, đạp, điện</h5>
+                <p class="card-text">Tháng @DateTime.Now.Month</p>
+                <a class="btn btn-primary" asp-controller="Services" asp-action="RegisterService" asp-route-studentId="@Context.Session.GetInt32("StudentId")" asp-route-serviceName="Gửi xe máy, xe đạp, xe điện">Đăng ký dịch vụ</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card" style="width: 18rem;">
+            <img src="~/img/nhaan.jpg" class="card-img-top" alt="..." height="220px">
+            <div class="card-body">
+                <h5 class="card-title">Hệ thống nhà ăn</h5>
+                <p class="card-text">Tháng @DateTime.Now.Month</p>
+                <td class="text-center"><a class="btn btn-primary" asp-controller="Services" asp-action="RegisterService" asp-route-studentId="@Context.Session.GetInt32("StudentId")" asp-route-serviceName="Hệ thống nhà ăn">Đăng ký dịch vụ</a></td>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card" style="width: 18rem;">
+            <img src="~/img/phong_may.jpg" class="card-img-top" alt="..." height="220px">
+            <div class="card-body">
+                <h5 class="card-title">Hệ thống phòng máy</h5>
+                <p class="card-text">Tháng @DateTime.Now.Month</p>
+                <a class="btn btn-primary" asp-controller="Services" asp-action="RegisterService" asp-route-studentId="@Context.Session.GetInt32("StudentId")" asp-route-serviceName="Hệ thống phòng máy tính">Đăng ký dịch vụ</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card" style="width: 18rem;">
+            <img src="~/img/gym.jpg" class="card-img-top" alt="..." height="220px">
+            <div class="card-body">
+                <h5 class="card-title">Hệ thống phòng tập</h5>
+                <p class="card-text">Tháng @DateTime.Now.Month</p>
+                <a class="btn btn-primary" asp-controller="Services" asp-action="RegisterService" asp-route-studentId="@Context.Session.GetInt32("StudentId")" asp-route-serviceName="Hệ thống phòng tập gym">Đăng ký dịch vụ</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card" style="width: 18rem;">
+            <img src="~/img/nhasach.jpg" class="card-img-top" alt="..." height="220px">
+            <div class="card-body">
+                <h5 class="card-title">Hệ thống nhà sách</h5>
+                <p class="card-text">Tháng @DateTime.Now.Month</p>
+                <a class="btn btn-primary" asp-controller="Services" asp-action="RegisterService" asp-route-studentId="@Context.Session.GetInt32("StudentId")" asp-route-serviceName="Hệ thống nhà sách">Đăng ký dịch vụ</a>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container mt-4">
+    <h1 class="text-center mb-4">Danh sách dịch vụ</h1>
+
+</div>
+
+<div class="table-responsive" style="min-height:535px">
+    <table class="table table-bordered table-striped">
+        <thead class="thead-dark">
             <tr>
-                <th>STT</th>
-                <th>Service Name</th>
-                <th>Month</th>
-                <th>Price</th>
-                <th></th>
+                <th class="text-center">STT</th>
+                <th class="text-center">Tên dịch vụ</th>
+                <th class="text-center">Tháng</th>
+                <th class="text-center">Giá</th>
+                <th class="text-center">Hành động</th>
             </tr>
         </thead>
         <tbody>
             <tr>
-                <td>1</td>
-                <td>Tiền điện</td>
-                <td></td>
-                <td></td>
-                <td><a asp-controller="Services" asp-action="Index" asp-route-studentId="@Context.Session.GetInt32("StudentId")" asp-route-serviceType="1">Thanh toán</a></td>
+                <td class="text-center">1</td>
+                <td class="text-center">Tiền điện</td>
+                <td class="text-center"></td>
+                <td class="text-center"></td>
+                <td class="text-center"><a class="btn btn-primary" asp-controller="Services" asp-action="Index" asp-route-studentId="@Context.Session.GetInt32("StudentId")" asp-route-serviceType="1">Thanh toán</a></td>
             </tr>
             <tr>
-                <td>2</td>
-                <td>Tiền Nước</td>
-                <td></td>
-                <td></td>
-                <td><a asp-controller="Services" asp-action="Index" asp-route-studentId="@Context.Session.GetInt32("StudentId")" asp-route-serviceType="2">Thanh toán</a></td>
+                <td class="text-center">2</td>
+                <td class="text-center">Tiền Nước</td>
+                <td class="text-center"></td>
+                <td class="text-center"></td>
+                <td class="text-center"><a class="btn btn-primary" asp-controller="Services" asp-action="Index" asp-route-studentId="@Context.Session.GetInt32("StudentId")" asp-route-serviceType="2">Thanh toán</a></td>
             </tr>
             <tr>
-                <td>3</td>
-                <td>Máy giặt công cộng</td>
-                <td>Tháng @DateTime.Now.Month</td>
-                <td></td>
-                <td><a asp-controller="Services" asp-action="RegisterService" asp-route-studentId="@Context.Session.GetInt32("StudentId")" asp-route-serviceName="Máy giặt công cộng">Đăng ký dịch vụ</a></td>
+                <td class="text-center">3</td>
+                <td class="text-center">Máy giặt công cộng</td>
+                <td class="text-center">Tháng @DateTime.Now.Month</td>
+                <td class="text-center"></td>
+                <td class="text-center"><a class="btn btn-primary" asp-controller="Services" asp-action="RegisterService" asp-route-studentId="@Context.Session.GetInt32("StudentId")" asp-route-serviceName="Máy giặt công cộng">Đăng ký dịch vụ</a></td>
 
             </tr>
             <tr>
-                <td>4</td>
-                <td>Gửi xe máy, xe đạp, xe điện</td>
-                <td>Tháng @DateTime.Now.Month</td>
-                <td></td>
-                <td><a asp-controller="Services" asp-action="RegisterService" asp-route-studentId="@Context.Session.GetInt32("StudentId")" asp-route-serviceName="Gửi xe máy, xe đạp, xe điện">Đăng ký dịch vụ</a></td>
+                <td class="text-center">4</td>
+                <td class="text-center">Gửi xe máy, xe đạp, xe điện</td>
+                <td class="text-center">Tháng @DateTime.Now.Month</td>
+                <td class="text-center"></td>
+                <td class="text-center"><a class="btn btn-primary" asp-controller="Services" asp-action="RegisterService" asp-route-studentId="@Context.Session.GetInt32("StudentId")" asp-route-serviceName="Gửi xe máy, xe đạp, xe điện">Đăng ký dịch vụ</a></td>
 
             </tr>
             <tr>
-                <td>5</td>
-                <td>Hệ thống nhà ăn</td>
-                <td>Tháng @DateTime.Now.Month</td>
-                <td></td>
-                <td><a asp-controller="Services" asp-action="RegisterService" asp-route-studentId="@Context.Session.GetInt32("StudentId")" asp-route-serviceName="Hệ thống nhà ăn">Đăng ký dịch vụ</a></td>
+                <td class="text-center">5</td>
+                <td class="text-center">Hệ thống nhà ăn</td>
+                <td class="text-center">Tháng @DateTime.Now.Month</td>
+                <td class="text-center"></td>
+                <td class="text-center"><a class="btn btn-primary" asp-controller="Services" asp-action="RegisterService" asp-route-studentId="@Context.Session.GetInt32("StudentId")" asp-route-serviceName="Hệ thống nhà ăn">Đăng ký dịch vụ</a></td>
 
             </tr>
             <tr>
-                <td>6</td>
-                <td>Hệ thống phòng máy tính</td>
-                <td>Tháng @DateTime.Now.Month</td>
-                <td></td>
-                <td><a asp-controller="Services" asp-action="RegisterService" asp-route-studentId="@Context.Session.GetInt32("StudentId")" asp-route-serviceName="Hệ thống phòng máy tính">Đăng ký dịch vụ</a></td>
+                <td class="text-center">6</td>
+                <td class="text-center">Hệ thống phòng máy tính</td>
+                <td class="text-center">Tháng @DateTime.Now.Month</td>
+                <td class="text-center"></td>
+                <td class="text-center"> <a class="btn btn-primary" asp-controller="Services" asp-action="RegisterService" asp-route-studentId="@Context.Session.GetInt32("StudentId")" asp-route-serviceName="Hệ thống phòng máy tính">Đăng ký dịch vụ</a></td>
 
             </tr>
             <tr>
-                <td>7</td>
-                <td>Hệ thống phòng tập gym</td>
-                <td>Tháng @DateTime.Now.Month</td>
-                <td></td>
-                <td><a asp-controller="Services" asp-action="RegisterService" asp-route-studentId="@Context.Session.GetInt32("StudentId")" asp-route-serviceName="Hệ thống phòng tập gym">Đăng ký dịch vụ</a></td>
+                <td class="text-center">7</td>
+                <td class="text-center">Hệ thống phòng tập gym</td>
+                <td class="text-center">Tháng @DateTime.Now.Month</td>
+                <td class="text-center"></td>
+                <td class="text-center"><a class="btn btn-primary" asp-controller="Services" asp-action="RegisterService" asp-route-studentId="@Context.Session.GetInt32("StudentId")" asp-route-serviceName="Hệ thống phòng tập gym">Đăng ký dịch vụ</a></td>
 
             </tr>
             <tr>
-                <td>8</td>
-                <td>Hệ thống nhà sách</td>
-                <td>Tháng @DateTime.Now.Month</td>
-                <td></td>
-                <td><a asp-controller="Services" asp-action="RegisterService" asp-route-studentId="@Context.Session.GetInt32("StudentId")" asp-route-serviceName="Hệ thống nhà sách">Đăng ký dịch vụ</a></td>
+                <td class="text-center">8</td>
+                <td class="text-center">Hệ thống nhà sách</td>
+                <td class="text-center">Tháng @DateTime.Now.Month</td>
+                <td class="text-center"></td>
+                <td class="text-center"><a class="btn btn-primary" asp-controller="Services" asp-action="RegisterService" asp-route-studentId="@Context.Session.GetInt32("StudentId")" asp-route-serviceName="Hệ thống nhà sách">Đăng ký dịch vụ</a></td>
 
             </tr>
         </tbody>
