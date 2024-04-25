@@ -30,7 +30,7 @@
             <div class="card-body">
                 <h5 class="card-title">Máy giặt công cộng</h5>
                 <p class="card-text">Tháng @DateTime.Now.Month</p>
-                <a class="btn btn-primary" asp-controller="Services" asp-action="RegisterService" asp-route-studentId="@Context.Session.GetInt32("StudentId")" asp-route-serviceName="Máy giặt công cộng">Đăng ký dịch vụ</a>
+                <a class="btn btn-primary" asp-controller="Services" asp-action="RegisterService" asp-route-studentId="@Context.Session.GetInt32("StudentId")" asp-route-serviceName="Máy giặt công cộng" asp-route-price="200000">Đăng ký dịch vụ</a>
             </div>
         </div>
     </div>
@@ -40,7 +40,7 @@
             <div class="card-body">
                 <h5 class="card-title">Gửi xe máy, đạp, điện</h5>
                 <p class="card-text">Tháng @DateTime.Now.Month</p>
-                <a class="btn btn-primary" asp-controller="Services" asp-action="RegisterService" asp-route-studentId="@Context.Session.GetInt32("StudentId")" asp-route-serviceName="Gửi xe máy, xe đạp, xe điện">Đăng ký dịch vụ</a>
+                <a class="btn btn-primary" asp-controller="Services" asp-action="RegisterService" asp-route-studentId="@Context.Session.GetInt32("StudentId")" asp-route-serviceName="Gửi xe máy, xe đạp, xe điện" asp-route-price="80000">Đăng ký dịch vụ</a>
             </div>
         </div>
     </div>
@@ -50,7 +50,7 @@
             <div class="card-body">
                 <h5 class="card-title">Hệ thống nhà ăn</h5>
                 <p class="card-text">Tháng @DateTime.Now.Month</p>
-                <td class="text-center"><a class="btn btn-primary" asp-controller="Services" asp-action="RegisterService" asp-route-studentId="@Context.Session.GetInt32("StudentId")" asp-route-serviceName="Hệ thống nhà ăn">Đăng ký dịch vụ</a></td>
+                <td class="text-center"><a class="btn btn-primary" asp-controller="Services" asp-action="RegisterService" asp-route-studentId="@Context.Session.GetInt32("StudentId")" asp-route-serviceName="Hệ thống nhà ăn" asp-route-price="1200000">Đăng ký dịch vụ</a></td>
             </div>
         </div>
     </div>
@@ -60,7 +60,7 @@
             <div class="card-body">
                 <h5 class="card-title">Hệ thống phòng máy</h5>
                 <p class="card-text">Tháng @DateTime.Now.Month</p>
-                <a class="btn btn-primary" asp-controller="Services" asp-action="RegisterService" asp-route-studentId="@Context.Session.GetInt32("StudentId")" asp-route-serviceName="Hệ thống phòng máy tính">Đăng ký dịch vụ</a>
+                <a class="btn btn-primary" asp-controller="Services" asp-action="RegisterService" asp-route-studentId="@Context.Session.GetInt32("StudentId")" asp-route-serviceName="Hệ thống phòng máy tính" asp-route-price="400000">Đăng ký dịch vụ</a>
             </div>
         </div>
     </div>
@@ -70,7 +70,7 @@
             <div class="card-body">
                 <h5 class="card-title">Hệ thống phòng tập</h5>
                 <p class="card-text">Tháng @DateTime.Now.Month</p>
-                <a class="btn btn-primary" asp-controller="Services" asp-action="RegisterService" asp-route-studentId="@Context.Session.GetInt32("StudentId")" asp-route-serviceName="Hệ thống phòng tập gym">Đăng ký dịch vụ</a>
+                <a class="btn btn-primary" asp-controller="Services" asp-action="RegisterService" asp-route-studentId="@Context.Session.GetInt32("StudentId")" asp-route-serviceName="Hệ thống phòng tập gym" asp-route-price="200000">Đăng ký dịch vụ</a>
             </div>
         </div>
     </div>
@@ -80,7 +80,7 @@
             <div class="card-body">
                 <h5 class="card-title">Hệ thống nhà sách</h5>
                 <p class="card-text">Tháng @DateTime.Now.Month</p>
-                <a class="btn btn-primary" asp-controller="Services" asp-action="RegisterService" asp-route-studentId="@Context.Session.GetInt32("StudentId")" asp-route-serviceName="Hệ thống nhà sách">Đăng ký dịch vụ</a>
+                <a class="btn btn-primary" asp-controller="Services" asp-action="RegisterService" asp-route-studentId="@Context.Session.GetInt32("StudentId")" asp-route-serviceName="Hệ thống nhà sách" asp-route-price="100000">Đăng ký dịch vụ</a>
             </div>
         </div>
     </div>
@@ -107,61 +107,61 @@
                 <td class="text-center">Tiền điện</td>
                 <td class="text-center"></td>
                 <td class="text-center"></td>
-                <td class="text-center"><a class="btn btn-primary" asp-controller="Services" asp-action="Index" asp-route-studentId="@Context.Session.GetInt32("StudentId")" asp-route-serviceType="1">Thanh toán</a></td>
+                <td class="text-center"><a class="btn btn-primary" asp-controller="News" asp-action="DetailsNew" asp-route-studentId="@Context.Session.GetInt32("StudentId")" asp-route-newName="Tiền điện">Xem chi tiết</a></td>
             </tr>
             <tr>
                 <td class="text-center">2</td>
                 <td class="text-center">Tiền Nước</td>
                 <td class="text-center"></td>
                 <td class="text-center"></td>
-                <td class="text-center"><a class="btn btn-primary" asp-controller="Services" asp-action="Index" asp-route-studentId="@Context.Session.GetInt32("StudentId")" asp-route-serviceType="2">Thanh toán</a></td>
+                <td class="text-center"><a class="btn btn-primary" asp-controller="News" asp-action="DetailsNew" asp-route-studentId="@Context.Session.GetInt32("StudentId")" asp-route-newName="Tiền nước">Xem chi tiết</a></td>
             </tr>
             <tr>
                 <td class="text-center">3</td>
                 <td class="text-center">Máy giặt công cộng</td>
                 <td class="text-center">Tháng @DateTime.Now.Month</td>
-                <td class="text-center"></td>
-                <td class="text-center"><a class="btn btn-primary" asp-controller="Services" asp-action="RegisterService" asp-route-studentId="@Context.Session.GetInt32("StudentId")" asp-route-serviceName="Máy giặt công cộng">Đăng ký dịch vụ</a></td>
+                <td class="text-center">200.000đ</td>
+                <td class="text-center"><a class="btn btn-primary" asp-controller="News" asp-action="DetailsNew" asp-route-studentId="@Context.Session.GetInt32("StudentId")" asp-route-newName="Máy giặt công cộng">Xem chi tiết</a></td>
 
             </tr>
             <tr>
                 <td class="text-center">4</td>
                 <td class="text-center">Gửi xe máy, xe đạp, xe điện</td>
                 <td class="text-center">Tháng @DateTime.Now.Month</td>
-                <td class="text-center"></td>
-                <td class="text-center"><a class="btn btn-primary" asp-controller="Services" asp-action="RegisterService" asp-route-studentId="@Context.Session.GetInt32("StudentId")" asp-route-serviceName="Gửi xe máy, xe đạp, xe điện">Đăng ký dịch vụ</a></td>
+                <td class="text-center">80.000đ</td>
+                <td class="text-center"><a class="btn btn-primary" asp-controller="News" asp-action="DetailsNew" asp-route-studentId="@Context.Session.GetInt32("StudentId")" asp-route-newName="Gửi xe máy, xe đạp, xe điện">Xem chi tiết</a></td>
 
             </tr>
             <tr>
                 <td class="text-center">5</td>
                 <td class="text-center">Hệ thống nhà ăn</td>
                 <td class="text-center">Tháng @DateTime.Now.Month</td>
-                <td class="text-center"></td>
-                <td class="text-center"><a class="btn btn-primary" asp-controller="Services" asp-action="RegisterService" asp-route-studentId="@Context.Session.GetInt32("StudentId")" asp-route-serviceName="Hệ thống nhà ăn">Đăng ký dịch vụ</a></td>
+                <td class="text-center">1.200.000đ</td>
+                <td class="text-center"><a class="btn btn-primary" asp-controller="News" asp-action="DetailsNew" asp-route-studentId="@Context.Session.GetInt32("StudentId")" asp-route-newName="Hệ thống nhà ăn">Xem chi tiết</a></td>
 
             </tr>
             <tr>
                 <td class="text-center">6</td>
                 <td class="text-center">Hệ thống phòng máy tính</td>
                 <td class="text-center">Tháng @DateTime.Now.Month</td>
-                <td class="text-center"></td>
-                <td class="text-center"> <a class="btn btn-primary" asp-controller="Services" asp-action="RegisterService" asp-route-studentId="@Context.Session.GetInt32("StudentId")" asp-route-serviceName="Hệ thống phòng máy tính">Đăng ký dịch vụ</a></td>
+                <td class="text-center">400.000đ</td>
+                <td class="text-center"> <a class="btn btn-primary" asp-controller="News" asp-action="DetailsNew" asp-route-studentId="@Context.Session.GetInt32("StudentId")" asp-route-newName="Hệ thống phòng máy tính">Xem chi tiết</a></td>
 
             </tr>
             <tr>
                 <td class="text-center">7</td>
                 <td class="text-center">Hệ thống phòng tập gym</td>
                 <td class="text-center">Tháng @DateTime.Now.Month</td>
-                <td class="text-center"></td>
-                <td class="text-center"><a class="btn btn-primary" asp-controller="Services" asp-action="RegisterService" asp-route-studentId="@Context.Session.GetInt32("StudentId")" asp-route-serviceName="Hệ thống phòng tập gym">Đăng ký dịch vụ</a></td>
+                <td class="text-center">200.000đ</td>
+                <td class="text-center"><a class="btn btn-primary" asp-controller="News" asp-action="DetailsNew" asp-route-studentId="@Context.Session.GetInt32("StudentId")" asp-route-newName="Hệ thống phòng tập gym">Xem chi tiết</a></td>
 
             </tr>
             <tr>
                 <td class="text-center">8</td>
                 <td class="text-center">Hệ thống nhà sách</td>
                 <td class="text-center">Tháng @DateTime.Now.Month</td>
-                <td class="text-center"></td>
-                <td class="text-center"><a class="btn btn-primary" asp-controller="Services" asp-action="RegisterService" asp-route-studentId="@Context.Session.GetInt32("StudentId")" asp-route-serviceName="Hệ thống nhà sách">Đăng ký dịch vụ</a></td>
+                <td class="text-center">100.000đ</td>
+                <td class="text-center"><a class="btn btn-primary" asp-controller="News" asp-action="DetailsNew" asp-route-studentId="@Context.Session.GetInt32("StudentId")" asp-route-newName="Hệ thống nhà sách">Xem chi tiết</a></td>
 
             </tr>
         </tbody>

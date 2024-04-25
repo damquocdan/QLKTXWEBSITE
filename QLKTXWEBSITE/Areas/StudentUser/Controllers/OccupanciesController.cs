@@ -43,6 +43,7 @@ namespace QLKTXWEBSITE.Areas.StudentUser.Controllers
             var occupancy = await _context.Occupancies
                 .Include(o => o.Room)
                 .Include(o => o.Student)
+                .Include(o => o.Student.Bed)
                 .FirstOrDefaultAsync(m => m.OccupancyId == id);
             if (occupancy == null)
             {

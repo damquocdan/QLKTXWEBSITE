@@ -14,73 +14,60 @@
     bool isPastOneMonth = nearestExpirationDate != null && currentDate > nearestExpirationDate.Value.AddMonths(1);
     bool hasRoom = Model.Any(x => x.RoomId != null);
 }
+
 @if (hasRoom)
 {
-    <h1>Danh sách các hợp đồng gia hạn</h1>
+    <div class="container">
+        <h1 class="mt-5 text-center">Danh sách các hợp đồng gia hạn</h1>
 
-    @if (!isPastOneMonth)
-    {
-        <p>
-            <a asp-action="Create" asp-route-studentId="@Context.Session.GetInt32("StudentId")">Tạo hợp đồng mới</a>
-        </p>
-    }
-    <table class="table">
-        <thead>
-            <tr>
-                <th>
-                    Ngày bắt đầu
-                </th>
-                <th>
-                    Ngày kết thúc
-                </th>
-                <th>
-                    Số Tháng
-                </th>
-                <th class="text-center">
-                    Trạng thái
-                </th>
-                <th></th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var item in Model)
-            {
+        @if (!isPastOneMonth)
+        {
+            <p>
+                <a class="btn btn-primary mb-3" asp-action="Create" asp-route-studentId="@Context.Session.GetInt32("StudentId")">Tạo hợp đồng mới</a>
+            </p>
+        }
+
+        <table class="table table-striped" style="border: 2px dashed #ccc;  border-radius:5px;">
+            <thead>
                 <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.RenewalDate)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.ExpirationDate)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.CycleMonths)
-                    </td>
-                    <td>
-                        @if (item.Status == true)
-                        {
-                            <div class="d-flex align-items-center" style="height:38px">
-                                <p class="mb-0 w-100 text-center text-success">Đã thanh toán</p>
-                            </div>
-                        }
-                        else
-                        {
-                            <div class="d-flex align-items-center" style="height:38px">
-                                <p class="mb-0 w-100 text-center text-danger">Chưa thanh toán</p>
-                            </div>
-                        }
-                    </td>
-                    <td>
-                        <a asp-action="Details" asp-route-id="@item.OccupancyId">Xem chi tiết</a>
-                    </td>
+                    <th scope="col">Ngày bắt đầu</th>
+                    <th scope="col">Ngày kết thúc</th>
+                    <th scope="col">Số Tháng</th>
+                    <th scope="col" class="text-center">Trạng thái</th>
+                    <th scope="col"></th>
                 </tr>
-            }
-        </tbody>
-    </table>
-
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.RenewalDate?.ToString("dd/MM/yyyy")</td>
+                        <td>@item.ExpirationDate?.ToString("dd/MM/yyyy")</td>
+                        <td>@Html.DisplayFor(modelItem => item.CycleMonths)</td>
+                        <td class="text-center">
+                            @if (item.Status == true)
+                            {
+                                <span class="btn btn-success ">Đã thanh toán</span>
+                            }
+                            else
+                            {
+                                <span class="btn btn-danger ">Chưa thanh toán</span>
+                            }
+                        </td>
+                        <td>
+                            <a class="text-decoration-none" asp-action="Details" asp-route-id="@item.OccupancyId">Xem chi tiết</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
 }
 else
 {
-    <div class="alert alert-warning" role="alert">
-        <p>Hiện tại bạn chưa có phòng ở. Vui lòng đăng ký phòng và giường.</p>
+    <div class="container mt-5">
+        <div class="alert alert-warning" role="alert">
+            <p>Hiện tại bạn chưa có phòng ở. Vui lòng đăng ký phòng và giường.</p>
+        </div>
     </div>
 }

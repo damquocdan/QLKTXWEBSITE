@@ -5,25 +5,20 @@
 }
 <hr style="color:green" />
 <h1> @Html.DisplayFor(model => model.Title)</h1>
-
-<div class="d-flex">
-
     <div>
-        <img src="@Model.Author" alt="@Model.Title" style="width:800px; height:100%; border-radius:5px" />
+        <img src="@Model.Author" alt="@Model.Title" style="width:100%; height:200px; border-radius:5px" />
     </div>
     <div class="ps-5">
         <div class="row">
-            <p class="fw-normal" style="font-size:1.2rem">@Html.DisplayFor(model => model.Content)</p>
+        <p class="fw-normal" style="font-size:1.2rem">@Html.Raw(Model.Content)</p>
         </div>
         <div class="row float-end">
-            <p class="" style="font-size:0.8rem; color:#ccc;">@Html.DisplayFor(model => model.PublishedDate)</p>
+        <p class="" style="font-size:0.8rem; color:#ccc;">@Model.PublishedDate?.ToString("dd/MM/yyy")</p>
         </div>
     </div>
 
-</div>
-
 <div class="mt-2">
-    <a asp-action="Index" style="text-decoration:none">
-        <div class="d-flex align-items-center"><i class="fa-solid fa-arrow-left fa-xl"></i><p class="mb-0 ps-2">Quay trở lại</p></div>
-    </a>
+    <div>
+        <a href="#" onclick="window.history.back();" class="link">Quay lại</a>
+    </div>
 </div>

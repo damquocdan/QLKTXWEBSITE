@@ -7,65 +7,50 @@
 
 @if (hasRoom)
 {
-    <h1>Danh sách các dịch vụ</h1>
-
-    <table class="table">
-        <thead>
-            <tr>
-                <th>
-                    Tên dịch vụ
-                </th>
-                <th>
-                    Dịch vụ tháng
-                </th>
-                <th>
-                    Giá
-                </th>
-                <th class="text-center">
-                    Trạng thái
-                </th>
-                <th></th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var item in Model)
-            {
+    <div class="container">
+        <h1 class="mt-5 text-center">Danh sách các dịch vụ</h1>
+        <br />
+        <table class="table table-striped" style="border: 2px dashed #ccc;  border-radius:5px;">
+            <thead>
                 <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.ServiceName)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Month)/2024
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Price)
-                    </td>
-                    <td>
-                        @if (item.Status == true)
-                        {
-                            <div class="d-flex align-items-center" style="height:38px">
-                                <p class="mb-0 w-100 text-center text-success">Đã thanh toán</p>
-                            </div>
-                        }
-                        else
-                        {
-                            <div class="d-flex align-items-center" style="height:38px">
-                                <p class="mb-0 w-100 text-center text-danger">Chưa thanh toán</p>
-                            </div>
-                        }
-                    </td>
-                    <td>
-                        <a asp-action="Details" asp-route-id="@item.ServiceId">Xemn chi tiết</a>
-                    </td>
+                    <th scope="col">Tên dịch vụ</th>
+                    <th scope="col">Dịch vụ tháng</th>
+                    <th scope="col">Giá</th>
+                    <th scope="col" class="text-center">Trạng thái</th>
+                    <th scope="col"></th>
                 </tr>
-            }
-        </tbody>
-    </table>
-
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@Html.DisplayFor(modelItem => item.ServiceName)</td>
+                        <td>@Html.DisplayFor(modelItem => item.Month)/2024</td>
+                        <td>@String.Format("{0:#,##0}", item.Price)</td>
+                        <td class="text-center">
+                            @if (item.Status == true)
+                            {
+                                <span class="btn btn-success">Đã thanh toán</span>
+                            }
+                            else
+                            {
+                                <span class="btn btn-danger">Chưa thanh toán</span>
+                            }
+                        </td>
+                        <td>
+                            <a class="text-decoration-none" asp-action="Details" asp-route-id="@item.ServiceId">Xem chi tiết</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
 }
 else
 {
-    <div class="alert alert-warning" role="alert">
-        <p>Hiện tại bạn chưa có phòng ở. Vui lòng đăng ký phòng và giường.</p>
+    <div class="container mt-5">
+        <div class="alert alert-warning" role="alert">
+            <p>Hiện tại bạn chưa có phòng ở. Vui lòng đăng ký phòng và giường.</p>
+        </div>
     </div>
 }

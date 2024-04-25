@@ -3,75 +3,175 @@
 @{
     ViewData["Title"] = "Hợp đồng";
 }
-<div class="row" style="margin:auto;">
-    <div class="col-md-9">
-        <h1 style="text-align:center;">Cộng hoà xã hội chủ nghĩa Việt Nam</h1>
-        <h2 style="text-align:center;">Độc lập - Tự Do - Hạnh phúc</h2>
-        <hr />
-        <dl class="row">
-            <dt class="col-sm-2">
-                Họ và tên
-            </dt>
-            <dd class="col-sm-10">
-                @Html.DisplayFor(model => model.Student.FullName)
-            </dd>
-            <dt class="col-sm-2">
-                Mã sinh viên
-            </dt>
-            <dd class="col-sm-10">
-                @Html.DisplayFor(model => model.Student.StudentCode)
-            </dd>
-            <dt class="col-sm-2">
-                Số điện thoại
-            </dt>
-            <dd class="col-sm-10">
-                @Html.DisplayFor(model => model.Student.PhoneNumber)
-            </dd>
-            <dt class="col-sm-2">
-                Email
-            </dt>
-            <dd class="col-sm-10">
-                @Html.DisplayFor(model => model.Student.Email)
-            </dd>
-            <dt class="col-sm-2">
-                Số phòng
-            </dt>
-            <dd class="col-sm-10">
-                @Html.DisplayFor(model => model.Room.NumberRoom)
-            </dd>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        line-height: 1.6;
+    }
 
-            <dt class="col-sm-2">
-                Ngày bắt đầu
-            </dt>
-            <dd class="col-sm-10">
-                @Html.DisplayFor(model => model.RenewalDate)
-            </dd>
-            <dt class="col-sm-2">
-                Ngày kết thúc
-            </dt>
-            <dd class="col-sm-10">
-                @Html.DisplayFor(model => model.ExpirationDate)
-            </dd>
-            <dt class="col-sm-2">
-                Số tháng
-            </dt>
-            <dd class="col-sm-10">
-                @Html.DisplayFor(model => model.CycleMonths)
-            </dd>
-            <dt class="col-sm-2">
-                Số tiền phải đóng
-            </dt>
-            <dd class="col-sm-10">
-                @Html.DisplayFor(model => model.Room.Floor)
-            </dd>
-        </dl>
-    </div>
-    <div class="col-md-3">
-        <h5>Vui lòng thanh toán đúng hạn</h5>
-        <img width="100%" src="~/img/QR.jpg" />
-    </div>
-</div>
+    .container {
+        max-width: 1200px;
+        margin: auto;
+        padding: 0 20px;
+    }
 
+    h1, h2 {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    p {
+        margin-bottom: 5px;
+    }
+
+    .contract-details {
+        margin-bottom: 30px;
+    }
+
+    .signature {
+        margin-top: 50px;
+        text-align: center;
+    }
+</style>
+<body>
+    <div class="container">
+        <h1>CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM</h1>
+        <h2>Độc lập - Tự do - Hạnh phúc</h2>
+        <h2>HỢP ĐỒNG THUÊ CHỖ Ở NỘI TRÚ</h2>
+        <h5>NĂM HỌC 2024 – 2025</h5>
+
+        <div class="contract-details">
+            <p>Số: .........../KTX.VKU-SV</p>
+            <p>- Căn cứ Bộ luật dân sự số: 33/2005/QH11 ngày 14 tháng 6 năm 2005 của Quốc hội Nước Cộng hòa Xã hội Chủ nghĩa Việt Nam;</p>
+            <p>- Căn cứ vào Đơn đăng ký nội trú Ký túc xá của sinh viên:@Html.DisplayFor(model => model.Student.FullName);</p>
+            <p>- Căn cứ vào khả năng phục vụ của Ký túc xá Trường Đại học Tài nguyên và Môi trường Hà Nội</p>
+            <p>Hôm nay, ngày @Model.RenewalDate?.ToString("dd/MM/yyyy") tại Ký túc xá Trường Đại học Tài nguyên và Môi trường Hà Nội, chúng tôi gồm có:</p>
+        </div>
+
+        <div class="contract-details">
+            <p><strong>Bên A: KÝ TÚC XÁ TRƯỜNG ĐẠI HỌC TÀI NGUYÊN VÀ MÔI TRƯỜNG HÀ NỘI</strong></p>
+            <p>Ông: Nguyễn Văn Việt</p>
+            <p>Chức vụ: Tổ trưởng Tổ Quản lý KTX - PVCĐ</p>
+            <p>Địa chỉ: 41A Đ. Phú Diễn, Phú Diễn, Bắc Từ Liêm, Hà Nội, Việt Nam</p>
+            <p>Điện thoại: 0986.206.122</p>
+        </div>
+
+        <div class="contract-details">
+            <p><strong>Bên B: BÊN ĐĂNG KÝ NỘI TRÚ</strong></p>
+            <p>Sinh viên: @Html.DisplayFor(model => model.Student.FullName)</p>
+            <p>Lớp: @Html.DisplayFor(model => model.Student.Class);     Khoa:@Html.DisplayFor(model => model.Student.Department.DepartmentName);</p>
+            <p>Mã Sinh viên:  @Html.DisplayFor(model => model.Student.StudentCode); Ngày sinh: @Model.Student.DateOfBirth?.ToString("dd/MM/yyyy")</p>
+            <p>Điện thoại:@Html.DisplayFor(model => model.Student.PhoneNumber); Email:@Html.DisplayFor(model => model.Student.Email)</p>
+        </div>
+
+        <div class="contract-details">
+            <p>Bên A được sự uỷ quyền của Hiệu trưởng Trường Đại học Tài nguyên và Môi trường Hà Nội, cùng bên B thống nhất ký kết hợp đồng thuê chỗ ở tại Ký túc xá Trường Đại học Tài nguyên và Môi trường Hà Nội với nội dung sau:</p>
+        </div>
+
+        <div class="contract-details">
+            <h2>ĐIỀU I: ĐIỀU KHOẢN CHUNG</h2>
+            <p>Bên B chấp thuận sự bố trí chỗ ở do bên A sắp xếp tại:</p>
+            <p>Giường số:@Html.DisplayFor(model => model.Student.Bed.NumberBed) Phòng số: @Html.DisplayFor(model => model.Room.NumberRoom)</p>
+            <p>Khu KTX: @Html.DisplayFor(model => model.Room.Building)</p>
+            <p>Thời gian: @Model.RenewalDate?.ToString("dd/MM/yyyy") Từ ngày  đến ngày @Model.ExpirationDate?.ToString("dd/MM/yyyy")</p>
+        </div>
+
+        <div class="contract-details">
+            <h2>ĐIỀU II: TRÁCH NHIỆM CỦA MỖI BÊN</h2>
+            <ol>
+                <li>
+                    <p><strong>Bên A: TRƯỜNG ĐẠI HỌC TÀI NGUYÊN VÀ MÔI TRƯỜNG HÀ NỘI</strong></p>
+                    <ul>
+                        <li>Chịu trách nhiệm bố trí chỗ ở và bàn giao tài sản được trang bị trong phòng ở cho bên B theo quy trình, quy định và ngay khi đã ký hợp đồng thuê chỗ ở ký túc xá.</li>
+                        <li>Kiểm tra, giám sát, nhắc nhở và xử lý kỷ luật đối với bên B về việc thực hiện Quy định Công tác sinh viên nội trú ký túc xá.</li>
+                        <li>Thực hiện đúng quyền hạn và trách nhiệm khác theo Quy định Công tác sinh viên nội trú, Quy định của Nhà trường và Bộ GD&ĐT trong công tác quản lý ký túc xá.</li>
+                    </ul>
+                </li>
+                <li>
+                    <p><strong>Bên B: Sinh viên đăng ký nội trú</strong></p>
+                    <ul>
+                        <li>Nhận và trả phòng ở theo đúng quy định tại Điều 1 của hợp đồng.</li>
+                        <li>Thực hiện đúng quyền lợi và nghĩa vụ của Sinh viên nội trú KTX trong Quy định Công tác sinh viên nội trú ký túc xá.</li>
+                        <li>Chấp hành sự sắp xếp, di chuyển chỗ ở khi có yêu cầu của Tổ Quản lý KTX - PVCĐ.</li>
+                        <li>Chịu sự kiểm tra, giám sát, nhắc nhở của cán bộ quản lý về việc chấp hành Quy định Công tác sinh viên nội trú.</li>
+                        <li>Thực hiện nghiêm việc đảm bảo vệ sinh môi trường, an ninh trật tự, an toàn cháy nổ tại ký túc xá; Bảo quản cơ sở vật chất tại phòng nội trú ký túc xá.</li>
+                        <li>Thực hiện thanh lý hợp đồng, bàn giao các thiết bị trong phòng, thanh toán tiền điện, nước và chấm dứt ở nội trú khi hợp đồng hết hiệu lực.</li>
+                    </ul>
+                </li>
+            </ol>
+        </div>
+
+        <div class="contract-details">
+            <h2>ĐIỀU III: ĐIỀU KHOẢN THANH TOÁN</h2>
+            <ol>
+                <li>
+                    <p><strong>Giá cả:</strong></p>
+                    <table style="border: 1px slategrey solid;">
+                        <thead>
+                            <tr>
+                                <th>NỘI DUNG</th>
+                                <th>SỐ LƯỢNG</th>
+                                <th>ĐƠN GIÁ (vnđ)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Lệ phí KTX tháng</td>
+                                <td>@Html.DisplayFor(model => model.CycleMonths)</td>
+                                <td>@Html.DisplayFor(model => model.Room.Floor)đ</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <p>Tiền nước được tính theo chỉ số phát sinh hàng tháng thông qua khối của các phòng.</p>
+                    <p>Tiền điện được tính theo chỉ số phát sinh hàng tháng thông qua công tơ điện của các phòng.</p>
+                </li>
+                <li>
+                    <p><strong>Thời gian và phương thức thanh toán:</strong></p>
+                    <p>Sau khi bên A làm đơn đăng ký nội trú ký túc xá được bên B phê duyệt và bố trí tại số phòng cụ thể thì bên A phải thực hiện thanh toán đủ số tiền được quy định tại Khoản 1, Điều III trước khi vào ở ký túc xá.</p>
+                </li>
+            </ol>
+        </div>
+
+
+        <div class="contract-details">
+            <h2>ĐIỀU IV: HIỆU LỰC HỢP ĐỒNG</h2>
+            <p>Hợp đồng có hiệu lực kể từ ngày ký.</p>
+            <p>Hiệu lực của Hợp đồng đương nhiên bị chấm dứt khi:</p>
+            <ul>
+                <li>Hết hạn hợp đồng theo Điều 1.</li>
+                <li>Bên A đã tốt nghiệp hoặc bị đình chỉ học tập theo thông báo của nhà trường.</li>
+                <li>Bên A không được ở nội trú ký túc xá vì lý do sức khoẻ theo kết luận của cơ quan y tế.</li>
+                <li>Bên A bị xử lý vi phạm kỷ luật của Nhà trường hoặc ký túc xá từ hình thức Cảnh cáo trở lên.</li>
+                <li>Bên A vi phạm pháp luật.</li>
+                <li>Bên A yêu cầu chấm dứt hợp đồng trước thời hạn.</li>
+                <li>Khi ký túc xá bị phá dỡ, thay đổi công năng theo quyết định của cơ quan có thẩm quyền.</li>
+                <li>Trường hợp bên A đơn phương chấm dứt hợp đồng hoặc vi phạm nội quy ký túc xá, vi phạm kỷ luật của Nhà trường ở hình thức buộc thôi học thì sẽ không được trả lại tiền thuê ở nội trú.</li>
+            </ul>
+        </div>
+
+        <div class="contract-details">
+            <h2>ĐIỀU V: GIÁ TRỊ CỦA HỢP ĐỒNG</h2>
+            <p>Hai bên cam kết thực hiện nghiêm chỉnh các điều khoản của hợp đồng. Trong quá trình thực hiện nếu có vấn đề gì phát sinh thì hai bên cùng trao đổi, bàn bạc để thống nhất giải quyết. Việc thanh lý và gia hạn hợp đồng phải thực hiện trước thời hạn trên hợp đồng.</p>
+            <p>Hợp đồng được lập thành 03 bản có giá trị pháp lý như nhau, Bên A giữ 02 bản, bên B giữ 01 bản.</p>
+            <div class="row">
+                <div class="col-md-4">
+                    <h3 class="text-center">Đại diện bên A</h3>
+                    <br />
+                    <p class="text-center"> @Html.DisplayFor(model => model.Student.FullName)</p>
+                </div>
+                <div class="col-md-4">
+                </div>
+                <div class="col-md-4">
+                    <h3 class="text-center">Đại diện bên B</h3>
+                    <br />
+                    <p class="text-center">Nguyễn Văn Việt</p>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+</body>
 <div>
     <a href="#" onclick="window.history.back();" class="link">Quay lại</a>
 </div>

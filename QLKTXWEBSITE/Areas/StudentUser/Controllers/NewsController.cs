@@ -44,6 +44,21 @@ namespace QLKTXWEBSITE.Areas.StudentUser.Controllers
 
             return View(news);
         }
+        public IActionResult DetailsNew(int studentId, string newName)
+        {
+            // Tìm tin tức có tiêu đề tương ứng trong cơ sở dữ liệu
+            var news = _context.News.FirstOrDefault(n => n.Title == newName);
+
+            // Kiểm tra xem tin tức có tồn tại không
+            if (news == null)
+            {
+                // Nếu không tìm thấy tin tức, có thể chuyển hướng đến một trang thông báo lỗi hoặc trang 404
+                return NotFound();
+            }
+
+            // Trả về trang chi tiết tin tức với thông tin tin tức tương ứng
+            return View(news);
+        }
 
         // GET: StudentUser/News/Create
         public IActionResult Create()

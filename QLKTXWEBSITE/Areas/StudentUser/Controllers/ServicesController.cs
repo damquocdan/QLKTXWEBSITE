@@ -80,14 +80,16 @@ namespace QLKTXWEBSITE.Areas.StudentUser.Controllers
         }
 
         // GET: StudentUser/Services/Create
-        public IActionResult Create(int studentId, string serviceName)
+        public IActionResult Create(int studentId, string serviceName, int price)
         {
             Service service = new Service
             {
                 ServiceName = serviceName,
                 Month = DateTime.Now.Month,
-                Price = 100000,
-                StudentId = studentId
+                Price = price,
+                StudentId = studentId,
+
+
             };
 
             ViewData["RoomId"] = new SelectList(_context.Rooms, "RoomId", "RoomId");
@@ -106,7 +108,7 @@ namespace QLKTXWEBSITE.Areas.StudentUser.Controllers
             {
                 _context.Add(service);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction("Index", "Services", new { studentId = service.StudentId });
             }
             ViewData["RoomId"] = new SelectList(_context.Rooms, "RoomId", "RoomId", service.RoomId);
             ViewData["StudentId"] = new SelectList(_context.Students, "StudentId", "StudentId", service.StudentId);
@@ -206,7 +208,7 @@ namespace QLKTXWEBSITE.Areas.StudentUser.Controllers
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
-        public IActionResult RegisterService(string serviceName, int studentId)
+        public IActionResult RegisterService(string serviceName, int studentId,decimal price)
         {
             // Kiểm tra xem sinh viên đã đăng ký dịch vụ đó cho tháng này chưa
             bool hasRegistered = CheckIfStudentHasRegisteredForService(serviceName, studentId);
@@ -219,7 +221,7 @@ namespace QLKTXWEBSITE.Areas.StudentUser.Controllers
             else
             {
                 // Nếu chưa đăng ký, chuyển hướng đến trang tạo mới dịch vụ
-                return RedirectToAction("Create", new { ServiceName = serviceName, StudentId = studentId });
+                return RedirectToAction("Create", new { ServiceName = serviceName, StudentId = studentId,Price = price });
             }
         }
 

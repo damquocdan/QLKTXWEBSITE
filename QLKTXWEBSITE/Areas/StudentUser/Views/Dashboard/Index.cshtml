@@ -65,9 +65,9 @@
                             <div class="w-100" style="height:20px;overflow: hidden;text-overflow: ellipsis;">
                                 <h5 class="card-title text-center">@Html.DisplayFor(modelItem => item.Title)</h5>
                             </div>                            <div class="w-100" style="height:100px;overflow: hidden;text-overflow: ellipsis;">
-                                <p class="card-text" style="text-align:justify">@Html.DisplayFor(modelItem => item.Content)</p>
+                                <p class="card-text" style="text-align:justify;font-size:16px">@Html.Raw(item.Content)</p>
                             </div>
-                            <p class="card-text float-end" style="font-size:0.6rem; color:#ccc;">@Html.DisplayFor(modelItem => item.PublishedDate)</p>
+                            <p class="card-text float-end" style="font-size:0.6rem; color:#ccc;">@item.PublishedDate?.ToString("dd/MM/yyy")</p>
                             <br />
                             <a asp-controller="News" asp-action="Details" asp-route-id="@item.NewsId" class="btn btn-primary">Xem thêm</a>
                         </div>
