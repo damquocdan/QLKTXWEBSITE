@@ -118,7 +118,7 @@
                             <tr>
                                 <td>Lệ phí KTX tháng</td>
                                 <td>@Html.DisplayFor(model => model.CycleMonths)</td>
-                                <td>@Html.DisplayFor(model => model.Room.Floor)đ</td>
+                                <td>@String.Format("{0:#,##0}", Model.Room.Floor)đ</td>
                             </tr>
                         </tbody>
                     </table>
