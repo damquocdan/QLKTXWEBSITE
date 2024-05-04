@@ -266,17 +266,26 @@ namespace QLKTXWEBSITE.Areas.AdminQL.Controllers
         {
             if (_context.Rooms == null)
             {
-                return Problem("Entity set 'QlktxContext.Rooms'  is null.");
+                return Problem("Entity set 'QlktxContext.Rooms' is null.");
             }
+
             var room = await _context.Rooms.FindAsync(id);
-            if (room != null)
+            if (room == null)
             {
-                _context.Rooms.Remove(room);
+                return NotFound();
             }
-            
+
+            // Tìm và xoá các giường của phòng
+            var bedsToDelete = await _context.BedOfRooms.Where(bed => bed.RoomId == id).ToListAsync();
+            _context.BedOfRooms.RemoveRange(bedsToDelete);
+
+            // Tiến hành xoá phòng
+            _context.Rooms.Remove(room);
+
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
+
 
         private bool RoomExists(int id)
         {

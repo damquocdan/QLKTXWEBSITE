@@ -62,10 +62,15 @@ namespace QLKTXWEBSITE.Areas.StudentUser.Controllers
         }
         public IActionResult GetBeds(int RoomId)
         {
+            var room = _context.Rooms
+                .FirstOrDefault(r => r.RoomId == RoomId); // Lấy ra phòng có RoomId trùng khớp với roomId được truyền vào
+
+            string building = room?.Building;
             var bedsInRoom = _context.BedOfRooms
                 .Where(b => b.RoomId == RoomId)
                 .ToList();
-
+            ViewData["RoomId"] = room?.NumberRoom; // Gán giá trị của NumberRoom vào ViewData
+            ViewData["Building"] = building;
             return PartialView("_Beds", bedsInRoom);
         }
         public IActionResult GetStudents(int BedId)

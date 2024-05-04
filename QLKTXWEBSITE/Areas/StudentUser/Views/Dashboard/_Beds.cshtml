@@ -1,5 +1,9 @@
 ﻿@using Microsoft.EntityFrameworkCore
 @model List<QLKTXWEBSITE.Models.BedOfRoom>
+@{
+    int RoomId = (int)(ViewData["RoomId"] ?? 0);
+    string Building = (string)(ViewData["Building"] ?? "");
+}
 <style>
     .enabled-bed {
         background-color: #ccffcc; /* Màu xanh */
@@ -10,8 +14,9 @@
     }
 
 </style>
+
 <div class="row">
-    <h3 style="text-align:center">Danh sách các giường</h3>
+    <h3 style="text-align:center">Danh sách các giườngphòng: @RoomId Tòa @Building</h3>
     @foreach (var bed in Model)
     {
         <div class="col-md-3 @if(bed.Status==true){
@@ -30,7 +35,7 @@
             else
             {
                  <h4>Giường số :@bed.NumberBed</h4>
-                        <form asp-area="StudentUser" asp-controller="Dashboard" asp-action="RegisterBed" method="post">
+                        <form id="registerBedForm" asp-area="StudentUser" asp-controller="Dashboard" asp-action="RegisterBed" method="post">
                             <input type="hidden" name="studentId" value="@Context.Session.GetInt32("StudentId")" />
                             <input type="hidden" name="bedId" value="@bed.BedId" />
                             <input type="hidden" name="roomId" value="@bed.RoomId" />
@@ -61,6 +66,35 @@
                 });
             });
 
+        });
+        $(document).ready(function () {
+            $('#registerBedForm').submit(function (event) {
+                // Ngăn chặn form gửi dữ liệu mặc định
+                event.preventDefault();
+
+                // Hiển thị alert xác nhận
+                if (confirm('Bạn có chắc chắn muốn đăng ký giường này không?')) {
+                    // Lấy dữ liệu từ form
+                    var formData = $(this).serialize();
+
+                    // Gửi yêu cầu AJAX để đăng ký giường
+                    $.ajax({
+                        url: '@Url.Action("RegisterBed", "Dashboard")',
+                        type: 'POST',
+                        data: formData,
+                        success: function (response) {
+                            // Xử lý thành công, ví dụ: hiển thị thông báo
+                            alert('Đăng ký giường thành công!');
+                            // Chuyển hướng về trang chủ sau khi đăng ký thành công
+                            window.location.href = '@Url.Action("Index", "Dashboard")';
+                        },
+                        error: function () {
+                            // Xử lý lỗi, ví dụ: hiển thị thông báo lỗi
+                            alert('Đã xảy ra lỗi khi đăng ký giường.');
+                        }
+                    });
+                }
+            });
         });
     </script>
 }
