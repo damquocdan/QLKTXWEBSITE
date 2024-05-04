@@ -222,7 +222,8 @@
                     url: "/AdminQL/Students/DeleteSelected",
                     data: { ids: ids },
                     success: function () {
-                        window.location.reload(); // Tải lại trang sau khi xoá
+                        window.location.reload();
+                        window.alert("Xoá thành công")// Tải lại trang sau khi xoá
                     },
                     error: function (xhr, status, error) {
                         console.error(xhr.responseText);
