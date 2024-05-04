@@ -23,8 +23,17 @@
                 </select>
                 <span asp-validation-for="Mowroom" class="text-danger"></span>
             </div>
+                <div class="form-group">
+                    <label asp-for="Building" class="control-label">Toà</label>
+                    <select asp-for="Building" class="form-control">
+                        <option value="D">D</option>
+                        <option value="E">E</option>
+                        <option value="G">G</option>
+                    </select>
+                    <span asp-validation-for="Building" class="text-danger"></span>
+                </div>
             <div class="form-group">
-                <label asp-for="Floor" class="control-label">Tầng</label>
+                <label asp-for="Floor" class="control-label">Giá phòng (6 Tháng)</label>
                 <input asp-for="Floor" class="form-control" />
                 <span asp-validation-for="Floor" class="text-danger"></span>
             </div>
